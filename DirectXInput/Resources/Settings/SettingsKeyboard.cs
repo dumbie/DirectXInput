@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVJsonFunctions;
 using static DirectXInput.AppVariables;
-using static LibraryShared.Classes;
 
 namespace DirectXInput
 {

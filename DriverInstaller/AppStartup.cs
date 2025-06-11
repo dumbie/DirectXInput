@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using static ArnoldVinkCode.AVInteropDll;
 using static DriverInstaller.AppVariables;
-using static LibraryShared.AppUpdate;
+using static ArnoldVinkCode.AVUpdate;
 
 namespace DriverInstaller
 {
@@ -19,8 +19,8 @@ namespace DriverInstaller
                 //Setup application defaults
                 AVStartup.SetupDefaults(ProcessPriority.Normal, true);
 
-                //Application update checks
-                await UpdateCheck();
+                //Application update cleanup
+                await UpdateCleanup();
 
                 //Open the application window
                 vWindowMain.Show();

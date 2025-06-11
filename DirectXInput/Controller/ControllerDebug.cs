@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using static ArnoldVinkCode.AVClasses;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
 

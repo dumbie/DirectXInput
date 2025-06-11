@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVJsonFunctions;
-using static LibraryShared.Classes;
 
 namespace DriverInstaller
 {

@@ -26,11 +26,6 @@
 		<DebugType>none</DebugType>
 	</PropertyGroup>
 	<ItemGroup>
-		<Compile Include="..\CtrlUI\Properties\AssemblyVersion.cs">
-			<Link>Properties\AssemblyVersion.cs</Link>
-		</Compile>
-	</ItemGroup>
-	<ItemGroup>
 		<Content Include="DirectXInput.exe.csettings">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
@@ -105,15 +100,19 @@
 		</Content>
 	</ItemGroup>
 	<ItemGroup>
-		<EmbeddedResource Include="Assets\AppIcon.ico" />
+	  <Compile Include="..\..\CtrlUI\CtrlUI\Library\SoundPlayer.cs" Link="Library\SoundPlayer.cs" />
+	  <Compile Include="..\..\FpsOverlayer\FpsOverlayer\Library\Classes\NotificationDetails.cs" Link="Library\Classes\NotificationDetails.cs" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\LibraryShared\LibraryShared.csproj" />
+		<EmbeddedResource Include="Assets\AppIcon.ico" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Emoji.Wpf" Version="0.3.4" />
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Profiles\User\DirectControllersProfile\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\ArnoldVinkCode\Desktop\ArnoldVinkCode.csproj" />
 	</ItemGroup>
 </Project>

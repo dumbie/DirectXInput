@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVFocus;
 using static ArnoldVinkCode.AVInputOutputClass;
 using static DirectXInput.AppVariables;
-using static LibraryShared.Classes;
 using static LibraryShared.SoundPlayer;
 
 namespace DirectXInput.KeyboardCode

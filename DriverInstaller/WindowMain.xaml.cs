@@ -5,9 +5,9 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVProcess;
 using static DriverInstaller.AppVariables;
-using static LibraryShared.Classes;
 
 namespace DriverInstaller
 {

@@ -7,9 +7,9 @@ using System.Windows;
 using System.Windows.Media;
 using static ArnoldVinkCode.AVInputOutputClass;
 using static ArnoldVinkCode.AVSettings;
+using static ArnoldVinkCode.AVUpdate;
 using static ArnoldVinkCode.Styles.MainColors;
 using static DirectXInput.AppVariables;
-using static LibraryShared.AppUpdate;
 
 namespace DirectXInput
 {
@@ -21,8 +21,8 @@ namespace DirectXInput
             {
                 Debug.WriteLine("Welcome to application.");
 
-                //Application update checks
-                await UpdateCheck();
+                //Application update cleanup
+                await UpdateCleanup();
 
                 //Application initialize settings
                 Settings_Check();

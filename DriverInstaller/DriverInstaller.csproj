@@ -26,17 +26,18 @@
 		<DebugType>none</DebugType>
 	</PropertyGroup>
 	<ItemGroup>
-		<Compile Include="..\CtrlUI\Properties\AssemblyVersion.cs">
-			<Link>Properties\AssemblyVersion.cs</Link>
-		</Compile>
+	  <Compile Include="..\DirectXInput\Library\Usb\NativeMethods_Guid.cs" Link="Library\Usb\NativeMethods_Guid.cs" />
 	</ItemGroup>
 	<ItemGroup>
 		<Resource Include="Assets\AppIcon.ico" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\LibraryShared\LibraryShared.csproj" />
+		<PackageReference Include="TaskScheduler" Version="2.12.1" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="TaskScheduler" Version="2.12.1" />
+	  <ProjectReference Include="..\..\ArnoldVinkCode\Desktop\ArnoldVinkCode.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Library\Usb\" />
 	</ItemGroup>
 </Project>
