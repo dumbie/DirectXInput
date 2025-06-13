@@ -83,7 +83,7 @@ namespace DirectXInput.KeyboardCode
                 if (vWindowVisible)
                 {
                     //Play window close sound
-                    PlayInterfaceSound(vConfigurationCtrlUI, "PopupClose", false, false);
+                    PlayInterfaceSound(vConfigurationDirectXInput, "PopupClose", false, false);
 
                     //Stop the update tasks
                     await TasksBackgroundStop();
@@ -121,7 +121,7 @@ namespace DirectXInput.KeyboardCode
                 vControllerDelay_Keyboard = GetSystemTicksMs() + vControllerDelayTicks250;
 
                 //Play window open sound
-                PlayInterfaceSound(vConfigurationCtrlUI, "PopupOpen", false, false);
+                PlayInterfaceSound(vConfigurationDirectXInput, "PopupOpen", false, false);
 
                 //Start the update tasks
                 TasksBackgroundStart();
@@ -238,7 +238,7 @@ namespace DirectXInput.KeyboardCode
             try
             {
                 //Get the current active screen
-                int monitorNumber = SettingLoad(vConfigurationCtrlUI, "DisplayMonitor", typeof(int));
+                int monitorNumber = SettingLoad(vConfigurationDirectXInput, "DisplayMonitor", typeof(int));
 
                 //Move the window position
                 WindowUpdatePosition(monitorNumber, vInteropWindowHandle, AVWindowPosition.BottomCenter);
@@ -773,7 +773,7 @@ namespace DirectXInput.KeyboardCode
         {
             try
             {
-                PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
                 Debug.WriteLine("Switching caps lock.");
 
                 //Disable hardware capslock

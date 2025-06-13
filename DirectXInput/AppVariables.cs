@@ -34,7 +34,6 @@ namespace DirectXInput
 
         //Application Variables
         readonly public static bool vAdministratorPermission = new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
-        public static Configuration vConfigurationCtrlUI = SettingLoadConfig("CtrlUI.exe.csettings");
         public static Configuration vConfigurationDirectXInput = SettingLoadConfig("DirectXInput.exe.csettings");
 
         //Image Variables

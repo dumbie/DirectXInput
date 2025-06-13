@@ -7,7 +7,6 @@ using static ArnoldVinkCode.AVActions;
 using static ArnoldVinkCode.AVAudioDevice;
 using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVInputOutputClass;
-using static ArnoldVinkCode.AVSettings;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
 using static LibraryShared.ControllerTimings;
@@ -351,10 +350,7 @@ namespace DirectXInput
                 {
                     if (!vWindowKeyboard.vWindowVisible && !vWindowKeypad.vWindowVisible)
                     {
-                        if (forceShow || SettingLoad(vConfigurationDirectXInput, "ShortcutKeyboardPopup", typeof(bool)))
-                        {
-                            await vWindowKeypad.Show();
-                        }
+                        await vWindowKeypad.Show();
                     }
                     else if (!forceShow)
                     {
@@ -381,10 +377,7 @@ namespace DirectXInput
                 {
                     if (!vWindowKeyboard.vWindowVisible && !vWindowKeypad.vWindowVisible)
                     {
-                        if (forceShow || SettingLoad(vConfigurationDirectXInput, "ShortcutKeyboardPopup", typeof(bool)))
-                        {
-                            await vWindowKeyboard.Show(forceKeyboardMode, forceKeyboardMode);
-                        }
+                        await vWindowKeyboard.Show(forceKeyboardMode, forceKeyboardMode);
                     }
                     else if (!forceShow)
                     {

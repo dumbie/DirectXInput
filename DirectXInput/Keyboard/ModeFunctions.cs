@@ -106,7 +106,7 @@ namespace DirectXInput.KeyboardCode
                     }
 
                     //Play sound
-                    PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                    PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
 
                     //Show notification
                     NotificationDetails notificationDetails = new NotificationDetails();
@@ -180,7 +180,7 @@ namespace DirectXInput.KeyboardCode
                     await FocusElement(key_Tool_SwitchMode, vInteropWindowHandle);
 
                     //Play sound
-                    PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                    PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
 
                     //Show notification
                     NotificationDetails notificationDetails = new NotificationDetails();

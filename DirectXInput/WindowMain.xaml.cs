@@ -60,8 +60,7 @@ namespace DirectXInput
         {
             try
             {
-                int socketServerPort = SettingLoad(vConfigurationCtrlUI, "ServerPort", typeof(int)) + 1;
-
+                int socketServerPort = SettingLoad(vConfigurationDirectXInput, "ServerPort", typeof(int));
                 vArnoldVinkSockets = new ArnoldVinkSockets("127.0.0.1", socketServerPort, false, true);
                 vArnoldVinkSockets.vSocketTimeout = 250;
                 vArnoldVinkSockets.EventBytesReceived += ReceivedSocketHandler;

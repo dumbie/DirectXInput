@@ -1,15 +1,12 @@
 ﻿using ArnoldVinkCode;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Media;
 using static ArnoldVinkCode.ArnoldVinkSockets;
 using static ArnoldVinkCode.AVClassConverters;
-using static ArnoldVinkCode.AVSettings;
-using static ArnoldVinkCode.Styles.MainColors;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
 
@@ -58,44 +55,19 @@ namespace DirectXInput
                 //Deserialize the received bytes
                 if (DeserializeBytesToObject(receivedBytes, out SocketSendContainer deserializedBytes))
                 {
-                    //Check what kind of object was received
-                    if (deserializedBytes.Object is NotificationDetails)
+                    Type objectType = Type.GetType(deserializedBytes.SendType);
+                    if (objectType == typeof(NotificationDetails))
                     {
-                        NotificationDetails receivedNotificationDetails = (NotificationDetails)deserializedBytes.Object;
+                        NotificationDetails receivedNotificationDetails = deserializedBytes.GetObjectAsType<NotificationDetails>();
                         vWindowOverlay.Notification_Show_Status(receivedNotificationDetails);
                     }
-                    else if (deserializedBytes.Object is string)
+                    else if (objectType == typeof(string))
                     {
-                        string receivedString = (string)deserializedBytes.Object;
+                        string receivedString = (string)deserializedBytes.SendObject;
                         Debug.WriteLine("Received socket string: " + receivedString);
-                        if (receivedString == "SettingChangedColorAccentLight")
+                        if (receivedString == "ControllerStatusSummaryList")
                         {
-                            vConfigurationCtrlUI = SettingLoadConfig("CtrlUI.exe.csettings");
-
-                            //Change application accent color
-                            string colorLightHex = SettingLoad(vConfigurationCtrlUI, "ColorAccentLight", typeof(string));
-                            ChangeApplicationAccentColor(colorLightHex);
-                            vApplicationAccentLightBrush = (SolidColorBrush)Application.Current.Resources["ApplicationAccentLightBrush"];
-                        }
-                        else if (receivedString == "SettingChangedInterfaceSoundPackName")
-                        {
-                            vConfigurationCtrlUI = SettingLoadConfig("CtrlUI.exe.csettings");
-                        }
-                        else if (receivedString == "SettingChangedInterfaceClockStyleName")
-                        {
-                            vConfigurationCtrlUI = SettingLoadConfig("CtrlUI.exe.csettings");
-                            vWindowKeyboard.UpdateClockStyle();
-                        }
-                        else if (receivedString == "SettingChangedDisplayMonitor")
-                        {
-                            vConfigurationCtrlUI = SettingLoadConfig("CtrlUI.exe.csettings");
-                            vWindowOverlay.UpdateWindowPosition();
-                            vWindowKeyboard.UpdateWindowPosition();
-                            vWindowKeypad.UpdateWindowPosition();
-                        }
-                        else if (receivedString == "ControllerStatusSummaryList")
-                        {
-                            await SendControllerStatusDetailsList(deserializedBytes);
+                            await SendControllerStatusDetailsList(deserializedBytes.SourceIp, deserializedBytes.SourcePort);
                         }
                         else if (receivedString == "KeyboardHideShow")
                         {
@@ -111,7 +83,7 @@ namespace DirectXInput
             catch { }
         }
 
-        async Task SendControllerStatusDetailsList(SocketSendContainer deserializedBytes)
+        async Task SendControllerStatusDetailsList(string targetIp, int targetPort)
         {
             try
             {
@@ -129,24 +101,28 @@ namespace DirectXInput
                 ControllerStatusDetails controllerStatus0 = new ControllerStatusDetails(vController0.NumberId);
                 controllerStatus0.Activated = vController0.Activated;
                 controllerStatus0.Connected = vController0.Connected();
+                controllerStatus0.Color = vController0.Color;
                 controllerStatus0.BatteryCurrent = vController0.BatteryCurrent;
                 controllerStatusDetailsList.Add(controllerStatus0);
 
                 ControllerStatusDetails controllerStatus1 = new ControllerStatusDetails(vController1.NumberId);
                 controllerStatus1.Activated = vController1.Activated;
                 controllerStatus1.Connected = vController1.Connected();
+                controllerStatus1.Color = vController1.Color;
                 controllerStatus1.BatteryCurrent = vController1.BatteryCurrent;
                 controllerStatusDetailsList.Add(controllerStatus1);
 
                 ControllerStatusDetails controllerStatus2 = new ControllerStatusDetails(vController2.NumberId);
                 controllerStatus2.Activated = vController2.Activated;
                 controllerStatus2.Connected = vController2.Connected();
+                controllerStatus2.Color = vController2.Color;
                 controllerStatus2.BatteryCurrent = vController2.BatteryCurrent;
                 controllerStatusDetailsList.Add(controllerStatus2);
 
                 ControllerStatusDetails controllerStatus3 = new ControllerStatusDetails(vController3.NumberId);
                 controllerStatus3.Activated = vController3.Activated;
                 controllerStatus3.Connected = vController3.Connected();
+                controllerStatus3.Color = vController3.Color;
                 controllerStatus3.BatteryCurrent = vController3.BatteryCurrent;
                 controllerStatusDetailsList.Add(controllerStatus3);
 
@@ -154,11 +130,11 @@ namespace DirectXInput
                 SocketSendContainer socketSend = new SocketSendContainer();
                 socketSend.SourceIp = vArnoldVinkSockets.vSocketServerIp;
                 socketSend.SourcePort = vArnoldVinkSockets.vSocketServerPort;
-                socketSend.Object = controllerStatusDetailsList;
+                socketSend.SetObject(controllerStatusDetailsList);
                 byte[] SerializedData = SerializeObjectToBytes(socketSend);
 
                 //Send socket data
-                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(deserializedBytes.SourceIp), deserializedBytes.SourcePort);
+                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(targetIp), targetPort);
                 await vArnoldVinkSockets.UdpClientSendBytesServer(ipEndPoint, SerializedData, vArnoldVinkSockets.vSocketTimeout);
             }
             catch { }

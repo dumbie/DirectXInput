@@ -3,8 +3,8 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using static ArnoldVinkCode.AVInteropDll;
-using static DriverInstaller.AppVariables;
 using static ArnoldVinkCode.AVUpdate;
+using static DriverInstaller.AppVariables;
 
 namespace DriverInstaller
 {

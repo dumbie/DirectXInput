@@ -86,7 +86,9 @@ namespace DirectXInput
 
                         //Controller update led color
                         ControllerLedColor(vController0);
-                        await NotifyCtrlUISettingChanged("ControllerColor");
+
+                        //Send controller colors to CtrlUI
+                        await SendControllerStatusDetailsList(vArnoldVinkSockets.vSocketServerIp, 26759);
                     }
                 };
 
@@ -106,7 +108,9 @@ namespace DirectXInput
 
                         //Controller update led color
                         ControllerLedColor(vController1);
-                        await NotifyCtrlUISettingChanged("ControllerColor");
+
+                        //Send controller colors to CtrlUI
+                        await SendControllerStatusDetailsList(vArnoldVinkSockets.vSocketServerIp, 26759);
                     }
                 };
 
@@ -126,7 +130,9 @@ namespace DirectXInput
 
                         //Controller update led color
                         ControllerLedColor(vController2);
-                        await NotifyCtrlUISettingChanged("ControllerColor");
+
+                        //Send controller colors to CtrlUI
+                        await SendControllerStatusDetailsList(vArnoldVinkSockets.vSocketServerIp, 26759);
                     }
                 };
 
@@ -146,7 +152,9 @@ namespace DirectXInput
 
                         //Controller update led color
                         ControllerLedColor(vController3);
-                        await NotifyCtrlUISettingChanged("ControllerColor");
+
+                        //Send controller colors to CtrlUI
+                        await SendControllerStatusDetailsList(vArnoldVinkSockets.vSocketServerIp, 26759);
                     }
                 };
 

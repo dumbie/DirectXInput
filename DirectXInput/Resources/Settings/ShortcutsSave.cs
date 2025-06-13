@@ -4,7 +4,6 @@ using System.Diagnostics;
 using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVJsonFunctions;
 using static DirectXInput.AppVariables;
-using static DirectXInput.SettingsNotify;
 
 namespace DirectXInput
 {
@@ -37,27 +36,25 @@ namespace DirectXInput
             }
         }
 
-        async void Shortcut_Keyboard_TriggerChanged(ShortcutTriggerKeyboard triggers)
+        void Shortcut_Keyboard_TriggerChanged(ShortcutTriggerKeyboard triggers)
         {
             try
             {
                 if (vShortcutsKeyboard.ListReplaceFirstItem(x => x.Name == triggers.Name, triggers))
                 {
                     JsonSaveObject(vShortcutsKeyboard, @"Profiles\User\DirectShortcutsKeyboard.json");
-                    await NotifyCtrlUISettingChanged("Shortcut");
                 }
             }
             catch { }
         }
 
-        async void Shortcut_Controller_TriggerChanged(ShortcutTriggerController triggers)
+        void Shortcut_Controller_TriggerChanged(ShortcutTriggerController triggers)
         {
             try
             {
                 if (vShortcutsController.ListReplaceFirstItem(x => x.Name == triggers.Name, triggers))
                 {
                     JsonSaveObject(vShortcutsController, @"Profiles\User\DirectShortcutsController.json");
-                    await NotifyCtrlUISettingChanged("Shortcut");
                 }
             }
             catch { }

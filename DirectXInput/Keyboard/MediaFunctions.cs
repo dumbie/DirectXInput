@@ -26,7 +26,7 @@ namespace DirectXInput.KeyboardCode
             try
             {
                 vWindowOverlay.Notification_Show_Status("MediaPlayPause", "Resuming or pausing media");
-                PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
                 vFakerInputDevice.MultimediaPressRelease(KeysMediaHid.PlayPause);
             }
             catch { }
@@ -38,7 +38,7 @@ namespace DirectXInput.KeyboardCode
             try
             {
                 vWindowOverlay.Notification_Show_Status("MediaNext", "Going to next media item");
-                PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
                 vFakerInputDevice.MultimediaPressRelease(KeysMediaHid.Next);
             }
             catch { }
@@ -50,7 +50,7 @@ namespace DirectXInput.KeyboardCode
             try
             {
                 vWindowOverlay.Notification_Show_Status("MediaPrevious", "Going to previous media item");
-                PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
                 vFakerInputDevice.MultimediaPressRelease(KeysMediaHid.Previous);
             }
             catch { }
@@ -62,7 +62,7 @@ namespace DirectXInput.KeyboardCode
             try
             {
                 vWindowOverlay.Notification_Show_Status("MediaFullscreen", "Toggling fullscreen");
-                PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
                 KeysHidAction keyboardAction = new KeysHidAction()
                 {
                     Modifiers = KeysModifierHid.AltLeft,

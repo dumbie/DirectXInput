@@ -84,7 +84,7 @@ namespace DirectXInput
             try
             {
                 //Play interface sound
-                PlayInterfaceSound(vConfigurationCtrlUI, "PopupOpen", false, true);
+                PlayInterfaceSound(vConfigurationDirectXInput, "PopupOpen", false, true);
 
                 //Launch application
                 AVProcess.Launch_UwpApplication("Microsoft.XboxGamingOverlay_8wekyb3d8bbwe!App", string.Empty);

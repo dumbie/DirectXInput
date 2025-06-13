@@ -10,32 +10,6 @@ namespace DirectXInput
 {
     partial class SettingsNotify
     {
-        //Notify - CtrlUI setting changed
-        public static async Task NotifyCtrlUISettingChanged(string settingName)
-        {
-            try
-            {
-                //Check if socket server is running
-                if (vArnoldVinkSockets == null)
-                {
-                    Debug.WriteLine("The socket server is not running.");
-                    return;
-                }
-
-                //Prepare socket data
-                SocketSendContainer socketSend = new SocketSendContainer();
-                socketSend.SourceIp = vArnoldVinkSockets.vSocketServerIp;
-                socketSend.SourcePort = vArnoldVinkSockets.vSocketServerPort;
-                socketSend.Object = "SettingChanged" + settingName;
-                byte[] SerializedData = SerializeObjectToBytes(socketSend);
-
-                //Send socket data
-                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(vArnoldVinkSockets.vSocketServerIp), vArnoldVinkSockets.vSocketServerPort - 1);
-                await vArnoldVinkSockets.UdpClientSendBytesServer(ipEndPoint, SerializedData, vArnoldVinkSockets.vSocketTimeout);
-            }
-            catch { }
-        }
-
         //Notify - Fps Overlayer keypad size changed
         public static async Task NotifyFpsOverlayerKeypadSizeChanged(int keypadHeight)
         {
@@ -56,11 +30,11 @@ namespace DirectXInput
                 SocketSendContainer socketSend = new SocketSendContainer();
                 socketSend.SourceIp = vArnoldVinkSockets.vSocketServerIp;
                 socketSend.SourcePort = vArnoldVinkSockets.vSocketServerPort;
-                socketSend.Object = keypadSize;
+                socketSend.SetObject(keypadSize);
                 byte[] SerializedData = SerializeObjectToBytes(socketSend);
 
                 //Send socket data
-                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(vArnoldVinkSockets.vSocketServerIp), vArnoldVinkSockets.vSocketServerPort + 1);
+                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(vArnoldVinkSockets.vSocketServerIp), 26761);
                 await vArnoldVinkSockets.UdpClientSendBytesServer(ipEndPoint, SerializedData, vArnoldVinkSockets.vSocketTimeout);
             }
             catch { }

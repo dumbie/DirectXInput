@@ -138,7 +138,7 @@ namespace DirectXInput.KeyboardCode
                     {
                         if (vKeyboardCurrentMode == KeyboardMode.Media)
                         {
-                            PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                            PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
                             KeysHidAction keyboardAction = new KeysHidAction()
                             {
                                 Key0 = KeysHid.ArrowLeft
@@ -153,7 +153,7 @@ namespace DirectXInput.KeyboardCode
                             if (vInteropWindowHandle != vProcessForeground.WindowHandleMain)
                             {
                                 //Play interface sound
-                                PlayInterfaceSound(vConfigurationCtrlUI, "Move", false, false);
+                                PlayInterfaceSound(vConfigurationDirectXInput, "Move", false, false);
 
                                 //Update window style
                                 WindowUpdateStyle(vInteropWindowHandle, true, true, true, false);
@@ -181,7 +181,7 @@ namespace DirectXInput.KeyboardCode
                     {
                         if (vKeyboardCurrentMode == KeyboardMode.Media)
                         {
-                            PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                            PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
                             KeysHidAction keyboardAction = new KeysHidAction()
                             {
                                 Key0 = KeysHid.ArrowRight
@@ -196,7 +196,7 @@ namespace DirectXInput.KeyboardCode
                             if (vInteropWindowHandle != vProcessForeground.WindowHandleMain)
                             {
                                 //Play interface sound
-                                PlayInterfaceSound(vConfigurationCtrlUI, "Move", false, false);
+                                PlayInterfaceSound(vConfigurationDirectXInput, "Move", false, false);
 
                                 //Update window style
                                 WindowUpdateStyle(vInteropWindowHandle, true, true, true, false);
@@ -224,7 +224,7 @@ namespace DirectXInput.KeyboardCode
                     {
                         if (vKeyboardCurrentMode == KeyboardMode.Media)
                         {
-                            PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                            PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
                             KeysHidAction keyboardAction = new KeysHidAction()
                             {
                                 Key0 = KeysHid.ArrowUp
@@ -239,7 +239,7 @@ namespace DirectXInput.KeyboardCode
                             if (vInteropWindowHandle != vProcessForeground.WindowHandleMain)
                             {
                                 //Play interface sound
-                                PlayInterfaceSound(vConfigurationCtrlUI, "Move", false, false);
+                                PlayInterfaceSound(vConfigurationDirectXInput, "Move", false, false);
 
                                 //Update window style
                                 WindowUpdateStyle(vInteropWindowHandle, true, true, true, false);
@@ -267,7 +267,7 @@ namespace DirectXInput.KeyboardCode
                     {
                         if (vKeyboardCurrentMode == KeyboardMode.Media)
                         {
-                            PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                            PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
                             KeysHidAction keyboardAction = new KeysHidAction()
                             {
                                 Key0 = KeysHid.ArrowDown
@@ -282,7 +282,7 @@ namespace DirectXInput.KeyboardCode
                             if (vInteropWindowHandle != vProcessForeground.WindowHandleMain)
                             {
                                 //Play interface sound
-                                PlayInterfaceSound(vConfigurationCtrlUI, "Move", false, false);
+                                PlayInterfaceSound(vConfigurationDirectXInput, "Move", false, false);
 
                                 //Update window style
                                 WindowUpdateStyle(vInteropWindowHandle, true, true, true, false);
@@ -313,7 +313,7 @@ namespace DirectXInput.KeyboardCode
                         if (vInteropWindowHandle != vProcessForeground.WindowHandleMain)
                         {
                             //Play interface sound
-                            PlayInterfaceSound(vConfigurationCtrlUI, "Move", false, false);
+                            PlayInterfaceSound(vConfigurationDirectXInput, "Move", false, false);
 
                             //Update window style
                             WindowUpdateStyle(vInteropWindowHandle, true, true, true, false);
@@ -337,7 +337,7 @@ namespace DirectXInput.KeyboardCode
                     //Send external enter key
                     else if (ControllerInput.Buttons[(byte)ControllerButtons.B].PressedRaw)
                     {
-                        PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                        PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
 
                         if (CheckTextPopupsOpen())
                         {
@@ -362,7 +362,7 @@ namespace DirectXInput.KeyboardCode
                     //Send external space key
                     else if (ControllerInput.Buttons[(byte)ControllerButtons.Y].PressedRaw)
                     {
-                        PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                        PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
 
                         if (vKeyboardCurrentMode == KeyboardMode.Media)
                         {
@@ -382,7 +382,7 @@ namespace DirectXInput.KeyboardCode
                     //Send external backspace or delete key
                     else if (ControllerInput.Buttons[(byte)ControllerButtons.X].PressedRaw)
                     {
-                        PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                        PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
 
                         if (vKeyboardCurrentMode == KeyboardMode.Media)
                         {
@@ -412,7 +412,7 @@ namespace DirectXInput.KeyboardCode
                     //Send external arrow left key
                     else if (ControllerInput.Buttons[(byte)ControllerButtons.ThumbLeft].PressedRaw)
                     {
-                        PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                        PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
 
                         if (vKeyboardCurrentMode == KeyboardMode.Media)
                         {
@@ -432,7 +432,7 @@ namespace DirectXInput.KeyboardCode
                     //Send external arrow right key
                     else if (ControllerInput.Buttons[(byte)ControllerButtons.ThumbRight].PressedRaw)
                     {
-                        PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                        PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
 
                         if (vKeyboardCurrentMode == KeyboardMode.Media)
                         {
@@ -470,7 +470,7 @@ namespace DirectXInput.KeyboardCode
                         if (border_EmojiListPopup.Visibility == Visibility.Visible)
                         {
                             await SwitchEmojiTypeListTrigger(true);
-                            PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                            PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
                         }
                         else if (vKeyboardCurrentMode == KeyboardMode.Media)
                         {
@@ -491,7 +491,7 @@ namespace DirectXInput.KeyboardCode
                         if (border_EmojiListPopup.Visibility == Visibility.Visible)
                         {
                             await SwitchEmojiTypeListTrigger(false);
-                            PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                            PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
                         }
                         else if (vKeyboardCurrentMode == KeyboardMode.Media)
                         {
@@ -505,7 +505,7 @@ namespace DirectXInput.KeyboardCode
                                 Key0 = KeysHid.Tab
                             };
                             vFakerInputDevice.KeyboardPressRelease(keyboardAction);
-                            PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                            PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
                         }
                         else
                         {
@@ -514,7 +514,7 @@ namespace DirectXInput.KeyboardCode
                                 Key0 = KeysHid.Tab
                             };
                             vFakerInputDevice.KeyboardPressRelease(keyboardAction);
-                            PlayInterfaceSound(vConfigurationCtrlUI, "Click", false, false);
+                            PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
                         }
 
                         ControllerDelay250 = true;

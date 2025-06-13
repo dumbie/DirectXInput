@@ -25,7 +25,7 @@ namespace DirectXInput.KeyboardCode
                 int moveBottom = positionRect.Bottom + mouseVertical;
 
                 //Get the current active screen
-                int monitorNumber = SettingLoad(vConfigurationCtrlUI, "DisplayMonitor", typeof(int));
+                int monitorNumber = SettingLoad(vConfigurationDirectXInput, "DisplayMonitor", typeof(int));
                 DisplayMonitor displayMonitorSettings = GetSingleMonitorEnumDisplay(monitorNumber);
 
                 //Get the current window size
@@ -55,7 +55,7 @@ namespace DirectXInput.KeyboardCode
             try
             {
                 //Get the current active screen
-                int monitorNumber = SettingLoad(vConfigurationCtrlUI, "DisplayMonitor", typeof(int));
+                int monitorNumber = SettingLoad(vConfigurationDirectXInput, "DisplayMonitor", typeof(int));
                 DisplayMonitor displayMonitorSettings = GetSingleMonitorEnumDisplay(monitorNumber);
 
                 //Calculate target mouse position

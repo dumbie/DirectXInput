@@ -62,11 +62,11 @@ namespace DirectXInput
                     SocketSendContainer socketSend = new SocketSendContainer();
                     socketSend.SourceIp = vArnoldVinkSockets.vSocketServerIp;
                     socketSend.SourcePort = vArnoldVinkSockets.vSocketServerPort;
-                    socketSend.Object = controller.InputCurrent;
+                    socketSend.SetObject(controller.InputCurrent);
                     byte[] SerializedData = SerializeObjectToBytes(socketSend);
 
                     //Send socket data
-                    IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(vArnoldVinkSockets.vSocketServerIp), vArnoldVinkSockets.vSocketServerPort - 1);
+                    IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(vArnoldVinkSockets.vSocketServerIp), 26759);
                     await vArnoldVinkSockets.UdpClientSendBytesServer(ipEndPoint, SerializedData, vArnoldVinkSockets.vSocketTimeout);
 
                     //Update delay time

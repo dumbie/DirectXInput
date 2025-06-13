@@ -164,7 +164,7 @@ namespace DirectXInput
                         //Battery level sound
                         if (SettingLoad(vConfigurationDirectXInput, "BatteryLowPlaySound", typeof(bool)))
                         {
-                            PlayInterfaceSound(vConfigurationCtrlUI, "BatteryLow", true, false);
+                            PlayInterfaceSound(vConfigurationDirectXInput, "BatteryLow", true, false);
                         }
                     }
                 }

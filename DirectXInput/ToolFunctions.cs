@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using static ArnoldVinkCode.ArnoldVinkSockets;
 using static ArnoldVinkCode.AVClassConverters;
 using static ArnoldVinkCode.AVProcess;
-using static ArnoldVinkCode.AVSettings;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
 
@@ -53,11 +52,11 @@ namespace DirectXInput
                 SocketSendContainer socketSend = new SocketSendContainer();
                 socketSend.SourceIp = vArnoldVinkSockets.vSocketServerIp;
                 socketSend.SourcePort = vArnoldVinkSockets.vSocketServerPort;
-                socketSend.Object = "AppWindowHideShow";
+                socketSend.SetObject("AppWindowHideShow");
                 byte[] SerializedData = SerializeObjectToBytes(socketSend);
 
                 //Send socket data
-                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(vArnoldVinkSockets.vSocketServerIp), vArnoldVinkSockets.vSocketServerPort - 1);
+                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(vArnoldVinkSockets.vSocketServerIp), 26759);
                 await vArnoldVinkSockets.UdpClientSendBytesServer(ipEndPoint, SerializedData, vArnoldVinkSockets.vSocketTimeout);
             }
             catch { }
@@ -104,11 +103,11 @@ namespace DirectXInput
                 SocketSendContainer socketSend = new SocketSendContainer();
                 socketSend.SourceIp = vArnoldVinkSockets.vSocketServerIp;
                 socketSend.SourcePort = vArnoldVinkSockets.vSocketServerPort;
-                socketSend.Object = "SwitchFpsOverlayVisibility";
+                socketSend.SetObject("SwitchFpsOverlayVisibility");
                 byte[] SerializedData = SerializeObjectToBytes(socketSend);
 
                 //Send socket data
-                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(vArnoldVinkSockets.vSocketServerIp), vArnoldVinkSockets.vSocketServerPort + 1);
+                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(vArnoldVinkSockets.vSocketServerIp), 26761);
                 await vArnoldVinkSockets.UdpClientSendBytesServer(ipEndPoint, SerializedData, vArnoldVinkSockets.vSocketTimeout);
             }
             catch { }
@@ -150,11 +149,11 @@ namespace DirectXInput
                 SocketSendContainer socketSend = new SocketSendContainer();
                 socketSend.SourceIp = vArnoldVinkSockets.vSocketServerIp;
                 socketSend.SourcePort = vArnoldVinkSockets.vSocketServerPort;
-                socketSend.Object = "ChangeFpsOverlayPosition";
+                socketSend.SetObject("ChangeFpsOverlayPosition");
                 byte[] SerializedData = SerializeObjectToBytes(socketSend);
 
                 //Send socket data
-                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(vArnoldVinkSockets.vSocketServerIp), vArnoldVinkSockets.vSocketServerPort + 1);
+                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(vArnoldVinkSockets.vSocketServerIp), 26761);
                 await vArnoldVinkSockets.UdpClientSendBytesServer(ipEndPoint, SerializedData, vArnoldVinkSockets.vSocketTimeout);
             }
             catch { }
@@ -196,11 +195,11 @@ namespace DirectXInput
                 SocketSendContainer socketSend = new SocketSendContainer();
                 socketSend.SourceIp = vArnoldVinkSockets.vSocketServerIp;
                 socketSend.SourcePort = vArnoldVinkSockets.vSocketServerPort;
-                socketSend.Object = "SwitchToolsOverlayVisibility";
+                socketSend.SetObject("SwitchToolsOverlayVisibility");
                 byte[] SerializedData = SerializeObjectToBytes(socketSend);
 
                 //Send socket data
-                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(vArnoldVinkSockets.vSocketServerIp), vArnoldVinkSockets.vSocketServerPort + 1);
+                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(vArnoldVinkSockets.vSocketServerIp), 26761);
                 await vArnoldVinkSockets.UdpClientSendBytesServer(ipEndPoint, SerializedData, vArnoldVinkSockets.vSocketTimeout);
             }
             catch { }
@@ -242,11 +241,11 @@ namespace DirectXInput
                 SocketSendContainer socketSend = new SocketSendContainer();
                 socketSend.SourceIp = vArnoldVinkSockets.vSocketServerIp;
                 socketSend.SourcePort = vArnoldVinkSockets.vSocketServerPort;
-                socketSend.Object = "SwitchCrosshairOverlayVisibility";
+                socketSend.SetObject("SwitchCrosshairOverlayVisibility");
                 byte[] SerializedData = SerializeObjectToBytes(socketSend);
 
                 //Send socket data
-                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(vArnoldVinkSockets.vSocketServerIp), vArnoldVinkSockets.vSocketServerPort + 1);
+                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(vArnoldVinkSockets.vSocketServerIp), 26761);
                 await vArnoldVinkSockets.UdpClientSendBytesServer(ipEndPoint, SerializedData, vArnoldVinkSockets.vSocketTimeout);
             }
             catch { }
@@ -271,9 +270,7 @@ namespace DirectXInput
                 byte[] SerializedData = SerializeObjectToBytes(socketSend);
 
                 //Send socket data
-                int socketServerPort = SettingLoad(vConfigurationCtrlUI, "ServerPort", typeof(int)) + 3;
-                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(vArnoldVinkSockets.vSocketServerIp), socketServerPort);
-                await vArnoldVinkSockets.UdpClientSendBytesBroadcast(true, socketServerPort, SerializedData, vArnoldVinkSockets.vSocketTimeout);
+                await vArnoldVinkSockets.UdpClientSendBytesBroadcast(true, 26762, SerializedData, vArnoldVinkSockets.vSocketTimeout);
             }
             catch { }
         }
@@ -297,9 +294,7 @@ namespace DirectXInput
                 byte[] SerializedData = SerializeObjectToBytes(socketSend);
 
                 //Send socket data
-                int socketServerPort = SettingLoad(vConfigurationCtrlUI, "ServerPort", typeof(int)) + 3;
-                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(vArnoldVinkSockets.vSocketServerIp), socketServerPort);
-                await vArnoldVinkSockets.UdpClientSendBytesBroadcast(true, socketServerPort, SerializedData, vArnoldVinkSockets.vSocketTimeout);
+                await vArnoldVinkSockets.UdpClientSendBytesBroadcast(true, 26762, SerializedData, vArnoldVinkSockets.vSocketTimeout);
             }
             catch { }
         }

@@ -3,12 +3,9 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Media;
 using static ArnoldVinkCode.AVInputOutputClass;
 using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkCode.AVUpdate;
-using static ArnoldVinkCode.Styles.MainColors;
 using static DirectXInput.AppVariables;
 
 namespace DirectXInput
@@ -33,11 +30,6 @@ namespace DirectXInput
                 Shortcuts_Check();
                 Shortcuts_Load();
                 Shortcuts_Save();
-
-                //Change application accent color
-                string colorLightHex = SettingLoad(vConfigurationCtrlUI, "ColorAccentLight", typeof(string));
-                ChangeApplicationAccentColor(colorLightHex);
-                vApplicationAccentLightBrush = (SolidColorBrush)Application.Current.Resources["ApplicationAccentLightBrush"];
 
                 //Create the tray menu
                 Application_CreateTrayMenu();

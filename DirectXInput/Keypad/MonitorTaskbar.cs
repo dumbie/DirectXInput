@@ -26,7 +26,7 @@ namespace DirectXInput.KeypadCode
                         if (taskbarInfo.IsAutoHide && taskbarInfo.IsVisible)
                         {
                             //Get the current active screen
-                            int monitorNumber = SettingLoad(vConfigurationCtrlUI, "DisplayMonitor", typeof(int));
+                            int monitorNumber = SettingLoad(vConfigurationDirectXInput, "DisplayMonitor", typeof(int));
                             DisplayMonitor displayMonitorSettings = GetSingleMonitorEnumDisplay(monitorNumber);
 
                             //Get the current taskbar size

@@ -4,7 +4,6 @@ using System.IO;
 using System.Windows;
 using System.Windows.Media;
 using static ArnoldVinkCode.AVImage;
-using static ArnoldVinkCode.AVSettings;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
 using static LibraryShared.Enums;
@@ -20,7 +19,7 @@ namespace DirectXInput.KeyboardCode
             {
                 AVActions.DispatcherInvoke(delegate
                 {
-                    string clockStyle = SettingLoad(AppVariables.vConfigurationCtrlUI, "InterfaceClockStyleName", typeof(string));
+                    string clockStyle = "Cortana";
                     string clockPath = "Assets/Default/Clocks/" + clockStyle;
                     if (Directory.Exists("Assets/User/Clocks/" + clockStyle))
                     {
