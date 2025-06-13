@@ -13,10 +13,9 @@
 		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
 		<ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-		<EnableUnsafeBinaryFormatterSerialization>True</EnableUnsafeBinaryFormatterSerialization>
 		<AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>False</AppendRuntimeIdentifierToOutputPath>
-		<OutputPath>$(SolutionDir)Build\$(Configuration)\</OutputPath>
+		<OutputPath>$(SolutionDir)Build\$(Configuration)\$(AssemblyName)</OutputPath>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<Optimize>True</Optimize>
@@ -26,6 +25,171 @@
 		<DebugType>none</DebugType>
 	</PropertyGroup>
 	<ItemGroup>
+		<Content Include="Assets\Default\Controller\ButtonPress.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Controller\ControllerAxe.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Controller\ControllerAxeLight.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Controller\ControllerPreview.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Controller\KeypadPreview.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Battery\BatteryVerCharge.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Battery\BatteryVerController1.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Battery\BatteryVerController2.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Battery\BatteryVerController3.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Battery\BatteryVerController4.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Battery\BatteryVerDis10.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Battery\BatteryVerDis100.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Battery\BatteryVerDis20.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Battery\BatteryVerDis30.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Battery\BatteryVerDis40.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Battery\BatteryVerDis50.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Battery\BatteryVerDis60.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Battery\BatteryVerDis70.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Battery\BatteryVerDis80.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Battery\BatteryVerDis90.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Battery\BatteryVerNoBattery.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Close.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Controller-Accent.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Controller-Dark.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Controller.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Debug.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Help.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Hide.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Keyboard.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Keypad.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Keypad\KeypadAction.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Keypad\KeypadActionDark.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Keypad\KeypadButton.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Keypad\KeypadButtonDark.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Keypad\KeypadDpad.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Keypad\KeypadDpadDark.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Keypad\KeypadThumb.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Keypad\KeypadThumbDark.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Keypad\KeypadTriggers.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Keypad\KeypadTriggersDark.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\List.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Music.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Settings.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Shortcut.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Shutdown.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\Usb.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Sounds\Default\BatteryLow.mp3">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Sounds\Default\Click.mp3">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Sounds\Default\Confirm.mp3">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Sounds\Default\Move.mp3">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Sounds\Default\PopupClose.mp3">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Sounds\Default\PopupOpen.mp3">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Sounds\Default\PromptClose.mp3">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Sounds\Default\PromptOpen.mp3">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Sounds\Default\RecycleBinEmpty.mp3">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		<Content Include="DirectXInput.exe.csettings">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
@@ -36,7 +200,7 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Profiles\Default\DirectControllersSupported\MicrosoftXboxOneS.json">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Profiles\Default\DirectControllersSupported\NintendoSwitchPro.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -95,13 +259,48 @@
 		<Content Include="Profiles\User\DirectKeypadMapping\Default.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Drivers\**">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
 	</ItemGroup>
 	<ItemGroup>
-	  <Compile Include="..\..\CtrlUI\CtrlUI\Library\SoundPlayer.cs" Link="Library\SoundPlayer.cs" />
-	  <Compile Include="..\..\FpsOverlayer\FpsOverlayer\Library\Classes\NotificationDetails.cs" Link="Library\Classes\NotificationDetails.cs" />
+		<None Remove="Assets\Default\Controller\ButtonPress.png" />
+		<None Remove="Assets\Default\Controller\ControllerAxe.png" />
+		<None Remove="Assets\Default\Controller\ControllerAxeLight.png" />
+		<None Remove="Assets\Default\Controller\ControllerPreview.png" />
+		<None Remove="Assets\Default\Controller\KeypadPreview.png" />
+		<None Remove="Assets\Default\Icons\Close.png" />
+		<None Remove="Assets\Default\Icons\Controller-Accent.png" />
+		<None Remove="Assets\Default\Icons\Controller-Dark.png" />
+		<None Remove="Assets\Default\Icons\Debug.png" />
+		<None Remove="Assets\Default\Icons\Help.png" />
+		<None Remove="Assets\Default\Icons\Hide.png" />
+		<None Remove="Assets\Default\Icons\Keyboard.png" />
+		<None Remove="Assets\Default\Icons\Keypad.png" />
+		<None Remove="Assets\Default\Icons\Keypad\KeypadAction.png" />
+		<None Remove="Assets\Default\Icons\Keypad\KeypadActionDark.png" />
+		<None Remove="Assets\Default\Icons\Keypad\KeypadButton.png" />
+		<None Remove="Assets\Default\Icons\Keypad\KeypadButtonDark.png" />
+		<None Remove="Assets\Default\Icons\Keypad\KeypadDpad.png" />
+		<None Remove="Assets\Default\Icons\Keypad\KeypadDpadDark.png" />
+		<None Remove="Assets\Default\Icons\Keypad\KeypadThumb.png" />
+		<None Remove="Assets\Default\Icons\Keypad\KeypadThumbDark.png" />
+		<None Remove="Assets\Default\Icons\Keypad\KeypadTriggers.png" />
+		<None Remove="Assets\Default\Icons\Keypad\KeypadTriggersDark.png" />
+		<None Remove="Assets\Default\Icons\List.png" />
+		<None Remove="Assets\Default\Icons\Music.png" />
+		<None Remove="Assets\Default\Icons\Settings.png" />
+		<None Remove="Assets\Default\Icons\Shortcut.png" />
+		<None Remove="Assets\Default\Icons\Shutdown.png" />
+		<None Remove="Assets\Default\Sounds\Default\BatteryLow.mp3" />
+		<None Remove="Assets\Default\Sounds\Default\Click.mp3" />
+		<None Remove="Assets\Default\Sounds\Default\Confirm.mp3" />
+		<None Remove="Assets\Default\Sounds\Default\Move.mp3" />
+		<None Remove="Assets\Default\Sounds\Default\PopupClose.mp3" />
+		<None Remove="Assets\Default\Sounds\Default\PopupOpen.mp3" />
+		<None Remove="Assets\Default\Sounds\Default\PromptClose.mp3" />
+		<None Remove="Assets\Default\Sounds\Default\PromptOpen.mp3" />
+		<None Remove="Assets\Default\Sounds\Default\RecycleBinEmpty.mp3" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="..\..\CtrlUI\CtrlUI\Library\SoundPlayer.cs" Link="Library\SoundPlayer.cs" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="Assets\AppIcon.ico" />
@@ -113,6 +312,12 @@
 		<Folder Include="Profiles\User\DirectControllersProfile\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\ArnoldVinkCode\Desktop\ArnoldVinkCode.csproj" />
+		<ProjectReference Include="..\..\ArnoldVinkCode\Desktop\ArnoldVinkCode.csproj" />
 	</ItemGroup>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="if $(Configuration) == Release (&#xD;&#xA;$(SolutionDir)SignToolExe.exe)&#xD;&#xA;)" />
+		<Exec Command="if $(Configuration) == Release (&#xD;&#xA;mkdir $(TargetDir)\Resources&#xD;&#xA;move /y $(TargetDir)\*.dll $(TargetDir)\Resources\&#xD;&#xA;move /y $(TargetDir)\runtimes\win\lib\net8.0\*.dll $(TargetDir)\Resources\&#xD;&#xA;move /y $(TargetDir)\runtimes\win-x64\native\*.dll $(TargetDir)\Resources\&#xD;&#xA;move /y $(TargetDir)\Resources\$(AssemblyName).dll $(TargetDir)&#xD;&#xA;move /y $(TargetDir)\Resources\ArnoldVinkCode.dll $(TargetDir)&#xD;&#xA;)" />
+		<Exec Command="if $(Configuration) == Release (&#xD;&#xA;rd /s /q $(TargetDir)\amd64&#xD;&#xA;rd /s /q $(TargetDir)\arm64&#xD;&#xA;rd /s /q $(TargetDir)\de&#xD;&#xA;rd /s /q $(TargetDir)\es&#xD;&#xA;rd /s /q $(TargetDir)\fr&#xD;&#xA;rd /s /q $(TargetDir)\it&#xD;&#xA;rd /s /q $(TargetDir)\ja&#xD;&#xA;rd /s /q $(TargetDir)\sv&#xD;&#xA;rd /s /q $(TargetDir)\tr&#xD;&#xA;rd /s /q $(TargetDir)\pl&#xD;&#xA;rd /s /q $(TargetDir)\ru&#xD;&#xA;rd /s /q $(TargetDir)\runtimes&#xD;&#xA;rd /s /q $(TargetDir)\x86&#xD;&#xA;rd /s /q $(TargetDir)\zh-CN&#xD;&#xA;rd /s /q $(TargetDir)\zh-Hant&#xD;&#xA;)" />
+		<Exec Command="if $(Configuration) == Release (&#xD;&#xA;del /q $(TargetDir)\*.pdb&#xD;&#xA;del /q $(TargetDir)\*.xml&#xD;&#xA;del /q $(TargetDir)\*.deps.json&#xD;&#xA;)" />
+	</Target>
 </Project>
