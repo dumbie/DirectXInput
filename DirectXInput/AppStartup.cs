@@ -18,8 +18,11 @@ namespace DirectXInput
             {
                 Debug.WriteLine("Welcome to application.");
 
-                //Application update cleanup
+                //Clean application update files
                 await UpdateCleanup();
+
+                //Check for available application update
+                await UpdateCheck("dumbie", "DirectXInput", true);
 
                 //Application initialize settings
                 Settings_Check();

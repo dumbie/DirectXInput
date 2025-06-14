@@ -1,0 +1,25 @@
+﻿{
+  "UserName": "Dumbie",
+  "RepoName": "DirectXInput",
+  "FileName": "DirectXInput.zip",
+  "ExtractName": "DirectXInput",
+  "ProcessLaunch": [
+    "Launcher.exe"
+  ],
+  "ProcessClose": [
+    "DirectXInput",
+    "DriverInstaller",
+    "Launcher"
+  ],
+  "FilesIgnore": [
+    ".csettings",
+    "Notes/Default.txt"
+  ],
+  "FoldersIgnore": [
+    "Profiles/User"
+  ],
+  "FoldersDelete": [
+    "Resources",
+    "Drivers"
+  ]
+}
