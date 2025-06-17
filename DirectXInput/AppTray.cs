@@ -87,20 +87,20 @@ namespace DirectXInput
             catch { }
         }
 
-        void NotifyIcon_FpsOverlayer(object sender, EventArgs args)
+        async void NotifyIcon_FpsOverlayer(object sender, EventArgs args)
         {
             try
             {
-                ProcessLaunch.LaunchFpsOverlayer(true);
+                await ProcessLaunch.LaunchFpsOverlayer(false);
             }
             catch { }
         }
 
-        void NotifyIcon_ScreenCaptureTool(object sender, EventArgs args)
+        async void NotifyIcon_ScreenCaptureTool(object sender, EventArgs args)
         {
             try
             {
-                ProcessLaunch.LaunchScreenCaptureTool(true, false);
+                await ProcessLaunch.LaunchScreenCaptureTool(false);
             }
             catch { }
         }

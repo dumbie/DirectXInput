@@ -52,6 +52,11 @@ namespace DirectXInput
                 colorpicker_Controller3.Background = ControllerColor3Brush;
                 vController3.Color = ControllerColor3Brush.Color;
 
+                //Load launch settings
+                cb_SettingsLaunchCtrlUI.IsChecked = SettingLoad(vConfigurationDirectXInput, "LaunchCtrlUI", typeof(bool));
+                cb_SettingsLaunchFpsOverlayer.IsChecked = SettingLoad(vConfigurationDirectXInput, "LaunchFpsOverlayer", typeof(bool));
+                cb_SettingsLaunchScreenCaptureTool.IsChecked = SettingLoad(vConfigurationDirectXInput, "LaunchScreenCaptureTool", typeof(bool));
+
                 //Load keyboard settings
                 cb_SettingsKeyboardCloseNoController.IsChecked = SettingLoad(vConfigurationDirectXInput, "KeyboardCloseNoController", typeof(bool));
                 cb_SettingsKeyboardResetPosition.IsChecked = SettingLoad(vConfigurationDirectXInput, "KeyboardResetPosition", typeof(bool));

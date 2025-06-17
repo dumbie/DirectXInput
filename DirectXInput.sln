@@ -3,6 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectXInput", "DirectXInput\DirectXInput.csproj", "{2CB2F760-B0FB-41A4-BCD5-F60D244222C7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C63B431C-B707-4F98-9465-448B1AA35D70} = {C63B431C-B707-4F98-9465-448B1AA35D70}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DriverInstaller", "DriverInstaller\DriverInstaller.csproj", "{C63B431C-B707-4F98-9465-448B1AA35D70}"
 EndProject

@@ -1,9 +1,7 @@
 ﻿using ArnoldVinkCode;
 using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
-using static ArnoldVinkCode.AVInputOutputClass;
 using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkCode.AVUpdate;
 using static DirectXInput.AppVariables;
@@ -95,12 +93,22 @@ namespace DirectXInput
                     return;
                 }
 
-                //Check settings if Screen Capture Tool launches on start
-                bool shortcutCaptureImage = vShortcutsController.Any(x => x.Name == "CaptureImage" && !x.Trigger.All(x => x == ControllerButtons.None));
-                bool shortcutCaptureVideo = vShortcutsController.Any(x => x.Name == "CaptureVideo" && !x.Trigger.All(x => x == ControllerButtons.None));
-                if (shortcutCaptureImage || shortcutCaptureVideo)
+                //Check settings if CtrlUI launches on start
+                if (SettingLoad(vConfigurationDirectXInput, "LaunchCtrlUI", typeof(bool)))
                 {
-                    ProcessLaunch.LaunchScreenCaptureTool(true, true);
+                    await ProcessLaunch.LaunchCtrlUI(true);
+                }
+
+                //Check settings if Fps Overlayer launches on start
+                if (SettingLoad(vConfigurationDirectXInput, "LaunchFpsOverlayer", typeof(bool)))
+                {
+                    await ProcessLaunch.LaunchFpsOverlayer(true);
+                }
+
+                //Check settings if Screen Capture Tool launches on start
+                if (SettingLoad(vConfigurationDirectXInput, "LaunchScreenCaptureTool", typeof(bool)))
+                {
+                    await ProcessLaunch.LaunchScreenCaptureTool(true);
                 }
 
                 //Load the help text

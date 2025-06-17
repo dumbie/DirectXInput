@@ -21,6 +21,11 @@ namespace DirectXInput
                 //Display settings
                 if (!SettingCheck(vConfigurationDirectXInput, "DisplayMonitor")) { SettingSave(vConfigurationDirectXInput, "DisplayMonitor", "1"); }
 
+                //Launch settings
+                if (!SettingCheck(vConfigurationDirectXInput, "LaunchCtrlUI")) { SettingSave(vConfigurationDirectXInput, "LaunchCtrlUI", "False"); }
+                if (!SettingCheck(vConfigurationDirectXInput, "LaunchFpsOverlayer")) { SettingSave(vConfigurationDirectXInput, "LaunchFpsOverlayer", "False"); }
+                if (!SettingCheck(vConfigurationDirectXInput, "LaunchScreenCaptureTool")) { SettingSave(vConfigurationDirectXInput, "LaunchScreenCaptureTool", "True"); }
+
                 //Sound settings
                 if (!SettingCheck(vConfigurationDirectXInput, "InterfaceSound")) { SettingSave(vConfigurationDirectXInput, "InterfaceSound", "True"); }
                 if (!SettingCheck(vConfigurationDirectXInput, "InterfaceSoundVolume")) { SettingSave(vConfigurationDirectXInput, "InterfaceSoundVolume", "75"); }

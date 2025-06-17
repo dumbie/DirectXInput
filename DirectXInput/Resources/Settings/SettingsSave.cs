@@ -1,5 +1,4 @@
-﻿using ArnoldVinkCode;
-using ArnoldVinkCode.Styles;
+﻿using ArnoldVinkCode.Styles;
 using System;
 using System.Diagnostics;
 using System.Windows.Media;
@@ -24,9 +23,25 @@ namespace DirectXInput
                     SettingSave(vConfigurationDirectXInput, "ExclusiveGuide", cb_SettingsExclusiveGuide.IsChecked.ToString());
                 };
 
+                //Launch settings
                 cb_SettingsWindowsStartup.Click += (sender, e) =>
                 {
-                    AVSettings.StartupShortcutManage("DirectXInput-Launcher.exe", false);
+                    StartupShortcutManage("Launcher.exe", false);
+                };
+
+                cb_SettingsLaunchCtrlUI.Click += (sender, e) =>
+                {
+                    SettingSave(vConfigurationDirectXInput, "LaunchCtrlUI", cb_SettingsLaunchCtrlUI.IsChecked.ToString());
+                };
+
+                cb_SettingsLaunchFpsOverlayer.Click += (sender, e) =>
+                {
+                    SettingSave(vConfigurationDirectXInput, "LaunchFpsOverlayer", cb_SettingsLaunchFpsOverlayer.IsChecked.ToString());
+                };
+
+                cb_SettingsLaunchScreenCaptureTool.Click += (sender, e) =>
+                {
+                    SettingSave(vConfigurationDirectXInput, "LaunchScreenCaptureTool", cb_SettingsLaunchScreenCaptureTool.IsChecked.ToString());
                 };
 
                 //Battery settings

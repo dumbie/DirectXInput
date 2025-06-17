@@ -534,12 +534,14 @@
                                 <TextBlock Margin="0,10,0,0" Text="Mute audio input by pressing:" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
                                 <styles:ShortcutController Name="controller_MuteInput" TriggerName="MuteInput"/>
 
-                                <TextBlock Margin="0,10,0,0" Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Capture Shortcuts"/>
+                                <TextBlock Margin="0,10,0,0" Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Capture Shortcuts *¹"/>
                                 <TextBlock Text="Capture screen image pressing:" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
                                 <styles:ShortcutController Name="controller_CaptureImage" TriggerName="CaptureImage"/>
 
                                 <TextBlock Margin="0,10,0,0" Text="Capture screen video by pressing:" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
                                 <styles:ShortcutController Name="controller_CaptureVideo" TriggerName="CaptureVideo"/>
+
+                                <TextBlock Margin="0,10,0,0" Text="*¹ Capture shortcuts only work when the Screen Capture Tool is running." TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
                             </StackPanel>
                         </ScrollViewer>
                     </Grid>
@@ -740,7 +742,16 @@
                             <StackPanel>
                                 <TextBlock Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Launch Settings"/>
                                 <CheckBox Name="cb_SettingsWindowsStartup" Content="Launch application on Windows startup" Style="{StaticResource CheckBoxBlack}"/>
-                                <TextBlock Text="Enabling this will launch DirectXInput when you start Windows automatically." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+                                <TextBlock Text="Enabling this will launch DirectXInput when Windows starts automatically." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+
+                                <CheckBox Name="cb_SettingsLaunchCtrlUI" Content="Launch CtrlUI on DirectXInput startup" Margin="0,10,0,0" Style="{StaticResource CheckBoxBlack}"/>
+                                <TextBlock Text="Enabling this will launch CtrlUI when you start DirectXInput automatically." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+
+                                <CheckBox Name="cb_SettingsLaunchFpsOverlayer" Content="Launch Fps Overlayer on DirectXInput startup" Margin="0,10,0,0" Style="{StaticResource CheckBoxBlack}"/>
+                                <TextBlock Text="Enabling this will launch Fps Overlayer when you start DirectXInput automatically." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+
+                                <CheckBox Name="cb_SettingsLaunchScreenCaptureTool" Content="Launch Screen Capture Tool on DirectXInput startup" Margin="0,10,0,0" Style="{StaticResource CheckBoxBlack}"/>
+                                <TextBlock Text="Enabling this will launch Screen Capture Tool when you start DirectXInput automatically." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
 
                                 <TextBlock Margin="0,10,0,0" Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Other Settings"/>
                                 <Button Name="btn_Settings_InstallDrivers" Content="Install or update the required drivers" HorizontalAlignment="Left" Style="{StaticResource ButtonAccentBlack}"/>

@@ -1,6 +1,6 @@
 ﻿using ArnoldVinkCode;
 using System.Diagnostics;
-using static ArnoldVinkCode.AVProcess;
+using System.Threading.Tasks;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
 using static LibraryShared.SoundPlayer;
@@ -10,70 +10,67 @@ namespace DirectXInput
     partial class ProcessLaunch
     {
         //Launch CtrlUI
-        public static void LaunchCtrlUI(bool forceLaunch)
+        public static async Task LaunchCtrlUI(bool silentLaunch)
         {
             try
             {
-                if (forceLaunch || !Check_RunningProcessByName("CtrlUI", true))
-                {
-                    Debug.WriteLine("Launching CtrlUI.");
+                Debug.WriteLine("Launching CtrlUI.");
 
-                    //Show notification
+                //Show notification
+                if (!silentLaunch)
+                {
                     NotificationDetails notificationDetails = new NotificationDetails();
                     notificationDetails.Icon = "Controller";
                     notificationDetails.Text = "Launching CtrlUI";
                     vWindowOverlay.Notification_Show_Status(notificationDetails);
-
-                    //Launch application
-                    AVProcess.Launch_ShellExecute("CtrlUI-Launcher.exe", "", "", true);
                 }
+
+                //Launch application
+                await AVTaskScheduler.TaskRun("ArnoldVink_CtrlUI", "CtrlUI", silentLaunch);
             }
             catch { }
         }
 
         //Launch Fps Overlayer
-        public static void LaunchFpsOverlayer(bool forceLaunch)
+        public static async Task LaunchFpsOverlayer(bool silentLaunch)
         {
             try
             {
-                if (forceLaunch || !Check_RunningProcessByName("FpsOverlayer", true))
-                {
-                    Debug.WriteLine("Launching Fps Overlayer");
+                Debug.WriteLine("Launching Fps Overlayer");
 
-                    //Show notification
+                //Show notification
+                if (!silentLaunch)
+                {
                     NotificationDetails notificationDetails = new NotificationDetails();
                     notificationDetails.Icon = "Fps";
                     notificationDetails.Text = "Launching Fps Overlayer";
                     vWindowOverlay.Notification_Show_Status(notificationDetails);
-
-                    //Launch application
-                    AVProcess.Launch_ShellExecute("FpsOverlayer-Launcher.exe", "", "", true);
                 }
+
+                //Launch application
+                await AVTaskScheduler.TaskRun("ArnoldVink_FpsOverlayer", "Fps Overlayer", silentLaunch);
             }
             catch { }
         }
 
         //Launch Screen Capture Tool
-        public static void LaunchScreenCaptureTool(bool forceLaunch, bool skipNotification)
+        public static async Task LaunchScreenCaptureTool(bool silentLaunch)
         {
             try
             {
-                if (forceLaunch || !Check_RunningProcessByName("ScreenCaptureTool", true))
+                Debug.WriteLine("Launching Screen Capture Tool");
+
+                //Show notification
+                if (!silentLaunch)
                 {
-                    Debug.WriteLine("Launching Screen Capture Tool");
-
-                    //Show notification
-                    if (!skipNotification)
-                    {
-                        NotificationDetails notificationDetails = new NotificationDetails();
-                        notificationDetails.Icon = "Screenshot";
-                        notificationDetails.Text = "Launching Screen Capture Tool";
-                        vWindowOverlay.Notification_Show_Status(notificationDetails);
-                    }
-
-                    //Launch application
-                    AVProcess.Launch_ShellExecute("ScreenCaptureTool-Launcher.exe", "", "", true);
+                    NotificationDetails notificationDetails = new NotificationDetails();
+                    notificationDetails.Icon = "Screenshot";
+                    notificationDetails.Text = "Launching Screen Capture Tool";
+                    vWindowOverlay.Notification_Show_Status(notificationDetails);
                 }
+
+                //Launch application
+                await AVTaskScheduler.TaskRun("ArnoldVink_ScreenCaptureTool", "Screen Capture Tool", silentLaunch);
             }
             catch { }
         }

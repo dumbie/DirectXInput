@@ -18,7 +18,7 @@ namespace DirectXInput
             {
                 if (!Check_RunningProcessByName("CtrlUI", true))
                 {
-                    ProcessLaunch.LaunchCtrlUI(true);
+                    await ProcessLaunch.LaunchCtrlUI(false);
                 }
                 else
                 {
@@ -69,7 +69,7 @@ namespace DirectXInput
             {
                 if (!Check_RunningProcessByName("FpsOverlayer", true))
                 {
-                    ProcessLaunch.LaunchFpsOverlayer(true);
+                    await ProcessLaunch.LaunchFpsOverlayer(false);
                 }
                 else
                 {
