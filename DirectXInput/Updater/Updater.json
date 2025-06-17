@@ -2,7 +2,7 @@
   "UserName": "Dumbie",
   "RepoName": "DirectXInput",
   "FileName": "DirectXInput.zip",
-  "ExtractName": "DirectXInput",
+  "ExtractPathPrepend": "..",
   "ProcessLaunch": [
     "Launcher.exe"
   ],
@@ -12,8 +12,7 @@
     "Launcher"
   ],
   "FilesIgnore": [
-    ".csettings",
-    "Notes/Default.txt"
+    ".csettings"
   ],
   "FoldersIgnore": [
     "Profiles/User"

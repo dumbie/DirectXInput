@@ -9,12 +9,10 @@
         SnapsToDevicePixels="True"
         mc:Ignorable="d"
         Title="DirectXInput"
-        ShowInTaskbar="False"
         Background="{DynamicResource ApplicationBlackBrush}"
         MinHeight="720"
         Height="720"
         MinWidth="720"
-        MaxWidth="720"
         Width="720">
 
     <!-- Grid Application -->
@@ -64,6 +62,10 @@
                     <StackPanel Name="menuButtonDebug" Style="{StaticResource ListBoxMenuStackPanel}" ToolTipService.ToolTip="Open controller debug">
                         <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/Debug.png" Width="55" HorizontalAlignment="Center"/>
                         <TextBlock Text="Debug" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Name="menuButtonUpdate" Style="{StaticResource ListBoxMenuStackPanel}" ToolTipService.ToolTip="Check for application update">
+                        <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/Update.png" Width="55" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Update" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Name="menuButtonHelp" Style="{StaticResource ListBoxMenuStackPanel}" ToolTipService.ToolTip="Open application help">
                         <Image Source="pack://siteoforigin:,,,/Assets/Default/Icons/Help.png" Width="55" HorizontalAlignment="Center"/>
@@ -157,7 +159,7 @@
                     <Grid Grid.Row="0">
                         <StackPanel>
                             <TextBlock Style="{StaticResource TextBlockBlackLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Controller"/>
-                            <ProgressBar Height="2" Margin="0,30,0,0" Name="pb_ControllerMapProgress" Style="{StaticResource ProgressBarAccent}" HorizontalAlignment="Stretch" Value="100"/>
+                            <ProgressBar Height="4" Margin="0,30,0,0" Name="pb_ControllerMapProgress" Style="{StaticResource ProgressBarAccent}" HorizontalAlignment="Stretch" Value="100"/>
                         </StackPanel>
                     </Grid>
 
@@ -620,7 +622,7 @@
                     <Grid Grid.Row="0">
                         <StackPanel>
                             <TextBlock Style="{StaticResource TextBlockBlackLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Keypad"/>
-                            <ProgressBar Height="2" Margin="0,30,0,0" Name="pb_KeypadMapProgress" Style="{StaticResource ProgressBarAccent}" HorizontalAlignment="Stretch" Value="100"/>
+                            <ProgressBar Height="4" Margin="0,30,0,0" Name="pb_KeypadMapProgress" Style="{StaticResource ProgressBarAccent}" HorizontalAlignment="Stretch" Value="100"/>
                         </StackPanel>
                     </Grid>
 

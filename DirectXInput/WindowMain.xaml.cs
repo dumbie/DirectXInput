@@ -133,23 +133,13 @@ namespace DirectXInput
             catch { }
         }
 
-        //Make sure the correct window style is set
-        void CheckWindowStateAndStyle(object sender, EventArgs e)
-        {
-            try
-            {
-                if (WindowState == WindowState.Minimized) { Application_ShowHideWindow(); }
-            }
-            catch { }
-        }
-
         //Application Close Handler
-        protected async override void OnClosing(CancelEventArgs e)
+        protected override void OnClosing(CancelEventArgs e)
         {
             try
             {
                 e.Cancel = true;
-                await Application_Exit_Prompt();
+                this.Hide();
             }
             catch { }
         }

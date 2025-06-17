@@ -65,7 +65,7 @@ namespace DirectXInput.KeypadCode
                 if (vWindowVisible)
                 {
                     //Play window close sound
-                    PlayInterfaceSound(vConfigurationCtrlUI, "PopupClose", false, false);
+                    PlayInterfaceSound(vConfigurationDirectXInput, "PopupClose", false, false);
 
                     //Stop the update tasks
                     await TasksBackgroundStop();
@@ -113,7 +113,7 @@ namespace DirectXInput.KeypadCode
                 await vWindowKeyboard.Hide();
 
                 //Play window open sound
-                PlayInterfaceSound(vConfigurationCtrlUI, "PopupOpen", false, false);
+                PlayInterfaceSound(vConfigurationDirectXInput, "PopupOpen", false, false);
 
                 //Start the update tasks
                 TasksBackgroundStart();
@@ -159,26 +159,26 @@ namespace DirectXInput.KeypadCode
 
                         if (vKeypadMappingProfile.KeypadDisplayStyle == 0)
                         {
-                            image_DPad.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Buttons/KeypadDpad.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
-                            image_ThumbLeft.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Buttons/KeypadThumb.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
-                            image_ThumbRight.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Buttons/KeypadThumb.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
-                            image_TriggersLeft.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Buttons/KeypadTriggers.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
-                            image_TriggersRight.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Buttons/KeypadTriggers.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
-                            image_ButtonBack.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Buttons/KeypadButton.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
-                            image_ButtonStart.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Buttons/KeypadButton.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
-                            image_Action.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Buttons/KeypadAction.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
+                            image_DPad.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Keypad/KeypadDpad.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
+                            image_ThumbLeft.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Keypad/KeypadThumb.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
+                            image_ThumbRight.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Keypad/KeypadThumb.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
+                            image_TriggersLeft.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Keypad/KeypadTriggers.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
+                            image_TriggersRight.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Keypad/KeypadTriggers.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
+                            image_ButtonBack.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Keypad/KeypadButton.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
+                            image_ButtonStart.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Keypad/KeypadButton.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
+                            image_Action.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Keypad/KeypadAction.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
                             vKeypadNormalBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFFFFF");
                         }
                         else
                         {
-                            image_DPad.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Buttons/KeypadDpadDark.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
-                            image_ThumbLeft.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Buttons/KeypadThumbDark.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
-                            image_ThumbRight.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Buttons/KeypadThumbDark.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
-                            image_TriggersLeft.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Buttons/KeypadTriggersDark.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
-                            image_TriggersRight.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Buttons/KeypadTriggersDark.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
-                            image_ButtonBack.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Buttons/KeypadButtonDark.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
-                            image_ButtonStart.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Buttons/KeypadButtonDark.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
-                            image_Action.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Buttons/KeypadActionDark.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
+                            image_DPad.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Keypad/KeypadDpadDark.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
+                            image_ThumbLeft.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Keypad/KeypadThumbDark.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
+                            image_ThumbRight.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Keypad/KeypadThumbDark.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
+                            image_TriggersLeft.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Keypad/KeypadTriggersDark.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
+                            image_TriggersRight.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Keypad/KeypadTriggersDark.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
+                            image_ButtonBack.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Keypad/KeypadButtonDark.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
+                            image_ButtonStart.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Keypad/KeypadButtonDark.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
+                            image_Action.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/Keypad/KeypadActionDark.png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
                             vKeypadNormalBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#000000");
                         }
                     }
@@ -309,7 +309,7 @@ namespace DirectXInput.KeypadCode
             try
             {
                 //Get the current active screen
-                int monitorNumber = SettingLoad(vConfigurationCtrlUI, "DisplayMonitor", typeof(int));
+                int monitorNumber = SettingLoad(vConfigurationDirectXInput, "DisplayMonitor", typeof(int));
 
                 //Move the window position
                 WindowUpdatePosition(monitorNumber, vInteropWindowHandle, AVWindowPosition.FullScreen);

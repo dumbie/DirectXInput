@@ -160,6 +160,9 @@
 		<Content Include="Assets\Default\Icons\Shutdown.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Assets\Default\Icons\Update.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Assets\Default\Icons\Usb.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
@@ -259,45 +262,6 @@
 		<Content Include="Profiles\User\DirectKeypadMapping\Default.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-	</ItemGroup>
-	<ItemGroup>
-		<None Remove="Assets\Default\Controller\ButtonPress.png" />
-		<None Remove="Assets\Default\Controller\ControllerAxe.png" />
-		<None Remove="Assets\Default\Controller\ControllerAxeLight.png" />
-		<None Remove="Assets\Default\Controller\ControllerPreview.png" />
-		<None Remove="Assets\Default\Controller\KeypadPreview.png" />
-		<None Remove="Assets\Default\Icons\Close.png" />
-		<None Remove="Assets\Default\Icons\Controller-Accent.png" />
-		<None Remove="Assets\Default\Icons\Controller-Dark.png" />
-		<None Remove="Assets\Default\Icons\Debug.png" />
-		<None Remove="Assets\Default\Icons\Help.png" />
-		<None Remove="Assets\Default\Icons\Hide.png" />
-		<None Remove="Assets\Default\Icons\Keyboard.png" />
-		<None Remove="Assets\Default\Icons\Keypad.png" />
-		<None Remove="Assets\Default\Icons\Keypad\KeypadAction.png" />
-		<None Remove="Assets\Default\Icons\Keypad\KeypadActionDark.png" />
-		<None Remove="Assets\Default\Icons\Keypad\KeypadButton.png" />
-		<None Remove="Assets\Default\Icons\Keypad\KeypadButtonDark.png" />
-		<None Remove="Assets\Default\Icons\Keypad\KeypadDpad.png" />
-		<None Remove="Assets\Default\Icons\Keypad\KeypadDpadDark.png" />
-		<None Remove="Assets\Default\Icons\Keypad\KeypadThumb.png" />
-		<None Remove="Assets\Default\Icons\Keypad\KeypadThumbDark.png" />
-		<None Remove="Assets\Default\Icons\Keypad\KeypadTriggers.png" />
-		<None Remove="Assets\Default\Icons\Keypad\KeypadTriggersDark.png" />
-		<None Remove="Assets\Default\Icons\List.png" />
-		<None Remove="Assets\Default\Icons\Music.png" />
-		<None Remove="Assets\Default\Icons\Settings.png" />
-		<None Remove="Assets\Default\Icons\Shortcut.png" />
-		<None Remove="Assets\Default\Icons\Shutdown.png" />
-		<None Remove="Assets\Default\Sounds\Default\BatteryLow.mp3" />
-		<None Remove="Assets\Default\Sounds\Default\Click.mp3" />
-		<None Remove="Assets\Default\Sounds\Default\Confirm.mp3" />
-		<None Remove="Assets\Default\Sounds\Default\Move.mp3" />
-		<None Remove="Assets\Default\Sounds\Default\PopupClose.mp3" />
-		<None Remove="Assets\Default\Sounds\Default\PopupOpen.mp3" />
-		<None Remove="Assets\Default\Sounds\Default\PromptClose.mp3" />
-		<None Remove="Assets\Default\Sounds\Default\PromptOpen.mp3" />
-		<None Remove="Assets\Default\Sounds\Default\RecycleBinEmpty.mp3" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Include="..\..\CtrlUI\CtrlUI\Library\SoundPlayer.cs" Link="Library\SoundPlayer.cs" />

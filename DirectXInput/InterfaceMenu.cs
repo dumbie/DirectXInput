@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using static ArnoldVinkCode.AVUpdate;
 using static DirectXInput.AppVariables;
 
 namespace DirectXInput
@@ -56,8 +57,13 @@ namespace DirectXInput
                     else if (SelStackPanel.Name == "menuButtonKeypad") { ShowGridPage(grid_Keypad); }
                     else if (SelStackPanel.Name == "menuButtonSettings") { ShowGridPage(grid_Settings); }
                     else if (SelStackPanel.Name == "menuButtonDebug") { ShowGridPage(grid_Debug); }
+                    else if (SelStackPanel.Name == "menuButtonUpdate")
+                    {
+                        //Check for available application update
+                        await UpdateCheck("dumbie", "DirectXInput", false);
+                    }
                     else if (SelStackPanel.Name == "menuButtonHelp") { ShowGridPage(grid_Help); }
-                    else if (SelStackPanel.Name == "menuButtonClose") { Application_HideWindow(); }
+                    else if (SelStackPanel.Name == "menuButtonClose") { this.Hide(); }
                     else if (SelStackPanel.Name == "menuButtonExit") { await Application_Exit_Prompt(); }
                 }
             }

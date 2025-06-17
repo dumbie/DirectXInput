@@ -47,13 +47,12 @@ namespace DirectXInput
                 if (SettingLoad(vConfigurationDirectXInput, "AppFirstLaunch", typeof(bool)))
                 {
                     Debug.WriteLine("First launch showing the window.");
-                    Application_ShowHideWindow();
+                    vWindowMain.Show();
                 }
 
                 //Check if drivers are installed
                 if (!CheckInstalledDrivers())
                 {
-                    if (!ShowInTaskbar) { Application_ShowHideWindow(); }
                     await Message_InstallDrivers();
                     return;
                 }
@@ -61,7 +60,6 @@ namespace DirectXInput
                 //Check installed driver double
                 if (!CheckDriversDouble())
                 {
-                    if (!ShowInTaskbar) { Application_ShowHideWindow(); }
                     await Message_DoubleDrivers();
                     return;
                 }
@@ -69,7 +67,6 @@ namespace DirectXInput
                 //Check installed driver versions
                 if (!CheckDriversVersion())
                 {
-                    if (!ShowInTaskbar) { Application_ShowHideWindow(); }
                     await Message_UpdateDrivers();
                     return;
                 }
@@ -77,7 +74,6 @@ namespace DirectXInput
                 //Open the virtual bus driver
                 if (!await OpenVirtualBusDriver())
                 {
-                    if (!ShowInTaskbar) { Application_ShowHideWindow(); }
                     await Message_InstallDrivers();
                     return;
                 }
@@ -85,7 +81,6 @@ namespace DirectXInput
                 //Open the hid hide device
                 if (!OpenHidHideDevice())
                 {
-                    if (!ShowInTaskbar) { Application_ShowHideWindow(); }
                     await Message_InstallDrivers();
                     return;
                 }
@@ -93,7 +88,6 @@ namespace DirectXInput
                 //Open the FakerInput device
                 if (!OpenFakerInputDevice())
                 {
-                    if (!ShowInTaskbar) { Application_ShowHideWindow(); }
                     await Message_InstallDrivers();
                     return;
                 }

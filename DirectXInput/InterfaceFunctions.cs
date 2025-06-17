@@ -21,9 +21,6 @@ namespace DirectXInput
         {
             try
             {
-                //Make sure the correct window style is set
-                StateChanged += CheckWindowStateAndStyle;
-
                 //Main menu functions
                 lb_Menu.PreviewKeyUp += lb_Menu_KeyPressUp;
                 lb_Menu.PreviewMouseUp += lb_Menu_MousePressUp;
@@ -575,7 +572,7 @@ namespace DirectXInput
             {
                 List<string> messageAnswers = new List<string>();
                 messageAnswers.Add("Install the drivers");
-                messageAnswers.Add("Close application");
+                messageAnswers.Add("Exit application");
 
                 string messageResult = await new AVMessageBox().Popup(this, "Install drivers", "Welcome to DirectXInput, it seems like you have not yet installed the required drivers to use this application, please make sure that you have installed the required drivers.\n\nDirectXInput will be closed during the installation of the required drivers.\n\nIf you just installed the drivers and this message shows up restart your PC.\n\nAfter some Windows updates you may need to reinstall the drivers to work.", messageAnswers);
                 if (messageResult == "Install the drivers")
@@ -601,7 +598,7 @@ namespace DirectXInput
             {
                 List<string> messageAnswers = new List<string>();
                 messageAnswers.Add("Reinstall the drivers");
-                messageAnswers.Add("Close application");
+                messageAnswers.Add("Exit application");
 
                 string messageResult = await new AVMessageBox().Popup(this, "Double drivers", "It seems like some of the required drivers are installed double, please reinstall the required drivers.\n\nDirectXInput will be closed during the installation of the required drivers.", messageAnswers);
                 if (messageResult == "Reinstall the drivers")
@@ -627,7 +624,7 @@ namespace DirectXInput
             {
                 List<string> messageAnswers = new List<string>();
                 messageAnswers.Add("Update the drivers");
-                messageAnswers.Add("Close application");
+                messageAnswers.Add("Exit application");
 
                 string messageResult = await new AVMessageBox().Popup(this, "Update drivers", "There seem to be newer drivers available to install.\n\nDirectXInput will be closed during the installation of the required drivers.", messageAnswers);
                 if (messageResult == "Update the drivers")

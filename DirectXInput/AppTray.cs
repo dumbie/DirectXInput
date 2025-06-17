@@ -2,9 +2,9 @@
 using System;
 using System.Diagnostics;
 using System.Drawing;
-using System.Windows;
 using System.Windows.Forms;
 using static ArnoldVinkCode.AVFunctions;
+using static DirectXInput.AppVariables;
 
 namespace DirectXInput
 {
@@ -51,47 +51,11 @@ namespace DirectXInput
             catch { }
         }
 
-        //Show or hide the application window
-        void Application_ShowHideWindow()
-        {
-            try
-            {
-                if (ShowInTaskbar)
-                {
-                    Debug.WriteLine("Minimizing application to tray.");
-                    ShowInTaskbar = false;
-                    Visibility = Visibility.Collapsed;
-                    WindowState = WindowState.Normal;
-                }
-                else
-                {
-                    Debug.WriteLine("Show the application from tray.");
-                    ShowInTaskbar = true;
-                    Visibility = Visibility.Visible;
-                    WindowState = WindowState.Normal;
-                }
-            }
-            catch { }
-        }
-
-        //Hide the application window
-        void Application_HideWindow()
-        {
-            try
-            {
-                Debug.WriteLine("Minimizing application to tray.");
-                ShowInTaskbar = false;
-                Visibility = Visibility.Collapsed;
-                WindowState = WindowState.Normal;
-            }
-            catch { }
-        }
-
         void NotifyIcon_DoubleClick(object sender, EventArgs args)
         {
             try
             {
-                Application_ShowHideWindow();
+                vWindowMain.Show();
             }
             catch { }
         }
@@ -100,7 +64,7 @@ namespace DirectXInput
         {
             try
             {
-                Application_ShowHideWindow();
+                vWindowMain.Show();
             }
             catch { }
         }
