@@ -24,6 +24,9 @@ namespace DirectXInput
                 //Check for available application update
                 await UpdateCheck("dumbie", "DirectXInput", true);
 
+                //Check application user folders
+                Folders_Check();
+
                 //Application initialize settings
                 Settings_Check();
                 await Settings_Load();
