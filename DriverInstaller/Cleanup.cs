@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Windows;
 using static ArnoldVinkCode.AVCertificate;
 using static ArnoldVinkCode.AVFirewall;
+using static ArnoldVinkCode.AVTaskScheduler;
 
 namespace DriverInstaller
 {
@@ -30,10 +31,10 @@ namespace DriverInstaller
                 //Remove application tasks
                 ProgressBarUpdate(30, false);
                 TextBoxAppend("Cleaning up tasks.");
-                RemoveServiceTask("ArnoldVink_CtrlUI");
-                RemoveServiceTask("ArnoldVink_DirectXInput");
-                RemoveServiceTask("ArnoldVink_FpsOverlayer");
-                RemoveServiceTask("ArnoldVink_ScreenCaptureTool");
+                TaskRemove("ArnoldVink_CtrlUI");
+                TaskRemove("ArnoldVink_DirectXInput");
+                TaskRemove("ArnoldVink_FpsOverlayer");
+                TaskRemove("ArnoldVink_ScreenCaptureTool");
 
                 //Remove application firewall rule
                 ProgressBarUpdate(60, false);
