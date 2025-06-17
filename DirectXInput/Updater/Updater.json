@@ -2,7 +2,7 @@
   "UserName": "Dumbie",
   "RepoName": "DirectXInput",
   "FileName": "DirectXInput.zip",
-  "ExtractPathPrepend": "..",
+  "ExtractPathRemove": [ "DirectXInput" ],
   "ProcessLaunch": [
     "Launcher.exe"
   ],
