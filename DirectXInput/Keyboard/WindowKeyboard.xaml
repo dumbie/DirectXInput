@@ -135,7 +135,7 @@
                     <Image Name="img_Main_Battery" Visibility="Collapsed" VerticalAlignment="Center" Margin="0,0,5,0" Source="pack://siteoforigin:,,,/Assets/Default/Icons/Battery/BatteryVerDis100.png" Height="38"/>
                     <TextBlock Name="txt_Main_Battery" Visibility="Collapsed" Margin="0,0,5,0" VerticalAlignment="Center" Style="{StaticResource TextBlockWhiteLight}" FontSize="{DynamicResource TextSizeHuge}" Text="0%"/>
 
-                    <Grid Name="grid_Main_Time" Margin="0,0,5,0" Visibility="Collapsed" Height="40" Width="40" VerticalAlignment="Center">
+                    <Grid Name="grid_Main_Time" Margin="0,0,5,0" Height="40" Width="40" VerticalAlignment="Center">
                         <Image Name="img_Main_Time_Face" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="40"/>
                         <Image Name="img_Main_Time_Hour" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="40"/>
                         <Image Name="img_Main_Time_Minute" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="40"/>

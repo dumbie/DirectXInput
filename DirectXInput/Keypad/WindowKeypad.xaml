@@ -30,7 +30,7 @@
             </Grid.ColumnDefinitions>
             <!-- Controller DPad -->
             <Grid Grid.Column="0">
-                <Image Name="image_DPad" Height="{DynamicResource KeypadImageHeight}" Stretch="Uniform" Source="pack://siteoforigin:,,,/Assets/Default/Icons/Keypad/KeypadDpad.png"/>
+                <Image Name="image_DPad" Height="{DynamicResource KeypadImageHeight}" Stretch="Uniform" Source="pack://siteoforigin:,,,/Assets/Default/Keypad/KeypadDpad.png"/>
 
                 <StackPanel>
                     <Grid Height="{DynamicResource KeypadPaddingThree}" Width="{DynamicResource KeypadPaddingThree}">
@@ -53,7 +53,7 @@
 
             <!-- Controller Thumb Left -->
             <Grid Grid.Column="1" Margin="15,0,0,0">
-                <Image Name="image_ThumbLeft" Height="{DynamicResource KeypadImageHeight}" Stretch="Uniform" Source="pack://siteoforigin:,,,/Assets/Default/Icons/Keypad/KeypadThumb.png"/>
+                <Image Name="image_ThumbLeft" Height="{DynamicResource KeypadImageHeight}" Stretch="Uniform" Source="pack://siteoforigin:,,,/Assets/Default/Keypad/KeypadThumb.png"/>
 
                 <StackPanel>
                     <Grid Height="{DynamicResource KeypadPaddingThree}" Width="{DynamicResource KeypadPaddingThree}">
@@ -78,7 +78,7 @@
 
             <!-- Controller Triggers Left -->
             <Grid Grid.Column="2" Margin="15,0,0,0">
-                <Image Name="image_TriggersLeft" Height="{DynamicResource KeypadImageHeight}" Stretch="Uniform" Source="pack://siteoforigin:,,,/Assets/Default/Icons/Keypad/KeypadTriggers.png"/>
+                <Image Name="image_TriggersLeft" Height="{DynamicResource KeypadImageHeight}" Stretch="Uniform" Source="pack://siteoforigin:,,,/Assets/Default/Keypad/KeypadTriggers.png"/>
 
                 <StackPanel>
                     <Grid Height="{DynamicResource KeypadPaddingTwo}" Width="{DynamicResource KeypadPaddingTwo}">
@@ -92,7 +92,7 @@
 
             <!-- Controller Button Back -->
             <Grid Grid.Column="3" Margin="15,0,0,0">
-                <Image Name="image_ButtonBack" Height="{DynamicResource KeypadImageHeight}" Stretch="Uniform" Source="pack://siteoforigin:,,,/Assets/Default/Icons/Keypad/KeypadButton.png"/>
+                <Image Name="image_ButtonBack" Height="{DynamicResource KeypadImageHeight}" Stretch="Uniform" Source="pack://siteoforigin:,,,/Assets/Default/Keypad/KeypadButton.png"/>
 
                 <StackPanel>
                     <Grid Height="{DynamicResource KeypadPaddingTwo}" Width="{DynamicResource KeypadPaddingTwo}"/>
@@ -113,7 +113,7 @@
             </Grid.ColumnDefinitions>
             <!-- Controller Button Start -->
             <Grid Grid.Column="0">
-                <Image Name="image_ButtonStart" Height="{DynamicResource KeypadImageHeight}" Stretch="Uniform" Source="pack://siteoforigin:,,,/Assets/Default/Icons/Keypad/KeypadButton.png"/>
+                <Image Name="image_ButtonStart" Height="{DynamicResource KeypadImageHeight}" Stretch="Uniform" Source="pack://siteoforigin:,,,/Assets/Default/Keypad/KeypadButton.png"/>
 
                 <StackPanel>
                     <Grid Height="{DynamicResource KeypadPaddingTwo}" Width="{DynamicResource KeypadPaddingTwo}"/>
@@ -125,7 +125,7 @@
 
             <!-- Controller Triggers Right -->
             <Grid Grid.Column="1" Margin="15,0,0,0">
-                <Image Name="image_TriggersRight" Height="{DynamicResource KeypadImageHeight}" Stretch="Uniform" Source="pack://siteoforigin:,,,/Assets/Default/Icons/Keypad/KeypadTriggers.png"/>
+                <Image Name="image_TriggersRight" Height="{DynamicResource KeypadImageHeight}" Stretch="Uniform" Source="pack://siteoforigin:,,,/Assets/Default/Keypad/KeypadTriggers.png"/>
 
                 <StackPanel>
                     <Grid Height="{DynamicResource KeypadPaddingTwo}" Width="{DynamicResource KeypadPaddingTwo}">
@@ -139,7 +139,7 @@
 
             <!-- Controller Thumb Right -->
             <Grid Grid.Column="2" Margin="15,0,0,0">
-                <Image Name="image_ThumbRight" Height="{DynamicResource KeypadImageHeight}" Stretch="Uniform" Source="pack://siteoforigin:,,,/Assets/Default/Icons/Keypad/KeypadThumb.png"/>
+                <Image Name="image_ThumbRight" Height="{DynamicResource KeypadImageHeight}" Stretch="Uniform" Source="pack://siteoforigin:,,,/Assets/Default/Keypad/KeypadThumb.png"/>
 
                 <StackPanel>
                     <Grid Height="{DynamicResource KeypadPaddingThree}" Width="{DynamicResource KeypadPaddingThree}">
@@ -164,7 +164,7 @@
 
             <!-- Controller Action Buttons -->
             <Grid Grid.Column="3" Margin="15,0,0,0">
-                <Image Name="image_Action" Height="{DynamicResource KeypadImageHeight}" Stretch="Uniform" Source="pack://siteoforigin:,,,/Assets/Default/Icons/Keypad/KeypadAction.png"/>
+                <Image Name="image_Action" Height="{DynamicResource KeypadImageHeight}" Stretch="Uniform" Source="pack://siteoforigin:,,,/Assets/Default/Keypad/KeypadAction.png"/>
 
                 <StackPanel>
                     <Grid Height="{DynamicResource KeypadPaddingThree}" Width="{DynamicResource KeypadPaddingThree}">

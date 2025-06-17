@@ -1,6 +1,5 @@
 ﻿using ArnoldVinkCode;
 using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Media;
 using static ArnoldVinkCode.AVImage;
@@ -21,11 +20,6 @@ namespace DirectXInput.KeyboardCode
                 {
                     string clockStyle = "Cortana";
                     string clockPath = "Assets/Default/Clocks/" + clockStyle;
-                    if (Directory.Exists("Assets/User/Clocks/" + clockStyle))
-                    {
-                        clockPath = "Assets/User/Clocks/" + clockStyle;
-                    }
-
                     img_Main_Time_Face.Source = FileToBitmapImage(new string[] { clockPath + "/Face.png" }, null, vImageBackupSource, 40, 0, IntPtr.Zero, 0);
                     img_Main_Time_Hour.Source = FileToBitmapImage(new string[] { clockPath + "/Hour.png" }, null, vImageBackupSource, 40, 0, IntPtr.Zero, 0);
                     img_Main_Time_Minute.Source = FileToBitmapImage(new string[] { clockPath + "/Minute.png" }, null, vImageBackupSource, 40, 0, IntPtr.Zero, 0);
@@ -92,9 +86,9 @@ namespace DirectXInput.KeyboardCode
                 {
                     AVActions.DispatcherInvoke(delegate
                     {
+                        //Hide battery image
                         txt_Main_Battery.Visibility = Visibility.Collapsed;
                         img_Main_Battery.Visibility = Visibility.Collapsed;
-                        grid_Main_Time.Visibility = Visibility.Collapsed;
                     });
                     return;
                 }
@@ -105,9 +99,9 @@ namespace DirectXInput.KeyboardCode
                 {
                     AVActions.DispatcherInvoke(delegate
                     {
+                        //Hide battery image
                         txt_Main_Battery.Visibility = Visibility.Collapsed;
                         img_Main_Battery.Visibility = Visibility.Collapsed;
-                        grid_Main_Time.Visibility = Visibility.Collapsed;
                     });
                     return;
                 }
@@ -117,6 +111,7 @@ namespace DirectXInput.KeyboardCode
                 {
                     AVActions.DispatcherInvoke(delegate
                     {
+                        //Hide battery text
                         txt_Main_Battery.Visibility = Visibility.Collapsed;
 
                         //Set the used battery status icon
@@ -131,8 +126,8 @@ namespace DirectXInput.KeyboardCode
                             img_Main_Battery.Source = FileToBitmapImage(new string[] { updatedImage }, null, vImageBackupSource, 0, 0, IntPtr.Zero, 0);
                         }
 
+                        //Show battery image
                         img_Main_Battery.Visibility = Visibility.Visible;
-                        grid_Main_Time.Visibility = Visibility.Visible;
                     });
                     return;
                 }
@@ -167,19 +162,18 @@ namespace DirectXInput.KeyboardCode
                         img_Main_Battery.Source = FileToBitmapImage(new string[] { updatedImage }, null, vImageBackupSource, 0, 0, IntPtr.Zero, 0);
                     }
 
-                    //Show the battery image and clock
+                    //Show battery image
                     txt_Main_Battery.Visibility = Visibility.Visible;
                     img_Main_Battery.Visibility = Visibility.Visible;
-                    grid_Main_Time.Visibility = Visibility.Visible;
                 });
             }
             catch
             {
                 AVActions.DispatcherInvoke(delegate
                 {
+                    //Hide battery image
                     txt_Main_Battery.Visibility = Visibility.Collapsed;
                     img_Main_Battery.Visibility = Visibility.Collapsed;
-                    grid_Main_Time.Visibility = Visibility.Collapsed;
                 });
             }
         }
