@@ -28,6 +28,12 @@
 		<Compile Include="..\DirectXInput\Library\Usb\NativeMethods_Guid.cs" Link="Library\Usb\NativeMethods_Guid.cs" />
 	</ItemGroup>
 	<ItemGroup>
+		<Content Include="Assets\Default\Icons\Loading.gif">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\Default\Icons\LoadingDark.gif">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Drivers\Ds3Controller\amd64\WdfCoInstaller01011.dll">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
@@ -75,7 +81,7 @@
 		</Content>
 	</ItemGroup>
 	<ItemGroup>
-		<Resource Include="Assets\AppIcon.ico" />
+		<EmbeddedResource Include="Assets\AppIcon.ico" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\ArnoldVinkCode\Desktop\ArnoldVinkCode.csproj" />
