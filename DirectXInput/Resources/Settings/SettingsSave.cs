@@ -287,6 +287,18 @@ namespace DirectXInput
                     vWindowKeyboard.UpdateWindowPosition();
                     vWindowKeypad.UpdateWindowPosition();
                 };
+
+                //Sound settings
+                cb_SettingsInterfaceSound.Click += (sender, e) =>
+                {
+                    SettingSave(vConfigurationDirectXInput, "InterfaceSound", cb_SettingsInterfaceSound.IsChecked.ToString());
+                };
+
+                slider_SettingsSoundVolume.ValueChanged += (sender, e) =>
+                {
+                    textblock_SettingsSoundVolume.Text = textblock_SettingsSoundVolume.Tag + ": " + Convert.ToInt32(slider_SettingsSoundVolume.Value) + "%";
+                    SettingSave(vConfigurationDirectXInput, "InterfaceSoundVolume", slider_SettingsSoundVolume.Value);
+                };
             }
             catch (Exception ex)
             {

@@ -80,6 +80,11 @@ namespace DirectXInput
                 textblock_SettingsDisplayMonitor.Text = textblock_SettingsDisplayMonitor.Tag + ": " + monitorNumber;
                 slider_SettingsDisplayMonitor.Value = monitorNumber;
 
+                //Sound settings
+                cb_SettingsInterfaceSound.IsChecked = SettingLoad(vConfigurationDirectXInput, "InterfaceSound", typeof(bool));
+                textblock_SettingsSoundVolume.Text = textblock_SettingsSoundVolume.Tag + ": " + SettingLoad(vConfigurationDirectXInput, "InterfaceSoundVolume", typeof(string)) + "%";
+                slider_SettingsSoundVolume.Value = SettingLoad(vConfigurationDirectXInput, "InterfaceSoundVolume", typeof(double));
+
                 //Wait for settings to have loaded
                 await Task.Delay(1500);
             }
