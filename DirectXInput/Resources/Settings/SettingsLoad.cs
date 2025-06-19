@@ -1,7 +1,6 @@
 ﻿using ArnoldVinkCode;
 using System;
 using System.Diagnostics;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using static ArnoldVinkCode.AVSettings;
@@ -73,11 +72,13 @@ namespace DirectXInput
                 textblock_SettingsMediaVolumeStep.Text = textblock_SettingsMediaVolumeStep.Tag.ToString() + SettingLoad(vConfigurationDirectXInput, "MediaVolumeStep", typeof(string));
                 slider_SettingsMediaVolumeStep.Value = SettingLoad(vConfigurationDirectXInput, "MediaVolumeStep", typeof(double));
 
-                //Set the application name to string to check shortcuts
-                string targetName = AVFunctions.ApplicationName();
-
                 //Launch settings
                 cb_SettingsWindowsStartup.IsChecked = AVSettings.StartupShortcutCheck();
+
+                //Display settings
+                int monitorNumber = SettingLoad(vConfigurationDirectXInput, "DisplayMonitor", typeof(int));
+                textblock_SettingsDisplayMonitor.Text = textblock_SettingsDisplayMonitor.Tag + ": " + monitorNumber;
+                slider_SettingsDisplayMonitor.Value = monitorNumber;
 
                 //Wait for settings to have loaded
                 await Task.Delay(1500);

@@ -2,8 +2,8 @@
 using System.Windows;
 using static ArnoldVinkCode.AVInteropDll;
 using static ArnoldVinkCode.AVStartup;
-using static DirectXInput.AppVariables;
 using static DirectXInput.AppBackup;
+using static DirectXInput.AppVariables;
 
 namespace DirectXInput
 {

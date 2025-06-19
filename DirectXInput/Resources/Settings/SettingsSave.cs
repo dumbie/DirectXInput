@@ -277,6 +277,16 @@ namespace DirectXInput
                     textblock_SettingsMediaVolumeStep.Text = textblock_SettingsMediaVolumeStep.Tag.ToString() + slider_SettingsMediaVolumeStep.Value.ToString();
                     SettingSave(vConfigurationDirectXInput, "MediaVolumeStep", slider_SettingsMediaVolumeStep.Value);
                 };
+
+                //Display settings
+                slider_SettingsDisplayMonitor.ValueChanged += (sender, e) =>
+                {
+                    textblock_SettingsDisplayMonitor.Text = textblock_SettingsDisplayMonitor.Tag + ": " + Convert.ToInt32(slider_SettingsDisplayMonitor.Value);
+                    SettingSave(vConfigurationDirectXInput, "DisplayMonitor", slider_SettingsDisplayMonitor.Value);
+                    vWindowOverlay.UpdateWindowPosition();
+                    vWindowKeyboard.UpdateWindowPosition();
+                    vWindowKeypad.UpdateWindowPosition();
+                };
             }
             catch (Exception ex)
             {
