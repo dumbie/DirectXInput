@@ -454,6 +454,9 @@
 		<Content Include="Profiles\User\DirectKeypadMapping\Default.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Updater\Updater.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Include="..\..\CtrlUI\CtrlUI\Library\SoundPlayer.cs" Link="Library\SoundPlayer.cs" />
