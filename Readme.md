@@ -8,12 +8,13 @@ so that it can be used with every game and application released with XInput supp
 
 ## Application Features
 - Easily customize the controller button layout.
-- Make screen captures directly with your controller. *1
+- Make screen captures directly with your controller. *¹
 - Adjust controller led, deadzone, rumble strength and more.
 - Useful keyboard and other shortcuts for your controller.
 - Control your system volume and media with your controller.
 - On screen keyboard and keypad for your controller.
 - Controller low battery notification and sound.
+- Sends controller input and status to CtrlUI.
 
 ## Supported Controllers 
 - Sony PlayStation 1 (Wired)
@@ -47,7 +48,7 @@ so that it can be used with every game and application released with XInput supp
 ## Requirements
 - Microsoft .NET Core Runtime installed.
 - Microsoft Windows 11 64-bit or higher is required.
-*1 Requires the Screen Capture Tool to be running.
+- *¹ Requires the Screen Capture Tool to be running.
 
 ## Special thanks
 - Benjamin Höglinger-Stelzer (Nefarius)
