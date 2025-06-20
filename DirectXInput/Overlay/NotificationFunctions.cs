@@ -10,7 +10,7 @@ namespace DirectXInput.OverlayCode
 {
     public partial class WindowOverlay : Window
     {
-        //Show the notification overlay
+        //Show notification
         public void Notification_Show_Status(string icon, string text)
         {
             try
@@ -23,7 +23,7 @@ namespace DirectXInput.OverlayCode
             catch { }
         }
 
-        //Show the notification overlay
+        //Show notification
         public void Notification_Show_Status(NotificationDetails notificationDetails)
         {
             try
@@ -34,7 +34,7 @@ namespace DirectXInput.OverlayCode
                     try
                     {
                         //Set notification text
-                        grid_Message_Status_Image.Source = FileToBitmapImage(new string[] { "Assets/Default/Icons/" + notificationDetails.Icon + ".png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
+                        grid_Message_Status_Image.Source = FileToBitmapImage(new string[] { notificationDetails.Icon, "Assets/Default/Icons/" + notificationDetails.Icon + ".png" }, null, vImageBackupSource, -1, -1, IntPtr.Zero, 0);
                         grid_Message_Status_Text.Text = notificationDetails.Text;
                         if (notificationDetails.Color != null)
                         {

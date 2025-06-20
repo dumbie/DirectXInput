@@ -38,7 +38,7 @@ namespace DirectXInput
 
         //Image Variables
         public static int vImageLoadSize = 120;
-        public static string vImageBackupSource = "Assets/Default/Apps/Unknown.png";
+        public static string vImageBackupSource = "Assets/Default/Icons/Unknown.png";
         public static BitmapImage vImagePreloadIconControllerAccent = FileToBitmapImage(new string[] { "Assets/Default/Icons/Controller-Accent.png" }, null, vImageBackupSource, vImageLoadSize, 0, IntPtr.Zero, 0);
         public static BitmapImage vImagePreloadIconControllerDark = FileToBitmapImage(new string[] { "Assets/Default/Icons/Controller-Dark.png" }, null, vImageBackupSource, vImageLoadSize, 0, IntPtr.Zero, 0);
         public static BitmapImage vImagePreloadIconKeyboard = FileToBitmapImage(new string[] { "Assets/Default/Icons/Keyboard.png" }, null, vImageBackupSource, vImageLoadSize, 0, IntPtr.Zero, 0);
