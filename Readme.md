@@ -3,8 +3,7 @@
 ![Keypad](Screenshots/Keypad-screenshot1.jpg)
 
 ## Application Description
-DirectXInput converts your connected game controller to a Xbox (XInput) controller,
-so that it can be used with every game and application released with XInput support.
+DirectXInput converts your connected game controller to a Xbox (XInput) controller, so that it can be used with every game and application released with XInput support and features an on screen keyboard and keypad.
 
 ## Application Features
 - Easily customize the controller button layout.
