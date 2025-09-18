@@ -1,4 +1,4 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using static ArnoldVinkCode.AVActions;
 using static ArnoldVinkCode.AVInputOutputClass;
 using static DirectXInput.AppVariables;
@@ -16,7 +16,7 @@ namespace DirectXInput.KeypadCode
             {
                 if (GetSystemTicksMs() >= vControllerDelay_KeypadPreview)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         try
                         {

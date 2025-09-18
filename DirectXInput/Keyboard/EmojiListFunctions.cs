@@ -1,9 +1,9 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using static ArnoldVinkCode.AVFocus;
+using static ArnoldVinkStyles.AVFocus;
 using static DirectXInput.AppVariables;
 using static LibraryShared.SoundPlayer;
 
@@ -238,7 +238,7 @@ namespace DirectXInput.KeyboardCode
             try
             {
                 int selectIndex = 0;
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     //Update the emoji selected index
                     UpdateSelectedIndexEmoji();
@@ -443,7 +443,7 @@ namespace DirectXInput.KeyboardCode
             try
             {
                 //Check if an actual ListBoxItem is clicked
-                if (!AVFunctions.ListBoxItemClickCheck((DependencyObject)e.OriginalSource)) { return; }
+                if (!AVInterface.ListBoxItemClickCheck((DependencyObject)e.OriginalSource)) { return; }
 
                 KeyTypeStringSenderShared(sender);
             }

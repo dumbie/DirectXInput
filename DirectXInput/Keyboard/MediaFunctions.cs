@@ -1,4 +1,5 @@
 ﻿using ArnoldVinkCode;
+using ArnoldVinkStyles;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -9,9 +10,9 @@ using Windows.Media.Control;
 using Windows.Storage.Streams;
 using static ArnoldVinkCode.AVActions;
 using static ArnoldVinkCode.AVAudioDevice;
-using static ArnoldVinkCode.AVImage;
 using static ArnoldVinkCode.AVInputOutputClass;
 using static ArnoldVinkCode.AVSettings;
+using static ArnoldVinkStyles.AVImage;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Enums;
 using static LibraryShared.SoundPlayer;
@@ -243,14 +244,14 @@ namespace DirectXInput.KeyboardCode
                 string mediaAlbum = mediaProperties.AlbumTitle;
                 if (string.IsNullOrWhiteSpace(mediaAlbum))
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         text_Information_Album.Visibility = Visibility.Collapsed;
                     });
                 }
                 else
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         text_Information_Album.Visibility = Visibility.Visible;
                     });
@@ -265,14 +266,14 @@ namespace DirectXInput.KeyboardCode
                     mediaProgress = mediaTimeline.Position.TotalSeconds * 100 / mediaTimeline.EndTime.TotalSeconds;
                     mediaCurrent = AVFunctions.SecondsToHms((int)mediaTimeline.Position.TotalSeconds, false, true);
                     mediaTotal = AVFunctions.SecondsToHms((int)mediaTimeline.EndTime.TotalSeconds, false, true);
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         grid_Information_Progress.Visibility = Visibility.Visible;
                     });
                 }
                 else
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         grid_Information_Progress.Visibility = Visibility.Collapsed;
                     });
@@ -282,7 +283,7 @@ namespace DirectXInput.KeyboardCode
                 BitmapFrame thumbnailBitmap = await GetMediaThumbnail(mediaProperties.Thumbnail);
 
                 //Update the media and volume information
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     text_Information_Artist.Text = mediaArtist;
                     text_Information_Title.Text = mediaTitle;
@@ -327,7 +328,7 @@ namespace DirectXInput.KeyboardCode
                 //Check if volume is currently muted
                 bool currentOutputVolumeMuted = AudioMuteGetStatus(false);
                 bool currentInputVolumeMuted = AudioMuteGetStatus(true);
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     img_Main_VolumeMute.Visibility = currentOutputVolumeMuted ? Visibility.Visible : Visibility.Collapsed;
                     img_Main_MicrophoneMute.Visibility = currentInputVolumeMuted ? Visibility.Visible : Visibility.Collapsed;
@@ -346,7 +347,7 @@ namespace DirectXInput.KeyboardCode
                 }
 
                 //Update volume information
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     textblock_Volume_Level.Text = currentVolumeString;
                 });
@@ -362,7 +363,7 @@ namespace DirectXInput.KeyboardCode
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     grid_MediaPlaying.Visibility = Visibility.Collapsed;
                     textblock_MediaNone.Visibility = Visibility.Visible;

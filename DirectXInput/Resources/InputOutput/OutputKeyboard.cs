@@ -1,4 +1,4 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System.Windows.Input;
 using static ArnoldVinkCode.AVInputOutputClass;
 using static DirectXInput.AppVariables;
@@ -12,7 +12,7 @@ namespace DirectXInput
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     if (Keyboard.GetKeyStates(Key.CapsLock) == KeyStates.Toggled)
                     {
@@ -32,7 +32,7 @@ namespace DirectXInput
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     if (Keyboard.GetKeyStates(Key.NumLock) != KeyStates.Toggled)
                     {

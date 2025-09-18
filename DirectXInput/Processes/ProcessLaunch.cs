@@ -1,6 +1,5 @@
 ﻿using ArnoldVinkCode;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
 using static LibraryShared.SoundPlayer;
@@ -10,7 +9,7 @@ namespace DirectXInput
     partial class ProcessLaunch
     {
         //Launch CtrlUI
-        public static async Task LaunchCtrlUI(bool silentLaunch)
+        public static void LaunchCtrlUI(bool silentLaunch)
         {
             try
             {
@@ -26,13 +25,13 @@ namespace DirectXInput
                 }
 
                 //Launch application
-                await AVTaskScheduler.TaskRun("ArnoldVink_CtrlUI", "CtrlUI", silentLaunch);
+                AVTaskScheduler.TaskRun("ArnoldVink_CtrlUI", "CtrlUI", silentLaunch);
             }
             catch { }
         }
 
         //Launch Fps Overlayer
-        public static async Task LaunchFpsOverlayer(bool silentLaunch)
+        public static void LaunchFpsOverlayer(bool silentLaunch)
         {
             try
             {
@@ -48,13 +47,13 @@ namespace DirectXInput
                 }
 
                 //Launch application
-                await AVTaskScheduler.TaskRun("ArnoldVink_FpsOverlayer", "Fps Overlayer", silentLaunch);
+                AVTaskScheduler.TaskRun("ArnoldVink_FpsOverlayer", "Fps Overlayer", silentLaunch);
             }
             catch { }
         }
 
         //Launch Screen Capture Tool
-        public static async Task LaunchScreenCaptureTool(bool silentLaunch)
+        public static void LaunchScreenCaptureTool(bool silentLaunch)
         {
             try
             {
@@ -70,7 +69,7 @@ namespace DirectXInput
                 }
 
                 //Launch application
-                await AVTaskScheduler.TaskRun("ArnoldVink_ScreenCaptureTool", "Screen Capture Tool", silentLaunch);
+                AVTaskScheduler.TaskRun("ArnoldVink_ScreenCaptureTool", "Screen Capture Tool", silentLaunch);
             }
             catch { }
         }

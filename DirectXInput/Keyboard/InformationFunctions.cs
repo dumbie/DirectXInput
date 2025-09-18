@@ -1,8 +1,8 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System;
 using System.Windows;
 using System.Windows.Media;
-using static ArnoldVinkCode.AVImage;
+using static ArnoldVinkStyles.AVImage;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
 using static LibraryShared.Enums;
@@ -16,7 +16,7 @@ namespace DirectXInput.KeyboardCode
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     string clockStyle = "Cortana";
                     string clockPath = "Assets/Default/Clocks/" + clockStyle;
@@ -34,7 +34,7 @@ namespace DirectXInput.KeyboardCode
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     //Rotate the clock images
                     int clockSecond = DateTime.Now.Second;
@@ -59,14 +59,14 @@ namespace DirectXInput.KeyboardCode
                 ControllerStatus activeController = AppVariables.vActiveController();
                 if (activeController == null)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         stackpanel_ControllerActive.Visibility = Visibility.Collapsed;
                     });
                     return;
                 }
 
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     stackpanel_ControllerActive.Visibility = Visibility.Visible;
                     border_ControllerActive.Background = new SolidColorBrush((Color)activeController.Color);
@@ -84,7 +84,7 @@ namespace DirectXInput.KeyboardCode
                 ControllerStatus activeController = AppVariables.vActiveController();
                 if (activeController == null)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         //Hide battery image
                         txt_Main_Battery.Visibility = Visibility.Collapsed;
@@ -97,7 +97,7 @@ namespace DirectXInput.KeyboardCode
                 //Check if battery level is available
                 if (controllerBattery.BatteryStatus == BatteryStatus.Unknown)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         //Hide battery image
                         txt_Main_Battery.Visibility = Visibility.Collapsed;
@@ -109,7 +109,7 @@ namespace DirectXInput.KeyboardCode
                 //Check if battery is charging
                 if (controllerBattery.BatteryStatus == BatteryStatus.Charging)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         //Hide battery text
                         txt_Main_Battery.Visibility = Visibility.Collapsed;
@@ -145,7 +145,7 @@ namespace DirectXInput.KeyboardCode
                 else if (controllerBattery.BatteryPercentage <= 90) { percentageNumber = "90"; }
 
                 //Set the battery percentage
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     //Set the used battery percentage text
                     txt_Main_Battery.Text = Convert.ToString(controllerBattery.BatteryPercentage) + "%";
@@ -169,7 +169,7 @@ namespace DirectXInput.KeyboardCode
             }
             catch
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     //Hide battery image
                     txt_Main_Battery.Visibility = Visibility.Collapsed;

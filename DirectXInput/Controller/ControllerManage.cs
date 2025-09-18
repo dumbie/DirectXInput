@@ -1,4 +1,4 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -120,7 +120,7 @@ namespace DirectXInput
                     bool controllerStarted = await StartControllerDirectInput(vController0);
                     if (controllerStarted)
                     {
-                        AVActions.DispatcherInvoke(delegate
+                        AVDispatcherInvoke.DispatcherInvoke(delegate
                         {
                             image_Controller0.Source = vImagePreloadIconControllerAccent;
                             textblock_Controller0.Text = vController0.Details.DisplayName;
@@ -134,7 +134,7 @@ namespace DirectXInput
                     bool controllerStarted = await StartControllerDirectInput(vController1);
                     if (controllerStarted)
                     {
-                        AVActions.DispatcherInvoke(delegate
+                        AVDispatcherInvoke.DispatcherInvoke(delegate
                         {
                             image_Controller1.Source = vImagePreloadIconControllerAccent;
                             textblock_Controller1.Text = vController1.Details.DisplayName;
@@ -148,7 +148,7 @@ namespace DirectXInput
                     bool controllerStarted = await StartControllerDirectInput(vController2);
                     if (controllerStarted)
                     {
-                        AVActions.DispatcherInvoke(delegate
+                        AVDispatcherInvoke.DispatcherInvoke(delegate
                         {
                             image_Controller2.Source = vImagePreloadIconControllerAccent;
                             textblock_Controller2.Text = vController2.Details.DisplayName;
@@ -162,7 +162,7 @@ namespace DirectXInput
                     bool controllerStarted = await StartControllerDirectInput(vController3);
                     if (controllerStarted)
                     {
-                        AVActions.DispatcherInvoke(delegate
+                        AVDispatcherInvoke.DispatcherInvoke(delegate
                         {
                             image_Controller3.Source = vImagePreloadIconControllerAccent;
                             textblock_Controller3.Text = vController3.Details.DisplayName;
@@ -187,7 +187,7 @@ namespace DirectXInput
                 else if (vController3.Connected() && activeController == null) { ControllerActivate(vController3); }
                 else if (activeController == null)
                 {
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         //Clear controller information
                         txt_ActiveControllerType.Text = "Type";

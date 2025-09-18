@@ -1,4 +1,5 @@
 ﻿using ArnoldVinkCode;
+using ArnoldVinkStyles;
 using LibraryUsb;
 using System;
 using System.Diagnostics;
@@ -55,7 +56,7 @@ namespace DirectXInput
                 notificationDetailsConnected.Color = Controller.Color;
                 vWindowOverlay.Notification_Show_Status(notificationDetailsConnected);
 
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     txt_Controller_Information.Text = "Connected controller " + controllerNumberDisplay + ": " + Controller.Details.DisplayName;
                 });

@@ -1,14 +1,14 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using static ArnoldVinkCode.AVActions;
-using static ArnoldVinkCode.AVFocus;
 using static ArnoldVinkCode.AVInputOutputClass;
 using static ArnoldVinkCode.AVInputOutputKeyboard;
 using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkCode.AVWindowFunctions;
+using static ArnoldVinkStyles.AVFocus;
 using static DirectXInput.AppVariables;
 using static DirectXInput.WindowMain;
 using static LibraryShared.Classes;
@@ -531,7 +531,7 @@ namespace DirectXInput.KeyboardCode
                         }
                         else if (vKeyboardCurrentMode == KeyboardMode.Keyboard)
                         {
-                            await AVActions.DispatcherInvoke(async delegate
+                            await AVDispatcherInvoke.DispatcherInvoke(async delegate
                             {
                                 if (vLastPopupListType == "Text")
                                 {

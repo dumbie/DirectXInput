@@ -1,9 +1,9 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
-using static ArnoldVinkCode.AVFocus;
-using static ArnoldVinkCode.Styles.AVColors;
+using static ArnoldVinkStyles.AVColors;
+using static ArnoldVinkStyles.AVFocus;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
 using static LibraryShared.Enums;
@@ -51,7 +51,7 @@ namespace DirectXInput.KeyboardCode
         {
             try
             {
-                await AVActions.DispatcherInvoke(async delegate
+                await AVDispatcherInvoke.DispatcherInvoke(async delegate
                 {
                     //Update help bar
                     stackpanel_DPad.Visibility = Visibility.Collapsed;
@@ -125,7 +125,7 @@ namespace DirectXInput.KeyboardCode
         {
             try
             {
-                await AVActions.DispatcherInvoke(async delegate
+                await AVDispatcherInvoke.DispatcherInvoke(async delegate
                 {
                     //Update help bar
                     stackpanel_DPad.Visibility = Visibility.Visible;

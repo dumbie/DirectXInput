@@ -1,4 +1,4 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -10,10 +10,10 @@ using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
 using static ArnoldVinkCode.AVActions;
-using static ArnoldVinkCode.AVImage;
 using static ArnoldVinkCode.AVInputOutputClass;
 using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkCode.AVWindowFunctions;
+using static ArnoldVinkStyles.AVImage;
 using static DirectXInput.AppVariables;
 using static DirectXInput.SettingsNotify;
 using static DirectXInput.WindowMain;
@@ -138,13 +138,13 @@ namespace DirectXInput.KeypadCode
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     try
                     {
                         Debug.WriteLine("Setting keypad style to: " + vKeypadMappingProfile.KeypadDisplayStyle);
 
-                        List<TextBlock> allTextBlocks = AVFunctions.FindVisualChildren<TextBlock>(grid_Application);
+                        List<TextBlock> allTextBlocks = AVVisualTree.FindVisualChildren<TextBlock>(grid_Application);
                         foreach (TextBlock textBlock in allTextBlocks)
                         {
                             if (vKeypadMappingProfile.KeypadDisplayStyle == 0)
@@ -194,7 +194,7 @@ namespace DirectXInput.KeypadCode
             double keypadImageHeight = 0;
             try
             {
-                DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     try
                     {
@@ -322,7 +322,7 @@ namespace DirectXInput.KeypadCode
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     try
                     {
@@ -339,7 +339,7 @@ namespace DirectXInput.KeypadCode
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     try
                     {

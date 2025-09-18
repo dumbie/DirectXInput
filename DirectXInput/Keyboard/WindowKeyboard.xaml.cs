@@ -1,4 +1,4 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using Microsoft.Win32;
 using System;
 using System.Diagnostics;
@@ -10,10 +10,10 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using static ArnoldVinkCode.AVActions;
-using static ArnoldVinkCode.AVFocus;
 using static ArnoldVinkCode.AVInputOutputClass;
 using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkCode.AVWindowFunctions;
+using static ArnoldVinkStyles.AVFocus;
 using static DirectXInput.AppVariables;
 using static DirectXInput.WindowMain;
 using static LibraryShared.ControllerTimings;
@@ -786,7 +786,7 @@ namespace DirectXInput.KeyboardCode
                 if (vCapsEnabled)
                 {
                     vCapsEnabled = false;
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         UpdateKeyboardKeysNormal();
                     });
@@ -794,7 +794,7 @@ namespace DirectXInput.KeyboardCode
                 else
                 {
                     vCapsEnabled = true;
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         UpdateKeyboardKeysCaps();
                     });
@@ -809,7 +809,7 @@ namespace DirectXInput.KeyboardCode
             bool textPopupsOpen = false;
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     textPopupsOpen = border_EmojiListPopup.Visibility == Visibility.Visible || border_TextListPopup.Visibility == Visibility.Visible || border_ShortcutListPopup.Visibility == Visibility.Visible;
                 });
@@ -823,7 +823,7 @@ namespace DirectXInput.KeyboardCode
         {
             try
             {
-                await AVActions.DispatcherInvoke(async delegate
+                await AVDispatcherInvoke.DispatcherInvoke(async delegate
                 {
                     if (border_EmojiListPopup.Visibility == Visibility.Visible)
                     {

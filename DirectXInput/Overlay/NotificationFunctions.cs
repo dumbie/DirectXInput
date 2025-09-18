@@ -1,8 +1,8 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System;
 using System.Windows;
 using System.Windows.Media;
-using static ArnoldVinkCode.AVImage;
+using static ArnoldVinkStyles.AVImage;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
 
@@ -28,8 +28,8 @@ namespace DirectXInput.OverlayCode
         {
             try
             {
-                //Update the notification
-                AVActions.DispatcherInvoke(delegate
+                //Update notification
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     try
                     {
@@ -45,27 +45,27 @@ namespace DirectXInput.OverlayCode
                             grid_Message_Status_Border.Background = (SolidColorBrush)Application.Current.Resources["ApplicationAccentLightBrush"];
                         }
 
-                        //Show the notification
+                        //Show notification
                         Show();
                     }
                     catch { }
                 });
 
                 //Start notification timer
-                vDispatcherTimerOverlay.Interval = TimeSpan.FromMilliseconds(3000);
-                vDispatcherTimerOverlay.Tick += delegate
+                vTimerOverlay.Interval = 3000;
+                vTimerOverlay.TickSet = delegate
                 {
                     try
                     {
-                        //Hide the notification
-                        Hide();
-
-                        //Renew the timer
-                        AVFunctions.TimerRenew(ref vDispatcherTimerOverlay);
+                        AVDispatcherInvoke.DispatcherInvoke(delegate
+                        {
+                            //Hide notification
+                            Hide();
+                        });
                     }
                     catch { }
                 };
-                AVFunctions.TimerReset(vDispatcherTimerOverlay);
+                vTimerOverlay.Start();
             }
             catch { }
         }

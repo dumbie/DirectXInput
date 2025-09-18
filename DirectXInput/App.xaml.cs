@@ -14,7 +14,7 @@ namespace DirectXInput
             try
             {
                 //Setup application defaults
-                SetupDefaults(ProcessPriority.High, true);
+                SetupDefaults(ProcessPriorityClasses.HIGH_PRIORITY_CLASS, true);
 
                 //Backup Json profiles
                 BackupJsonProfiles();

@@ -1,4 +1,4 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System;
 using System.Windows;
 using static LibraryShared.Classes;
@@ -12,7 +12,7 @@ namespace DirectXInput
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     //Enable controller tab
                     grid_Controller.IsEnabled = true;

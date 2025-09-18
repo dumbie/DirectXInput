@@ -11,14 +11,14 @@ using System.Security.Principal;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 using Windows.Media.Control;
+using static ArnoldVinkCode.AVActions;
 using static ArnoldVinkCode.AVClasses;
-using static ArnoldVinkCode.AVFocus;
-using static ArnoldVinkCode.AVImage;
 using static ArnoldVinkCode.AVJsonFunctions;
 using static ArnoldVinkCode.AVProcess;
 using static ArnoldVinkCode.AVSettings;
+using static ArnoldVinkStyles.AVFocus;
+using static ArnoldVinkStyles.AVImage;
 using static LibraryShared.Classes;
 using static LibraryShared.Enums;
 
@@ -49,11 +49,11 @@ namespace DirectXInput
         public static bool vShowControllerDebug = false;
         public static bool vShowControllerPreview = false;
 
-        //Dispatcher Timers
-        public static DispatcherTimer vDispatcherTimerOverlay = new DispatcherTimer();
+        //Overlay Variables
+        public static AVHighResTimer vTimerOverlay = new AVHighResTimer();
 
         //Mapping Variables
-        public static DispatcherTimer vMappingControllerTimer = new DispatcherTimer();
+        public static AVHighResTimer vMappingControllerTimer = new AVHighResTimer();
         public static MappingStatus vMappingControllerStatus = MappingStatus.Done;
         public static Button vMappingControllerButton = null;
         public static Button vMappingKeypadButton = null;

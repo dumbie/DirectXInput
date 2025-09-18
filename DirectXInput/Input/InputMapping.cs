@@ -1,4 +1,4 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System;
 using System.Diagnostics;
 using static ArnoldVinkCode.AVInputOutputClass;
@@ -46,7 +46,7 @@ namespace DirectXInput
                         return false;
                     }
 
-                    AVActions.DispatcherInvoke(delegate
+                    AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
                         try
                         {

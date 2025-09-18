@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary
-    x:Class="ArnoldVinkCode.Styles.DataTemplates"
+    x:Class="ArnoldVinkStyles.DataTemplates"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:styles="clr-namespace:ArnoldVinkCode.Styles;assembly=ArnoldVinkCode"
+    xmlns:styles="clr-namespace:ArnoldVinkStyles;assembly=ArnoldVinkStyles"
     xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf">
 
     <!-- ListboxItemDebugBox -->

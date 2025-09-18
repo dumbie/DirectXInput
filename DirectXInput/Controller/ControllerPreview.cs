@@ -1,4 +1,4 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System.Windows;
 using System.Windows.Media;
 using static ArnoldVinkCode.AVInputOutputClass;
@@ -47,7 +47,7 @@ namespace DirectXInput
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     if (Controller.RumbleCurrentHeavy > 0 || Controller.RumbleCurrentLight > 0)
                     {
@@ -67,7 +67,7 @@ namespace DirectXInput
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     //Update name and type
                     txt_ActiveControllerType.Text = Controller.Details.Wireless ? "Wireless" : "Wired";
@@ -108,7 +108,7 @@ namespace DirectXInput
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     //DPad
                     if (controller.InputCurrent.Buttons[(byte)ControllerButtons.DPadLeft].PressedRaw) { img_ControllerPreview_DPadLeft.Visibility = Visibility.Visible; } else { img_ControllerPreview_DPadLeft.Visibility = Visibility.Collapsed; }

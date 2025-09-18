@@ -1,12 +1,12 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using static ArnoldVinkCode.AVClasses;
-using static ArnoldVinkCode.AVFocus;
 using static ArnoldVinkCode.AVInputOutputClass;
+using static ArnoldVinkStyles.AVFocus;
 using static DirectXInput.AppVariables;
 using static LibraryShared.SoundPlayer;
 
@@ -119,7 +119,7 @@ namespace DirectXInput.KeyboardCode
             try
             {
                 //Check if an actual ListBoxItem is clicked
-                if (!AVFunctions.ListBoxItemClickCheck((DependencyObject)e.OriginalSource)) { return; }
+                if (!AVInterface.ListBoxItemClickCheck((DependencyObject)e.OriginalSource)) { return; }
 
                 ShortcutPressKeyboard(sender);
             }

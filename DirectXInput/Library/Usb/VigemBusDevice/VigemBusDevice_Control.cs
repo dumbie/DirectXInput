@@ -99,7 +99,7 @@ namespace LibraryUsb
                 //Get overlapped result
                 if (!iocontrol && Marshal.GetLastWin32Error() == (int)IoErrorCodes.ERROR_IO_PENDING)
                 {
-                    if (WaitForSingleObject(nativeOverlapped.EventHandle, INFINITE) == WaitObjectResult.WAIT_OBJECT_0)
+                    if (WaitForSingleObject(nativeOverlapped.EventHandle, INFINITE) == WaitForSingleObjectResult.WAIT_OBJECT)
                     {
                         return GetOverlappedResult(FileHandle, ref nativeOverlapped, out int bytesTransferred, false);
                     }
@@ -146,7 +146,7 @@ namespace LibraryUsb
                 //Get overlapped result
                 if (!iocontrol && Marshal.GetLastWin32Error() == (int)IoErrorCodes.ERROR_IO_PENDING)
                 {
-                    if (WaitForSingleObject(nativeOverlapped.EventHandle, INFINITE) == WaitObjectResult.WAIT_OBJECT_0)
+                    if (WaitForSingleObject(nativeOverlapped.EventHandle, INFINITE) == WaitForSingleObjectResult.WAIT_OBJECT)
                     {
                         return GetOverlappedResult(FileHandle, ref nativeOverlapped, out int bytesTransferred, false);
                     }

@@ -101,28 +101,28 @@ namespace DirectXInput
                 ControllerStatusDetails controllerStatus0 = new ControllerStatusDetails(vController0.NumberId);
                 controllerStatus0.Activated = vController0.Activated;
                 controllerStatus0.Connected = vController0.Connected();
-                controllerStatus0.Color = vController0.Color;
+                controllerStatus0.Color = vController0.Color.ToString();
                 controllerStatus0.BatteryCurrent = vController0.BatteryCurrent;
                 controllerStatusDetailsList.Add(controllerStatus0);
 
                 ControllerStatusDetails controllerStatus1 = new ControllerStatusDetails(vController1.NumberId);
                 controllerStatus1.Activated = vController1.Activated;
                 controllerStatus1.Connected = vController1.Connected();
-                controllerStatus1.Color = vController1.Color;
+                controllerStatus1.Color = vController1.Color.ToString();
                 controllerStatus1.BatteryCurrent = vController1.BatteryCurrent;
                 controllerStatusDetailsList.Add(controllerStatus1);
 
                 ControllerStatusDetails controllerStatus2 = new ControllerStatusDetails(vController2.NumberId);
                 controllerStatus2.Activated = vController2.Activated;
                 controllerStatus2.Connected = vController2.Connected();
-                controllerStatus2.Color = vController2.Color;
+                controllerStatus2.Color = vController2.Color.ToString();
                 controllerStatus2.BatteryCurrent = vController2.BatteryCurrent;
                 controllerStatusDetailsList.Add(controllerStatus2);
 
                 ControllerStatusDetails controllerStatus3 = new ControllerStatusDetails(vController3.NumberId);
                 controllerStatus3.Activated = vController3.Activated;
                 controllerStatus3.Connected = vController3.Connected();
-                controllerStatus3.Color = vController3.Color;
+                controllerStatus3.Color = vController3.Color.ToString();
                 controllerStatus3.BatteryCurrent = vController3.BatteryCurrent;
                 controllerStatusDetailsList.Add(controllerStatus3);
 

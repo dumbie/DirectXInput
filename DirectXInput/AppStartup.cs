@@ -96,19 +96,19 @@ namespace DirectXInput
                 //Check settings if CtrlUI launches on start
                 if (SettingLoad(vConfigurationDirectXInput, "LaunchCtrlUI", typeof(bool)))
                 {
-                    await ProcessLaunch.LaunchCtrlUI(true);
+                    ProcessLaunch.LaunchCtrlUI(true);
                 }
 
                 //Check settings if Fps Overlayer launches on start
                 if (SettingLoad(vConfigurationDirectXInput, "LaunchFpsOverlayer", typeof(bool)))
                 {
-                    await ProcessLaunch.LaunchFpsOverlayer(true);
+                    ProcessLaunch.LaunchFpsOverlayer(true);
                 }
 
                 //Check settings if Screen Capture Tool launches on start
                 if (SettingLoad(vConfigurationDirectXInput, "LaunchScreenCaptureTool", typeof(bool)))
                 {
-                    await ProcessLaunch.LaunchScreenCaptureTool(true);
+                    ProcessLaunch.LaunchScreenCaptureTool(true);
                 }
 
                 //Load the help text

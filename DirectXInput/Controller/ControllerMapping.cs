@@ -1,4 +1,4 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -159,9 +159,8 @@ namespace DirectXInput
 
                 //Start mapping timer
                 int countdownTimeout = 0;
-                AVFunctions.TimerRenew(ref vMappingControllerTimer);
-                vMappingControllerTimer.Interval = TimeSpan.FromSeconds(1);
-                vMappingControllerTimer.Tick += delegate
+                vMappingControllerTimer.Interval = 1000;
+                vMappingControllerTimer.TickSet = delegate
                 {
                     try
                     {
@@ -171,7 +170,10 @@ namespace DirectXInput
                         }
                         else
                         {
-                            txt_ControllerMap_Status.Text = "Waiting for '" + mapNameString + "' press on the controller... " + (11 - countdownTimeout).ToString() + "sec.";
+                            AVDispatcherInvoke.DispatcherInvoke(delegate
+                            {
+                                txt_ControllerMap_Status.Text = "Waiting for '" + mapNameString + "' press on the controller... " + (11 - countdownTimeout).ToString() + "sec.";
+                            });
                         }
                     }
                     catch { }
@@ -182,8 +184,10 @@ namespace DirectXInput
                 while (vMappingControllerStatus == MappingStatus.Mapping) { await Task.Delay(500); }
                 vMappingControllerTimer.Stop();
 
+                //Update button mapping status
                 if (vMappingControllerStatus == MappingStatus.Done)
                 {
+                    Debug.WriteLine("Changed button mapping.");
                     txt_ControllerMap_Status.Text = "Changed '" + mapNameString + "' to the pressed controller button.";
                 }
                 else

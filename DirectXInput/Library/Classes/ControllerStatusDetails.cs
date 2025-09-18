@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Media;
 using static LibraryUsb.VigemBusDevice;
 
 namespace LibraryShared
@@ -14,7 +13,7 @@ namespace LibraryShared
             public int NumberVirtual() { return NumberId + VirtualIdOffset; }
             public bool Activated { get; set; } = false;
             public bool Connected { get; set; } = false;
-            public Color? Color { get; set; } = null;
+            public string Color { get; set; } = "#000000";
             public ControllerBattery BatteryCurrent { get; set; } = new ControllerBattery();
 
             //Set used controller number

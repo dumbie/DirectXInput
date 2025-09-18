@@ -1,4 +1,5 @@
 ﻿using ArnoldVinkCode;
+using ArnoldVinkStyles;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -479,7 +480,7 @@ namespace DirectXInput
                 //Check if CtrlUI is currently activated
                 vProcessCtrlUIActivated = vProcessCtrlUI != null && vProcessCtrlUI.Identifier == vProcessForeground.Identifier;
 
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     try
                     {
@@ -539,7 +540,7 @@ namespace DirectXInput
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     //Enable the application window
                     grid_WindowActive.Visibility = Visibility.Collapsed;
@@ -553,7 +554,7 @@ namespace DirectXInput
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     //Update window status message
                     grid_WindowActiveText.Text = windowText;
@@ -574,7 +575,7 @@ namespace DirectXInput
                 messageAnswers.Add("Install the drivers");
                 messageAnswers.Add("Exit application");
 
-                string messageResult = await new AVMessageBox().Popup(this, "Install drivers", "Welcome to DirectXInput, it seems like you have not yet installed the required drivers to use this application, please make sure that you have installed the required drivers.\n\nDirectXInput will be closed during the installation of the required drivers.\n\nIf you just installed the drivers and this message shows up restart your PC.\n\nAfter some Windows updates you may need to reinstall the drivers to work.", messageAnswers);
+                string messageResult = AVMessageBox.Popup(this, "Install drivers", "Welcome to DirectXInput, it seems like you have not yet installed the required drivers to use this application, please make sure that you have installed the required drivers.\n\nDirectXInput will be closed during the installation of the required drivers.\n\nIf you just installed the drivers and this message shows up restart your PC.\n\nAfter some Windows updates you may need to reinstall the drivers to work.", messageAnswers);
                 if (messageResult == "Install the drivers")
                 {
                     if (!Check_RunningProcessByName("DriverInstaller", true))
@@ -600,7 +601,7 @@ namespace DirectXInput
                 messageAnswers.Add("Reinstall the drivers");
                 messageAnswers.Add("Exit application");
 
-                string messageResult = await new AVMessageBox().Popup(this, "Double drivers", "It seems like some of the required drivers are installed double, please reinstall the required drivers.\n\nDirectXInput will be closed during the installation of the required drivers.", messageAnswers);
+                string messageResult = AVMessageBox.Popup(this, "Double drivers", "It seems like some of the required drivers are installed double, please reinstall the required drivers.\n\nDirectXInput will be closed during the installation of the required drivers.", messageAnswers);
                 if (messageResult == "Reinstall the drivers")
                 {
                     if (!Check_RunningProcessByName("DriverInstaller", true))
@@ -626,7 +627,7 @@ namespace DirectXInput
                 messageAnswers.Add("Update the drivers");
                 messageAnswers.Add("Exit application");
 
-                string messageResult = await new AVMessageBox().Popup(this, "Update drivers", "There seem to be newer drivers available to install.\n\nDirectXInput will be closed during the installation of the required drivers.", messageAnswers);
+                string messageResult = AVMessageBox.Popup(this, "Update drivers", "There seem to be newer drivers available to install.\n\nDirectXInput will be closed during the installation of the required drivers.", messageAnswers);
                 if (messageResult == "Update the drivers")
                 {
                     if (!Check_RunningProcessByName("DriverInstaller", true))

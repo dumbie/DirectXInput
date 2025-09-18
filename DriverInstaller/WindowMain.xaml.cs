@@ -1,4 +1,5 @@
 ﻿using ArnoldVinkCode;
+using ArnoldVinkStyles;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -51,7 +52,7 @@ namespace DriverInstaller
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     if (enableElement)
                     {
@@ -71,7 +72,7 @@ namespace DriverInstaller
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     textbox_Status.AppendText(appendText + "\r\n");
                     textbox_Status.ScrollToEnd();
@@ -85,7 +86,7 @@ namespace DriverInstaller
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     if (Indeterminate)
                     {
@@ -171,7 +172,7 @@ namespace DriverInstaller
             try
             {
                 Debug.WriteLine("Exiting application.");
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     this.IsEnabled = false;
                 });
@@ -186,7 +187,7 @@ namespace DriverInstaller
                 if (runDirectXInput)
                 {
                     TextBoxAppend("Running the DirectXInput application.");
-                    await AVTaskScheduler.TaskRun("ArnoldVink_DirectXInput", "DirectXInput", true);
+                    AVTaskScheduler.TaskRun("ArnoldVink_DirectXInput", "DirectXInput", true);
                 }
 
                 //Set exit reason text message

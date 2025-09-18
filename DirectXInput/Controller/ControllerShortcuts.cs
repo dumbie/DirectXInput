@@ -1,4 +1,4 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -323,7 +323,7 @@ namespace DirectXInput
             try
             {
                 Debug.WriteLine("Switching between keyboard and keypad");
-                await AVActions.DispatcherInvoke(async delegate
+                await AVDispatcherInvoke.DispatcherInvoke(async delegate
                 {
                     if (vWindowKeyboard.vWindowVisible)
                     {
@@ -346,7 +346,7 @@ namespace DirectXInput
             try
             {
                 Debug.WriteLine("Shortcut keypad has been pressed.");
-                await AVActions.DispatcherInvoke(async delegate
+                await AVDispatcherInvoke.DispatcherInvoke(async delegate
                 {
                     if (!vWindowKeyboard.vWindowVisible && !vWindowKeypad.vWindowVisible)
                     {
@@ -373,7 +373,7 @@ namespace DirectXInput
             try
             {
                 Debug.WriteLine("Shortcut keyboard has been pressed.");
-                await AVActions.DispatcherInvoke(async delegate
+                await AVDispatcherInvoke.DispatcherInvoke(async delegate
                 {
                     if (!vWindowKeyboard.vWindowVisible && !vWindowKeypad.vWindowVisible)
                     {
@@ -403,7 +403,7 @@ namespace DirectXInput
         {
             try
             {
-                await AVActions.DispatcherInvoke(async delegate
+                await AVDispatcherInvoke.DispatcherInvoke(async delegate
                 {
                     await vWindowKeyboard.Hide();
                     await vWindowKeypad.Hide();

@@ -1,4 +1,4 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -52,7 +52,7 @@ namespace DirectXInput
                 vWindowOverlay.Notification_Show_Status(notificationDetails);
 
                 //Update user interface controller status
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     if (string.IsNullOrWhiteSpace(controllerInfo))
                     {

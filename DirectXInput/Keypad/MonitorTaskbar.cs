@@ -1,4 +1,5 @@
 ﻿using ArnoldVinkCode;
+using ArnoldVinkStyles;
 using System.Threading.Tasks;
 using System.Windows;
 using static ArnoldVinkCode.AVActions;
@@ -33,7 +34,7 @@ namespace DirectXInput.KeypadCode
                             int taskbarSize = 0;
                             if (taskbarInfo.Position == AppBarPosition.ABE_BOTTOM)
                             {
-                                AVActions.DispatcherInvoke(delegate
+                                AVDispatcherInvoke.DispatcherInvoke(delegate
                                 {
                                     try
                                     {
@@ -48,7 +49,7 @@ namespace DirectXInput.KeypadCode
                         }
 
                         //Reset taskbar margin
-                        AVActions.DispatcherInvoke(delegate
+                        AVDispatcherInvoke.DispatcherInvoke(delegate
                         {
                             try
                             {

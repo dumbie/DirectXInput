@@ -1,4 +1,5 @@
 ﻿using ArnoldVinkCode;
+using ArnoldVinkStyles;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -70,7 +71,7 @@ namespace DirectXInput
                     messageAnswers.Add("Ignore this controller model");
                     messageAnswers.Add("Cancel");
 
-                    string messageResult = await new AVMessageBox().Popup(this, "Do you really want to ignore this controller?", "This will prevent this controller model from been converted to XInput.", messageAnswers);
+                    string messageResult = AVMessageBox.Popup(this, "Do you really want to ignore this controller?", "This will prevent this controller model from been converted to XInput.", messageAnswers);
                     if (messageResult == "Ignore this controller model")
                     {
                         string lowerVendorId = activeController.Details.Profile.VendorID.ToLower();
@@ -162,7 +163,7 @@ namespace DirectXInput
             try
             {
                 //Check if an actual ListBoxItem is clicked
-                if (!AVFunctions.ListBoxItemClickCheck((DependencyObject)e.OriginalSource)) { return; }
+                if (!AVInterface.ListBoxItemClickCheck((DependencyObject)e.OriginalSource)) { return; }
 
                 //Check which mouse button is pressed
                 if (e.ClickCount == 1)

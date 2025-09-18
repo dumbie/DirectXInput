@@ -1,4 +1,4 @@
-﻿using ArnoldVinkCode;
+﻿using ArnoldVinkStyles;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
@@ -15,7 +15,7 @@ namespace DirectXInput
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     //Set basic information
                     textblock_LiveDebugInformation.Text = GenerateControllerDebugString(false);
@@ -79,7 +79,7 @@ namespace DirectXInput
         {
             try
             {
-                AVActions.DispatcherInvoke(delegate
+                AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     //Set basic information
                     textblock_LiveDebugInformation.Text = "Connect a controller to show debug information.";
