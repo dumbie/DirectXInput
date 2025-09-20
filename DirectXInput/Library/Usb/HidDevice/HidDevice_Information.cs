@@ -281,22 +281,47 @@ namespace LibraryUsb
                 //Check if device has attributes
                 if (Attributes == null) { return false; }
 
-                byte[] data = new byte[254];
-                HidD_GetSerialNumberString(FileHandle, ref data[0], data.Length);
-                string serialNumberString = data.ToUTF16String().Replace("\0", string.Empty);
-                if (!string.IsNullOrWhiteSpace(serialNumberString))
+                //Get serial number string
+                byte[] dataString = new byte[254];
+                HidD_GetSerialNumberString(FileHandle, ref dataString[0], dataString.Length);
+                if (dataString != null)
                 {
-                    Attributes.SerialNumber = serialNumberString;
-                    return true;
+                    string serialNumberString = dataString.ToUTF16String().Replace("\0", string.Empty);
+                    if (!string.IsNullOrWhiteSpace(serialNumberString))
+                    {
+                        //Return result
+                        Attributes.SerialNumber = serialNumberString.ToUpper();
+                        //Debug.WriteLine("Got serial number string: " + Attributes.SerialNumber);
+                        return true;
+                    }
                 }
-                else
-                {
-                    Attributes.SerialNumber = string.Empty;
-                    return false;
-                }
+
+                ////Get serial number feature
+                //byte[] dataFeature = GetFeature(9); //SonyPS5DualSense
+                //if (dataFeature == null)
+                //{
+                //    dataFeature = GetFeature(18); //SonyPS4DualShock
+                //}
+                //if (dataFeature != null)
+                //{
+                //    string serialNumberFeature = dataFeature[6].ToString("X2") + dataFeature[5].ToString("X2") + dataFeature[4].ToString("X2") + dataFeature[3].ToString("X2") + dataFeature[2].ToString("X2") + dataFeature[1].ToString("X2");
+                //    if (!string.IsNullOrWhiteSpace(serialNumberFeature))
+                //    {
+                //        //Return result
+                //        Attributes.SerialNumber = serialNumberFeature.ToUpper();
+                //        //Debug.WriteLine("Got serial number feature: " + Attributes.SerialNumber);
+                //        return true;
+                //    }
+                //}
+
+                //Return result
+                Attributes.SerialNumber = string.Empty;
+                //Debug.WriteLine("Failed to get serial number, not found.");
+                return false;
             }
             catch (Exception ex)
             {
+                //Return result
                 Debug.WriteLine("Failed to get serial number: " + ex.Message);
                 return false;
             }
