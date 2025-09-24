@@ -37,7 +37,7 @@ namespace DirectXInput.KeypadCode
                     //Update the keypad size
                     double keypadHeight = UpdateKeypadSize();
 
-                    //Notify - Fps Overlayer keypad size changed
+                    //Notify - FpsOverlayer keypad size changed
                     await NotifyFpsOverlayerKeypadSizeChanged(Convert.ToInt32(keypadHeight));
                 }
             }

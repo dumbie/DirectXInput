@@ -35,11 +35,11 @@ namespace DirectXInput.KeyboardCode
                 }
                 else if (senderButton == key_Tool_FpsOverlayerLaunch)
                 {
-                    textblock_Tool_Help.Text = "Show or hide Fps Overlayer";
+                    textblock_Tool_Help.Text = "Show or hide FpsOverlayer";
                 }
                 else if (senderButton == key_Tool_FpsOverlayerPosition)
                 {
-                    textblock_Tool_Help.Text = "Change Fps Overlayer position";
+                    textblock_Tool_Help.Text = "Change FpsOverlayer position";
                 }
                 else if (senderButton == key_Tool_FpsTools)
                 {

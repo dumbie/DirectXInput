@@ -39,9 +39,9 @@ namespace DirectXInput
                     SettingSave(vConfigurationDirectXInput, "LaunchFpsOverlayer", cb_SettingsLaunchFpsOverlayer.IsChecked.ToString());
                 };
 
-                cb_SettingsLaunchScreenCaptureTool.Click += (sender, e) =>
+                cb_SettingsLaunchScreenCapy.Click += (sender, e) =>
                 {
-                    SettingSave(vConfigurationDirectXInput, "LaunchScreenCaptureTool", cb_SettingsLaunchScreenCaptureTool.IsChecked.ToString());
+                    SettingSave(vConfigurationDirectXInput, "LaunchScreenCapy", cb_SettingsLaunchScreenCapy.IsChecked.ToString());
                 };
 
                 //Battery settings
@@ -239,7 +239,7 @@ namespace DirectXInput
                     //Update the keypad size
                     double keypadHeight = vWindowKeypad.UpdateKeypadSize();
 
-                    //Notify - Fps Overlayer keypad size changed
+                    //Notify - FpsOverlayer keypad size changed
                     await NotifyFpsOverlayerKeypadSizeChanged(Convert.ToInt32(keypadHeight));
                 };
 

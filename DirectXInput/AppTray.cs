@@ -25,8 +25,8 @@ namespace DirectXInput
                 TrayContextMenu.Items.Add("Show Keyboard", null, NotifyIcon_Keyboard);
                 TrayContextMenu.Items.Add("-");
                 TrayContextMenu.Items.Add("Launch CtrlUI", null, NotifyIcon_CtrlUI);
-                TrayContextMenu.Items.Add("Launch Fps Overlayer", null, NotifyIcon_FpsOverlayer);
-                TrayContextMenu.Items.Add("Launch Screen Capture Tool", null, NotifyIcon_ScreenCaptureTool);
+                TrayContextMenu.Items.Add("Launch FpsOverlayer", null, NotifyIcon_FpsOverlayer);
+                TrayContextMenu.Items.Add("Launch ScreenCapy", null, NotifyIcon_ScreenCapy);
                 TrayContextMenu.Items.Add("-");
                 TrayContextMenu.Items.Add("Re/disconnect all controllers", null, NotifyIcon_DisconnectAll);
                 TrayContextMenu.Items.Add("-");
@@ -96,11 +96,11 @@ namespace DirectXInput
             catch { }
         }
 
-        void NotifyIcon_ScreenCaptureTool(object sender, EventArgs args)
+        void NotifyIcon_ScreenCapy(object sender, EventArgs args)
         {
             try
             {
-                ProcessLaunch.LaunchScreenCaptureTool(false);
+                ProcessLaunch.LaunchScreenCapy(false);
             }
             catch { }
         }

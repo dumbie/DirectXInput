@@ -54,7 +54,7 @@ namespace DirectXInput
                 //Load launch settings
                 cb_SettingsLaunchCtrlUI.IsChecked = SettingLoad(vConfigurationDirectXInput, "LaunchCtrlUI", typeof(bool));
                 cb_SettingsLaunchFpsOverlayer.IsChecked = SettingLoad(vConfigurationDirectXInput, "LaunchFpsOverlayer", typeof(bool));
-                cb_SettingsLaunchScreenCaptureTool.IsChecked = SettingLoad(vConfigurationDirectXInput, "LaunchScreenCaptureTool", typeof(bool));
+                cb_SettingsLaunchScreenCapy.IsChecked = SettingLoad(vConfigurationDirectXInput, "LaunchScreenCapy", typeof(bool));
 
                 //Load keyboard settings
                 cb_SettingsKeyboardCloseNoController.IsChecked = SettingLoad(vConfigurationDirectXInput, "KeyboardCloseNoController", typeof(bool));

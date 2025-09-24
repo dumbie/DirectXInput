@@ -99,16 +99,16 @@ namespace DirectXInput
                     ProcessLaunch.LaunchCtrlUI(true);
                 }
 
-                //Check settings if Fps Overlayer launches on start
+                //Check settings if FpsOverlayer launches on start
                 if (SettingLoad(vConfigurationDirectXInput, "LaunchFpsOverlayer", typeof(bool)))
                 {
                     ProcessLaunch.LaunchFpsOverlayer(true);
                 }
 
-                //Check settings if Screen Capture Tool launches on start
-                if (SettingLoad(vConfigurationDirectXInput, "LaunchScreenCaptureTool", typeof(bool)))
+                //Check settings if ScreenCapy launches on start
+                if (SettingLoad(vConfigurationDirectXInput, "LaunchScreenCapy", typeof(bool)))
                 {
-                    ProcessLaunch.LaunchScreenCaptureTool(true);
+                    ProcessLaunch.LaunchScreenCapy(true);
                 }
 
                 //Load the help text

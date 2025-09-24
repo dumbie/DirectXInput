@@ -62,7 +62,7 @@ namespace DirectXInput
             catch { }
         }
 
-        //Launch or show or hide Fps Overlayer
+        //Launch or show or hide FpsOverlayer
         public static async Task FpsOverlayer_LaunchShowHide()
         {
             try
@@ -79,7 +79,7 @@ namespace DirectXInput
             catch { }
         }
 
-        //Show or hide Fps Overlayer
+        //Show or hide FpsOverlayer
         private static async Task FpsOverlayer_ShowHide()
         {
             try
@@ -91,12 +91,12 @@ namespace DirectXInput
                     return;
                 }
 
-                Debug.WriteLine("Show or hiding Fps Overlayer");
+                Debug.WriteLine("Show or hiding FpsOverlayer");
 
                 //Show notification
                 NotificationDetails notificationDetails = new NotificationDetails();
                 notificationDetails.Icon = "Fps";
-                notificationDetails.Text = "Show or hiding Fps Overlayer";
+                notificationDetails.Text = "Show or hiding FpsOverlayer";
                 vWindowOverlay.Notification_Show_Status(notificationDetails);
 
                 //Prepare socket data
@@ -113,20 +113,20 @@ namespace DirectXInput
             catch { }
         }
 
-        //Move Fps Overlayer position
+        //Move FpsOverlayer position
         public static async Task FpsOverlayer_ChangePosition()
         {
             try
             {
-                //Check if fps overlayer is running
+                //Check if FpsOverlayer is running
                 if (!Check_RunningProcessByName("FpsOverlayer", true))
                 {
                     //Show notification
                     NotificationDetails notificationFps = new NotificationDetails();
                     notificationFps.Icon = "Fps";
-                    notificationFps.Text = "Fps Overlayer is not running";
+                    notificationFps.Text = "FpsOverlayer is not running";
                     vWindowOverlay.Notification_Show_Status(notificationFps);
-                    Debug.WriteLine("Fps overlayer is not running.");
+                    Debug.WriteLine("FpsOverlayer is not running.");
                     return;
                 }
 
@@ -137,12 +137,12 @@ namespace DirectXInput
                     return;
                 }
 
-                Debug.WriteLine("Changing Fps Overlayer position");
+                Debug.WriteLine("Changing FpsOverlayer position");
 
                 //Show notification
                 NotificationDetails notificationDetails = new NotificationDetails();
                 notificationDetails.Icon = "Fps";
-                notificationDetails.Text = "Changing Fps Overlayer position";
+                notificationDetails.Text = "Changing FpsOverlayer position";
                 vWindowOverlay.Notification_Show_Status(notificationDetails);
 
                 //Prepare socket data
@@ -164,15 +164,15 @@ namespace DirectXInput
         {
             try
             {
-                //Check if fps overlayer is running
+                //Check if FpsOverlayer is running
                 if (!Check_RunningProcessByName("FpsOverlayer", true))
                 {
                     //Show notification
                     NotificationDetails notificationFps = new NotificationDetails();
                     notificationFps.Icon = "Fps";
-                    notificationFps.Text = "Fps Overlayer is not running";
+                    notificationFps.Text = "FpsOverlayer is not running";
                     vWindowOverlay.Notification_Show_Status(notificationFps);
-                    Debug.WriteLine("Fps overlayer is not running.");
+                    Debug.WriteLine("FpsOverlayer is not running.");
                     return;
                 }
 
@@ -210,15 +210,15 @@ namespace DirectXInput
         {
             try
             {
-                //Check if fps overlayer is running
+                //Check if FpsOverlayer is running
                 if (!Check_RunningProcessByName("FpsOverlayer", true))
                 {
                     //Show notification
                     NotificationDetails notificationFps = new NotificationDetails();
                     notificationFps.Icon = "Fps";
-                    notificationFps.Text = "Fps Overlayer is not running";
+                    notificationFps.Text = "FpsOverlayer is not running";
                     vWindowOverlay.Notification_Show_Status(notificationFps);
-                    Debug.WriteLine("Fps overlayer is not running.");
+                    Debug.WriteLine("FpsOverlayer is not running.");
                     return;
                 }
 
@@ -251,8 +251,8 @@ namespace DirectXInput
             catch { }
         }
 
-        //Screen Capture Tool capture image
-        public static async Task ScreenCaptureToolCaptureImage()
+        //ScreenCapy capture image
+        public static async Task ScreenCapyCaptureImage()
         {
             try
             {
@@ -263,7 +263,7 @@ namespace DirectXInput
                     return;
                 }
 
-                Debug.WriteLine("Signal screen capture tool to capture image.");
+                Debug.WriteLine("Signal ScreenCapy to capture image.");
 
                 //Prepare socket data
                 string socketSend = "CaptureImage";
@@ -275,8 +275,8 @@ namespace DirectXInput
             catch { }
         }
 
-        //Screen Capture Tool capture video
-        public static async Task ScreenCaptureToolCaptureVideo()
+        //ScreenCapy capture video
+        public static async Task ScreenCapyCaptureVideo()
         {
             try
             {
@@ -287,7 +287,7 @@ namespace DirectXInput
                     return;
                 }
 
-                Debug.WriteLine("Signal screen capture tool to capture video.");
+                Debug.WriteLine("Signal ScreenCapy to capture video.");
 
                 //Prepare socket data
                 string socketSend = "CaptureVideo";

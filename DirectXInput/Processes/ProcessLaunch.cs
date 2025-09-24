@@ -30,46 +30,46 @@ namespace DirectXInput
             catch { }
         }
 
-        //Launch Fps Overlayer
+        //Launch FpsOverlayer
         public static void LaunchFpsOverlayer(bool silentLaunch)
         {
             try
             {
-                Debug.WriteLine("Launching Fps Overlayer");
+                Debug.WriteLine("Launching FpsOverlayer");
 
                 //Show notification
                 if (!silentLaunch)
                 {
                     NotificationDetails notificationDetails = new NotificationDetails();
                     notificationDetails.Icon = "Fps";
-                    notificationDetails.Text = "Launching Fps Overlayer";
+                    notificationDetails.Text = "Launching FpsOverlayer";
                     vWindowOverlay.Notification_Show_Status(notificationDetails);
                 }
 
                 //Launch application
-                AVTaskScheduler.TaskRun("ArnoldVink_FpsOverlayer", "Fps Overlayer", silentLaunch);
+                AVTaskScheduler.TaskRun("ArnoldVink_FpsOverlayer", "FpsOverlayer", silentLaunch);
             }
             catch { }
         }
 
-        //Launch Screen Capture Tool
-        public static void LaunchScreenCaptureTool(bool silentLaunch)
+        //Launch ScreenCapy
+        public static void LaunchScreenCapy(bool silentLaunch)
         {
             try
             {
-                Debug.WriteLine("Launching Screen Capture Tool");
+                Debug.WriteLine("Launching ScreenCapy");
 
                 //Show notification
                 if (!silentLaunch)
                 {
                     NotificationDetails notificationDetails = new NotificationDetails();
                     notificationDetails.Icon = "Screenshot";
-                    notificationDetails.Text = "Launching Screen Capture Tool";
+                    notificationDetails.Text = "Launching ScreenCapy";
                     vWindowOverlay.Notification_Show_Status(notificationDetails);
                 }
 
                 //Launch application
-                AVTaskScheduler.TaskRun("ArnoldVink_ScreenCaptureTool", "Screen Capture Tool", silentLaunch);
+                AVTaskScheduler.TaskRun("ArnoldVink_ScreenCapy", "ScreenCapy", silentLaunch);
             }
             catch { }
         }

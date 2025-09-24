@@ -73,7 +73,7 @@ namespace DirectXInput.KeypadCode
                     //Update the window visibility
                     UpdateWindowVisibility(false);
 
-                    //Notify - Fps Overlayer keypad size changed
+                    //Notify - FpsOverlayer keypad size changed
                     await NotifyFpsOverlayerKeypadSizeChanged(0);
 
                     //Update last active status
@@ -127,7 +127,7 @@ namespace DirectXInput.KeypadCode
                 //Update the window visibility
                 UpdateWindowVisibility(true);
 
-                //Notify - Fps Overlayer keypad size changed
+                //Notify - FpsOverlayer keypad size changed
                 await NotifyFpsOverlayerKeypadSizeChanged(Convert.ToInt32(vKeypadImageHeight));
             }
             catch { }

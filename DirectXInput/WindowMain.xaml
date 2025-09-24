@@ -541,7 +541,7 @@
                                 <TextBlock Margin="0,10,0,0" Text="Capture screen video by pressing:" TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
                                 <styles:ShortcutController Name="controller_CaptureVideo" TriggerName="CaptureVideo"/>
 
-                                <TextBlock Margin="0,10,0,0" Text="*¹ Capture shortcuts only work when the Screen Capture Tool is running." TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
+                                <TextBlock Margin="0,10,0,0" Text="*¹ Capture shortcuts only work when the ScreenCapy is running." TextWrapping="Wrap" Style="{StaticResource TextBlockBlack}"/>
                             </StackPanel>
                         </ScrollViewer>
                     </Grid>
@@ -747,11 +747,11 @@
                                 <CheckBox Name="cb_SettingsLaunchCtrlUI" Content="Launch CtrlUI on DirectXInput startup" Margin="0,10,0,0" Style="{StaticResource CheckBoxBlack}"/>
                                 <TextBlock Text="Enabling this will launch CtrlUI when you start DirectXInput automatically." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
 
-                                <CheckBox Name="cb_SettingsLaunchFpsOverlayer" Content="Launch Fps Overlayer on DirectXInput startup" Margin="0,10,0,0" Style="{StaticResource CheckBoxBlack}"/>
-                                <TextBlock Text="Enabling this will launch Fps Overlayer when you start DirectXInput automatically." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+                                <CheckBox Name="cb_SettingsLaunchFpsOverlayer" Content="Launch FpsOverlayer on DirectXInput startup" Margin="0,10,0,0" Style="{StaticResource CheckBoxBlack}"/>
+                                <TextBlock Text="Enabling this will launch FpsOverlayer when you start DirectXInput automatically." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
 
-                                <CheckBox Name="cb_SettingsLaunchScreenCaptureTool" Content="Launch Screen Capture Tool on DirectXInput startup" Margin="0,10,0,0" Style="{StaticResource CheckBoxBlack}"/>
-                                <TextBlock Text="Enabling this will launch Screen Capture Tool when you start DirectXInput automatically." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
+                                <CheckBox Name="cb_SettingsLaunchScreenCapy" Content="Launch ScreenCapy on DirectXInput startup" Margin="0,10,0,0" Style="{StaticResource CheckBoxBlack}"/>
+                                <TextBlock Text="Enabling this will launch ScreenCapy when you start DirectXInput automatically." TextWrapping="Wrap" Style="{StaticResource TextBlockGray}"/>
 
                                 <TextBlock Style="{StaticResource TextBlockAccentLight}" FontSize="{DynamicResource TextSizeHuge}" Text="Monitor Settings" Margin="0,10,0,0"/>
                                 <TextBlock Name="textblock_SettingsDisplayMonitor" Text="Monitor to display overlays on" Tag="Monitor to display overlays on" Style="{StaticResource TextBlockBlack}"/>

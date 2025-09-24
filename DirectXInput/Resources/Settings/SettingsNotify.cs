@@ -10,7 +10,7 @@ namespace DirectXInput
 {
     partial class SettingsNotify
     {
-        //Notify - Fps Overlayer keypad size changed
+        //Notify - FpsOverlayer keypad size changed
         public static async Task NotifyFpsOverlayerKeypadSizeChanged(int keypadHeight)
         {
             try

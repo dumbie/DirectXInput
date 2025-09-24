@@ -264,7 +264,7 @@ namespace DirectXInput
                             if (CheckShortcutButton(controller.InputCurrent.Buttons, shortcutTrigger, false))
                             {
                                 Debug.WriteLine("Button Global - Capture screen image");
-                                await ToolFunctions.ScreenCaptureToolCaptureImage();
+                                await ToolFunctions.ScreenCapyCaptureImage();
 
                                 ControllerUsed = true;
                                 ControllerDelay750 = true;
@@ -276,7 +276,7 @@ namespace DirectXInput
                             if (CheckShortcutButton(controller.InputCurrent.Buttons, shortcutTrigger, false))
                             {
                                 Debug.WriteLine("Button Global - Capture screen video");
-                                await ToolFunctions.ScreenCaptureToolCaptureVideo();
+                                await ToolFunctions.ScreenCapyCaptureVideo();
 
                                 ControllerUsed = true;
                                 ControllerDelay750 = true;
