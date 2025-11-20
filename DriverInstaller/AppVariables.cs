@@ -14,7 +14,6 @@ namespace DriverInstaller
         public static bool vDirectXInputRunning = false;
 
         //Application Lists
-        public static List<ProfileShared> vCtrlCloseLaunchers = JsonLoadFile<List<ProfileShared>>(@"Profiles\Default\CtrlCloseLaunchers.json");
         public static List<ProfileShared> vDirectCloseTools = JsonLoadFile<List<ProfileShared>>(@"Profiles\Default\DirectCloseTools.json");
     }
 }

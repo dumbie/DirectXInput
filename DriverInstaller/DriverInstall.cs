@@ -38,7 +38,6 @@ namespace DriverInstaller
                 ProgressBarUpdate(5, false);
                 ElementEnableDisable(button_Driver_Install, false);
                 ElementEnableDisable(button_Driver_Uninstall, false);
-                ElementEnableDisable(button_Driver_Cleanup, false);
                 ElementEnableDisable(button_Driver_Close, false);
 
                 //Close running controller tools

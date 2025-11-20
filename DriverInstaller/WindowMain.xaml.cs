@@ -111,33 +111,24 @@ namespace DriverInstaller
                 TextBoxAppend("Closing running controller tools.");
                 Debug.WriteLine("Closing running controller tools.");
 
-                //Close CtrlUI applications
+                //Close DirectXInput application
                 try
                 {
-                    AVProcess.Close_ProcessesByName("CtrlUI", true);
                     AVProcess.Close_ProcessesByName("DirectXInput", true);
-                    AVProcess.Close_ProcessesByName("FpsOverlayer", true);
                 }
                 catch { }
 
-                //Close other launchers
-                foreach (ProfileShared closeLauncher in vCtrlCloseLaunchers)
+                //Close other applications
+                if (vDirectCloseTools != null)
                 {
-                    try
+                    foreach (ProfileShared closeTool in vDirectCloseTools)
                     {
-                        AVProcess.Close_ProcessesByName(closeLauncher.String1, true);
+                        try
+                        {
+                            AVProcess.Close_ProcessesByName(closeTool.String1, true);
+                        }
+                        catch { }
                     }
-                    catch { }
-                }
-
-                //Close other tools
-                foreach (ProfileShared closeTool in vDirectCloseTools)
-                {
-                    try
-                    {
-                        AVProcess.Close_ProcessesByName(closeTool.String1, true);
-                    }
-                    catch { }
                 }
 
                 //Wait for tools to close
@@ -180,7 +171,6 @@ namespace DriverInstaller
                 //Disable the buttons
                 ElementEnableDisable(button_Driver_Install, false);
                 ElementEnableDisable(button_Driver_Uninstall, false);
-                ElementEnableDisable(button_Driver_Cleanup, false);
                 ElementEnableDisable(button_Driver_Close, false);
 
                 //Run DirectXInput after the drivers installed
