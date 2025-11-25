@@ -39,7 +39,7 @@ namespace DirectXInput.KeyboardCode
         {
             try
             {
-                PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
+                PlayInterfaceSound(vSettings, "Click", false, false);
 
                 Button sendButton = sender as Button;
                 Type sendKeyType = sendButton.Tag.GetType();

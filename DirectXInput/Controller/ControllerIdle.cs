@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using static ArnoldVinkCode.AVActions;
 using static ArnoldVinkCode.AVInputOutputClass;
-using static ArnoldVinkCode.AVSettings;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
 
@@ -32,7 +31,7 @@ namespace DirectXInput
                     if (Controller.Details.Wireless)
                     {
                         long lastMs = GetSystemTicksMs() - Controller.TicksActiveLast;
-                        int targetTimeMs = SettingLoad(vConfigurationDirectXInput, "ControllerIdleDisconnectMin", typeof(int)) * 60000;
+                        int targetTimeMs = vSettings.Load("ControllerIdleDisconnectMin", typeof(int)) * 60000;
                         //Debug.WriteLine("Controller " + Controller.NumberId + " idle check: " + lastMs + "/" + targetTimeMs + "ms.");
                         if (targetTimeMs > 0 && lastMs > targetTimeMs)
                         {

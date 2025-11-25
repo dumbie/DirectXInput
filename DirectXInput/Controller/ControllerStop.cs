@@ -3,7 +3,6 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using static ArnoldVinkCode.AVActions;
-using static ArnoldVinkCode.AVSettings;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
 
@@ -164,7 +163,7 @@ namespace DirectXInput
                 if (!vControllerAnyConnected())
                 {
                     //Close open popups
-                    if (SettingLoad(vConfigurationDirectXInput, "KeyboardCloseNoController", typeof(bool)))
+                    if (vSettings.Load("KeyboardCloseNoController", typeof(bool)))
                     {
                         Debug.WriteLine("No controller connected closing open popups.");
                         await HideOpenPopups();

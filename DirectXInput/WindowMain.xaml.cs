@@ -7,7 +7,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using static ArnoldVinkCode.AVClasses;
-using static ArnoldVinkCode.AVSettings;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
 
@@ -60,7 +59,7 @@ namespace DirectXInput
         {
             try
             {
-                int socketServerPort = SettingLoad(vConfigurationDirectXInput, "ServerPort", typeof(int));
+                int socketServerPort = vSettings.Load("ServerPort", typeof(int));
                 vArnoldVinkSockets = new ArnoldVinkSockets("127.0.0.1", socketServerPort, false, true);
                 vArnoldVinkSockets.vSocketTimeout = 250;
                 vArnoldVinkSockets.EventBytesReceived += ReceivedSocketHandler;

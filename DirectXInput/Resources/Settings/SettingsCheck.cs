@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using static ArnoldVinkCode.AVSettings;
 using static DirectXInput.AppVariables;
 
 namespace DirectXInput
@@ -12,49 +11,49 @@ namespace DirectXInput
         {
             try
             {
-                if (!SettingCheck(vConfigurationDirectXInput, "AppFirstLaunch")) { SettingSave(vConfigurationDirectXInput, "AppFirstLaunch", "True"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "ExclusiveGuide")) { SettingSave(vConfigurationDirectXInput, "ExclusiveGuide", "True"); }
+                if (!vSettings.Check("AppFirstLaunch")) { vSettings.Set("AppFirstLaunch", "True"); }
+                if (!vSettings.Check("ExclusiveGuide")) { vSettings.Set("ExclusiveGuide", "True"); }
 
                 //Server settings
-                if (!SettingCheck(vConfigurationDirectXInput, "ServerPort")) { SettingSave(vConfigurationDirectXInput, "ServerPort", "26760"); }
+                if (!vSettings.Check("ServerPort")) { vSettings.Set("ServerPort", "26760"); }
 
                 //Display settings
-                if (!SettingCheck(vConfigurationDirectXInput, "DisplayMonitor")) { SettingSave(vConfigurationDirectXInput, "DisplayMonitor", "1"); }
+                if (!vSettings.Check("DisplayMonitor")) { vSettings.Set("DisplayMonitor", "1"); }
 
                 //Launch settings
-                if (!SettingCheck(vConfigurationDirectXInput, "LaunchCtrlUI")) { SettingSave(vConfigurationDirectXInput, "LaunchCtrlUI", "False"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "LaunchFpsOverlayer")) { SettingSave(vConfigurationDirectXInput, "LaunchFpsOverlayer", "False"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "LaunchScreenCapy")) { SettingSave(vConfigurationDirectXInput, "LaunchScreenCapy", "True"); }
+                if (!vSettings.Check("LaunchCtrlUI")) { vSettings.Set("LaunchCtrlUI", "False"); }
+                if (!vSettings.Check("LaunchFpsOverlayer")) { vSettings.Set("LaunchFpsOverlayer", "False"); }
+                if (!vSettings.Check("LaunchScreenCapy")) { vSettings.Set("LaunchScreenCapy", "True"); }
 
                 //Sound settings
-                if (!SettingCheck(vConfigurationDirectXInput, "InterfaceSound")) { SettingSave(vConfigurationDirectXInput, "InterfaceSound", "True"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "InterfaceSoundVolume")) { SettingSave(vConfigurationDirectXInput, "InterfaceSoundVolume", "75"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "InterfaceSoundPackName")) { SettingSave(vConfigurationDirectXInput, "InterfaceSoundPackName", "Default"); }
+                if (!vSettings.Check("InterfaceSound")) { vSettings.Set("InterfaceSound", "True"); }
+                if (!vSettings.Check("InterfaceSoundVolume")) { vSettings.Set("InterfaceSoundVolume", "75"); }
+                if (!vSettings.Check("InterfaceSoundPackName")) { vSettings.Set("InterfaceSoundPackName", "Default"); }
 
                 //Battery settings
-                if (!SettingCheck(vConfigurationDirectXInput, "BatteryLowLevel")) { SettingSave(vConfigurationDirectXInput, "BatteryLowLevel", "20"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "BatteryLowBlinkLed")) { SettingSave(vConfigurationDirectXInput, "BatteryLowBlinkLed", "True"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "BatteryLowShowNotification")) { SettingSave(vConfigurationDirectXInput, "BatteryLowShowNotification", "True"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "BatteryLowPlaySound")) { SettingSave(vConfigurationDirectXInput, "BatteryLowPlaySound", "True"); }
+                if (!vSettings.Check("BatteryLowLevel")) { vSettings.Set("BatteryLowLevel", "20"); }
+                if (!vSettings.Check("BatteryLowBlinkLed")) { vSettings.Set("BatteryLowBlinkLed", "True"); }
+                if (!vSettings.Check("BatteryLowShowNotification")) { vSettings.Set("BatteryLowShowNotification", "True"); }
+                if (!vSettings.Check("BatteryLowPlaySound")) { vSettings.Set("BatteryLowPlaySound", "True"); }
 
                 //Controller settings
-                if (!SettingCheck(vConfigurationDirectXInput, "ControllerIdleDisconnectMin")) { SettingSave(vConfigurationDirectXInput, "ControllerIdleDisconnectMin", "10"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "ControllerLedCondition")) { SettingSave(vConfigurationDirectXInput, "ControllerLedCondition", "0"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "ControllerColor0")) { SettingSave(vConfigurationDirectXInput, "ControllerColor0", "#00C7FF"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "ControllerColor1")) { SettingSave(vConfigurationDirectXInput, "ControllerColor1", "#F0140A"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "ControllerColor2")) { SettingSave(vConfigurationDirectXInput, "ControllerColor2", "#14F00A"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "ControllerColor3")) { SettingSave(vConfigurationDirectXInput, "ControllerColor3", "#F0DC0A"); }
+                if (!vSettings.Check("ControllerIdleDisconnectMin")) { vSettings.Set("ControllerIdleDisconnectMin", "10"); }
+                if (!vSettings.Check("ControllerLedCondition")) { vSettings.Set("ControllerLedCondition", "0"); }
+                if (!vSettings.Check("ControllerColor0")) { vSettings.Set("ControllerColor0", "#00C7FF"); }
+                if (!vSettings.Check("ControllerColor1")) { vSettings.Set("ControllerColor1", "#F0140A"); }
+                if (!vSettings.Check("ControllerColor2")) { vSettings.Set("ControllerColor2", "#14F00A"); }
+                if (!vSettings.Check("ControllerColor3")) { vSettings.Set("ControllerColor3", "#F0DC0A"); }
 
                 //Keyboard settings
-                if (!SettingCheck(vConfigurationDirectXInput, "KeyboardLayout")) { SettingSave(vConfigurationDirectXInput, "KeyboardLayout", "0"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "KeyboardMode")) { SettingSave(vConfigurationDirectXInput, "KeyboardMode", "1"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "KeyboardResetPosition")) { SettingSave(vConfigurationDirectXInput, "KeyboardResetPosition", "False"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "KeyboardCloseNoController")) { SettingSave(vConfigurationDirectXInput, "KeyboardCloseNoController", "True"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "KeyboardMouseMoveSensitivity")) { SettingSave(vConfigurationDirectXInput, "KeyboardMouseMoveSensitivity", "7,50"); }
-                if (!SettingCheck(vConfigurationDirectXInput, "KeyboardMouseScrollSensitivity2")) { SettingSave(vConfigurationDirectXInput, "KeyboardMouseScrollSensitivity2", "2"); }
+                if (!vSettings.Check("KeyboardLayout")) { vSettings.Set("KeyboardLayout", "0"); }
+                if (!vSettings.Check("KeyboardMode")) { vSettings.Set("KeyboardMode", "1"); }
+                if (!vSettings.Check("KeyboardResetPosition")) { vSettings.Set("KeyboardResetPosition", "False"); }
+                if (!vSettings.Check("KeyboardCloseNoController")) { vSettings.Set("KeyboardCloseNoController", "True"); }
+                if (!vSettings.Check("KeyboardMouseMoveSensitivity")) { vSettings.Set("KeyboardMouseMoveSensitivity", "7,50"); }
+                if (!vSettings.Check("KeyboardMouseScrollSensitivity2")) { vSettings.Set("KeyboardMouseScrollSensitivity2", "2"); }
 
                 //Media settings
-                if (!SettingCheck(vConfigurationDirectXInput, "MediaVolumeStep")) { SettingSave(vConfigurationDirectXInput, "MediaVolumeStep", "2"); }
+                if (!vSettings.Check("MediaVolumeStep")) { vSettings.Set("MediaVolumeStep", "2"); }
             }
             catch (Exception ex)
             {

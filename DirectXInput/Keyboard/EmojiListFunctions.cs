@@ -32,7 +32,7 @@ namespace DirectXInput.KeyboardCode
         async Task ShowEmojiPopup()
         {
             //Play window open sound
-            PlayInterfaceSound(vConfigurationDirectXInput, "PopupOpen", false, false);
+            PlayInterfaceSound(vSettings, "PopupOpen", false, false);
 
             //Store keyboard focus button
             AVFocusDetailsSave(vFocusedButtonKeyboard, null);
@@ -65,7 +65,7 @@ namespace DirectXInput.KeyboardCode
             try
             {
                 //Play window close sound
-                PlayInterfaceSound(vConfigurationDirectXInput, "PopupClose", false, false);
+                PlayInterfaceSound(vSettings, "PopupClose", false, false);
 
                 //Store open focus button
                 AVFocusDetailsSave(vFocusedButtonEmoji, null);

@@ -20,7 +20,7 @@ namespace DirectXInput
             {
                 cb_SettingsExclusiveGuide.Click += (sender, e) =>
                 {
-                    SettingSave(vConfigurationDirectXInput, "ExclusiveGuide", cb_SettingsExclusiveGuide.IsChecked.ToString());
+                    vSettings.Set("ExclusiveGuide", cb_SettingsExclusiveGuide.IsChecked.ToString());
                 };
 
                 //Launch settings
@@ -31,24 +31,24 @@ namespace DirectXInput
 
                 cb_SettingsLaunchCtrlUI.Click += (sender, e) =>
                 {
-                    SettingSave(vConfigurationDirectXInput, "LaunchCtrlUI", cb_SettingsLaunchCtrlUI.IsChecked.ToString());
+                    vSettings.Set("LaunchCtrlUI", cb_SettingsLaunchCtrlUI.IsChecked.ToString());
                 };
 
                 cb_SettingsLaunchFpsOverlayer.Click += (sender, e) =>
                 {
-                    SettingSave(vConfigurationDirectXInput, "LaunchFpsOverlayer", cb_SettingsLaunchFpsOverlayer.IsChecked.ToString());
+                    vSettings.Set("LaunchFpsOverlayer", cb_SettingsLaunchFpsOverlayer.IsChecked.ToString());
                 };
 
                 cb_SettingsLaunchScreenCapy.Click += (sender, e) =>
                 {
-                    SettingSave(vConfigurationDirectXInput, "LaunchScreenCapy", cb_SettingsLaunchScreenCapy.IsChecked.ToString());
+                    vSettings.Set("LaunchScreenCapy", cb_SettingsLaunchScreenCapy.IsChecked.ToString());
                 };
 
                 //Battery settings
                 slider_BatteryLowLevel.ValueChanged += (sender, e) =>
                 {
                     textblock_BatteryLowLevel.Text = textblock_BatteryLowLevel.Tag + ": " + slider_BatteryLowLevel.Value.ToString() + "%";
-                    SettingSave(vConfigurationDirectXInput, "BatteryLowLevel", slider_BatteryLowLevel.Value);
+                    vSettings.Set("BatteryLowLevel", slider_BatteryLowLevel.Value);
 
                     //Check all controllers for low battery level
                     CheckAllControllersLowBattery(true);
@@ -56,7 +56,7 @@ namespace DirectXInput
 
                 cb_SettingsBatteryLowBlinkLed.Click += (sender, e) =>
                 {
-                    SettingSave(vConfigurationDirectXInput, "BatteryLowBlinkLed", cb_SettingsBatteryLowBlinkLed.IsChecked.ToString());
+                    vSettings.Set("BatteryLowBlinkLed", cb_SettingsBatteryLowBlinkLed.IsChecked.ToString());
 
                     //Check all controllers for low battery level
                     CheckAllControllersLowBattery(true);
@@ -64,7 +64,7 @@ namespace DirectXInput
 
                 cb_SettingsBatteryLowShowNotification.Click += (sender, e) =>
                 {
-                    SettingSave(vConfigurationDirectXInput, "BatteryLowShowNotification", cb_SettingsBatteryLowShowNotification.IsChecked.ToString());
+                    vSettings.Set("BatteryLowShowNotification", cb_SettingsBatteryLowShowNotification.IsChecked.ToString());
 
                     //Check all controllers for low battery level
                     CheckAllControllersLowBattery(true);
@@ -72,7 +72,7 @@ namespace DirectXInput
 
                 cb_SettingsBatteryLowPlaySound.Click += (sender, e) =>
                 {
-                    SettingSave(vConfigurationDirectXInput, "BatteryLowPlaySound", cb_SettingsBatteryLowPlaySound.IsChecked.ToString());
+                    vSettings.Set("BatteryLowPlaySound", cb_SettingsBatteryLowPlaySound.IsChecked.ToString());
 
                     //Check all controllers for low battery level
                     CheckAllControllersLowBattery(true);
@@ -82,7 +82,7 @@ namespace DirectXInput
                 slider_ControllerIdleDisconnectMin.ValueChanged += (sender, e) =>
                 {
                     textblock_ControllerIdleDisconnectMin.Text = textblock_ControllerIdleDisconnectMin.Tag + ": " + slider_ControllerIdleDisconnectMin.Value.ToString() + " minutes";
-                    SettingSave(vConfigurationDirectXInput, "ControllerIdleDisconnectMin", slider_ControllerIdleDisconnectMin.Value);
+                    vSettings.Set("ControllerIdleDisconnectMin", slider_ControllerIdleDisconnectMin.Value);
                 };
 
                 colorpicker_Controller0.Click += async (sender, e) =>
@@ -91,7 +91,7 @@ namespace DirectXInput
                     if (newColor != null)
                     {
                         SolidColorBrush newBrush = new SolidColorBrush((Color)newColor);
-                        SettingSave(vConfigurationDirectXInput, "ControllerColor0", newBrush.ToString());
+                        vSettings.Set("ControllerColor0", newBrush.ToString());
                         colorpicker_Controller0.Background = newBrush;
                         vController0.Color = newBrush.Color;
                         if (vController0 == vActiveController())
@@ -113,7 +113,7 @@ namespace DirectXInput
                     if (newColor != null)
                     {
                         SolidColorBrush newBrush = new SolidColorBrush((Color)newColor);
-                        SettingSave(vConfigurationDirectXInput, "ControllerColor1", newBrush.ToString());
+                        vSettings.Set("ControllerColor1", newBrush.ToString());
                         colorpicker_Controller1.Background = newBrush;
                         vController1.Color = newBrush.Color;
                         if (vController1 == vActiveController())
@@ -135,7 +135,7 @@ namespace DirectXInput
                     if (newColor != null)
                     {
                         SolidColorBrush newBrush = new SolidColorBrush((Color)newColor);
-                        SettingSave(vConfigurationDirectXInput, "ControllerColor2", newBrush.ToString());
+                        vSettings.Set("ControllerColor2", newBrush.ToString());
                         colorpicker_Controller2.Background = newBrush;
                         vController2.Color = newBrush.Color;
                         if (vController2 == vActiveController())
@@ -157,7 +157,7 @@ namespace DirectXInput
                     if (newColor != null)
                     {
                         SolidColorBrush newBrush = new SolidColorBrush((Color)newColor);
-                        SettingSave(vConfigurationDirectXInput, "ControllerColor3", newBrush.ToString());
+                        vSettings.Set("ControllerColor3", newBrush.ToString());
                         colorpicker_Controller3.Background = newBrush;
                         vController3.Color = newBrush.Color;
                         if (vController3 == vActiveController())
@@ -176,30 +176,30 @@ namespace DirectXInput
                 //Keyboard settings
                 cb_SettingsKeyboardCloseNoController.Click += (sender, e) =>
                 {
-                    SettingSave(vConfigurationDirectXInput, "KeyboardCloseNoController", cb_SettingsKeyboardCloseNoController.IsChecked.ToString());
+                    vSettings.Set("KeyboardCloseNoController", cb_SettingsKeyboardCloseNoController.IsChecked.ToString());
                 };
 
                 cb_SettingsKeyboardResetPosition.Click += (sender, e) =>
                 {
-                    SettingSave(vConfigurationDirectXInput, "KeyboardResetPosition", cb_SettingsKeyboardResetPosition.IsChecked.ToString());
+                    vSettings.Set("KeyboardResetPosition", cb_SettingsKeyboardResetPosition.IsChecked.ToString());
                 };
 
                 combobox_KeyboardLayout.SelectionChanged += (sender, e) =>
                 {
-                    SettingSave(vConfigurationDirectXInput, "KeyboardLayout", combobox_KeyboardLayout.SelectedIndex.ToString());
+                    vSettings.Set("KeyboardLayout", combobox_KeyboardLayout.SelectedIndex.ToString());
                     vWindowKeyboard.UpdateKeyboardLayout();
                 };
 
                 slider_SettingsKeyboardMouseMoveSensitivity.ValueChanged += (sender, e) =>
                 {
                     textblock_SettingsKeyboardMouseMoveSensitivity.Text = textblock_SettingsKeyboardMouseMoveSensitivity.Tag.ToString() + slider_SettingsKeyboardMouseMoveSensitivity.Value.ToString("0.00");
-                    SettingSave(vConfigurationDirectXInput, "KeyboardMouseMoveSensitivity", slider_SettingsKeyboardMouseMoveSensitivity.Value);
+                    vSettings.Set("KeyboardMouseMoveSensitivity", slider_SettingsKeyboardMouseMoveSensitivity.Value);
                 };
 
                 slider_SettingsKeyboardMouseScrollSensitivity2.ValueChanged += (sender, e) =>
                 {
                     textblock_SettingsKeyboardMouseScrollSensitivity2.Text = textblock_SettingsKeyboardMouseScrollSensitivity2.Tag.ToString() + slider_SettingsKeyboardMouseScrollSensitivity2.Value.ToString();
-                    SettingSave(vConfigurationDirectXInput, "KeyboardMouseScrollSensitivity2", slider_SettingsKeyboardMouseScrollSensitivity2.Value);
+                    vSettings.Set("KeyboardMouseScrollSensitivity2", slider_SettingsKeyboardMouseScrollSensitivity2.Value);
                 };
 
                 //Keypad settings
@@ -269,20 +269,20 @@ namespace DirectXInput
                 //Media settings
                 combobox_ControllerLedCondition.SelectionChanged += (sender, e) =>
                 {
-                    SettingSave(vConfigurationDirectXInput, "ControllerLedCondition", combobox_ControllerLedCondition.SelectedIndex.ToString());
+                    vSettings.Set("ControllerLedCondition", combobox_ControllerLedCondition.SelectedIndex.ToString());
                 };
 
                 slider_SettingsMediaVolumeStep.ValueChanged += (sender, e) =>
                 {
                     textblock_SettingsMediaVolumeStep.Text = textblock_SettingsMediaVolumeStep.Tag.ToString() + slider_SettingsMediaVolumeStep.Value.ToString();
-                    SettingSave(vConfigurationDirectXInput, "MediaVolumeStep", slider_SettingsMediaVolumeStep.Value);
+                    vSettings.Set("MediaVolumeStep", slider_SettingsMediaVolumeStep.Value);
                 };
 
                 //Display settings
                 slider_SettingsDisplayMonitor.ValueChanged += (sender, e) =>
                 {
                     textblock_SettingsDisplayMonitor.Text = textblock_SettingsDisplayMonitor.Tag + ": " + Convert.ToInt32(slider_SettingsDisplayMonitor.Value);
-                    SettingSave(vConfigurationDirectXInput, "DisplayMonitor", slider_SettingsDisplayMonitor.Value);
+                    vSettings.Set("DisplayMonitor", slider_SettingsDisplayMonitor.Value);
                     vWindowOverlay.UpdateWindowPosition();
                     vWindowKeyboard.UpdateWindowPosition();
                     vWindowKeypad.UpdateWindowPosition();
@@ -291,13 +291,13 @@ namespace DirectXInput
                 //Sound settings
                 cb_SettingsInterfaceSound.Click += (sender, e) =>
                 {
-                    SettingSave(vConfigurationDirectXInput, "InterfaceSound", cb_SettingsInterfaceSound.IsChecked.ToString());
+                    vSettings.Set("InterfaceSound", cb_SettingsInterfaceSound.IsChecked.ToString());
                 };
 
                 slider_SettingsSoundVolume.ValueChanged += (sender, e) =>
                 {
                     textblock_SettingsSoundVolume.Text = textblock_SettingsSoundVolume.Tag + ": " + Convert.ToInt32(slider_SettingsSoundVolume.Value) + "%";
-                    SettingSave(vConfigurationDirectXInput, "InterfaceSoundVolume", slider_SettingsSoundVolume.Value);
+                    vSettings.Set("InterfaceSoundVolume", slider_SettingsSoundVolume.Value);
                 };
             }
             catch (Exception ex)

@@ -6,7 +6,6 @@ using LibraryUsb;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Configuration;
 using System.Security.Principal;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -16,7 +15,6 @@ using static ArnoldVinkCode.AVActions;
 using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVJsonFunctions;
 using static ArnoldVinkCode.AVProcess;
-using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkStyles.AVFocus;
 using static ArnoldVinkStyles.AVImage;
 using static LibraryShared.Classes;
@@ -34,7 +32,7 @@ namespace DirectXInput
 
         //Application Variables
         readonly public static bool vAdministratorPermission = new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
-        public static Configuration vConfigurationDirectXInput = SettingLoadConfig("DirectXInput.exe.csettings");
+        public static AVSettingsConfig vSettings = new AVSettingsConfig("DirectXInput.exe.csettings");
 
         //Image Variables
         public static int vImageLoadSize = 120;

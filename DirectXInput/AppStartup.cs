@@ -2,7 +2,6 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkCode.AVUpdate;
 using static DirectXInput.AppVariables;
 
@@ -45,7 +44,7 @@ namespace DirectXInput
                 }
 
                 //Check settings if window needs to be shown
-                if (SettingLoad(vConfigurationDirectXInput, "AppFirstLaunch", typeof(bool)))
+                if (vSettings.Load("AppFirstLaunch", typeof(bool)))
                 {
                     Debug.WriteLine("First launch showing the window.");
                     vWindowMain.Show();
@@ -94,19 +93,19 @@ namespace DirectXInput
                 }
 
                 //Check settings if CtrlUI launches on start
-                if (SettingLoad(vConfigurationDirectXInput, "LaunchCtrlUI", typeof(bool)))
+                if (vSettings.Load("LaunchCtrlUI", typeof(bool)))
                 {
                     ProcessLaunch.LaunchCtrlUI(true);
                 }
 
                 //Check settings if FpsOverlayer launches on start
-                if (SettingLoad(vConfigurationDirectXInput, "LaunchFpsOverlayer", typeof(bool)))
+                if (vSettings.Load("LaunchFpsOverlayer", typeof(bool)))
                 {
                     ProcessLaunch.LaunchFpsOverlayer(true);
                 }
 
                 //Check settings if ScreenCapy launches on start
-                if (SettingLoad(vConfigurationDirectXInput, "LaunchScreenCapy", typeof(bool)))
+                if (vSettings.Load("LaunchScreenCapy", typeof(bool)))
                 {
                     ProcessLaunch.LaunchScreenCapy(true);
                 }
@@ -147,7 +146,7 @@ namespace DirectXInput
                 AVInputOutputHotkeyHook.EventHotkeyPressedList += EventHotkeyPressed;
 
                 //Set application first launch to false
-                SettingSave(vConfigurationDirectXInput, "AppFirstLaunch", "False");
+                vSettings.Set("AppFirstLaunch", "False");
 
                 //Enable the socket server
                 await EnableSocketServer();

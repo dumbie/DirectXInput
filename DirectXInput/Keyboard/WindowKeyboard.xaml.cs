@@ -11,7 +11,6 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using static ArnoldVinkCode.AVActions;
 using static ArnoldVinkCode.AVInputOutputClass;
-using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkCode.AVWindowFunctions;
 using static ArnoldVinkStyles.AVFocus;
 using static DirectXInput.AppVariables;
@@ -83,7 +82,7 @@ namespace DirectXInput.KeyboardCode
                 if (vWindowVisible)
                 {
                     //Play window close sound
-                    PlayInterfaceSound(vConfigurationDirectXInput, "PopupClose", false, false);
+                    PlayInterfaceSound(vSettings, "PopupClose", false, false);
 
                     //Stop the update tasks
                     await TasksBackgroundStop();
@@ -121,7 +120,7 @@ namespace DirectXInput.KeyboardCode
                 vControllerDelay_Keyboard = GetSystemTicksMs() + vControllerDelayTicks250;
 
                 //Play window open sound
-                PlayInterfaceSound(vConfigurationDirectXInput, "PopupOpen", false, false);
+                PlayInterfaceSound(vSettings, "PopupOpen", false, false);
 
                 //Start the update tasks
                 TasksBackgroundStart();
@@ -142,7 +141,7 @@ namespace DirectXInput.KeyboardCode
                 }
 
                 //Update window position
-                if (resetPosition || SettingLoad(vConfigurationDirectXInput, "KeyboardResetPosition", typeof(bool)))
+                if (resetPosition || vSettings.Load("KeyboardResetPosition", typeof(bool)))
                 {
                     UpdateWindowPosition();
                 }
@@ -238,7 +237,7 @@ namespace DirectXInput.KeyboardCode
             try
             {
                 //Get the current active screen
-                int monitorNumber = SettingLoad(vConfigurationDirectXInput, "DisplayMonitor", typeof(int));
+                int monitorNumber = vSettings.Load("DisplayMonitor", typeof(int));
 
                 //Move the window position
                 WindowUpdatePosition(monitorNumber, vInteropWindowHandle, AVWindowPosition.BottomCenter);
@@ -722,7 +721,7 @@ namespace DirectXInput.KeyboardCode
                 }
 
                 //Change the keyboard layout
-                if (SettingLoad(vConfigurationDirectXInput, "KeyboardLayout", typeof(int)) == 0) //QWERTY
+                if (vSettings.Load("KeyboardLayout", typeof(int)) == 0) //QWERTY
                 {
                     Debug.WriteLine("Switching keyboard layout: QWERTY");
                     key_a.Content = "a";
@@ -736,7 +735,7 @@ namespace DirectXInput.KeyboardCode
                     key_z.Content = "z";
                     key_z.Tag = new KeysHidAction() { Key0 = KeysHid.Z };
                 }
-                else if (SettingLoad(vConfigurationDirectXInput, "KeyboardLayout", typeof(int)) == 1) //QWERTZ
+                else if (vSettings.Load("KeyboardLayout", typeof(int)) == 1) //QWERTZ
                 {
                     Debug.WriteLine("Switching keyboard layout: QWERTZ");
                     key_a.Content = "a";
@@ -750,7 +749,7 @@ namespace DirectXInput.KeyboardCode
                     key_z.Content = "y";
                     key_z.Tag = new KeysHidAction() { Key0 = KeysHid.Y };
                 }
-                else if (SettingLoad(vConfigurationDirectXInput, "KeyboardLayout", typeof(int)) == 2) //AZERTY
+                else if (vSettings.Load("KeyboardLayout", typeof(int)) == 2) //AZERTY
                 {
                     Debug.WriteLine("Switching keyboard layout: AZERTY");
                     key_a.Content = "q";
@@ -773,7 +772,7 @@ namespace DirectXInput.KeyboardCode
         {
             try
             {
-                PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
+                PlayInterfaceSound(vSettings, "Click", false, false);
                 Debug.WriteLine("Switching caps lock.");
 
                 //Disable hardware capslock

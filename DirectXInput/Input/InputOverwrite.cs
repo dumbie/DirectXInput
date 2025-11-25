@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using static ArnoldVinkCode.AVClasses;
 using static ArnoldVinkCode.AVInputOutputClass;
-using static ArnoldVinkCode.AVSettings;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
 
@@ -29,7 +28,7 @@ namespace DirectXInput
 
                 //Check if guide button is exclusive and needs to be blocked
                 //Fix HasInputOnDemand button press time
-                if (controller.InputCurrent.Buttons[(byte)ControllerButtons.Guide].PressedRaw && SettingLoad(vConfigurationDirectXInput, "ExclusiveGuide", typeof(bool)))
+                if (controller.InputCurrent.Buttons[(byte)ControllerButtons.Guide].PressedRaw && vSettings.Load("ExclusiveGuide", typeof(bool)))
                 {
                     controller.InputCurrent.Buttons[(byte)ControllerButtons.Guide].PressedRaw = false;
                 }

@@ -11,7 +11,6 @@ using Windows.Storage.Streams;
 using static ArnoldVinkCode.AVActions;
 using static ArnoldVinkCode.AVAudioDevice;
 using static ArnoldVinkCode.AVInputOutputClass;
-using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkStyles.AVImage;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Enums;
@@ -27,7 +26,7 @@ namespace DirectXInput.KeyboardCode
             try
             {
                 vWindowOverlay.Notification_Show_Status("MediaPlayPause", "Resuming or pausing media");
-                PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
+                PlayInterfaceSound(vSettings, "Click", false, false);
                 vFakerInputDevice.MultimediaPressRelease(KeysMediaHid.PlayPause);
             }
             catch { }
@@ -39,7 +38,7 @@ namespace DirectXInput.KeyboardCode
             try
             {
                 vWindowOverlay.Notification_Show_Status("MediaNext", "Going to next media item");
-                PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
+                PlayInterfaceSound(vSettings, "Click", false, false);
                 vFakerInputDevice.MultimediaPressRelease(KeysMediaHid.Next);
             }
             catch { }
@@ -51,7 +50,7 @@ namespace DirectXInput.KeyboardCode
             try
             {
                 vWindowOverlay.Notification_Show_Status("MediaPrevious", "Going to previous media item");
-                PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
+                PlayInterfaceSound(vSettings, "Click", false, false);
                 vFakerInputDevice.MultimediaPressRelease(KeysMediaHid.Previous);
             }
             catch { }
@@ -63,7 +62,7 @@ namespace DirectXInput.KeyboardCode
             try
             {
                 vWindowOverlay.Notification_Show_Status("MediaFullscreen", "Toggling fullscreen");
-                PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
+                PlayInterfaceSound(vSettings, "Click", false, false);
                 KeysHidAction keyboardAction = new KeysHidAction()
                 {
                     Modifiers = KeysModifierHid.AltLeft,
@@ -113,7 +112,7 @@ namespace DirectXInput.KeyboardCode
         {
             try
             {
-                int volumeStep = SettingLoad(vConfigurationDirectXInput, "MediaVolumeStep", typeof(int));
+                int volumeStep = vSettings.Load("MediaVolumeStep", typeof(int));
                 int newVolume = AudioVolumeDown(volumeStep, false);
                 vWindowOverlay.Notification_Show_Status("VolumeDown", "Decreased volume to " + newVolume);
             }
@@ -125,7 +124,7 @@ namespace DirectXInput.KeyboardCode
         {
             try
             {
-                int volumeStep = SettingLoad(vConfigurationDirectXInput, "MediaVolumeStep", typeof(int));
+                int volumeStep = vSettings.Load("MediaVolumeStep", typeof(int));
                 int newVolume = AudioVolumeUp(volumeStep, false);
                 vWindowOverlay.Notification_Show_Status("VolumeUp", "Increased volume to " + newVolume);
             }

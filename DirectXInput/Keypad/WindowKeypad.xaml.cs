@@ -11,7 +11,6 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using static ArnoldVinkCode.AVActions;
 using static ArnoldVinkCode.AVInputOutputClass;
-using static ArnoldVinkCode.AVSettings;
 using static ArnoldVinkCode.AVWindowFunctions;
 using static ArnoldVinkStyles.AVImage;
 using static DirectXInput.AppVariables;
@@ -65,7 +64,7 @@ namespace DirectXInput.KeypadCode
                 if (vWindowVisible)
                 {
                     //Play window close sound
-                    PlayInterfaceSound(vConfigurationDirectXInput, "PopupClose", false, false);
+                    PlayInterfaceSound(vSettings, "PopupClose", false, false);
 
                     //Stop the update tasks
                     await TasksBackgroundStop();
@@ -113,7 +112,7 @@ namespace DirectXInput.KeypadCode
                 await vWindowKeyboard.Hide();
 
                 //Play window open sound
-                PlayInterfaceSound(vConfigurationDirectXInput, "PopupOpen", false, false);
+                PlayInterfaceSound(vSettings, "PopupOpen", false, false);
 
                 //Start the update tasks
                 TasksBackgroundStart();
@@ -309,7 +308,7 @@ namespace DirectXInput.KeypadCode
             try
             {
                 //Get the current active screen
-                int monitorNumber = SettingLoad(vConfigurationDirectXInput, "DisplayMonitor", typeof(int));
+                int monitorNumber = vSettings.Load("DisplayMonitor", typeof(int));
 
                 //Move the window position
                 WindowUpdatePosition(monitorNumber, vInteropWindowHandle, AVWindowPosition.FullScreen);

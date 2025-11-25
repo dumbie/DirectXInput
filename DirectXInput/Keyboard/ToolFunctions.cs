@@ -88,7 +88,7 @@ namespace DirectXInput.KeyboardCode
         {
             try
             {
-                PlayInterfaceSound(vConfigurationDirectXInput, "Click", false, false);
+                PlayInterfaceSound(vSettings, "Click", false, false);
 
                 Button senderButton = (Button)sender;
                 if (senderButton == key_Tool_Close)
