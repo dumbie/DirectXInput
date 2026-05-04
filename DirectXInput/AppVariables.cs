@@ -62,10 +62,10 @@ namespace DirectXInput
         public static int vMessageBoxPopupResult = 0;
 
         //Process Variables
-        public static ProcessMulti vProcessCurrent = Get_ProcessMultiCurrent();
-        public static ProcessMulti vProcessCtrlUI = null;
-        public static ProcessMulti vProcessFpsOverlayer = null;
-        public static ProcessMulti vProcessForeground = null;
+        public static AVProcess vProcessCurrent = Get_ProcessCurrent();
+        public static AVProcess vProcessCtrlUI = null;
+        public static AVProcess vProcessFpsOverlayer = null;
+        public static AVProcess vProcessForeground = null;
         public static bool vProcessCtrlUIActivated = false;
 
         //App Status Variables

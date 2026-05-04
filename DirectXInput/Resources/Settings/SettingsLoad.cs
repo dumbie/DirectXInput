@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using static ArnoldVinkCode.AVSettings;
 using static DirectXInput.AppVariables;
 
 namespace DirectXInput
@@ -72,7 +73,7 @@ namespace DirectXInput
                 slider_SettingsMediaVolumeStep.Value = vSettings.Load("MediaVolumeStep", typeof(double));
 
                 //Launch settings
-                cb_SettingsWindowsStartup.IsChecked = AVSettings.StartupShortcutCheck();
+                cb_SettingsWindowsStartup.IsChecked = AVSettings.StartupShortcutCheck(StartupShortcutType.Startup);
 
                 //Display settings
                 int monitorNumber = vSettings.Load("DisplayMonitor", typeof(int));

@@ -83,7 +83,7 @@ namespace DirectXInput
                 PlayInterfaceSound(vSettings, "PopupOpen", false, true);
 
                 //Launch application
-                AVProcess.Launch_UwpApplication("Microsoft.XboxGamingOverlay_8wekyb3d8bbwe!App", string.Empty);
+                AVProcess.Launch_ApplicationUwp("Microsoft.XboxGamingOverlay_8wekyb3d8bbwe!App", string.Empty);
             }
             catch { }
         }

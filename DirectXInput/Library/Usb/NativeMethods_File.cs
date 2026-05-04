@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32.SafeHandles;
-using System;
+﻿using System;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
@@ -77,13 +76,13 @@ namespace LibraryUsb
         }
 
         [DllImport("kernel32.dll")]
-        public static extern bool ReadFile(SafeFileHandle hFile, byte[] lpBuffer, int nNumberOfBytesToRead, out int lpNumberOfBytesReaded, IntPtr lpOverlapped);
+        public static extern bool ReadFile(IntPtr hFile, byte[] lpBuffer, int nNumberOfBytesToRead, out int lpNumberOfBytesReaded, IntPtr lpOverlapped);
 
         [DllImport("kernel32.dll")]
-        public static extern bool WriteFile(SafeFileHandle hFile, byte[] lpBuffer, int nNumberOfBytesToWrite, out int lpNumberOfBytesWritten, IntPtr lpOverlapped);
+        public static extern bool WriteFile(IntPtr hFile, byte[] lpBuffer, int nNumberOfBytesToWrite, out int lpNumberOfBytesWritten, IntPtr lpOverlapped);
 
         [DllImport("kernel32.dll")]
-        public static extern SafeFileHandle CreateFile(string lpFileName, FileDesiredAccess dwDesiredAccess, FileShareMode dwShareMode, IntPtr lpSecurityAttributes, FileCreationDisposition dwCreationDisposition, FileFlagsAndAttributes dwFlagsAndAttributes, IntPtr hTemplateFile);
+        public static extern IntPtr CreateFile(string lpFileName, FileDesiredAccess dwDesiredAccess, FileShareMode dwShareMode, IntPtr lpSecurityAttributes, FileCreationDisposition dwCreationDisposition, FileFlagsAndAttributes dwFlagsAndAttributes, IntPtr hTemplateFile);
 
         [DllImport("kernel32.dll")]
         public static extern uint QueryDosDevice(string lpDeviceName, StringBuilder lpTargetPath, int ucchMax);

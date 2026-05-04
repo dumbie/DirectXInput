@@ -1,8 +1,7 @@
-﻿using System;
+﻿using ArnoldVinkCode;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using static ArnoldVinkCode.AVInputOutputClass;
-using static ArnoldVinkCode.AVInteropDll;
 
 namespace LibraryUsb
 {
@@ -10,7 +9,6 @@ namespace LibraryUsb
     {
         public bool MouseMoveRel(sbyte moveX, sbyte moveY)
         {
-            IntPtr featureIntPtr = IntPtr.Zero;
             try
             {
                 //Set feature data
@@ -22,27 +20,22 @@ namespace LibraryUsb
 
                 int featureSize = Marshal.SizeOf(featureData);
                 byte[] featureArray = new byte[featureSize];
-                featureIntPtr = Marshal.AllocHGlobal(featureSize);
-                Marshal.StructureToPtr(featureData, featureIntPtr, false);
-                Marshal.Copy(featureIntPtr, featureArray, 0, featureSize);
+                using AVFin featureIntPtr = new AVFin(AVFinMethod.FreeMarshal, Marshal.AllocHGlobal(featureSize));
+                Marshal.StructureToPtr(featureData, featureIntPtr.Get(), false);
+                Marshal.Copy(featureIntPtr.Get(), featureArray, 0, featureSize);
 
                 //Send byte array to driver
-                return SetFeature(FileHandle, featureArray);
+                return SetFeature(FileHandle.Get(), featureArray);
             }
             catch
             {
                 Debug.WriteLine("Failed to move tether mouse.");
                 return false;
             }
-            finally
-            {
-                SafeCloseMarshal(ref featureIntPtr);
-            }
         }
 
         public bool MousePressRel(MouseHidButtons mouseButtons)
         {
-            IntPtr featureIntPtr = IntPtr.Zero;
             try
             {
                 //Set feature data
@@ -54,27 +47,22 @@ namespace LibraryUsb
                 //Convert to byte array
                 int featureSize = Marshal.SizeOf(featureData);
                 byte[] featureArray = new byte[featureSize];
-                featureIntPtr = Marshal.AllocHGlobal(featureSize);
-                Marshal.StructureToPtr(featureData, featureIntPtr, false);
-                Marshal.Copy(featureIntPtr, featureArray, 0, featureSize);
+                using AVFin featureIntPtr = new AVFin(AVFinMethod.FreeMarshal, Marshal.AllocHGlobal(featureSize));
+                Marshal.StructureToPtr(featureData, featureIntPtr.Get(), false);
+                Marshal.Copy(featureIntPtr.Get(), featureArray, 0, featureSize);
 
                 //Send byte array to driver
-                return SetFeature(FileHandle, featureArray);
+                return SetFeature(FileHandle.Get(), featureArray);
             }
             catch
             {
                 Debug.WriteLine("Failed to press tether mouse.");
                 return false;
             }
-            finally
-            {
-                SafeCloseMarshal(ref featureIntPtr);
-            }
         }
 
         public bool MouseScrollRel(int scrollUp, int scrollDown)
         {
-            IntPtr featureIntPtr = IntPtr.Zero;
             try
             {
                 //Set feature data
@@ -87,27 +75,22 @@ namespace LibraryUsb
                 //Convert to byte array
                 int featureSize = Marshal.SizeOf(featureData);
                 byte[] featureArray = new byte[featureSize];
-                featureIntPtr = Marshal.AllocHGlobal(featureSize);
-                Marshal.StructureToPtr(featureData, featureIntPtr, false);
-                Marshal.Copy(featureIntPtr, featureArray, 0, featureSize);
+                using AVFin featureIntPtr = new AVFin(AVFinMethod.FreeMarshal, Marshal.AllocHGlobal(featureSize));
+                Marshal.StructureToPtr(featureData, featureIntPtr.Get(), false);
+                Marshal.Copy(featureIntPtr.Get(), featureArray, 0, featureSize);
 
                 //Send byte array to driver
-                return SetFeature(FileHandle, featureArray);
+                return SetFeature(FileHandle.Get(), featureArray);
             }
             catch
             {
                 Debug.WriteLine("Failed to scroll tether mouse.");
                 return false;
             }
-            finally
-            {
-                SafeCloseMarshal(ref featureIntPtr);
-            }
         }
 
         public bool MouseReleaseRel()
         {
-            IntPtr featureIntPtr = IntPtr.Zero;
             try
             {
                 //Set feature data
@@ -118,21 +101,17 @@ namespace LibraryUsb
                 //Convert to byte array
                 int featureSize = Marshal.SizeOf(featureData);
                 byte[] featureArray = new byte[featureSize];
-                featureIntPtr = Marshal.AllocHGlobal(featureSize);
-                Marshal.StructureToPtr(featureData, featureIntPtr, false);
-                Marshal.Copy(featureIntPtr, featureArray, 0, featureSize);
+                using AVFin featureIntPtr = new AVFin(AVFinMethod.FreeMarshal, Marshal.AllocHGlobal(featureSize));
+                Marshal.StructureToPtr(featureData, featureIntPtr.Get(), false);
+                Marshal.Copy(featureIntPtr.Get(), featureArray, 0, featureSize);
 
                 //Send byte array to driver
-                return SetFeature(FileHandle, featureArray);
+                return SetFeature(FileHandle.Get(), featureArray);
             }
             catch
             {
                 Debug.WriteLine("Failed to release tether mouse.");
                 return false;
-            }
-            finally
-            {
-                SafeCloseMarshal(ref featureIntPtr);
             }
         }
     }

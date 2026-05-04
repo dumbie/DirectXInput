@@ -16,5 +16,7 @@ namespace LibraryUsb
         public static Guid GuidClassScpDS3Driver = new Guid("E2824A09-DBAA-4407-85CA-C8E8FF5F6FFA");
         public static Guid GuidClassHidHideGuardian = new Guid("0C320FF7-BD9B-42B6-BDAF-49FEB9C91649");
         public static Guid GuidClassFakerInputDevice = new Guid("AB67B0FA-D0F5-4F60-81F4-346E18FD0805");
+        public static Guid GuidClassVirtualBoxBus = new Guid("00873FDF-CAFE-80EE-AA5E-00C04FB1720B");
+        public static Guid GuidClassUsbIpBus = new Guid("B4030C06-DC5F-4FCC-87EB-E5515A0935C0");
     }
 }

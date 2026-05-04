@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32.SafeHandles;
+﻿using ArnoldVinkCode;
 using System;
 using System.Diagnostics;
 using static LibraryUsb.NativeMethods_File;
@@ -11,7 +11,7 @@ namespace LibraryUsb
         public bool Exclusive;
         public string DevicePath;
         public string DeviceInstanceId;
-        private SafeFileHandle FileHandle;
+        private AVFin FileHandle;
         public HidDeviceAttributes Attributes;
         public HidDeviceCapabilities Capabilities;
 
@@ -60,19 +60,19 @@ namespace LibraryUsb
                 FileFlagsAndAttributes flagsAttributes = FileFlagsAndAttributes.FILE_FLAG_NORMAL | FileFlagsAndAttributes.FILE_FLAG_NO_BUFFERING | FileFlagsAndAttributes.FILE_FLAG_WRITE_THROUGH;
 
                 //Try to open the device exclusively
-                FileHandle = CreateFile(DevicePath, desiredAccess, shareModeExclusive, IntPtr.Zero, creationDisposition, flagsAttributes, IntPtr.Zero);
+                FileHandle = new AVFin(AVFinMethod.CloseHandle, CreateFile(DevicePath, desiredAccess, shareModeExclusive, IntPtr.Zero, creationDisposition, flagsAttributes, IntPtr.Zero));
                 Exclusive = true;
 
                 //Try to open the device normally
-                if (FileHandle == null || FileHandle.IsInvalid || FileHandle.IsClosed)
+                if (FileHandle.Get() == IntPtr.Zero || IntPtr.IsNegative(FileHandle.Get()))
                 {
                     //Debug.WriteLine("Failed to open device exclusively, opening normally.");
-                    FileHandle = CreateFile(DevicePath, desiredAccess, shareModeNormal, IntPtr.Zero, creationDisposition, flagsAttributes, IntPtr.Zero);
+                    FileHandle.Set(CreateFile(DevicePath, desiredAccess, shareModeNormal, IntPtr.Zero, creationDisposition, flagsAttributes, IntPtr.Zero));
                     Exclusive = false;
                 }
 
                 //Check if the device is opened
-                if (FileHandle == null || FileHandle.IsInvalid || FileHandle.IsClosed)
+                if (FileHandle.Get() == IntPtr.Zero || IntPtr.IsNegative(FileHandle.Get()))
                 {
                     //Debug.WriteLine("Failed to open hid device: " + DevicePath);
                     Connected = false;

@@ -1,7 +1,7 @@
 ﻿using ArnoldVinkCode;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using static ArnoldVinkCode.AVInteropDll;
+using static ArnoldVinkCode.AVProcess;
 using static ArnoldVinkCode.AVUpdate;
 using static DriverInstaller.AppVariables;
 
@@ -16,7 +16,7 @@ namespace DriverInstaller
                 Debug.WriteLine("Welcome to application.");
 
                 //Setup application defaults
-                AVStartup.SetupDefaults(ProcessPriorityClasses.NORMAL_PRIORITY_CLASS, true);
+                AVStartup.SetupDefaults(ProcessPriorityClasses.Normal, true);
 
                 //Application update cleanup
                 await UpdateCleanup();

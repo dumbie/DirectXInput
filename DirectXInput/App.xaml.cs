@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows;
-using static ArnoldVinkCode.AVInteropDll;
+using static ArnoldVinkCode.AVProcess;
 using static ArnoldVinkCode.AVStartup;
 using static DirectXInput.AppBackup;
 using static DirectXInput.AppVariables;
@@ -14,7 +14,7 @@ namespace DirectXInput
             try
             {
                 //Setup application defaults
-                SetupDefaults(ProcessPriorityClasses.HIGH_PRIORITY_CLASS, true);
+                SetupDefaults(ProcessPriorityClasses.High, true);
 
                 //Backup Json profiles
                 BackupJsonProfiles();

@@ -26,7 +26,7 @@ namespace DirectXInput
                 //Launch settings
                 cb_SettingsWindowsStartup.Click += (sender, e) =>
                 {
-                    StartupShortcutManage("Launcher.exe", false);
+                    StartupShortcutManage("Launcher.exe", false, StartupShortcutType.Startup);
                 };
 
                 cb_SettingsLaunchCtrlUI.Click += (sender, e) =>

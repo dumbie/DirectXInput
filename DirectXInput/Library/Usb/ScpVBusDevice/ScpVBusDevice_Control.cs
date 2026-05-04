@@ -23,7 +23,7 @@ namespace LibraryUsb
                 writeBuffer[4] = (byte)(controllerNumber + 1); //SerialNo
 
                 //Send device control code
-                return DeviceIoControl(FileHandle, (uint)IoControlCodesVirtual.SCP_PLUGIN, writeBuffer, writeBuffer.Length, null, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
+                return DeviceIoControl(FileHandle.Get(), (uint)IoControlCodesVirtual.SCP_PLUGIN, writeBuffer, writeBuffer.Length, null, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
             }
             catch (Exception ex)
             {
@@ -49,7 +49,7 @@ namespace LibraryUsb
                 writeBuffer[8] = 0x0001; //FlagForce
 
                 //Send device control code
-                return DeviceIoControl(FileHandle, (uint)IoControlCodesVirtual.SCP_UNPLUG, writeBuffer, writeBuffer.Length, null, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
+                return DeviceIoControl(FileHandle.Get(), (uint)IoControlCodesVirtual.SCP_UNPLUG, writeBuffer, writeBuffer.Length, null, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
             }
             catch (Exception ex)
             {
@@ -74,7 +74,7 @@ namespace LibraryUsb
                 writeBuffer[8] = 0x0001; //FlagForce
 
                 //Send device control code
-                return DeviceIoControl(FileHandle, (uint)IoControlCodesVirtual.SCP_UNPLUG, writeBuffer, writeBuffer.Length, null, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
+                return DeviceIoControl(FileHandle.Get(), (uint)IoControlCodesVirtual.SCP_UNPLUG, writeBuffer, writeBuffer.Length, null, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
             }
             catch (Exception ex)
             {
@@ -94,7 +94,7 @@ namespace LibraryUsb
                 if (!Connected) { return false; }
 
                 //Send device control code
-                return DeviceIoControl(FileHandle, (uint)IoControlCodesVirtual.SCP_REPORT, controller.VirtualDataInput, controller.VirtualDataInput.Length, controller.VirtualDataOutput, controller.VirtualDataOutput.Length, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
+                return DeviceIoControl(FileHandle.Get(), (uint)IoControlCodesVirtual.SCP_REPORT, controller.VirtualDataInput, controller.VirtualDataInput.Length, controller.VirtualDataOutput, controller.VirtualDataOutput.Length, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
             }
             catch (Exception ex)
             {

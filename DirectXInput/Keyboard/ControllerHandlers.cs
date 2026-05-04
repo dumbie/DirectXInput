@@ -149,7 +149,7 @@ namespace DirectXInput.KeyboardCode
                         else
                         {
                             //Check the foreground window
-                            if (vInteropWindowHandle != vProcessForeground.WindowHandleMain)
+                            if (vInteropWindowHandle != vProcessForeground.WindowHandleMain())
                             {
                                 //Play interface sound
                                 PlayInterfaceSound(vSettings, "Move", false, false);
@@ -192,7 +192,7 @@ namespace DirectXInput.KeyboardCode
                         else
                         {
                             //Check the foreground window
-                            if (vInteropWindowHandle != vProcessForeground.WindowHandleMain)
+                            if (vInteropWindowHandle != vProcessForeground.WindowHandleMain())
                             {
                                 //Play interface sound
                                 PlayInterfaceSound(vSettings, "Move", false, false);
@@ -235,7 +235,7 @@ namespace DirectXInput.KeyboardCode
                         else
                         {
                             //Check the foreground window
-                            if (vInteropWindowHandle != vProcessForeground.WindowHandleMain)
+                            if (vInteropWindowHandle != vProcessForeground.WindowHandleMain())
                             {
                                 //Play interface sound
                                 PlayInterfaceSound(vSettings, "Move", false, false);
@@ -278,7 +278,7 @@ namespace DirectXInput.KeyboardCode
                         else
                         {
                             //Check the foreground window
-                            if (vInteropWindowHandle != vProcessForeground.WindowHandleMain)
+                            if (vInteropWindowHandle != vProcessForeground.WindowHandleMain())
                             {
                                 //Play interface sound
                                 PlayInterfaceSound(vSettings, "Move", false, false);
@@ -309,7 +309,7 @@ namespace DirectXInput.KeyboardCode
                     else if (ControllerInput.Buttons[(byte)ControllerButtons.A].PressedRaw)
                     {
                         //Check the foreground window
-                        if (vInteropWindowHandle != vProcessForeground.WindowHandleMain)
+                        if (vInteropWindowHandle != vProcessForeground.WindowHandleMain())
                         {
                             //Play interface sound
                             PlayInterfaceSound(vSettings, "Move", false, false);

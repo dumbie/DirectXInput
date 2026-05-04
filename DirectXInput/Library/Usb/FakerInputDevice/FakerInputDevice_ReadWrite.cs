@@ -1,7 +1,7 @@
-﻿using System;
+﻿using ArnoldVinkCode;
+using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using static ArnoldVinkCode.AVInteropDll;
 using static LibraryUsb.NativeMethods_File;
 
 namespace LibraryUsb
@@ -10,24 +10,19 @@ namespace LibraryUsb
     {
         private byte[] ConvertToByteArray(object targetObject)
         {
-            IntPtr marshalPtr = IntPtr.Zero;
             try
             {
                 int arraySize = Marshal.SizeOf(targetObject);
                 byte[] byteArray = new byte[arraySize];
-                marshalPtr = Marshal.AllocHGlobal(arraySize);
-                Marshal.StructureToPtr(targetObject, marshalPtr, false);
-                Marshal.Copy(marshalPtr, byteArray, 0, arraySize);
+                using AVFin marshalPtr = new AVFin(AVFinMethod.FreeMarshal, Marshal.AllocHGlobal(arraySize));
+                Marshal.StructureToPtr(targetObject, marshalPtr.Get(), false);
+                Marshal.Copy(marshalPtr.Get(), byteArray, 0, arraySize);
                 return byteArray;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("Failed to convert object to byte array: " + ex.Message);
                 return null;
-            }
-            finally
-            {
-                SafeCloseMarshal(ref marshalPtr);
             }
         }
 
@@ -52,7 +47,7 @@ namespace LibraryUsb
             try
             {
                 if (!Connected) { return false; }
-                WriteFile(FileHandle, outputBuffer, outputBuffer.Length, out int lpNumberOfBytesWritten, IntPtr.Zero);
+                WriteFile(FileHandle.Get(), outputBuffer, outputBuffer.Length, out int lpNumberOfBytesWritten, IntPtr.Zero);
                 return lpNumberOfBytesWritten > 0;
             }
             catch (Exception ex)

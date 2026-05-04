@@ -1,0 +1,8 @@
+{
+  "TaskName": "DirectXInput",
+  "ApplicationTitle": "DirectXInput",
+  "LaunchExecutables": [ "DirectXInput.exe" ],
+  "InstallCertificate": true,
+  "FirewallAllow": false,
+  "UIAccess": true
+}

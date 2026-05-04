@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32.SafeHandles;
+﻿using ArnoldVinkCode;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,7 +14,7 @@ namespace LibraryUsb
         public bool Connected;
         public bool Exclusive;
         public string DevicePath;
-        private SafeFileHandle FileHandle;
+        private AVFin FileHandle;
         private const byte KBD_KEY_CODES = 6;
         private const int CONTROL_REPORT_SIZE = 65;
         private string FAKER_VENDOR_HEXID = "0xFE0F";
@@ -82,19 +82,19 @@ namespace LibraryUsb
                 FileFlagsAndAttributes flagsAttributes = FileFlagsAndAttributes.FILE_FLAG_NORMAL | FileFlagsAndAttributes.FILE_FLAG_NO_BUFFERING | FileFlagsAndAttributes.FILE_FLAG_WRITE_THROUGH;
 
                 //Try to open the device exclusively
-                FileHandle = CreateFile(DevicePath, desiredAccess, shareModeExclusive, IntPtr.Zero, creationDisposition, flagsAttributes, IntPtr.Zero);
+                FileHandle = new AVFin(AVFinMethod.CloseHandle, CreateFile(DevicePath, desiredAccess, shareModeExclusive, IntPtr.Zero, creationDisposition, flagsAttributes, IntPtr.Zero));
                 Exclusive = true;
 
                 //Try to open the device normally
-                if (FileHandle == null || FileHandle.IsInvalid || FileHandle.IsClosed)
+                if (FileHandle.Get() == IntPtr.Zero || IntPtr.IsNegative(FileHandle.Get()))
                 {
                     //Debug.WriteLine("Failed to open FakerInput device exclusively, opening normally.");
-                    FileHandle = CreateFile(DevicePath, desiredAccess, shareModeNormal, IntPtr.Zero, creationDisposition, flagsAttributes, IntPtr.Zero);
+                    FileHandle.Set(CreateFile(DevicePath, desiredAccess, shareModeNormal, IntPtr.Zero, creationDisposition, flagsAttributes, IntPtr.Zero));
                     Exclusive = false;
                 }
 
                 //Check if the device is opened
-                if (FileHandle == null || FileHandle.IsInvalid || FileHandle.IsClosed)
+                if (FileHandle.Get() == IntPtr.Zero || IntPtr.IsNegative(FileHandle.Get()))
                 {
                     //Debug.WriteLine("Failed to open FakerInput device: " + DevicePath);
                     Connected = false;

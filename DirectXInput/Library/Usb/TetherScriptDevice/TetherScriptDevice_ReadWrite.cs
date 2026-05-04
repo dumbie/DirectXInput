@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32.SafeHandles;
-using System;
+﻿using System;
 using System.Diagnostics;
 using static LibraryUsb.NativeMethods_Hid;
 
@@ -7,7 +6,7 @@ namespace LibraryUsb
 {
     public partial class TetherScriptDevice
     {
-        public bool SetFeature(SafeFileHandle FileHandle, byte[] featureByte)
+        public bool SetFeature(IntPtr FileHandle, byte[] featureByte)
         {
             try
             {

@@ -60,6 +60,9 @@
     "String1": "reWASD"
   },
   {
+    "String1": "reWASDUI"
+  },
+  {
     "String1": "Joyxoff"
   },
   {
@@ -112,5 +115,17 @@
   },
   {
     "String1": "myinput"
+  },
+  {
+    "String1": "SISR"
+  },
+  {
+    "String1": "viiper"
+  },
+  {
+    "String1": "WoJXInputEmulator"
+  },
+  {
+    "String1": "WoJKeyboardAndMouseEmulator"
   }
 ]

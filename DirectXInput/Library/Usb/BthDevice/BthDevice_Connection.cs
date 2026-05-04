@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32.SafeHandles;
+﻿using ArnoldVinkCode;
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -11,8 +11,6 @@ namespace LibraryUsb
     {
         public static bool BluetoothDisconnect(string serialNumber)
         {
-            IntPtr radioHandle = IntPtr.Zero;
-            SafeFileHandle bluetoothHandle = null;
             try
             {
                 Debug.WriteLine("Attempting to disconnect bluetooth device.");
@@ -30,15 +28,26 @@ namespace LibraryUsb
                 //Disconnect the device from bluetooth
                 BLUETOOTH_FIND_RADIO_PARAMS radioFindParams = new BLUETOOTH_FIND_RADIO_PARAMS();
                 radioFindParams.dwSize = Marshal.SizeOf(radioFindParams);
-                radioHandle = BluetoothFindFirstRadio(ref radioFindParams, out bluetoothHandle);
+
+                //Find first radio handle
+                using AVFin radioHandleFound = new AVFin(AVFinMethod.CloseHandle);
+                using AVFin radioHandle = new AVFin(AVFinMethod.Custom, BluetoothFindFirstRadio(ref radioFindParams, out radioHandleFound.Get()));
+                radioHandle.SetReleaser(delegate (IntPtr releaseObject) { BluetoothFindRadioClose(releaseObject); });
+
+                if (radioHandle.Get() == IntPtr.Zero)
+                {
+                    Debug.WriteLine("No bluetooth radio found to disconnect.");
+                    return false;
+                }
 
                 bool bluetoothDisconnected = false;
                 while (!bluetoothDisconnected)
                 {
-                    bluetoothDisconnected = DeviceIoControl(bluetoothHandle, (uint)IoControlCodes.IOCTL_BTH_DISCONNECT_DEVICE, macAddressBytes, macAddressBytes.Length, null, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
+                    bluetoothDisconnected = DeviceIoControl(radioHandleFound.Get(), (uint)IoControlCodes.IOCTL_BTH_DISCONNECT_DEVICE, macAddressBytes, macAddressBytes.Length, null, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
                     if (!bluetoothDisconnected)
                     {
-                        if (!BluetoothFindNextRadio(radioHandle, out bluetoothHandle))
+                        radioHandleFound.Dispose();
+                        if (!BluetoothFindNextRadio(radioHandle.Get(), out radioHandleFound.Get()))
                         {
                             bluetoothDisconnected = true;
                         }
@@ -52,17 +61,6 @@ namespace LibraryUsb
             {
                 Debug.WriteLine("Failed disconnecting bluetooth: " + ex.Message);
                 return false;
-            }
-            finally
-            {
-                if (radioHandle != IntPtr.Zero)
-                {
-                    BluetoothFindRadioClose(radioHandle);
-                }
-                if (bluetoothHandle != null)
-                {
-                    bluetoothHandle.Dispose();
-                }
             }
         }
     }

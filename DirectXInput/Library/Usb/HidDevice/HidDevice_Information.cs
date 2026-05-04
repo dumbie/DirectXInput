@@ -21,7 +21,7 @@ namespace LibraryUsb
                 byte[] featureData = new byte[featureLength];
                 featureData[0] = featureByte;
 
-                if (HidD_GetFeature(FileHandle, featureData, featureData.Length))
+                if (HidD_GetFeature(FileHandle.Get(), featureData, featureData.Length))
                 {
                     return featureData;
                 }
@@ -41,7 +41,7 @@ namespace LibraryUsb
         {
             try
             {
-                return HidD_SetFeature(FileHandle, featureByte, featureByte.Length);
+                return HidD_SetFeature(FileHandle.Get(), featureByte, featureByte.Length);
             }
             catch (Exception ex)
             {
@@ -56,7 +56,7 @@ namespace LibraryUsb
             {
                 HIDD_ATTRIBUTES hiddDeviceAttributes = new HIDD_ATTRIBUTES();
                 hiddDeviceAttributes.Size = Marshal.SizeOf(hiddDeviceAttributes);
-                if (HidD_GetAttributes(FileHandle, ref hiddDeviceAttributes))
+                if (HidD_GetAttributes(FileHandle.Get(), ref hiddDeviceAttributes))
                 {
                     Attributes = new HidDeviceAttributes(hiddDeviceAttributes);
                     return true;
@@ -79,7 +79,7 @@ namespace LibraryUsb
             IntPtr preparsedDataPointer = IntPtr.Zero;
             try
             {
-                if (HidD_GetPreparsedData(FileHandle, ref preparsedDataPointer))
+                if (HidD_GetPreparsedData(FileHandle.Get(), ref preparsedDataPointer))
                 {
                     HIDP_CAPS deviceCapabilities = new HIDP_CAPS();
                     HidP_GetCaps(preparsedDataPointer, ref deviceCapabilities);
@@ -114,7 +114,7 @@ namespace LibraryUsb
             try
             {
                 Debug.WriteLine("Getting device button status.");
-                if (HidD_GetPreparsedData(FileHandle, ref preparsedDataPointer))
+                if (HidD_GetPreparsedData(FileHandle.Get(), ref preparsedDataPointer))
                 {
                     int buttonCapsLength = Capabilities.NumberInputButtonCaps;
                     if (buttonCapsLength > 0)
@@ -126,7 +126,7 @@ namespace LibraryUsb
                             //Get input report
                             byte[] reportBuffer = new byte[Capabilities.InputReportByteLength];
                             reportBuffer[0] = buttonCap.ReportID;
-                            HidD_GetInputReport(FileHandle, reportBuffer, reportBuffer.Length);
+                            HidD_GetInputReport(FileHandle.Get(), reportBuffer, reportBuffer.Length);
 
                             //Get number of buttons
                             int numberOfButtons = buttonCap.Range.UsageMax - buttonCap.Range.UsageMin + 1;
@@ -173,7 +173,7 @@ namespace LibraryUsb
             try
             {
                 Debug.WriteLine("Getting device value status.");
-                if (HidD_GetPreparsedData(FileHandle, ref preparsedDataPointer))
+                if (HidD_GetPreparsedData(FileHandle.Get(), ref preparsedDataPointer))
                 {
                     int valueCapsLength = Capabilities.NumberInputValueCaps;
                     if (valueCapsLength > 0)
@@ -185,7 +185,7 @@ namespace LibraryUsb
                             //Get input report
                             byte[] reportBuffer = new byte[Capabilities.InputReportByteLength];
                             reportBuffer[0] = valueCap.ReportID;
-                            HidD_GetInputReport(FileHandle, reportBuffer, reportBuffer.Length);
+                            HidD_GetInputReport(FileHandle.Get(), reportBuffer, reportBuffer.Length);
 
                             //Get usage value
                             HidP_GetUsageValue(HIDP_REPORT_TYPE.HidP_Input, valueCap.UsagePage, 0, valueCap.UsageMin, out uint usageValue, preparsedDataPointer, reportBuffer, reportBuffer.Length);
@@ -224,7 +224,7 @@ namespace LibraryUsb
                 if (Attributes == null) { return false; }
 
                 byte[] data = new byte[254];
-                HidD_GetProductString(FileHandle, ref data[0], data.Length);
+                HidD_GetProductString(FileHandle.Get(), ref data[0], data.Length);
                 string productNameString = data.ToUTF16String().Replace("\0", string.Empty);
                 if (!string.IsNullOrWhiteSpace(productNameString))
                 {
@@ -253,7 +253,7 @@ namespace LibraryUsb
                 if (Attributes == null) { return false; }
 
                 byte[] data = new byte[254];
-                HidD_GetManufacturerString(FileHandle, ref data[0], data.Length);
+                HidD_GetManufacturerString(FileHandle.Get(), ref data[0], data.Length);
                 string vendorNameString = data.ToUTF16String().Replace("\0", string.Empty);
                 if (!string.IsNullOrWhiteSpace(vendorNameString))
                 {
@@ -283,7 +283,7 @@ namespace LibraryUsb
 
                 //Get serial number string
                 byte[] dataString = new byte[254];
-                HidD_GetSerialNumberString(FileHandle, ref dataString[0], dataString.Length);
+                HidD_GetSerialNumberString(FileHandle.Get(), ref dataString[0], dataString.Length);
                 if (dataString != null)
                 {
                     string serialNumberString = dataString.ToUTF16String().Replace("\0", string.Empty);

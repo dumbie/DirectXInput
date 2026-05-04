@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32.SafeHandles;
+﻿using ArnoldVinkCode;
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -10,14 +10,17 @@ namespace LibraryUsb
     {
         public static BLUETOOTH_ADDRESS? GetLocalBluetoothMacAddress()
         {
-            IntPtr radioHandle = IntPtr.Zero;
-            SafeFileHandle bluetoothHandle = null;
             try
             {
                 BLUETOOTH_FIND_RADIO_PARAMS radioFindParams = new BLUETOOTH_FIND_RADIO_PARAMS();
                 radioFindParams.dwSize = Marshal.SizeOf(radioFindParams);
-                radioHandle = BluetoothFindFirstRadio(ref radioFindParams, out bluetoothHandle);
-                if (radioHandle == IntPtr.Zero)
+
+                //Find first radio handle
+                using AVFin radioHandleFound = new AVFin(AVFinMethod.CloseHandle);
+                using AVFin radioHandle = new AVFin(AVFinMethod.Custom, BluetoothFindFirstRadio(ref radioFindParams, out radioHandleFound.Get()));
+                radioHandle.SetReleaser(delegate (IntPtr releaseObject) { BluetoothFindRadioClose(releaseObject); });
+
+                if (radioHandle.Get() == IntPtr.Zero)
                 {
                     Debug.WriteLine("No bluetooth radio found to get mac address for.");
                     return null;
@@ -25,7 +28,7 @@ namespace LibraryUsb
 
                 BLUETOOTH_RADIO_INFO radioInfo = new BLUETOOTH_RADIO_INFO();
                 radioInfo.dwSize = Marshal.SizeOf(radioInfo);
-                if (BluetoothGetRadioInfo(radioHandle, ref radioInfo))
+                if (BluetoothGetRadioInfo(radioHandle.Get(), ref radioInfo))
                 {
                     Debug.WriteLine("Bluetooth local mac address: " + radioInfo.address.byte1 + ":" + radioInfo.address.byte2 + ":" + radioInfo.address.byte3 + ":" + radioInfo.address.byte4 + ":" + radioInfo.address.byte5 + ":" + radioInfo.address.byte6);
                     return radioInfo.address;
@@ -39,17 +42,6 @@ namespace LibraryUsb
             {
                 Debug.WriteLine("Failed to get local bluetooth mac address: " + ex.Message);
                 return null;
-            }
-            finally
-            {
-                if (radioHandle != IntPtr.Zero)
-                {
-                    BluetoothFindRadioClose(radioHandle);
-                }
-                if (bluetoothHandle != null)
-                {
-                    bluetoothHandle.Dispose();
-                }
             }
         }
     }

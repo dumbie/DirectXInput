@@ -11,7 +11,7 @@ namespace LibraryUsb
             try
             {
                 if (!Connected) { return false; }
-                return WinUsb_WritePipe(WinUsbHandle, IntOut, outputBuffer, outputBuffer.Length, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
+                return WinUsb_WritePipe(WinUsbHandle.Get(), IntOut, outputBuffer, outputBuffer.Length, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
             }
             catch (Exception ex)
             {
@@ -25,7 +25,7 @@ namespace LibraryUsb
             try
             {
                 if (!Connected) { return false; }
-                return WinUsb_WritePipe(WinUsbHandle, BulkOut, outputBuffer, outputBuffer.Length, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
+                return WinUsb_WritePipe(WinUsbHandle.Get(), BulkOut, outputBuffer, outputBuffer.Length, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace LibraryUsb
                 setupPacket.Value = value;
                 setupPacket.Index = 0;
                 setupPacket.Length = (ushort)outputBuffer.Length;
-                return WinUsb_ControlTransfer(WinUsbHandle, setupPacket, outputBuffer, outputBuffer.Length, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
+                return WinUsb_ControlTransfer(WinUsbHandle.Get(), setupPacket, outputBuffer, outputBuffer.Length, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
             }
             catch (Exception ex)
             {
@@ -59,7 +59,7 @@ namespace LibraryUsb
             try
             {
                 if (!Connected) { return false; }
-                return WinUsb_ReadPipe(WinUsbHandle, IntIn, inputBuffer, inputBuffer.Length, out int bytesRead, IntPtr.Zero) && bytesRead > 0;
+                return WinUsb_ReadPipe(WinUsbHandle.Get(), IntIn, inputBuffer, inputBuffer.Length, out int bytesRead, IntPtr.Zero) && bytesRead > 0;
             }
             catch (Exception ex)
             {
@@ -73,7 +73,7 @@ namespace LibraryUsb
             try
             {
                 if (!Connected) { return false; }
-                return WinUsb_ReadPipe(WinUsbHandle, BulkIn, inputBuffer, inputBuffer.Length, out int bytesRead, IntPtr.Zero) && bytesRead > 0;
+                return WinUsb_ReadPipe(WinUsbHandle.Get(), BulkIn, inputBuffer, inputBuffer.Length, out int bytesRead, IntPtr.Zero) && bytesRead > 0;
             }
             catch (Exception ex)
             {

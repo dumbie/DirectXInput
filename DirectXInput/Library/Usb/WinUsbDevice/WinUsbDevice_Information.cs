@@ -30,7 +30,7 @@ namespace LibraryUsb
 
                 USB_DEVICE_DESCRIPTOR USB_DEVICE_DESCRIPTOR = new USB_DEVICE_DESCRIPTOR();
                 int descriptorSize = Marshal.SizeOf(USB_DEVICE_DESCRIPTOR);
-                bool readed = WinUsb_GetDescriptor(WinUsbHandle, DESCRIPTOR_TYPE.USB_DEVICE_DESCRIPTOR_TYPE, 0, 0, ref USB_DEVICE_DESCRIPTOR, descriptorSize, out int bytesRead) && bytesRead > 0;
+                bool readed = WinUsb_GetDescriptor(WinUsbHandle.Get(), DESCRIPTOR_TYPE.USB_DEVICE_DESCRIPTOR_TYPE, 0, 0, ref USB_DEVICE_DESCRIPTOR, descriptorSize, out int bytesRead) && bytesRead > 0;
                 if (readed)
                 {
                     return USB_DEVICE_DESCRIPTOR;

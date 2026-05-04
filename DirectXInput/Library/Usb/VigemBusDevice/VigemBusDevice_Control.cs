@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArnoldVinkCode;
+using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -27,7 +28,7 @@ namespace LibraryUsb
                 writeBuffer[8] = (byte)VIGEM_TARGET_TYPE.Xbox360Wired; //TargetType
 
                 //Send device control code
-                return DeviceIoControl(FileHandle, (uint)IoControlCodesVirtual.VIGEM_PLUGIN, writeBuffer, writeBuffer.Length, null, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
+                return DeviceIoControl(FileHandle.Get(), (uint)IoControlCodesVirtual.VIGEM_PLUGIN, writeBuffer, writeBuffer.Length, null, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
             }
             catch (Exception ex)
             {
@@ -52,7 +53,7 @@ namespace LibraryUsb
                 writeBuffer[4] = (byte)(controllerNumber + 1); //SerialNo
 
                 //Send device control code
-                return DeviceIoControl(FileHandle, (uint)IoControlCodesVirtual.VIGEM_UNPLUG, writeBuffer, writeBuffer.Length, null, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
+                return DeviceIoControl(FileHandle.Get(), (uint)IoControlCodesVirtual.VIGEM_UNPLUG, writeBuffer, writeBuffer.Length, null, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
             }
             catch (Exception ex)
             {
@@ -84,24 +85,26 @@ namespace LibraryUsb
 
         public bool VirtualInput(ref ControllerStatus controller)
         {
-            IntPtr createEvent = CreateEvent(IntPtr.Zero, true, false, null);
             try
             {
                 if (!Connected) { return false; }
 
+                //Create event
+                using AVFin createEvent = new AVFin(AVFinMethod.CloseHandle, CreateEvent(IntPtr.Zero, true, false, null));
+
                 //Create native overlapped
                 NativeOverlapped nativeOverlapped = new NativeOverlapped();
-                nativeOverlapped.EventHandle = createEvent;
+                nativeOverlapped.EventHandle = createEvent.Get();
 
                 //Send device control code
-                bool iocontrol = DeviceIoControl(FileHandle, (uint)IoControlCodesVirtual.VIGEM_INPUT, controller.VirtualDataInput, controller.VirtualDataInput.Length, null, 0, out int bytesWritten, ref nativeOverlapped);
+                bool iocontrol = DeviceIoControl(FileHandle.Get(), (uint)IoControlCodesVirtual.VIGEM_INPUT, controller.VirtualDataInput, controller.VirtualDataInput.Length, null, 0, out int bytesWritten, ref nativeOverlapped);
 
                 //Get overlapped result
                 if (!iocontrol && Marshal.GetLastWin32Error() == (int)IoErrorCodes.ERROR_IO_PENDING)
                 {
                     if (WaitForSingleObject(nativeOverlapped.EventHandle, INFINITE) == WaitForSingleObjectResult.WAIT_OBJECT)
                     {
-                        return GetOverlappedResult(FileHandle, ref nativeOverlapped, out int bytesTransferred, false);
+                        return GetOverlappedResult(FileHandle.Get(), ref nativeOverlapped, out int bytesTransferred, false);
                     }
                 }
                 return false;
@@ -111,15 +114,10 @@ namespace LibraryUsb
                 Debug.WriteLine("Failed to send virtual bus input: " + ex.Message);
                 return false;
             }
-            finally
-            {
-                SafeCloseHandle(ref createEvent);
-            }
         }
 
         public bool VirtualOutput(ref ControllerStatus controller)
         {
-            IntPtr createEvent = CreateEvent(IntPtr.Zero, true, false, null);
             try
             {
                 //Check if controller is connected
@@ -136,19 +134,22 @@ namespace LibraryUsb
                     return false;
                 }
 
+                //Create event
+                using AVFin createEvent = new AVFin(AVFinMethod.CloseHandle, CreateEvent(IntPtr.Zero, true, false, null));
+
                 //Create native overlapped
                 NativeOverlapped nativeOverlapped = new NativeOverlapped();
-                nativeOverlapped.EventHandle = createEvent;
+                nativeOverlapped.EventHandle = createEvent.Get();
 
                 //Send device control code
-                bool iocontrol = DeviceIoControl(FileHandle, (uint)IoControlCodesVirtual.VIGEM_OUTPUT, controller.VirtualDataInput, controller.VirtualDataInput.Length, controller.VirtualDataOutput, controller.VirtualDataOutput.Length, out int bytesWritten, ref nativeOverlapped);
+                bool iocontrol = DeviceIoControl(FileHandle.Get(), (uint)IoControlCodesVirtual.VIGEM_OUTPUT, controller.VirtualDataInput, controller.VirtualDataInput.Length, controller.VirtualDataOutput, controller.VirtualDataOutput.Length, out int bytesWritten, ref nativeOverlapped);
 
                 //Get overlapped result
                 if (!iocontrol && Marshal.GetLastWin32Error() == (int)IoErrorCodes.ERROR_IO_PENDING)
                 {
                     if (WaitForSingleObject(nativeOverlapped.EventHandle, INFINITE) == WaitForSingleObjectResult.WAIT_OBJECT)
                     {
-                        return GetOverlappedResult(FileHandle, ref nativeOverlapped, out int bytesTransferred, false);
+                        return GetOverlappedResult(FileHandle.Get(), ref nativeOverlapped, out int bytesTransferred, false);
                     }
                 }
                 return false;
@@ -157,10 +158,6 @@ namespace LibraryUsb
             {
                 Debug.WriteLine("Failed to read virtual bus output: " + ex.Message);
                 return false;
-            }
-            finally
-            {
-                SafeCloseHandle(ref createEvent);
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32.SafeHandles;
-using System;
+﻿using System;
 using System.Runtime.InteropServices;
 using System.Security;
 
@@ -92,10 +91,10 @@ namespace LibraryUsb
         public static extern bool BluetoothGetRadioInfo(IntPtr hRadio, ref BLUETOOTH_RADIO_INFO pRadioInfo);
 
         [DllImport("bthprops.cpl")]
-        public static extern IntPtr BluetoothFindFirstRadio(ref BLUETOOTH_FIND_RADIO_PARAMS pBtRadioParam, out SafeFileHandle phRadio);
+        public static extern IntPtr BluetoothFindFirstRadio(ref BLUETOOTH_FIND_RADIO_PARAMS pBtRadioParam, out IntPtr phRadio);
 
         [DllImport("bthprops.cpl")]
-        public static extern bool BluetoothFindNextRadio(IntPtr hFind, out SafeFileHandle phRadio);
+        public static extern bool BluetoothFindNextRadio(IntPtr hFind, out IntPtr phRadio);
 
         [DllImport("bthprops.cpl")]
         public static extern bool BluetoothFindRadioClose(IntPtr hFind);

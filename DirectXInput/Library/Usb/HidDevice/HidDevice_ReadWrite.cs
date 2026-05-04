@@ -11,7 +11,7 @@ namespace LibraryUsb
             try
             {
                 if (!Connected) { return false; }
-                WriteFile(FileHandle, outputBuffer, outputBuffer.Length, out int lpNumberOfBytesWritten, IntPtr.Zero);
+                WriteFile(FileHandle.Get(), outputBuffer, outputBuffer.Length, out int lpNumberOfBytesWritten, IntPtr.Zero);
                 return lpNumberOfBytesWritten > 0;
             }
             catch (Exception ex)
@@ -26,7 +26,7 @@ namespace LibraryUsb
             try
             {
                 if (!Connected) { return false; }
-                ReadFile(FileHandle, inputBuffer, inputBuffer.Length, out int lpNumberOfBytesRead, IntPtr.Zero);
+                ReadFile(FileHandle.Get(), inputBuffer, inputBuffer.Length, out int lpNumberOfBytesRead, IntPtr.Zero);
                 return lpNumberOfBytesRead > 0;
             }
             catch (Exception ex)

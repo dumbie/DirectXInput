@@ -1,9 +1,8 @@
-﻿using System;
+﻿using ArnoldVinkCode;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using static ArnoldVinkCode.AVActions;
 using static ArnoldVinkCode.AVInputOutputClass;
-using static ArnoldVinkCode.AVInteropDll;
 
 namespace LibraryUsb
 {
@@ -33,7 +32,6 @@ namespace LibraryUsb
 
         private bool KeysPress(byte Modifier, byte Key0, byte Key1, byte Key2, byte Key3, byte Key4, byte Key5)
         {
-            IntPtr featureIntPtr = IntPtr.Zero;
             try
             {
                 //Set feature data
@@ -52,27 +50,22 @@ namespace LibraryUsb
                 //Convert to byte array
                 int featureSize = Marshal.SizeOf(featureData);
                 byte[] featureArray = new byte[featureSize];
-                featureIntPtr = Marshal.AllocHGlobal(featureSize);
-                Marshal.StructureToPtr(featureData, featureIntPtr, false);
-                Marshal.Copy(featureIntPtr, featureArray, 0, featureSize);
+                using AVFin featureIntPtr = new AVFin(AVFinMethod.FreeMarshal, Marshal.AllocHGlobal(featureSize));
+                Marshal.StructureToPtr(featureData, featureIntPtr.Get(), false);
+                Marshal.Copy(featureIntPtr.Get(), featureArray, 0, featureSize);
 
                 //Send byte array to driver
-                return SetFeature(FileHandle, featureArray);
+                return SetFeature(FileHandle.Get(), featureArray);
             }
             catch
             {
                 Debug.WriteLine("Failed to press tether keys.");
                 return false;
             }
-            finally
-            {
-                SafeCloseMarshal(ref featureIntPtr);
-            }
         }
 
         private bool KeysRelease()
         {
-            IntPtr featureIntPtr = IntPtr.Zero;
             try
             {
                 //Set feature data
@@ -84,21 +77,17 @@ namespace LibraryUsb
                 //Convert to byte array
                 int featureSize = Marshal.SizeOf(featureData);
                 byte[] featureArray = new byte[featureSize];
-                featureIntPtr = Marshal.AllocHGlobal(featureSize);
-                Marshal.StructureToPtr(featureData, featureIntPtr, false);
-                Marshal.Copy(featureIntPtr, featureArray, 0, featureSize);
+                using AVFin featureIntPtr = new AVFin(AVFinMethod.FreeMarshal, Marshal.AllocHGlobal(featureSize));
+                Marshal.StructureToPtr(featureData, featureIntPtr.Get(), false);
+                Marshal.Copy(featureIntPtr.Get(), featureArray, 0, featureSize);
 
                 //Send byte array to driver
-                return SetFeature(FileHandle, featureArray);
+                return SetFeature(FileHandle.Get(), featureArray);
             }
             catch
             {
                 Debug.WriteLine("Failed to release tether keys.");
                 return false;
-            }
-            finally
-            {
-                SafeCloseMarshal(ref featureIntPtr);
             }
         }
     }

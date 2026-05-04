@@ -473,9 +473,9 @@ namespace DirectXInput
         {
             try
             {
-                vProcessCtrlUI = Get_ProcessesMultiByName("CtrlUI", true).FirstOrDefault();
-                vProcessFpsOverlayer = Get_ProcessesMultiByName("FpsOverlayer", true).FirstOrDefault();
-                vProcessForeground = Get_ProcessMultiByWindowHandle(GetForegroundWindow());
+                vProcessCtrlUI = Get_ProcessByName("CtrlUI", true).FirstOrDefault();
+                vProcessFpsOverlayer = Get_ProcessByName("FpsOverlayer", true).FirstOrDefault();
+                vProcessForeground = Get_ProcessByWindowHandle(GetForegroundWindow());
 
                 //Check if CtrlUI is currently activated
                 vProcessCtrlUIActivated = vProcessCtrlUI != null && vProcessCtrlUI.Identifier == vProcessForeground.Identifier;
@@ -580,7 +580,7 @@ namespace DirectXInput
                 {
                     if (!Check_RunningProcessByName("DriverInstaller", true))
                     {
-                        AVProcess.Launch_ShellExecute("DriverInstaller.exe", "", "", true);
+                        AVProcess.Launch_ApplicationDesktop("DriverInstaller.exe", "", "", true);
                         await Application_Exit();
                     }
                 }
@@ -606,7 +606,7 @@ namespace DirectXInput
                 {
                     if (!Check_RunningProcessByName("DriverInstaller", true))
                     {
-                        AVProcess.Launch_ShellExecute("DriverInstaller.exe", "", "", true);
+                        AVProcess.Launch_ApplicationDesktop("DriverInstaller.exe", "", "", true);
                         await Application_Exit();
                     }
                 }
@@ -632,7 +632,7 @@ namespace DirectXInput
                 {
                     if (!Check_RunningProcessByName("DriverInstaller", true))
                     {
-                        AVProcess.Launch_ShellExecute("DriverInstaller.exe", "", "", true);
+                        AVProcess.Launch_ApplicationDesktop("DriverInstaller.exe", "", "", true);
                         await Application_Exit();
                     }
                 }

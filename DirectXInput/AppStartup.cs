@@ -18,9 +18,6 @@ namespace DirectXInput
                 //Clean application update files
                 await UpdateCleanup();
 
-                //Check for available application update
-                await UpdateCheck("dumbie", "DirectXInput", true);
-
                 //Check application user folders
                 Folders_Check();
 

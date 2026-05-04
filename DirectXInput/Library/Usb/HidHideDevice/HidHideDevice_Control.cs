@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArnoldVinkCode;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -6,7 +7,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using static ArnoldVinkCode.AVInteropDll;
 using static LibraryUsb.NativeMethods_File;
 using static LibraryUsb.NativeMethods_IoControl;
 
@@ -69,20 +69,20 @@ namespace LibraryUsb
 
         public bool DeviceHideToggle(bool enableHide)
         {
-            int controlLength = sizeof(bool);
-            IntPtr controlIntPtr = Marshal.AllocHGlobal(controlLength);
             try
             {
                 if (!Connected) { return false; }
 
                 //Set marshal structure
+                int controlLength = sizeof(bool);
+                using AVFin controlIntPtr = new AVFin(AVFinMethod.FreeMarshal, Marshal.AllocHGlobal(controlLength));
                 if (enableHide)
                 {
-                    Marshal.WriteByte(controlIntPtr, 1);
+                    Marshal.WriteByte(controlIntPtr.Get(), 1);
                 }
                 else
                 {
-                    Marshal.WriteByte(controlIntPtr, 0);
+                    Marshal.WriteByte(controlIntPtr.Get(), 0);
                 }
 
                 //Get device control code
@@ -90,22 +90,17 @@ namespace LibraryUsb
 
                 //Send marshal structure
                 Debug.WriteLine("HidHide toggle hide: " + enableHide);
-                return DeviceIoControl(FileHandle, controlCode, controlIntPtr, controlLength, IntPtr.Zero, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
+                return DeviceIoControl(FileHandle.Get(), controlCode, controlIntPtr.Get(), controlLength, IntPtr.Zero, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("HidHide failed to toggle hide: " + ex.Message);
                 return false;
             }
-            finally
-            {
-                SafeCloseMarshal(ref controlIntPtr);
-            }
         }
 
         public List<string> ListDeviceGet()
         {
-            IntPtr controlIntPtr = IntPtr.Zero;
             try
             {
                 if (!Connected) { return null; }
@@ -114,7 +109,7 @@ namespace LibraryUsb
                 uint controlCode = CTL_CODE(FILE_DEVICE_TYPE.DEVICE_TYPE_HIDHIDE, FILE_ACCESS_DATA.FILE_READ_DATA, IO_FUNCTION.IOCTL_GET_BLACKLIST, IO_METHOD.METHOD_BUFFERED);
 
                 //Send marshal structure (list size)
-                DeviceIoControl(FileHandle, controlCode, IntPtr.Zero, 0, IntPtr.Zero, 0, out int bytesWrittenSize, IntPtr.Zero);
+                DeviceIoControl(FileHandle.Get(), controlCode, IntPtr.Zero, 0, IntPtr.Zero, 0, out int bytesWrittenSize, IntPtr.Zero);
 
                 //Check string array size
                 if (bytesWrittenSize < 10)
@@ -124,28 +119,23 @@ namespace LibraryUsb
                 }
 
                 //Set marshal structure
-                controlIntPtr = Marshal.AllocHGlobal(bytesWrittenSize);
+                using AVFin controlIntPtr = new AVFin(AVFinMethod.FreeMarshal, Marshal.AllocHGlobal(bytesWrittenSize));
 
                 //Send marshal structure (read list)
-                DeviceIoControl(FileHandle, controlCode, IntPtr.Zero, 0, controlIntPtr, bytesWrittenSize, out int bytesWrittenList, IntPtr.Zero);
+                DeviceIoControl(FileHandle.Get(), controlCode, IntPtr.Zero, 0, controlIntPtr.Get(), bytesWrittenSize, out int bytesWrittenList, IntPtr.Zero);
 
                 //Convert pointer to string array
-                return MultiSzPointerToStringArray(controlIntPtr, bytesWrittenSize).ToList();
+                return MultiSzPointerToStringArray(controlIntPtr.Get(), bytesWrittenSize).ToList();
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("HidHide failed to get device blacklist: " + ex.Message);
                 return new List<string>();
             }
-            finally
-            {
-                SafeCloseMarshal(ref controlIntPtr);
-            }
         }
 
         public bool ListDeviceReset()
         {
-            IntPtr controlIntPtr = IntPtr.Zero;
             try
             {
                 if (!Connected) { return false; }
@@ -154,29 +144,24 @@ namespace LibraryUsb
                 List<string> listStrings = new List<string>();
 
                 //Set marshal structure
-                controlIntPtr = StringArrayToMultiSzPointer(listStrings, out int controlLength);
+                using AVFin controlIntPtr = new AVFin(AVFinMethod.FreeMarshal, StringArrayToMultiSzPointer(listStrings, out int controlLength));
 
                 //Get device control code
                 uint controlCode = CTL_CODE(FILE_DEVICE_TYPE.DEVICE_TYPE_HIDHIDE, FILE_ACCESS_DATA.FILE_READ_DATA, IO_FUNCTION.IOCTL_SET_BLACKLIST, IO_METHOD.METHOD_BUFFERED);
 
                 //Send marshal structure
                 Debug.WriteLine("HidHide resetting device blacklist.");
-                return DeviceIoControl(FileHandle, controlCode, controlIntPtr, controlLength, IntPtr.Zero, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
+                return DeviceIoControl(FileHandle.Get(), controlCode, controlIntPtr.Get(), controlLength, IntPtr.Zero, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("Failed to reset device blacklist: " + ex.Message);
                 return false;
             }
-            finally
-            {
-                SafeCloseMarshal(ref controlIntPtr);
-            }
         }
 
         public async Task<bool> ListDeviceAdd(string pathString)
         {
-            IntPtr controlIntPtr = IntPtr.Zero;
             try
             {
                 if (!Connected) { return false; }
@@ -195,14 +180,14 @@ namespace LibraryUsb
                 deviceStrings.Add(pathString);
 
                 //Set marshal structure
-                controlIntPtr = StringArrayToMultiSzPointer(deviceStrings, out int controlLength);
+                using AVFin controlIntPtr = new AVFin(AVFinMethod.FreeMarshal, StringArrayToMultiSzPointer(deviceStrings, out int controlLength));
 
                 //Get device control code
                 uint controlCode = CTL_CODE(FILE_DEVICE_TYPE.DEVICE_TYPE_HIDHIDE, FILE_ACCESS_DATA.FILE_READ_DATA, IO_FUNCTION.IOCTL_SET_BLACKLIST, IO_METHOD.METHOD_BUFFERED);
 
                 //Send marshal structure
                 Debug.WriteLine("HidHide hiding device: " + pathString);
-                bool hideResult = DeviceIoControl(FileHandle, controlCode, controlIntPtr, controlLength, IntPtr.Zero, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
+                bool hideResult = DeviceIoControl(FileHandle.Get(), controlCode, controlIntPtr.Get(), controlLength, IntPtr.Zero, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
 
                 //Wait for device is hidden
                 if (hideResult)
@@ -216,10 +201,6 @@ namespace LibraryUsb
             {
                 Debug.WriteLine("HidHide failed hiding device: " + ex.Message);
                 return false;
-            }
-            finally
-            {
-                SafeCloseMarshal(ref controlIntPtr);
             }
         }
 
@@ -241,22 +222,17 @@ namespace LibraryUsb
 
                 //Send marshal structure
                 Debug.WriteLine("HidHide resetting application whitelist.");
-                return DeviceIoControl(FileHandle, controlCode, controlIntPtr, controlLength, IntPtr.Zero, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
+                return DeviceIoControl(FileHandle.Get(), controlCode, controlIntPtr, controlLength, IntPtr.Zero, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("HidHide failed to reset application whitelist: " + ex.Message);
                 return false;
             }
-            finally
-            {
-                SafeCloseMarshal(ref controlIntPtr);
-            }
         }
 
         public bool ListApplicationAdd(string pathString)
         {
-            IntPtr controlIntPtr = IntPtr.Zero;
             try
             {
                 if (!Connected) { return false; }
@@ -266,23 +242,19 @@ namespace LibraryUsb
                 listStrings.Add(DosPathToDevicePath(pathString));
 
                 //Set marshal structure
-                controlIntPtr = StringArrayToMultiSzPointer(listStrings, out int controlLength);
+                using AVFin controlIntPtr = new AVFin(AVFinMethod.FreeMarshal, StringArrayToMultiSzPointer(listStrings, out int controlLength));
 
                 //Get device control code
                 uint controlCode = CTL_CODE(FILE_DEVICE_TYPE.DEVICE_TYPE_HIDHIDE, FILE_ACCESS_DATA.FILE_READ_DATA, IO_FUNCTION.IOCTL_SET_WHITELIST, IO_METHOD.METHOD_BUFFERED);
 
                 //Send marshal structure
                 Debug.WriteLine("HidHide allowing application: " + pathString);
-                return DeviceIoControl(FileHandle, controlCode, controlIntPtr, controlLength, IntPtr.Zero, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
+                return DeviceIoControl(FileHandle.Get(), controlCode, controlIntPtr.Get(), controlLength, IntPtr.Zero, 0, out int bytesWritten, IntPtr.Zero) && bytesWritten > 0;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("HidHide failed to add application whitelist: " + ex.Message);
                 return false;
-            }
-            finally
-            {
-                SafeCloseMarshal(ref controlIntPtr);
             }
         }
     }
