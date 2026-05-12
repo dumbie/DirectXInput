@@ -40,6 +40,7 @@ namespace LibraryShared
             public long TicksInputLast = 0;
             public long TicksInputPrev = 0;
             public long TicksActiveLast = 0;
+            public long TicksSignalLast = 0;
             public int TicksTimeoutTarget = 3000;
             public int ReadFailureCount = 0;
             public int ReadFailureCountTarget = 200;
@@ -130,6 +131,7 @@ namespace LibraryShared
                     TicksInputPrev = 0;
                     TicksInputLast = 0;
                     TicksActiveLast = 0;
+                    TicksSignalLast = 0;
                     ReadFailureCount = 0;
 
                     //Controller Status
