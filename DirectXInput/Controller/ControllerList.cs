@@ -33,6 +33,7 @@ namespace DirectXInput
                         //Get vendor and product hex id
                         string VendorHexId = "0x" + AVFunctions.StringShowAfter(EnumDevice.DevicePath, "vid_", 4).ToLower();
                         string ProductHexId = "0x" + AVFunctions.StringShowAfter(EnumDevice.DevicePath, "pid_", 4).ToLower();
+                        //Debug.WriteLine("Win controller found: " + VendorHexId + " / " + ProductHexId);
 
                         //Validate the connected controller
                         if (!ControllerValidate(VendorHexId, ProductHexId, EnumDevice.DevicePath, string.Empty)) { continue; }
@@ -92,13 +93,15 @@ namespace DirectXInput
                         if (foundHidDevice.Capabilities == null) { continue; }
 
                         //Check if device is a gamepad or joystick
+                        bool genericPointer = foundHidDevice.Capabilities.UsageGeneric == (short)HID_USAGE_GENERIC_DESKTOP_PAGE.HID_USAGE_GENERIC_POINTER;
                         bool genericGamePad = foundHidDevice.Capabilities.UsageGeneric == (short)HID_USAGE_GENERIC_DESKTOP_PAGE.HID_USAGE_GENERIC_GAMEPAD;
                         bool genericJoystick = foundHidDevice.Capabilities.UsageGeneric == (short)HID_USAGE_GENERIC_DESKTOP_PAGE.HID_USAGE_GENERIC_JOYSTICK;
-                        if (!genericGamePad && !genericJoystick) { continue; }
+                        if (!genericGamePad && !genericJoystick && !genericPointer) { continue; }
 
                         //Get vendor and product hex id
                         string VendorHexId = foundHidDevice.Attributes.VendorHexId.ToLower();
                         string ProductHexId = foundHidDevice.Attributes.ProductHexId.ToLower();
+                        //Debug.WriteLine("Hid controller found: " + VendorHexId + " / " + ProductHexId);
 
                         //Validate the connected controller
                         if (!ControllerValidate(VendorHexId, ProductHexId, EnumDevice.DevicePath, foundHidDevice.Attributes.SerialNumber)) { continue; }

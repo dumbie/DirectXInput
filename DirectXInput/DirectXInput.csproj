@@ -394,6 +394,9 @@
 		<Content Include="Profiles\Default\DirectCloseTools.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Profiles\Default\DirectControllersSupported\SteamController2026.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Profiles\Default\DirectControllersSupported\8BitDoPro2.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
