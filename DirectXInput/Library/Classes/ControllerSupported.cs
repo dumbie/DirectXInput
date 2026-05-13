@@ -73,6 +73,8 @@
                 public ClassButtonDetails Four { get; set; }
                 public ClassButtonDetails Five { get; set; }
                 public ClassButtonDetails Six { get; set; }
+                public ClassButtonDetails Seven { get; set; }
+                public ClassButtonDetails Eight { get; set; }
             }
 
             public class ClassButtonDetails

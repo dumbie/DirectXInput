@@ -59,6 +59,10 @@ namespace DirectXInput
                         return ReadButtonDataRaw(controller, controller.SupportedCurrent.OffsetButton.Five);
                     case ControllerButtons.Six:
                         return ReadButtonDataRaw(controller, controller.SupportedCurrent.OffsetButton.Six);
+                    case ControllerButtons.Seven:
+                        return ReadButtonDataRaw(controller, controller.SupportedCurrent.OffsetButton.Seven);
+                    case ControllerButtons.Eight:
+                        return ReadButtonDataRaw(controller, controller.SupportedCurrent.OffsetButton.Eight);
                 }
             }
             catch { }
@@ -156,6 +160,8 @@ namespace DirectXInput
                 UpdateButtonData(controller, ControllerButtons.Four, controller.Details.Profile.ButtonFour);
                 UpdateButtonData(controller, ControllerButtons.Five, controller.Details.Profile.ButtonFive);
                 UpdateButtonData(controller, ControllerButtons.Six, controller.Details.Profile.ButtonSix);
+                UpdateButtonData(controller, ControllerButtons.Seven, controller.Details.Profile.ButtonSeven);
+                UpdateButtonData(controller, ControllerButtons.Eight, controller.Details.Profile.ButtonEight);
 
                 return true;
             }

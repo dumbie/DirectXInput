@@ -177,12 +177,14 @@
                         <Image Name="img_ControllerPreview_ButtonStart" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="25" Height="25" Margin="278,0,196,70"/>
                         <Image Name="img_ControllerPreview_ButtonGuide" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="30" Height="30" Margin="235,0,235,75"/>
 
-                        <Image Name="img_ControllerPreview_ButtonOne" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="30" Height="30" Margin="-177,0,0,188"/>
-                        <Image Name="img_ControllerPreview_ButtonTwo" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="30" Height="30" Margin="-107,0,0,188"/>
-                        <Image Name="img_ControllerPreview_ButtonThree" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="30" Height="30" Margin="-37,0,0,188"/>
-                        <Image Name="img_ControllerPreview_ButtonFour" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="30" Height="30" Margin="33,0,0,188"/>
-                        <Image Name="img_ControllerPreview_ButtonFive" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="30" Height="30" Margin="103,0,0,188"/>
-                        <Image Name="img_ControllerPreview_ButtonSix" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="30" Height="30" Margin="173,0,0,188"/>
+                        <Image Name="img_ControllerPreview_ButtonOne" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="30" Height="30" Margin="-247,0,0,188"/>
+                        <Image Name="img_ControllerPreview_ButtonTwo" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="30" Height="30" Margin="-177,0,0,188"/>
+                        <Image Name="img_ControllerPreview_ButtonThree" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="30" Height="30" Margin="-107,0,0,188"/>
+                        <Image Name="img_ControllerPreview_ButtonFour" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="30" Height="30" Margin="-37,0,0,188"/>
+                        <Image Name="img_ControllerPreview_ButtonFive" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="30" Height="30" Margin="37,0,0,188"/>
+                        <Image Name="img_ControllerPreview_ButtonSix" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="30" Height="30" Margin="107,0,0,188"/>
+                        <Image Name="img_ControllerPreview_ButtonSeven" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="30" Height="30" Margin="177,0,0,188"/>
+                        <Image Name="img_ControllerPreview_ButtonEight" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="30" Height="30" Margin="247,0,0,188"/>
 
                         <Image Name="img_ControllerPreview_ButtonThumbLeft" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="42" Height="42" Margin="178,117,280,96"/>
                         <Image Name="img_ControllerPreview_ButtonThumbRight" Source="pack://siteoforigin:,,,/Assets/Default/Controller/ButtonPress.png" Width="42" Height="42" Margin="282,117,176,96"/>
@@ -223,12 +225,14 @@
                         <Button Name="btn_SetGuide" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonImageTransparentNoBorder}" Margin="235,0,235,75" Height="30" Width="30" ToolTipService.ToolTip="Button Guide"/>
                         <Button Name="btn_SetStart" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonImageTransparentNoBorder}" Margin="275,0,195,70" Width="30" Height="20" ToolTipService.ToolTip="Button Start"/>
 
-                        <Button Name="btn_SetOne" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonImageTransparentNoBorder}" Margin="-177,0,0,188" Width="30" Height="30" ToolTipService.ToolTip="Button One"/>
-                        <Button Name="btn_SetTwo" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonImageTransparentNoBorder}" Margin="-107,0,0,188" Width="30" Height="30" ToolTipService.ToolTip="Button Two"/>
-                        <Button Name="btn_SetThree" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonImageTransparentNoBorder}" Margin="-37,0,0,188" Width="30" Height="30" ToolTipService.ToolTip="Button Three"/>
-                        <Button Name="btn_SetFour" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonImageTransparentNoBorder}" Margin="33,0,0,188" Width="30" Height="30" ToolTipService.ToolTip="Button Four"/>
-                        <Button Name="btn_SetFive" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonImageTransparentNoBorder}" Margin="103,0,0,188" Width="30" Height="30" ToolTipService.ToolTip="Button Five"/>
-                        <Button Name="btn_SetSix" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonImageTransparentNoBorder}" Margin="173,0,0,188" Width="30" Height="30" ToolTipService.ToolTip="Button Six"/>
+                        <Button Name="btn_SetOne" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonImageTransparentNoBorder}" Margin="-247,0,0,188" Width="30" Height="30" ToolTipService.ToolTip="Button One"/>
+                        <Button Name="btn_SetTwo" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonImageTransparentNoBorder}" Margin="-177,0,0,188" Width="30" Height="30" ToolTipService.ToolTip="Button Two"/>
+                        <Button Name="btn_SetThree" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonImageTransparentNoBorder}" Margin="-107,0,0,188" Width="30" Height="30" ToolTipService.ToolTip="Button Three"/>
+                        <Button Name="btn_SetFour" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonImageTransparentNoBorder}" Margin="-37,0,0,188" Width="30" Height="30" ToolTipService.ToolTip="Button Four"/>
+                        <Button Name="btn_SetFive" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonImageTransparentNoBorder}" Margin="37,0,0,188" Width="30" Height="30" ToolTipService.ToolTip="Button Five"/>
+                        <Button Name="btn_SetSix" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonImageTransparentNoBorder}" Margin="107,0,0,188" Width="30" Height="30" ToolTipService.ToolTip="Button Six"/>
+                        <Button Name="btn_SetSeven" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonImageTransparentNoBorder}" Margin="177,0,0,188" Width="30" Height="30" ToolTipService.ToolTip="Button Seven"/>
+                        <Button Name="btn_SetEight" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonImageTransparentNoBorder}" Margin="247,0,0,188" Width="30" Height="30" ToolTipService.ToolTip="Button Eight"/>
 
                         <!-- Trigger Details -->
                         <TextBlock Name="textblock_Trigger_Left" Text="0" Width="50" TextAlignment="Center" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-455,-163,0,0"/>

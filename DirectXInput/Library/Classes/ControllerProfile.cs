@@ -245,6 +245,34 @@ namespace LibraryShared
                 }
             }
 
+            private ControllerButtons? PrivButtonSeven;
+            public ControllerButtons? ButtonSeven
+            {
+                get { return this.PrivButtonSeven; }
+                set
+                {
+                    if (this.PrivButtonSeven != value)
+                    {
+                        this.PrivButtonSeven = value;
+                        NotifyPropertyChanged();
+                    }
+                }
+            }
+
+            private ControllerButtons? PrivButtonEight;
+            public ControllerButtons? ButtonEight
+            {
+                get { return this.PrivButtonEight; }
+                set
+                {
+                    if (this.PrivButtonEight != value)
+                    {
+                        this.PrivButtonEight = value;
+                        NotifyPropertyChanged();
+                    }
+                }
+            }
+
             private ControllerButtons? PrivButtonThumbLeft;
             public ControllerButtons? ButtonThumbLeft
             {

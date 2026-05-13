@@ -71,6 +71,8 @@ namespace DirectXInput
                             else if (vMappingControllerButton == btn_SetFour) { controller.Details.Profile.ButtonFour = mappingButton; }
                             else if (vMappingControllerButton == btn_SetFive) { controller.Details.Profile.ButtonFive = mappingButton; }
                             else if (vMappingControllerButton == btn_SetSix) { controller.Details.Profile.ButtonSix = mappingButton; }
+                            else if (vMappingControllerButton == btn_SetSeven) { controller.Details.Profile.ButtonSeven = mappingButton; }
+                            else if (vMappingControllerButton == btn_SetEight) { controller.Details.Profile.ButtonEight = mappingButton; }
                         }
                         catch { }
                     });

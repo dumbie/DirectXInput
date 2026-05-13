@@ -418,6 +418,8 @@ namespace DirectXInput
                 btn_SetFour.PreviewMouseLeftButtonUp += Btn_MapController_Mouse_Set;
                 btn_SetFive.PreviewMouseLeftButtonUp += Btn_MapController_Mouse_Set;
                 btn_SetSix.PreviewMouseLeftButtonUp += Btn_MapController_Mouse_Set;
+                btn_SetSeven.PreviewMouseLeftButtonUp += Btn_MapController_Mouse_Set;
+                btn_SetEight.PreviewMouseLeftButtonUp += Btn_MapController_Mouse_Set;
                 button_SetController_Map.PreviewMouseLeftButtonUp += Btn_MapController_Mouse_Map;
                 button_SetController_Unmap.PreviewMouseLeftButtonUp += Btn_MapController_Mouse_Unmap;
                 button_SetController_Default.PreviewMouseLeftButtonUp += Btn_MapController_Mouse_Default;

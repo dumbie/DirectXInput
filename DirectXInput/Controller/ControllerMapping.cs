@@ -79,6 +79,8 @@ namespace DirectXInput
                 else if (vMappingControllerButton == btn_SetFour) { activeController.Details.Profile.ButtonFour = ControllerButtons.None; }
                 else if (vMappingControllerButton == btn_SetFive) { activeController.Details.Profile.ButtonFive = ControllerButtons.None; }
                 else if (vMappingControllerButton == btn_SetSix) { activeController.Details.Profile.ButtonSix = ControllerButtons.None; }
+                else if (vMappingControllerButton == btn_SetSeven) { activeController.Details.Profile.ButtonSeven = ControllerButtons.None; }
+                else if (vMappingControllerButton == btn_SetEight) { activeController.Details.Profile.ButtonEight = ControllerButtons.None; }
 
                 //Save changes to Json file
                 JsonSaveObject(activeController.Details.Profile, GenerateJsonNameControllerProfile(activeController.Details.Profile));
@@ -123,6 +125,8 @@ namespace DirectXInput
                 else if (vMappingControllerButton == btn_SetFour) { activeController.Details.Profile.ButtonFour = null; }
                 else if (vMappingControllerButton == btn_SetFive) { activeController.Details.Profile.ButtonFive = null; }
                 else if (vMappingControllerButton == btn_SetSix) { activeController.Details.Profile.ButtonSix = null; }
+                else if (vMappingControllerButton == btn_SetSeven) { activeController.Details.Profile.ButtonSeven = null; }
+                else if (vMappingControllerButton == btn_SetEight) { activeController.Details.Profile.ButtonEight = null; }
 
                 //Save changes to Json file
                 JsonSaveObject(activeController.Details.Profile, GenerateJsonNameControllerProfile(activeController.Details.Profile));

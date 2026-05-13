@@ -67,7 +67,7 @@ namespace DirectXInput
                     return false;
                 }
 
-                if (controllerStatus.InputCurrent.Buttons[(byte)ControllerButtons.One].PressedRaw || controllerStatus.InputCurrent.Buttons[(byte)ControllerButtons.Two].PressedRaw || controllerStatus.InputCurrent.Buttons[(byte)ControllerButtons.Three].PressedRaw || controllerStatus.InputCurrent.Buttons[(byte)ControllerButtons.Four].PressedRaw || controllerStatus.InputCurrent.Buttons[(byte)ControllerButtons.Five].PressedRaw || controllerStatus.InputCurrent.Buttons[(byte)ControllerButtons.Six].PressedRaw)
+                if (controllerStatus.InputCurrent.Buttons[(byte)ControllerButtons.One].PressedRaw || controllerStatus.InputCurrent.Buttons[(byte)ControllerButtons.Two].PressedRaw || controllerStatus.InputCurrent.Buttons[(byte)ControllerButtons.Three].PressedRaw || controllerStatus.InputCurrent.Buttons[(byte)ControllerButtons.Four].PressedRaw || controllerStatus.InputCurrent.Buttons[(byte)ControllerButtons.Five].PressedRaw || controllerStatus.InputCurrent.Buttons[(byte)ControllerButtons.Six].PressedRaw || controllerStatus.InputCurrent.Buttons[(byte)ControllerButtons.Seven].PressedRaw || controllerStatus.InputCurrent.Buttons[(byte)ControllerButtons.Eight].PressedRaw)
                 {
                     return false;
                 }
