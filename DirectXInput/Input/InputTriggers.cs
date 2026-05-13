@@ -28,6 +28,10 @@ namespace DirectXInput
                     else
                     {
                         triggerLeftBytes = controller.ControllerDataInput[headerOffset + (int)controller.SupportedCurrent.OffsetHeader.TriggerLeft];
+                        if (controller.SupportedCurrent.HasUnsignedTrigger)
+                        {
+                            triggerLeftBytes = (int)((triggerLeftBytes / 127F) * 255F);
+                        }
                     }
 
                     //Check the triggers deadzone
@@ -63,6 +67,10 @@ namespace DirectXInput
                     else
                     {
                         triggerRightBytes = controller.ControllerDataInput[headerOffset + (int)controller.SupportedCurrent.OffsetHeader.TriggerRight];
+                        if (controller.SupportedCurrent.HasUnsignedTrigger)
+                        {
+                            triggerRightBytes = (int)((triggerRightBytes / 127F) * 255F);
+                        }
                     }
 
                     //Check the triggers deadzone

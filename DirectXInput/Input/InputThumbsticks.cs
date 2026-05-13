@@ -57,8 +57,18 @@ namespace DirectXInput
                     {
                         ThumbLeftX = controller.ControllerDataInput[headerOffset + (int)controller.SupportedCurrent.OffsetHeader.ThumbLeftX];
                         ThumbLeftY = controller.ControllerDataInput[headerOffset + (int)controller.SupportedCurrent.OffsetHeader.ThumbLeftY];
-                        ThumbLeftX = (ThumbLeftX * 257) - (int)32767.5;
-                        ThumbLeftY = (int)32767.5 - (ThumbLeftY * 257);
+                        if (controller.SupportedCurrent.HasUnsignedThumbstick)
+                        {
+                            ThumbLeftX = ThumbLeftX <= 127 ? ThumbLeftX : ThumbLeftX - 256;
+                            ThumbLeftY = ThumbLeftY <= 127 ? ThumbLeftY : ThumbLeftY - 256;
+                            ThumbLeftX = (ThumbLeftX * 256) + (ThumbLeftX > 0 ? 256 : 0);
+                            ThumbLeftY = (ThumbLeftY * 256) + (ThumbLeftY > 0 ? 256 : 0);
+                        }
+                        else
+                        {
+                            ThumbLeftX = (ThumbLeftX * 257) - (int)32767.5;
+                            ThumbLeftY = (int)32767.5 - (ThumbLeftY * 257);
+                        }
                     }
 
                     //Raw right thumbs
@@ -66,8 +76,18 @@ namespace DirectXInput
                     {
                         ThumbRightX = controller.ControllerDataInput[headerOffset + (int)controller.SupportedCurrent.OffsetHeader.ThumbRightX];
                         ThumbRightY = controller.ControllerDataInput[headerOffset + (int)controller.SupportedCurrent.OffsetHeader.ThumbRightY];
-                        ThumbRightX = (ThumbRightX * 257) - (int)32767.5;
-                        ThumbRightY = (int)32767.5 - (ThumbRightY * 257);
+                        if (controller.SupportedCurrent.HasUnsignedThumbstick)
+                        {
+                            ThumbRightX = ThumbRightX <= 127 ? ThumbRightX : ThumbRightX - 256;
+                            ThumbRightY = ThumbRightY <= 127 ? ThumbRightY : ThumbRightY - 256;
+                            ThumbRightX = (ThumbRightX * 256) + (ThumbRightX > 0 ? 256 : 0);
+                            ThumbRightY = (ThumbRightY * 256) + (ThumbRightY > 0 ? 256 : 0);
+                        }
+                        else
+                        {
+                            ThumbRightX = (ThumbRightX * 257) - (int)32767.5;
+                            ThumbRightY = (int)32767.5 - (ThumbRightY * 257);
+                        }
                     }
                 }
 

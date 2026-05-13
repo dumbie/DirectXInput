@@ -2,10 +2,18 @@
   "CodeName": "SteamController2026",
   "ProductIDs": [ "0x1302", "0x1303", "0x1304" ],
   "VendorID": "0x28de",
+  "HasUnsignedThumbstick": true,
+  "HasUnsignedTrigger": true,
   "OffsetWired": 2,
   "OffsetWireless": 2,
   "OffsetHeader": {
-    "DPadLeft": 1
+    "DPadLeft": 1,
+    "ThumbLeftX": 9,
+    "ThumbLeftY": 11,
+    "ThumbRightX": 13,
+    "ThumbRightY": 15,
+    "TriggerLeft": 5,
+    "TriggerRight": 7
   },
   "OffsetDPad": {
     "DPadN": 32,

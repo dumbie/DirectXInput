@@ -431,6 +431,8 @@ namespace DirectXInput
                     //outputReport[2] = 0x01;
                     //outputReport[3] = 0x01;
                     //outputReport[6] = 0x02;
+                    //82 00 02 07 (Left test 12dB)
+                    //82 01 02 07 (Right test 12dB)
 
                     //Send data to the controller
                     bool bytesWritten = Controller.HidDevice.WriteBytesFile(outputReport);

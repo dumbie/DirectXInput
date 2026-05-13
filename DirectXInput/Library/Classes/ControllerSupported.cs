@@ -8,6 +8,8 @@
             public string[] ProductIDs { get; set; }
             public string VendorID { get; set; }
             public bool HasInputOnDemand { get; set; }
+            public bool HasUnsignedThumbstick { get; set; }
+            public bool HasUnsignedTrigger { get; set; }
             public bool HasRumbleMode { get; set; }
             public bool HasRumbleTrigger { get; set; }
             public bool HasLedStatus { get; set; }
