@@ -1,6 +1,6 @@
 {
   "CodeName": "SteamController2026",
-  "ProductIDs": [ "0x1302", "0x1303" ],
+  "ProductIDs": [ "0x1302", "0x1303", "0x1304" ],
   "VendorID": "0x28de",
   "OffsetWired": 2,
   "OffsetWireless": 2,
@@ -16,5 +16,87 @@
     "DPadSW": 20,
     "DPadW": 16,
     "DPadNW": 48
+  },
+  "OffsetButton": {
+    "A": {
+      "Group": 0,
+      "Offset": 0
+    },
+    "B": {
+      "Group": 0,
+      "Offset": 1
+    },
+    "X": {
+      "Group": 0,
+      "Offset": 2
+    },
+    "Y": {
+      "Group": 0,
+      "Offset": 3
+    },
+    "ShoulderLeft": {
+      "Group": 2,
+      "Offset": 3
+    },
+    "ShoulderRight": {
+      "Group": 1,
+      "Offset": 1
+    },
+    "TriggerLeft": {
+      "Group": 3,
+      "Offset": 3
+    },
+    "TriggerRight": {
+      "Group": 2,
+      "Offset": 7
+    },
+    "ThumbLeft": {
+      "Group": 1,
+      "Offset": 7
+    },
+    "ThumbRight": {
+      "Group": 0,
+      "Offset": 5
+    },
+    "Start": {
+      "Group": 0,
+      "Offset": 6
+    },
+    "Back": {
+      "Group": 1,
+      "Offset": 6
+    },
+    "Guide": {
+      "Group": 2,
+      "Offset": 0
+    },
+    "One": {
+      "Group": 0,
+      "Offset": 4
+    },
+    "Two": {
+      "Group": 2,
+      "Offset": 1
+    },
+    "Three": {
+      "Group": 2,
+      "Offset": 2
+    },
+    "Four": {
+      "Group": 0,
+      "Offset": 7
+    },
+    "Five": {
+      "Group": 1,
+      "Offset": 0
+    },
+    "Six": {
+      "Group": 3,
+      "Offset": 2
+    },
+    "Seven": {
+      "Group": 2,
+      "Offset": 6
+    }
   }
 }
