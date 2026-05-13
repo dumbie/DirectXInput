@@ -390,6 +390,52 @@ namespace DirectXInput
                     bool bytesWritten = Controller.HidDevice.WriteBytesFile(outputReport);
                     Debug.WriteLine("BlueRumb 8BitDoPro2: " + bytesWritten);
                 }
+                else if (Controller.SupportedCurrent.CodeName == "SteamController2026")
+                {
+                    //Convert rumble to little endian
+                    int rumbleLightEndian = (int)(controllerRumbleLight / 256F * 65535F);
+                    byte rumbleLightLow = (byte)(rumbleLightEndian & 0xFF);
+                    byte rumbleLightHigh = (byte)((rumbleLightEndian >> 8) & 0xFF);
+                    int rumbleHeavyEndian = (int)(controllerRumbleHeavy / 256F * 65535F);
+                    byte rumbleHeavyLow = (byte)(rumbleHeavyEndian & 0xFF);
+                    byte rumbleHeavyHigh = (byte)((rumbleHeavyEndian >> 8) & 0xFF);
+
+                    //Output Rumble - SteamController2026
+                    byte ID_OUT_REPORT_HAPTIC_RUMBLE = 0x80;
+                    byte[] outputReport = new byte[Controller.ControllerDataOutput.Length];
+                    outputReport[0] = ID_OUT_REPORT_HAPTIC_RUMBLE;
+                    outputReport[1] = 0x01; //Type
+                    outputReport[2] = 0x40; //Intensity dB
+                    outputReport[3] = 0x1F; //Intensity dB
+                    outputReport[4] = rumbleHeavyLow; //Left Speed
+                    outputReport[5] = rumbleHeavyHigh; //Left Speed
+                    outputReport[6] = 0xFF; //Left Gain
+                    outputReport[7] = rumbleLightLow; //Right Speed
+                    outputReport[8] = rumbleLightHigh; //Right Speed
+                    outputReport[9] = 0xFF; //Right Gain
+
+                    //Output Pulse - SteamController2026
+                    //byte ID_OUT_REPORT_HAPTIC_PULSE = 0x81;
+                    //byte[] outputReport = new byte[Controller.ControllerDataOutput.Length];
+                    //outputReport[0] = ID_OUT_REPORT_HAPTIC_PULSE;
+                    //outputReport[2] = 0x08; //Intensity
+                    //outputReport[3] = 0x20; //Intensity
+                    //outputReport[6] = 0x01;
+                    //81 00 90 01 00 00 01 00
+                    //81 00 08 20 00 00 01 00
+
+                    //Output Command - SteamController2026
+                    //byte ID_OUT_REPORT_HAPTIC_COMMAND = 0x82;
+                    //byte[] outputReport = new byte[Controller.ControllerDataOutput.Length];
+                    //outputReport[0] = ID_OUT_REPORT_HAPTIC_COMMAND;
+                    //outputReport[2] = 0x01;
+                    //outputReport[3] = 0x01;
+                    //outputReport[6] = 0x02;
+
+                    //Send data to the controller
+                    bool bytesWritten = Controller.HidDevice.WriteBytesFile(outputReport);
+                    Debug.WriteLine("Rumble: " + Controller.SupportedCurrent.CodeName + " / " + bytesWritten);
+                }
             }
             catch (Exception ex)
             {

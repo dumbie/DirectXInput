@@ -21,14 +21,14 @@ namespace DirectXInput
                         //Note: Lizard mode automatically renables every x seconds so loop is needed to keep it disabled
                         byte ID_SET_SETTINGS_VALUES = 0x87;
                         byte SETTING_LIZARD_MODE = 0x09;
-                        byte SETTING_LIZARD_OFF = 0x00;
+                        byte LIZARD_MODE_OFF = 0x00;
 
                         byte[] outputReport = new byte[Controller.ControllerDataOutput.Length];
                         outputReport[0] = 0x01;
                         outputReport[1] = ID_SET_SETTINGS_VALUES;
                         outputReport[2] = 0x03;
                         outputReport[3] = SETTING_LIZARD_MODE;
-                        outputReport[4] = SETTING_LIZARD_OFF;
+                        outputReport[4] = LIZARD_MODE_OFF;
 
                         //Send data to the controller
                         bool bytesWritten = Controller.HidDevice.SetFeature(outputReport);
