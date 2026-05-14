@@ -33,7 +33,8 @@
                 public int? ThumbRightZ { get; set; }
                 public int? TriggerLeft { get; set; }
                 public int? TriggerRight { get; set; }
-                public int? Touchpad { get; set; }
+                public int? TouchpadOne { get; set; }
+                public int? TouchpadTwo { get; set; }
                 public int? Gyroscope { get; set; }
                 public int? Accelerometer { get; set; }
                 public int? BatteryLevel { get; set; }

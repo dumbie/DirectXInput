@@ -33,6 +33,7 @@ namespace DirectXInput
         //Application Variables
         readonly public static bool vAdministratorPermission = new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
         public static AVSettingsConfig vSettings = new AVSettingsConfig("DirectXInput.exe.csettings");
+        public static Random vRandom = new Random();
 
         //Image Variables
         public static int vImageLoadSize = 120;
