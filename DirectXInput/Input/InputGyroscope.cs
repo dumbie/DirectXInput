@@ -38,6 +38,15 @@ namespace DirectXInput
                         controller.InputCurrent.GyroYaw = -(gyroGroup1 - 498.0F);
                         controller.InputCurrent.GyroRoll = 0;
                     }
+                    else if (controller.SupportedCurrent.CodeName == "SteamController2026")
+                    {
+                        short gyroGroup1 = (short)((ushort)(gyroByte1 << 8) | gyroByte0);
+                        short gyroGroup2 = (short)((ushort)(gyroByte3 << 8) | gyroByte2);
+                        short gyroGroup3 = (short)((ushort)(gyroByte5 << 8) | gyroByte4);
+                        controller.InputCurrent.GyroPitch = gyroGroup1 / 16.0f;
+                        controller.InputCurrent.GyroYaw = -(gyroGroup3 / 16.0f);
+                        controller.InputCurrent.GyroRoll = gyroGroup2 / 16.0f;
+                    }
                     else
                     {
                         short gyroGroup1 = (short)((ushort)(gyroByte1 << 8) | gyroByte0);

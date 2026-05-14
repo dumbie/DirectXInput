@@ -15,7 +15,9 @@
     "TriggerLeft": 5,
     "TriggerRight": 7,
     "TouchpadOne": 16,
-    "TouchpadTwo": 22
+    "TouchpadTwo": 22,
+    "Gyroscope": 38,
+    "Accelerometer": 32
   },
   "OffsetDPad": {
     "DPadN": 32,
