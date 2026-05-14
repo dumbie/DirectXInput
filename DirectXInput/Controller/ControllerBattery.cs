@@ -10,15 +10,65 @@ namespace DirectXInput
 {
     public partial class WindowMain
     {
-        //Read controller battery level
-        void ControllerReadBatteryLevel(ControllerStatus Controller)
+        //Read controller battery level from input data
+        void ControllerReadBatteryLevelInput(ControllerStatus controller)
         {
             try
             {
+                if (controller.SupportedCurrent.CodeName == "SteamController2026")
+                {
+                    //Bluetooth - SteamController2026
+                    int batteryLevelOffset = (int)controller.SupportedCurrent.OffsetHeader.BatteryLevel;
+                    byte batteryLevelReport = controller.ControllerDataInput[batteryLevelOffset]; //ucBatteryLevel
+                    int batteryStatusOffset = (int)controller.SupportedCurrent.OffsetHeader.BatteryStatus;
+                    byte batteryStatusReport = controller.ControllerDataInput[batteryStatusOffset]; //ucChargeState
+
+                    //Tritron EChargeState enums
+                    byte ChargeStateCharging = 2;
+                    byte ChargeStateChargingDone = 4;
+                    if (batteryStatusReport == ChargeStateCharging || batteryStatusReport == ChargeStateChargingDone)
+                    {
+                        controller.BatteryCurrent.BatteryPercentage = -1;
+                        controller.BatteryCurrent.BatteryStatus = BatteryStatus.Charging;
+                    }
+                    else
+                    {
+                        controller.BatteryCurrent.BatteryPercentage = batteryLevelReport;
+                        controller.BatteryCurrent.BatteryStatus = BatteryStatus.Normal;
+                    }
+                }
+                else
+                {
+                    //Unknown controller
+                    controller.BatteryCurrent.BatteryPercentage = -1;
+                    controller.BatteryCurrent.BatteryStatus = BatteryStatus.Unknown;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Failed to read battery level input: " + ex.Message);
+                controller.BatteryCurrent.BatteryPercentage = -1;
+                controller.BatteryCurrent.BatteryStatus = BatteryStatus.Unknown;
+            }
+        }
+
+        //Read controller battery level by polling
+        void ControllerReadBatteryLevelPoll(ControllerStatus Controller)
+        {
+            try
+            {
+                //Check if controller sends battery status input data separately
+                if (Controller.SupportedCurrent.HasSeparateBattery)
+                {
+                    //Debug.WriteLine("Controller sends battery status input data separately: " + Controller.NumberId);
+                    return;
+                }
+
                 //Check if controller is connected
                 if (!Controller.Connected())
                 {
                     //Debug.WriteLine("Controller is not connected skipping battery level check: " + Controller.NumberId);
+                    Controller.BatteryCurrent.BatteryPercentage = -1;
                     Controller.BatteryCurrent.BatteryStatus = BatteryStatus.Unknown;
                     return;
                 }
@@ -27,6 +77,7 @@ namespace DirectXInput
                 if (!Controller.ControllerDataRead)
                 {
                     //Debug.WriteLine("Controller has no data skipping battery level check: " + Controller.NumberId);
+                    Controller.BatteryCurrent.BatteryPercentage = -1;
                     Controller.BatteryCurrent.BatteryStatus = BatteryStatus.Unknown;
                     return;
                 }
@@ -110,12 +161,14 @@ namespace DirectXInput
                 else
                 {
                     //Unknown controller
+                    Controller.BatteryCurrent.BatteryPercentage = -1;
                     Controller.BatteryCurrent.BatteryStatus = BatteryStatus.Unknown;
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Failed to read the battery level: " + ex.Message);
+                Debug.WriteLine("Failed to read battery level poll: " + ex.Message);
+                Controller.BatteryCurrent.BatteryPercentage = -1;
                 Controller.BatteryCurrent.BatteryStatus = BatteryStatus.Unknown;
             }
         }

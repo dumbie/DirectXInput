@@ -45,12 +45,22 @@ namespace DirectXInput
                     }
                 }
 
-                //Validate controller input data
-                if (!InputValidateData(controller))
+                //Check controller input data type
+                ControllerInputType inputDataType = InputDataCheckType(controller);
+                if (inputDataType == ControllerInputType.Invalid)
                 {
                     controller.ReadFailureCount++;
-                    Debug.WriteLine("Invalid input data read from controller: " + controller.NumberId);
+                    Debug.WriteLine("Received invalid data from controller: " + controller.NumberId);
                     AVHighResDelay.Delay(0.1F);
+                    return;
+                }
+                else if (inputDataType == ControllerInputType.Status)
+                {
+                    //Debug.WriteLine("Received status data from controller: " + controller.NumberId);
+
+                    //Read controller battery level from input data
+                    ControllerReadBatteryLevelInput(controller);
+
                     return;
                 }
 

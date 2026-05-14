@@ -3,21 +3,45 @@ using System.Diagnostics;
 using System.Linq;
 using static LibraryShared.Classes;
 using static LibraryShared.CRC32;
+using static LibraryShared.Enums;
 
 namespace DirectXInput
 {
     partial class WindowMain
     {
-        //Validate controller input data
-        bool InputValidateData(ControllerStatus controllerStatus)
+        //Check controller input data type
+        ControllerInputType InputDataCheckType(ControllerStatus controllerStatus)
         {
             try
             {
-                if (controllerStatus.SupportedCurrent.CodeName == "NintendoSwitchPro")
+                //Debug.WriteLine(GenerateControllerDebugString(true, true));
+                if (controllerStatus.SupportedCurrent.CodeName == "SteamController2026")
+                {
+                    //Steam Controller report types
+                    //byte ID_TRITON_CONTROLLER_STATE = 0x42;
+                    byte ID_TRITON_BATTERY_STATUS = 0x43;
+                    //byte ID_TRITON_CONTROLLER_STATE_BLE = 0x45;
+                    //byte ID_TRITON_WIRELESS_STATUS_X = 0x46;
+                    //byte ID_TRITON_WIRELESS_STATUS = 0x79;
+
+                    //Check controller report mode
+                    byte check0 = controllerStatus.ControllerDataInput[0];
+
+                    //Return result
+                    if (check0 == ID_TRITON_BATTERY_STATUS)
+                    {
+                        return ControllerInputType.Status;
+                    }
+                    else
+                    {
+                        return ControllerInputType.Input;
+                    }
+                }
+                else if (controllerStatus.SupportedCurrent.CodeName == "NintendoSwitchPro")
                 {
                     //Check controller report mode
                     byte check0 = controllerStatus.ControllerDataInput[0];
-                    if (check0 != 0x30) { return false; }
+                    if (check0 != 0x30) { return ControllerInputType.Invalid; }
                 }
                 else if (controllerStatus.SupportedCurrent.CodeName == "SonyPS4DualShock")
                 {
@@ -34,14 +58,14 @@ namespace DirectXInput
                         byte check3 = controllerStatus.ControllerDataInput[checksumOffset + 3];
 
                         //Compare 8BitDo static hash
-                        if (check0 == 169 && check1 == 47 && check2 == 73 && check3 == 54) { return true; }
+                        if (check0 == 169 && check1 == 47 && check2 == 73 && check3 == 54) { return ControllerInputType.Input; }
 
                         //Compare computed CRC32 hash
                         byte[] checksumCompute = ComputeHashCRC32(0x8C2C830C, checksumInput, false);
-                        if (checksumCompute[0] != check0) { return false; }
-                        if (checksumCompute[1] != check1) { return false; }
-                        if (checksumCompute[2] != check2) { return false; }
-                        if (checksumCompute[3] != check3) { return false; }
+                        if (checksumCompute[0] != check0) { return ControllerInputType.Invalid; }
+                        if (checksumCompute[1] != check1) { return ControllerInputType.Invalid; }
+                        if (checksumCompute[2] != check2) { return ControllerInputType.Invalid; }
+                        if (checksumCompute[3] != check3) { return ControllerInputType.Invalid; }
                     }
                 }
                 else if (controllerStatus.SupportedCurrent.CodeName == "SonyPS5DualSense")
@@ -55,23 +79,24 @@ namespace DirectXInput
 
                         //Compare computed CRC32 hash
                         byte check0 = controllerStatus.ControllerDataInput[checksumOffset];
-                        if (checksumCompute[0] != check0) { return false; }
+                        if (checksumCompute[0] != check0) { return ControllerInputType.Invalid; }
                         byte check1 = controllerStatus.ControllerDataInput[checksumOffset + 1];
-                        if (checksumCompute[1] != check1) { return false; }
+                        if (checksumCompute[1] != check1) { return ControllerInputType.Invalid; }
                         byte check2 = controllerStatus.ControllerDataInput[checksumOffset + 2];
-                        if (checksumCompute[2] != check2) { return false; }
+                        if (checksumCompute[2] != check2) { return ControllerInputType.Invalid; }
                         byte check3 = controllerStatus.ControllerDataInput[checksumOffset + 3];
-                        if (checksumCompute[3] != check3) { return false; }
+                        if (checksumCompute[3] != check3) { return ControllerInputType.Invalid; }
                     }
                 }
 
                 //Return result
-                return true;
+                return ControllerInputType.Input;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Failed to validate read input data: " + ex.Message);
-                return false;
+                //Return result
+                Debug.WriteLine("Failed to check input data type: " + ex.Message);
+                return ControllerInputType.Invalid;
             }
         }
     }

@@ -4,6 +4,7 @@
   "VendorID": "0x28de",
   "HasUnsignedThumbstick": true,
   "HasUnsignedTrigger": true,
+  "HasSeparateBattery": true,
   "OffsetWired": 2,
   "OffsetWireless": 2,
   "OffsetHeader": {
@@ -17,7 +18,9 @@
     "TouchpadOne": 16,
     "TouchpadTwo": 22,
     "Gyroscope": 38,
-    "Accelerometer": 32
+    "Accelerometer": 32,
+    "BatteryLevel": 2,
+    "BatteryStatus": 1
   },
   "OffsetDPad": {
     "DPadN": 32,

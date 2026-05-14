@@ -66,11 +66,11 @@ namespace DirectXInput
             {
                 while (await TaskCheckLoop(vTask_ControllerBattery, 2000))
                 {
-                    //Read controller battery level
-                    ControllerReadBatteryLevel(vController0);
-                    ControllerReadBatteryLevel(vController1);
-                    ControllerReadBatteryLevel(vController2);
-                    ControllerReadBatteryLevel(vController3);
+                    //Read controller battery level by polling
+                    ControllerReadBatteryLevelPoll(vController0);
+                    ControllerReadBatteryLevelPoll(vController1);
+                    ControllerReadBatteryLevelPoll(vController2);
+                    ControllerReadBatteryLevelPoll(vController3);
 
                     //Check controller low battery level
                     CheckAllControllersLowBattery(false);
