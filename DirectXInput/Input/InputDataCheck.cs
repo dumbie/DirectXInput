@@ -18,23 +18,26 @@ namespace DirectXInput
                 if (controllerStatus.SupportedCurrent.CodeName == "SteamController2026")
                 {
                     //Steam Controller report types
-                    //byte ID_TRITON_CONTROLLER_STATE = 0x42;
+                    byte ID_TRITON_CONTROLLER_STATE = 0x42;
                     byte ID_TRITON_BATTERY_STATUS = 0x43;
-                    //byte ID_TRITON_CONTROLLER_STATE_BLE = 0x45;
+                    byte ID_TRITON_CONTROLLER_STATE_BLE = 0x45;
                     //byte ID_TRITON_WIRELESS_STATUS_X = 0x46;
                     //byte ID_TRITON_WIRELESS_STATUS = 0x79;
+                    //byte ID_TRITON_WIRELESS_UNKNOWN = 0x7B;
 
                     //Check controller report mode
                     byte check0 = controllerStatus.ControllerDataInput[0];
-
-                    //Return result
-                    if (check0 == ID_TRITON_BATTERY_STATUS)
+                    if (check0 == ID_TRITON_CONTROLLER_STATE || check0 == ID_TRITON_CONTROLLER_STATE_BLE)
+                    {
+                        return ControllerInputType.Input;
+                    }
+                    else if (check0 == ID_TRITON_BATTERY_STATUS)
                     {
                         return ControllerInputType.Status;
                     }
                     else
                     {
-                        return ControllerInputType.Input;
+                        return ControllerInputType.Unknown;
                     }
                 }
                 else if (controllerStatus.SupportedCurrent.CodeName == "NintendoSwitchPro")
@@ -45,10 +48,10 @@ namespace DirectXInput
                 }
                 else if (controllerStatus.SupportedCurrent.CodeName == "SonyPS4DualShock")
                 {
-                    if (controllerStatus.Details.Wireless)
+                    if (controllerStatus.Details.ConnectionType == ConnectionType.Bluetooth)
                     {
                         //Compute CRC32
-                        int checksumOffset = controllerStatus.SupportedCurrent.OffsetWireless + (int)controllerStatus.SupportedCurrent.OffsetHeader.Checksum;
+                        int checksumOffset = controllerStatus.SupportedCurrent.OffsetBluetooth + (int)controllerStatus.SupportedCurrent.OffsetHeader.Checksum;
                         byte[] checksumInput = controllerStatus.ControllerDataInput.Take(checksumOffset).ToArray();
 
                         //Read CRC32
@@ -70,10 +73,10 @@ namespace DirectXInput
                 }
                 else if (controllerStatus.SupportedCurrent.CodeName == "SonyPS5DualSense")
                 {
-                    if (controllerStatus.Details.Wireless)
+                    if (controllerStatus.Details.ConnectionType == ConnectionType.Bluetooth)
                     {
                         //Compute CRC32
-                        int checksumOffset = controllerStatus.SupportedCurrent.OffsetWireless + (int)controllerStatus.SupportedCurrent.OffsetHeader.Checksum;
+                        int checksumOffset = controllerStatus.SupportedCurrent.OffsetBluetooth + (int)controllerStatus.SupportedCurrent.OffsetHeader.Checksum;
                         byte[] checksumInput = controllerStatus.ControllerDataInput.Take(checksumOffset).ToArray();
                         byte[] checksumCompute = ComputeHashCRC32(0x8C2C830C, checksumInput, false);
 

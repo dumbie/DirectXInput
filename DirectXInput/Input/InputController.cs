@@ -63,6 +63,11 @@ namespace DirectXInput
 
                     return;
                 }
+                else if (inputDataType == ControllerInputType.Unknown)
+                {
+                    //Debug.WriteLine("Received unknown data from controller: " + controller.NumberId);
+                    return;
+                }
 
                 //Update read status
                 controller.ControllerDataRead = true;

@@ -10,9 +10,10 @@
 
         public enum ControllerInputType : int
         {
-            Invalid = 0,
-            Input = 1,
-            Status = 2
+            Unknown = 0,
+            Invalid = 1,
+            Input = 2,
+            Status = 3
         }
     }
 }
