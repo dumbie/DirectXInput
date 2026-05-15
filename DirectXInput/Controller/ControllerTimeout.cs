@@ -34,7 +34,7 @@ namespace DirectXInput
                         if (Controller.ReadFailureCount > Controller.ReadFailureCountTarget)
                         {
                             Debug.WriteLine("Controller " + Controller.NumberId + " has timed out: " + Controller.ReadFailureCount + " failures.");
-                            await StopController(Controller, "timeout", "Disconnected timed out controller " + Controller.NumberId);
+                            await ControllerStopClose(Controller, "timeout", "Disconnected timed out controller " + Controller.NumberId);
                             return true;
                         }
                     }
@@ -44,7 +44,7 @@ namespace DirectXInput
                         if (lastMs > Controller.TicksTimeoutTarget)
                         {
                             Debug.WriteLine("Controller " + Controller.NumberId + " has timed out: " + lastMs + "/" + Controller.TicksTimeoutTarget + "ms.");
-                            await StopController(Controller, "timeout", "Disconnected timed out controller " + Controller.NumberId);
+                            await ControllerStopClose(Controller, "timeout", "Disconnected timed out controller " + Controller.NumberId);
                             return true;
                         }
                     }

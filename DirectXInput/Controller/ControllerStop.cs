@@ -10,8 +10,8 @@ namespace DirectXInput
 {
     public partial class WindowMain
     {
-        //Stop the desired controller
-        private async Task<bool> StopController(ControllerStatus controller, string disconnectInfo, string controllerInfo)
+        //Stop and close desired controller
+        private async Task<bool> ControllerStopClose(ControllerStatus controller, string disconnectInfo, string controllerInfo)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace DirectXInput
                 controller.Disconnecting = true;
 
                 //Get controller display number
-                Debug.WriteLine("Disconnecting the controller " + controller.NumberId + ": " + controller.Details.DisplayName);
+                Debug.WriteLine("Disconnecting controller " + controller.NumberId + ": " + controller.Details.DisplayName);
                 string controllerNumberDisplay = controller.NumberDisplay().ToString();
 
                 //Show controller disconnect notification
@@ -98,65 +98,20 @@ namespace DirectXInput
                 await TaskStopLoop(controller.OutputVirtualTask, 1000);
                 await TaskStopLoop(controller.OutputGyroscopeTask, 1000);
 
-                //Disconnect virtual controller
+                //Disconnect controller virtual
                 if (vVirtualBusDevice != null)
                 {
                     //Disconnect virtual controller
                     await vVirtualBusDevice.VirtualUnplug(controller.NumberVirtual());
                 }
 
-                //Disconnect Hid or WinUsb device
-                if (controller.WinUsbDevice != null)
-                {
-                    //Dispose and stop connection with controller
-                    try
-                    {
-                        controller.WinUsbDevice.CloseDevice();
-                    }
-                    catch { }
-                }
-                else if (controller.HidDevice != null)
-                {
-                    //Disconnect controller from bluetooth
-                    if (controller.Details.Wireless)
-                    {
-                        try
-                        {
-                            controller.HidDevice.BluetoothDisconnect();
-                        }
-                        catch
-                        {
-                            Debug.WriteLine("Failed disconnecting device from bluetooth.");
-                        }
-                    }
+                //Disconnect controller wireless
+                ControllerDisconnectWireless(controller);
 
-                    //Signal Windows disconnection to prevent ghost controller
-                    if (controller.Details.Wireless)
-                    {
-                        try
-                        {
-                            //Fix might lock code because no timeout
-                            controller.HidDevice.GetFeature(0x02);
-                            controller.HidDevice.GetFeature(0x05);
-                        }
-                        catch
-                        {
-                            Debug.WriteLine("Failed signaling controller disconnection to Windows.");
-                        }
-                    }
+                //Close controller handle
+                ControllerHandleClose(controller);
 
-                    //Dispose and stop connection with the controller
-                    try
-                    {
-                        controller.HidDevice.CloseDevice();
-                    }
-                    catch
-                    {
-                        Debug.WriteLine("Failed disposing and stopping the controller.");
-                    }
-                }
-
-                //Reset the controller status
+                //Reset controller status to defaults
                 controller.ResetControllerStatus();
 
                 //Check if any controller is connected
@@ -185,10 +140,10 @@ namespace DirectXInput
         {
             try
             {
-                await StopController(vController0, "all", "Disconnected all controllers.");
-                await StopController(vController1, "all", "Disconnected all controllers.");
-                await StopController(vController2, "all", "Disconnected all controllers.");
-                await StopController(vController3, "all", "Disconnected all controllers.");
+                await ControllerStopClose(vController0, "all", "Disconnected all controllers.");
+                await ControllerStopClose(vController1, "all", "Disconnected all controllers.");
+                await ControllerStopClose(vController2, "all", "Disconnected all controllers.");
+                await ControllerStopClose(vController3, "all", "Disconnected all controllers.");
                 Debug.WriteLine("Stopped all the controllers DirectInput.");
             }
             catch

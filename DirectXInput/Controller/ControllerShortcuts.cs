@@ -288,7 +288,7 @@ namespace DirectXInput
                             if (CheckShortcutButton(controller.InputCurrent.Buttons, shortcutTrigger, false))
                             {
                                 Debug.WriteLine("Shortcut disconnect Bluetooth has been pressed.");
-                                await StopController(controller, "manually", string.Empty);
+                                await ControllerStopClose(controller, "manually", string.Empty);
 
                                 ControllerUsed = true;
                                 ControllerDelay750 = true;

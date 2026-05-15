@@ -35,15 +35,15 @@ namespace DirectXInput
                         string ProductHexId = "0x" + AVFunctions.StringShowAfter(EnumDevice.DevicePath, "pid_", 4).ToLower();
                         //Debug.WriteLine("Win controller found: " + VendorHexId + " / " + ProductHexId);
 
-                        //Validate the connected controller
-                        if (!ControllerValidate(VendorHexId, ProductHexId, EnumDevice.DevicePath, string.Empty)) { continue; }
+                        //Validate controller by identity
+                        if (!ControllerValidateIdentity(VendorHexId, ProductHexId, EnumDevice.DevicePath, string.Empty)) { continue; }
 
                         //Create new Json controller profile if it doesnt exist
                         IEnumerable<ControllerProfile> profileList = vDirectControllersProfile.Where(x => x.ProductID.ToLower() == ProductHexId && x.VendorID.ToLower() == VendorHexId);
                         if (!profileList.Any())
                         {
                             //Create controller profile
-                            ControllerProfile controllerProfile = new ControllerProfile()
+                            ControllerProfile controllerProfileNew = new ControllerProfile()
                             {
                                 ProductID = ProductHexId,
                                 VendorID = VendorHexId,
@@ -52,27 +52,27 @@ namespace DirectXInput
                             };
 
                             //Add profile to list
-                            vDirectControllersProfile.Add(controllerProfile);
+                            vDirectControllersProfile.Add(controllerProfileNew);
 
                             //Save profile to Json file
-                            JsonSaveObject(controllerProfile, GenerateJsonNameControllerProfile(controllerProfile));
+                            JsonSaveObject(controllerProfileNew, GenerateJsonNameControllerProfile(controllerProfileNew));
 
                             Debug.WriteLine("Added win profile: " + EnumDevice.Description);
                         }
-                        ControllerProfile profileController = profileList.FirstOrDefault();
+                        ControllerProfile controllerProfile = profileList.FirstOrDefault();
 
-                        ControllerDetails newController = new ControllerDetails()
+                        ControllerDetails controllerDetails = new ControllerDetails()
                         {
                             Type = ControllerType.WinUsbDevice,
-                            Profile = profileController,
+                            Profile = controllerProfile,
                             DisplayName = EnumDevice.Description,
                             DevicePath = EnumDevice.DevicePath,
                             DeviceInstanceId = EnumDevice.DeviceInstanceId,
-                            Wireless = EnumDevice.IsWireless
+                            IsBluetooth = EnumDevice.IsBluetooth
                         };
 
                         //Connect with the controller
-                        await ControllerConnect(newController);
+                        await ControllerConnect(controllerDetails);
                     }
                     catch { }
                 }
@@ -103,8 +103,8 @@ namespace DirectXInput
                         string ProductHexId = foundHidDevice.Attributes.ProductHexId.ToLower();
                         //Debug.WriteLine("Hid controller found: " + VendorHexId + " / " + ProductHexId);
 
-                        //Validate the connected controller
-                        if (!ControllerValidate(VendorHexId, ProductHexId, EnumDevice.DevicePath, foundHidDevice.Attributes.SerialNumber)) { continue; }
+                        //Validate controller by identity
+                        if (!ControllerValidateIdentity(VendorHexId, ProductHexId, EnumDevice.DevicePath, foundHidDevice.Attributes.SerialNumber)) { continue; }
 
                         //Get controller product information
                         string ProductNameString = foundHidDevice.Attributes.ProductName;
@@ -115,7 +115,7 @@ namespace DirectXInput
                         if (!profileList.Any())
                         {
                             //Create controller profile
-                            ControllerProfile controllerProfile = new ControllerProfile()
+                            ControllerProfile controllerProfileNew = new ControllerProfile()
                             {
                                 ProductID = ProductHexId,
                                 VendorID = VendorHexId,
@@ -124,27 +124,27 @@ namespace DirectXInput
                             };
 
                             //Add profile to list
-                            vDirectControllersProfile.Add(controllerProfile);
+                            vDirectControllersProfile.Add(controllerProfileNew);
 
                             //Save profile to Json file
-                            JsonSaveObject(controllerProfile, GenerateJsonNameControllerProfile(controllerProfile));
+                            JsonSaveObject(controllerProfileNew, GenerateJsonNameControllerProfile(controllerProfileNew));
 
                             Debug.WriteLine("Added hid profile: " + ProductNameString + " (" + VendorNameString + ")");
                         }
-                        ControllerProfile profileController = profileList.FirstOrDefault();
+                        ControllerProfile controllerProfile = profileList.FirstOrDefault();
 
-                        ControllerDetails newController = new ControllerDetails()
+                        ControllerDetails controllerDetails = new ControllerDetails()
                         {
                             Type = ControllerType.HidDevice,
-                            Profile = profileController,
+                            Profile = controllerProfile,
                             DisplayName = ProductNameString,
                             DevicePath = foundHidDevice.DevicePath,
                             DeviceInstanceId = foundHidDevice.DeviceInstanceId,
-                            Wireless = EnumDevice.IsWireless
+                            IsBluetooth = EnumDevice.IsBluetooth
                         };
 
                         //Connect with the controller
-                        await ControllerConnect(newController);
+                        await ControllerConnect(controllerDetails);
                     }
                     catch { }
                 }

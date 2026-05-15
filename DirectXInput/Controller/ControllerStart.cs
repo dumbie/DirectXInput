@@ -1,6 +1,5 @@
 ﻿using ArnoldVinkCode;
 using ArnoldVinkStyles;
-using LibraryUsb;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -14,180 +13,156 @@ namespace DirectXInput
 {
     public partial class WindowMain
     {
-        //Start Monitoring DirectInput Controllers
-        async Task<bool> StartControllerDirectInput(ControllerStatus Controller)
+        //Start and open desired controller
+        async Task<bool> ControllerStartOpen(ControllerStatus controllerStatus, ControllerDetails controllerDetails)
         {
             try
             {
-                //Check if controller is connected
-                if (!Controller.Connected())
+                //Set controller details
+                controllerStatus.Details = controllerDetails;
+
+                //Open selected controller
+                if (!ControllerHandleOpen(controllerStatus))
                 {
-                    Debug.WriteLine("DirectInput controller is not connected: " + Controller.Details.DisplayName);
+                    Debug.WriteLine("Failed starting and opening controller: " + controllerStatus.Details.DisplayName);
+
+                    //Close controller handle
+                    ControllerHandleClose(controllerStatus);
+
+                    //Reset controller status to defaults
+                    controllerStatus.ResetControllerStatus();
+
+                    //Return result
                     return false;
                 }
 
-                Debug.WriteLine("Initializing DirectInput for: " + Controller.Details.DisplayName);
+                //Set controller supported profile
+                controllerStatus.SupportedCurrent = vDirectControllersSupported.FirstOrDefault(x => x.ProductIDs.Any(z => z.ToLower() == controllerStatus.Details.Profile.ProductID.ToLower() && x.VendorID.ToLower() == controllerStatus.Details.Profile.VendorID.ToLower()));
+                if (controllerStatus.SupportedCurrent == null)
+                {
+                    Debug.WriteLine("Controller is missing supported profile: " + controllerStatus.Details.DisplayName + " / " + controllerStatus.Details.Profile.VendorID + " / " + controllerStatus.Details.Profile.ProductID);
+
+                    //Close controller handle
+                    ControllerHandleClose(controllerStatus);
+
+                    //Reset controller status to defaults
+                    controllerStatus.ResetControllerStatus();
+
+                    //Return result
+                    return false;
+                }
+
+                //Validate controller by status
+                if (!ControllerValidateStatus(controllerStatus, controllerDetails))
+                {
+                    Debug.WriteLine("Controller open status invalid: " + controllerStatus.Details.DisplayName);
+
+                    //Close controller handle
+                    ControllerHandleClose(controllerStatus);
+
+                    //Reset controller status to defaults
+                    controllerStatus.ResetControllerStatus();
+
+                    //Return result
+                    return false;
+                }
+
+                //Check and set controller serial number
+                ControllerReadSerialNumber(controllerStatus);
 
                 //Allow controller in HidHide
-                if (Controller.Details.Type == ControllerType.HidDevice)
+                if (controllerStatus.Details.Type == ControllerType.HidDevice)
                 {
-                    await vHidHideDevice.ListDeviceAdd(Controller.Details.DeviceInstanceId);
-                }
-
-                //Set controller interface information
-                string controllerNumberDisplay = Controller.NumberDisplay().ToString();
-
-                //Open the selected controller
-                if (!OpenController(Controller))
-                {
-                    Debug.WriteLine("Failed to initialize DirectInput for: " + Controller.Details.DisplayName);
-                    await StopController(Controller, "failed", "Controller " + controllerNumberDisplay + " is no longer connected or failed.");
-                    return false;
+                    await vHidHideDevice.ListDeviceAdd(controllerStatus.Details.DeviceInstanceId);
                 }
 
                 //Unplug and plugin virtual device
-                bool virtualUnplug = await vVirtualBusDevice.VirtualUnplug(Controller.NumberVirtual());
-                bool virtualPlugin = await vVirtualBusDevice.VirtualPlugin(Controller.NumberVirtual());
+                bool virtualUnplug = await vVirtualBusDevice.VirtualUnplug(controllerStatus.NumberVirtual());
+                bool virtualPlugin = await vVirtualBusDevice.VirtualPlugin(controllerStatus.NumberVirtual());
                 Debug.WriteLine("Virtual device plugin result: " + virtualUnplug + " / " + virtualPlugin);
 
+                //Set controller interface information
+                string controllerNumberDisplay = controllerStatus.NumberDisplay().ToString();
+
+                //Show controller connected notification
                 NotificationDetails notificationDetailsConnected = new NotificationDetails();
                 notificationDetailsConnected.Icon = "Controller";
                 notificationDetailsConnected.Text = "Connected (" + controllerNumberDisplay + ")";
-                notificationDetailsConnected.Color = Controller.Color;
+                notificationDetailsConnected.Color = controllerStatus.Color;
                 vWindowOverlay.Notification_Show_Status(notificationDetailsConnected);
-
                 AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
-                    txt_Controller_Information.Text = "Connected controller " + controllerNumberDisplay + ": " + Controller.Details.DisplayName;
+                    txt_Controller_Information.Text = "Connected controller " + controllerNumberDisplay + ": " + controllerStatus.Details.DisplayName;
                 });
 
                 //Update the controller interface settings
-                ControllerUpdateSettingsInterface(Controller);
-
-                //Update the controller last input time
-                long ticksSystem = GetSystemTicksMs();
-                Controller.TicksInputPrev = ticksSystem;
-                Controller.TicksInputLast = ticksSystem;
-
-                //Update the controller last active time
-                Controller.TicksActiveLast = ticksSystem;
-
-                //Set the controller supported profile
-                Controller.SupportedCurrent = vDirectControllersSupported.FirstOrDefault(x => x.ProductIDs.Any(z => z.ToLower() == Controller.Details.Profile.ProductID.ToLower() && x.VendorID.ToLower() == Controller.Details.Profile.VendorID.ToLower()));
-                if (Controller.SupportedCurrent == null)
-                {
-                    Debug.WriteLine("Unsupported controller detected, using default profile.");
-                    Controller.SupportedCurrent = new ControllerSupported();
-                }
+                ControllerUpdateSettingsInterface(controllerStatus);
 
                 //Initialize controller
-                ControllerInitialize(Controller);
+                ControllerInitialize(controllerStatus);
 
                 //Controller update led color
-                ControllerLedColor(Controller);
+                ControllerLedColor(controllerStatus);
+
+                //Update controller last input time
+                long ticksSystem = GetSystemTicksMs();
+                controllerStatus.TicksInputPrev = ticksSystem;
+                controllerStatus.TicksInputLast = ticksSystem;
+
+                //Update controller last active time
+                controllerStatus.TicksActiveLast = ticksSystem;
 
                 //Start input controller task loop
                 async Task TaskActionInputController()
                 {
                     try
                     {
-                        await LoopInputController(Controller);
+                        await LoopInputController(controllerStatus);
                     }
                     catch { }
                 }
-                AVActions.TaskStartLoop(TaskActionInputController, Controller.InputControllerTask);
+                AVActions.TaskStartLoop(TaskActionInputController, controllerStatus.InputControllerTask);
 
                 //Start output controller task loop
                 async Task TaskActionOutputController()
                 {
                     try
                     {
-                        await LoopOutputController(Controller);
+                        await LoopOutputController(controllerStatus);
                     }
                     catch { }
                 }
-                AVActions.TaskStartLoop(TaskActionOutputController, Controller.OutputControllerTask);
+                AVActions.TaskStartLoop(TaskActionOutputController, controllerStatus.OutputControllerTask);
 
                 //Start output virtual task loop
                 async Task TaskActionOutputVirtual()
                 {
                     try
                     {
-                        await LoopOutputVirtual(Controller);
+                        await LoopOutputVirtual(controllerStatus);
                     }
                     catch { }
                 }
-                AVActions.TaskStartLoop(TaskActionOutputVirtual, Controller.OutputVirtualTask);
+                AVActions.TaskStartLoop(TaskActionOutputVirtual, controllerStatus.OutputVirtualTask);
 
                 //Start output gyroscope task loop
                 async Task TaskActionOutputGyro()
                 {
                     try
                     {
-                        await LoopOutputGyro(Controller);
+                        await LoopOutputGyro(controllerStatus);
                     }
                     catch { }
                 }
-                AVActions.TaskStartLoop(TaskActionOutputGyro, Controller.OutputGyroscopeTask);
+                AVActions.TaskStartLoop(TaskActionOutputGyro, controllerStatus.OutputGyroscopeTask);
 
                 return true;
             }
-            catch
-            {
-                Debug.WriteLine("Failed initializing DirectInput for: " + Controller.Details.DisplayName);
-                return false;
-            }
-        }
-
-        //Open the desired controller
-        bool OpenController(ControllerStatus Controller)
-        {
-            try
-            {
-                //Find and connect to win controller
-                if (Controller.Details.Type == ControllerType.WinUsbDevice)
-                {
-                    Controller.WinUsbDevice = new WinUsbDevice(Controller.Details.DevicePath, Controller.Details.DeviceInstanceId, true, false);
-                    if (!Controller.WinUsbDevice.Connected)
-                    {
-                        Debug.WriteLine("Invalid winusb open device: " + Controller.Details.DisplayName);
-                        return false;
-                    }
-                    else
-                    {
-                        //Set default controller variables
-                        Controller.ControllerDataInput = new byte[Controller.WinUsbDevice.IntIn];
-                        Controller.ControllerDataOutput = new byte[Controller.WinUsbDevice.IntOut];
-
-                        Debug.WriteLine("Opened the winusb controller: " + Controller.Details.DisplayName);
-                        return true;
-                    }
-                }
-                //Find and connect to hid controller
-                else
-                {
-                    Controller.HidDevice = new HidDevice(Controller.Details.DevicePath, Controller.Details.DeviceInstanceId, true, false);
-                    if (!Controller.HidDevice.Connected)
-                    {
-                        Debug.WriteLine("Invalid hid open device: " + Controller.Details.DisplayName);
-                        return false;
-                    }
-                    else
-                    {
-                        //Set default controller variables
-                        Controller.ControllerDataInput = new byte[Controller.HidDevice.Capabilities.InputReportByteLength];
-                        Controller.ControllerDataOutput = new byte[Controller.HidDevice.Capabilities.OutputReportByteLength];
-
-                        Debug.WriteLine("Opened the hid controller: " + Controller.Details.DisplayName + ", exclusive: " + Controller.HidDevice.Exclusive);
-                        return true;
-                    }
-                }
-            }
             catch (Exception ex)
             {
-                Debug.WriteLine("Failed opening controller: " + ex.Message);
+                Debug.WriteLine("Failed starting and opening controller: " + controllerDetails.DisplayName + " / " + ex.Message);
+                return false;
             }
-            return false;
         }
     }
 }

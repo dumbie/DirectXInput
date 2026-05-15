@@ -1,7 +1,6 @@
 ﻿using ArnoldVinkStyles;
 using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -53,70 +52,25 @@ namespace DirectXInput
             catch { }
         }
 
-        //Validate the controller
-        bool ControllerValidate(string vendorHexId, string productHexId, string controllerPath, string serialNumber)
-        {
-            try
-            {
-                string vendorHexIdLower = vendorHexId.ToLower();
-                string productHexIdLower = productHexId.ToLower();
-
-                //Check if controller is already connected by serialnumber
-                //if (!string.IsNullOrWhiteSpace(serialNumber))
-                //{
-                //    //Fix add code that reads serial number from devices
-                //}
-
-                //Check if the controller is on user ignore list
-                foreach (ControllerIgnored ignoreCheck in vDirectControllersIgnored)
-                {
-                    string filterVendor = ignoreCheck.VendorID.ToLower();
-                    string[] filterProducts = ignoreCheck.ProductIDs.Select(x => x.ToLower()).ToArray();
-                    if (filterVendor == vendorHexIdLower && filterProducts.Any(productHexIdLower.Contains))
-                    {
-                        //Debug.WriteLine("Controller is on user ignore list: " + controllerPath);
-                        return false;
-                    }
-                }
-
-                //Check if the controller is on supported list
-                foreach (ControllerSupported supportedCheck in vDirectControllersSupported)
-                {
-                    string filterVendor = supportedCheck.VendorID.ToLower();
-                    string[] filterProducts = supportedCheck.ProductIDs.Select(x => x.ToLower()).ToArray();
-                    if (filterVendor == vendorHexIdLower && filterProducts.Any(productHexIdLower.Contains))
-                    {
-                        //Debug.WriteLine("Controller is on supported list: " + controllerPath);
-                        return true;
-                    }
-                }
-
-                //Debug.WriteLine("Unknown controller found: " + vendorHexIdLower + "/" + productHexIdLower);
-            }
-            catch { }
-            return false;
-        }
-
         //Connect with the controller
-        async Task ControllerConnect(ControllerDetails ConnectedController)
+        async Task ControllerConnect(ControllerDetails controllerDetails)
         {
             try
             {
                 //Check if the controller is already in use
                 bool ControllerInuse = false;
-                if (vController0.Connected() && vController0.Details.DevicePath == ConnectedController.DevicePath) { ControllerInuse = true; }
-                if (vController1.Connected() && vController1.Details.DevicePath == ConnectedController.DevicePath) { ControllerInuse = true; }
-                if (vController2.Connected() && vController2.Details.DevicePath == ConnectedController.DevicePath) { ControllerInuse = true; }
-                if (vController3.Connected() && vController3.Details.DevicePath == ConnectedController.DevicePath) { ControllerInuse = true; }
+                if (vController0.Connected() && vController0.Details.DevicePath == controllerDetails.DevicePath) { ControllerInuse = true; }
+                if (vController1.Connected() && vController1.Details.DevicePath == controllerDetails.DevicePath) { ControllerInuse = true; }
+                if (vController2.Connected() && vController2.Details.DevicePath == controllerDetails.DevicePath) { ControllerInuse = true; }
+                if (vController3.Connected() && vController3.Details.DevicePath == controllerDetails.DevicePath) { ControllerInuse = true; }
                 if (ControllerInuse) { return; }
 
-                Debug.WriteLine("Found a connected " + ConnectedController.Type + " controller to use: " + ConnectedController.DisplayName);
+                Debug.WriteLine("Found a connected " + controllerDetails.Type + " controller to use: " + controllerDetails.DisplayName);
 
                 //Connect the controller to available slot
                 if (!vController0.Connected())
                 {
-                    vController0.Details = ConnectedController;
-                    bool controllerStarted = await StartControllerDirectInput(vController0);
+                    bool controllerStarted = await ControllerStartOpen(vController0, controllerDetails);
                     if (controllerStarted)
                     {
                         AVDispatcherInvoke.DispatcherInvoke(delegate
@@ -129,8 +83,7 @@ namespace DirectXInput
                 }
                 else if (!vController1.Connected())
                 {
-                    vController1.Details = ConnectedController;
-                    bool controllerStarted = await StartControllerDirectInput(vController1);
+                    bool controllerStarted = await ControllerStartOpen(vController1, controllerDetails);
                     if (controllerStarted)
                     {
                         AVDispatcherInvoke.DispatcherInvoke(delegate
@@ -143,8 +96,7 @@ namespace DirectXInput
                 }
                 else if (!vController2.Connected())
                 {
-                    vController2.Details = ConnectedController;
-                    bool controllerStarted = await StartControllerDirectInput(vController2);
+                    bool controllerStarted = await ControllerStartOpen(vController2, controllerDetails);
                     if (controllerStarted)
                     {
                         AVDispatcherInvoke.DispatcherInvoke(delegate
@@ -157,8 +109,7 @@ namespace DirectXInput
                 }
                 else if (!vController3.Connected())
                 {
-                    vController3.Details = ConnectedController;
-                    bool controllerStarted = await StartControllerDirectInput(vController3);
+                    bool controllerStarted = await ControllerStartOpen(vController3, controllerDetails);
                     if (controllerStarted)
                     {
                         AVDispatcherInvoke.DispatcherInvoke(delegate
