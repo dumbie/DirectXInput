@@ -12,8 +12,8 @@ namespace DirectXInput
             {
                 if (controller.SupportedCurrent.OffsetHeader.Gyroscope != null)
                 {
-                    //Set controller header offset
-                    int headerOffset = controller.Details.Wireless ? controller.SupportedCurrent.OffsetWireless : controller.SupportedCurrent.OffsetWired;
+                    //Get controller header offset
+                    int headerOffset = controller.Details.ConnectionTypeOffset(controller.SupportedCurrent);
 
                     byte gyroByte0 = controller.ControllerDataInput[headerOffset + (int)controller.SupportedCurrent.OffsetHeader.Gyroscope];
                     byte gyroByte1 = controller.ControllerDataInput[headerOffset + (int)controller.SupportedCurrent.OffsetHeader.Gyroscope + 1];

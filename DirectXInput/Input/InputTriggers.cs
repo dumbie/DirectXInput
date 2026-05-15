@@ -11,8 +11,8 @@ namespace DirectXInput
         {
             try
             {
-                //Set controller header offset
-                int headerOffset = controller.Details.Wireless ? controller.SupportedCurrent.OffsetWireless : controller.SupportedCurrent.OffsetWired;
+                //Get controller header offset
+                int headerOffset = controller.Details.ConnectionTypeOffset(controller.SupportedCurrent);
 
                 //Read analog triggers
                 if (!controller.Details.Profile.UseButtonTriggers && controller.SupportedCurrent.OffsetHeader.TriggerLeft != null)

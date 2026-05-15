@@ -60,6 +60,7 @@ namespace DirectXInput
                 {
                     //Check if controller responds to features
                     byte ID_GET_DEVICE_INFO = 0xA1;
+                    //byte ID_DONGLE_GET_CONNECTED_SLOTS = 0xC4;
                     byte HEAD_FEATURE_REPORT = 0x01;
                     byte[] featureData = new byte[controller.ControllerDataOutput.Length];
                     featureData[0] = HEAD_FEATURE_REPORT;

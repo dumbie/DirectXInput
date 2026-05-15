@@ -87,8 +87,8 @@ namespace DirectXInput
                         }
                     }
 
-                    //Set controller header offset
-                    int headerOffset = controller.Details.Wireless ? controller.SupportedCurrent.OffsetWireless : controller.SupportedCurrent.OffsetWired;
+                    //Get controller header offset
+                    int headerOffset = controller.Details.ConnectionTypeOffset(controller.SupportedCurrent);
 
                     //Check if controller button is pressed
                     if ((controller.ControllerDataInput[headerOffset + (int)button.Group] & (1 << button.Offset)) != 0)

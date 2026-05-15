@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using static LibraryShared.Classes;
+using static LibraryShared.Enums;
 
 namespace DirectXInput
 {
@@ -21,7 +22,7 @@ namespace DirectXInput
                     bool bytesWritten = Controller.WinUsbDevice.WriteBytesTransfer(0x21, 0x09, 0x3F4, outputReport);
                     Debug.WriteLine("Initialized USB controller: SonyPS3DualShock or SonyPS3MoveNavigation: " + bytesWritten);
                 }
-                else if (Controller.SupportedCurrent.CodeName == "SonyPS5DualSense" && Controller.Details.Wireless)
+                else if (Controller.SupportedCurrent.CodeName == "SonyPS5DualSense" && Controller.Details.ConnectionType == ConnectionType.Bluetooth)
                 {
                     //Bluetooth Output - DualSense 5
                     byte[] outputReport = new byte[Controller.ControllerDataOutput.Length];

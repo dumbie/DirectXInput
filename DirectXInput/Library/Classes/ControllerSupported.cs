@@ -17,7 +17,8 @@
             public bool HasLedPlayer { get; set; }
             public bool HasLedMedia { get; set; }
             public int OffsetWired { get; set; }
-            public int OffsetWireless { get; set; }
+            public int OffsetWifi { get; set; }
+            public int OffsetBluetooth { get; set; }
             public ClassOffsetHeader OffsetHeader { get; set; } = new ClassOffsetHeader();
             public ClassOffsetDPad OffsetDPad { get; set; } = new ClassOffsetDPad();
             public ClassOffsetButton OffsetButton { get; set; } = new ClassOffsetButton();

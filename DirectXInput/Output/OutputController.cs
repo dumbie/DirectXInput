@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
+using static LibraryShared.Enums;
 
 namespace DirectXInput
 {
@@ -81,7 +82,7 @@ namespace DirectXInput
                 }
 
                 //Check which controller is connected
-                if (Controller.SupportedCurrent.CodeName == "MicrosoftXboxOneS" && Controller.Details.Wireless)
+                if (Controller.SupportedCurrent.CodeName == "MicrosoftXboxOneS" && Controller.Details.ConnectionType == ConnectionType.Bluetooth)
                 {
                     //Bluetooth Output - MicrosoftXboxOneS
                     byte[] outputReport = new byte[9];
@@ -99,7 +100,7 @@ namespace DirectXInput
                     bool bytesWritten = Controller.HidDevice.WriteBytesFile(outputReport);
                     Debug.WriteLine("BlueRumb MicrosoftXboxOneS: " + bytesWritten);
                 }
-                else if (Controller.SupportedCurrent.CodeName == "SonyPS5DualSense" && Controller.Details.Wireless)
+                else if (Controller.SupportedCurrent.CodeName == "SonyPS5DualSense" && Controller.Details.ConnectionType == ConnectionType.Bluetooth)
                 {
                     //Bluetooth Output - SonyPS5DualSense
                     byte[] outputReport = new byte[Controller.ControllerDataOutput.Length];
@@ -172,7 +173,7 @@ namespace DirectXInput
                     bool bytesWritten = Controller.HidDevice.WriteBytesFile(outputReport);
                     Debug.WriteLine("BlueRumb SonyPS5DualSense: " + bytesWritten);
                 }
-                else if (Controller.SupportedCurrent.CodeName == "SonyPS5DualSense" && !Controller.Details.Wireless)
+                else if (Controller.SupportedCurrent.CodeName == "SonyPS5DualSense" && Controller.Details.ConnectionType == ConnectionType.Wired)
                 {
                     //Wired Output - SonyPS5DualSense
                     byte[] outputReport = new byte[Controller.ControllerDataOutput.Length];
@@ -240,7 +241,7 @@ namespace DirectXInput
                     bool bytesWritten = Controller.HidDevice.WriteBytesFile(outputReport);
                     Debug.WriteLine("UsbRumb SonyPS5DualSense: " + bytesWritten);
                 }
-                else if (Controller.SupportedCurrent.CodeName == "SonyPS4DualShock" && Controller.Details.Wireless)
+                else if (Controller.SupportedCurrent.CodeName == "SonyPS4DualShock" && Controller.Details.ConnectionType == ConnectionType.Bluetooth)
                 {
                     //Bluetooth Output - SonyPS4DualShock
                     byte[] outputReport = new byte[Controller.ControllerDataOutput.Length];
@@ -263,7 +264,7 @@ namespace DirectXInput
                     bool bytesWritten = Controller.HidDevice.WriteBytesFile(outputReport);
                     Debug.WriteLine("BlueRumb SonyPS4DualShock: " + bytesWritten);
                 }
-                else if (Controller.SupportedCurrent.CodeName == "SonyPS4DualShock" && !Controller.Details.Wireless)
+                else if (Controller.SupportedCurrent.CodeName == "SonyPS4DualShock" && Controller.Details.ConnectionType == ConnectionType.Wired)
                 {
                     //Wired Output - SonyPS4DualShock
                     byte[] outputReport = new byte[Controller.ControllerDataOutput.Length];
@@ -359,7 +360,7 @@ namespace DirectXInput
                     bool bytesWritten = Controller.HidDevice.WriteBytesFile(outputReport);
                     Debug.WriteLine("Rumble NintendoSwitchPro: " + bytesWritten);
                 }
-                else if (Controller.SupportedCurrent.CodeName == "8BitDoPro2" && !Controller.Details.Wireless)
+                else if (Controller.SupportedCurrent.CodeName == "8BitDoPro2" && Controller.Details.ConnectionType == ConnectionType.Wired)
                 {
                     //Wired Output - 8BitDoPro2
                     byte[] outputReport = new byte[Controller.ControllerDataOutput.Length];
@@ -378,7 +379,7 @@ namespace DirectXInput
                     bool bytesWritten = Controller.HidDevice.WriteBytesFile(outputReport);
                     Debug.WriteLine("UsbRumb 8BitDoPro2: " + bytesWritten);
                 }
-                else if (Controller.SupportedCurrent.CodeName == "8BitDoPro2" && Controller.Details.Wireless)
+                else if (Controller.SupportedCurrent.CodeName == "8BitDoPro2" && Controller.Details.ConnectionType == ConnectionType.Bluetooth)
                 {
                     //Bluetooth Output - 8BitDoPro2
                     byte[] outputReport = new byte[Controller.ControllerDataOutput.Length];

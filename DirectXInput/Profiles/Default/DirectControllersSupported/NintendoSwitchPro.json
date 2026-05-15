@@ -3,7 +3,7 @@
   "ProductIDs": [ "0x2009" ],
   "VendorID": "0x057e",
   "OffsetWired": 1,
-  "OffsetWireless": 1,
+  "OffsetBluetooth": 1,
   "OffsetHeader": {
     "DPadLeft": 4,
     "ThumbLeftX": 5,

@@ -28,7 +28,7 @@ namespace DirectXInput
                         controllerStatus.ControllerDataInput = new byte[controllerStatus.WinUsbDevice.IntIn];
                         controllerStatus.ControllerDataOutput = new byte[controllerStatus.WinUsbDevice.IntOut];
 
-                        Debug.WriteLine("Opened winusb controller: " + controllerStatus.Details.DisplayName);
+                        Debug.WriteLine("Opened winusb controller: " + controllerStatus.Details.DisplayName + " / Path " + controllerStatus.Details.DevicePath);
                         return true;
                     }
                 }
@@ -47,7 +47,7 @@ namespace DirectXInput
                         controllerStatus.ControllerDataInput = new byte[controllerStatus.HidDevice.Capabilities.InputReportByteLength];
                         controllerStatus.ControllerDataOutput = new byte[controllerStatus.HidDevice.Capabilities.OutputReportByteLength];
 
-                        Debug.WriteLine("Opened hid controller: " + controllerStatus.Details.DisplayName + ", exclusive: " + controllerStatus.HidDevice.Exclusive);
+                        Debug.WriteLine("Opened hid controller: " + controllerStatus.Details.DisplayName + " / Exclusive " + controllerStatus.HidDevice.Exclusive + " / Path " + controllerStatus.Details.DevicePath);
                         return true;
                     }
                 }

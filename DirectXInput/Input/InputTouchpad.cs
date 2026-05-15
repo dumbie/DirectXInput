@@ -17,8 +17,8 @@ namespace DirectXInput
                 //Touchpad One
                 if (controller.SupportedCurrent.OffsetHeader.TouchpadOne != null)
                 {
-                    //Set controller header offset
-                    int headerOffset = controller.Details.Wireless ? controller.SupportedCurrent.OffsetWireless : controller.SupportedCurrent.OffsetWired;
+                    //Get controller header offset
+                    int headerOffset = controller.Details.ConnectionTypeOffset(controller.SupportedCurrent);
 
                     byte touchByte0 = controller.ControllerDataInput[headerOffset + (int)controller.SupportedCurrent.OffsetHeader.TouchpadOne];
                     byte touchByte1 = controller.ControllerDataInput[headerOffset + (int)controller.SupportedCurrent.OffsetHeader.TouchpadOne + 1];
@@ -65,8 +65,8 @@ namespace DirectXInput
                 //Touchpad Two
                 if (controller.SupportedCurrent.OffsetHeader.TouchpadTwo != null)
                 {
-                    //Set controller header offset
-                    int headerOffset = controller.Details.Wireless ? controller.SupportedCurrent.OffsetWireless : controller.SupportedCurrent.OffsetWired;
+                    //Get controller header offset
+                    int headerOffset = controller.Details.ConnectionTypeOffset(controller.SupportedCurrent);
 
                     byte touchByte0 = controller.ControllerDataInput[headerOffset + (int)controller.SupportedCurrent.OffsetHeader.TouchpadTwo];
                     byte touchByte1 = controller.ControllerDataInput[headerOffset + (int)controller.SupportedCurrent.OffsetHeader.TouchpadTwo + 1];

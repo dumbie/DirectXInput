@@ -5,6 +5,7 @@ using System.Windows;
 using static ArnoldVinkCode.AVClasses;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
+using static LibraryShared.Enums;
 
 namespace DirectXInput
 {
@@ -18,18 +19,10 @@ namespace DirectXInput
                 AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     //Set basic information
-                    textblock_LiveDebugInformation.Text = GenerateControllerDebugString(false);
+                    textblock_LiveDebugInformation.Text = GenerateControllerDebugString(false, (bool)cb_DebugShowHex.IsChecked);
 
-                    //Check controller header
-                    int controllerOffset = 0;
-                    if (controller.Details.Wireless)
-                    {
-                        controllerOffset = controller.SupportedCurrent.OffsetWireless;
-                    }
-                    else
-                    {
-                        controllerOffset = controller.SupportedCurrent.OffsetWired;
-                    }
+                    //Get controller header offset
+                    int headerOffset = controller.Details.ConnectionTypeOffset(controller.SupportedCurrent);
 
                     //Set controller input
                     listbox_LiveDebugInput.Visibility = Visibility.Visible;
@@ -38,13 +31,13 @@ namespace DirectXInput
                     for (int packetId = 0; packetId < controllerRawInput.Length; packetId++)
                     {
                         ProfileShared profileShared = new ProfileShared();
-                        if (packetId < controllerOffset)
+                        if (packetId < headerOffset)
                         {
                             profileShared.String1 = "H";
                         }
                         else
                         {
-                            profileShared.String1 = (packetId - controllerOffset).ToString();
+                            profileShared.String1 = (packetId - headerOffset).ToString();
                         }
 
                         if ((bool)cb_DebugShowHex.IsChecked)
@@ -103,7 +96,7 @@ namespace DirectXInput
                 ControllerStatus activeController = vActiveController();
                 if (activeController != null && activeController.ControllerDataInput != null)
                 {
-                    Clipboard.SetText(GenerateControllerDebugString(true));
+                    Clipboard.SetText(GenerateControllerDebugString(true, (bool)cb_DebugShowHex.IsChecked));
 
                     Debug.WriteLine("Controller debug information copied to clipboard.");
                     NotificationDetails notificationDetails = new NotificationDetails();
@@ -124,7 +117,7 @@ namespace DirectXInput
         }
 
         //Generate controller debug information string
-        string GenerateControllerDebugString(bool includeRawData)
+        string GenerateControllerDebugString(bool includeRawData, bool showHex)
         {
             try
             {
@@ -133,9 +126,13 @@ namespace DirectXInput
                 {
                     //Controller input details
                     string rawPackets = "(Out" + activeController.ControllerDataOutput.Length + "/In" + activeController.ControllerDataInput.Length + ")";
-                    if (activeController.Details.Wireless)
+                    if (activeController.Details.ConnectionType == ConnectionType.Wifi)
                     {
-                        rawPackets += "(OffHdWs" + activeController.SupportedCurrent.OffsetWireless + ")";
+                        rawPackets += "(OffHdWi" + activeController.SupportedCurrent.OffsetWifi + ")";
+                    }
+                    else if (activeController.Details.ConnectionType == ConnectionType.Bluetooth)
+                    {
+                        rawPackets += "(OffHdBt" + activeController.SupportedCurrent.OffsetBluetooth + ")";
                     }
                     else
                     {
@@ -146,21 +143,14 @@ namespace DirectXInput
                     //Controller input raw
                     if (includeRawData)
                     {
-                        int controllerOffset = 0;
-                        if (activeController.Details.Wireless)
-                        {
-                            controllerOffset = activeController.SupportedCurrent.OffsetWireless;
-                        }
-                        else
-                        {
-                            controllerOffset = activeController.SupportedCurrent.OffsetWired;
-                        }
+                        //Get controller header offset
+                        int headerOffset = activeController.Details.ConnectionTypeOffset(activeController.SupportedCurrent);
 
                         rawPackets += "\n";
                         for (int packetId = 0; packetId < activeController.ControllerDataInput.Length; packetId++)
                         {
                             string packetString = string.Empty;
-                            if ((bool)cb_DebugShowHex.IsChecked)
+                            if (showHex)
                             {
                                 packetString = activeController.ControllerDataInput[packetId].ToString("X2");
                             }
@@ -169,13 +159,13 @@ namespace DirectXInput
                                 packetString = activeController.ControllerDataInput[packetId].ToString();
                             }
 
-                            if (packetId < controllerOffset)
+                            if (packetId < headerOffset)
                             {
                                 rawPackets = rawPackets + "H/" + packetString + " ";
                             }
                             else
                             {
-                                rawPackets = rawPackets + (packetId - controllerOffset) + "/" + packetString + " ";
+                                rawPackets = rawPackets + (packetId - headerOffset) + "/" + packetString + " ";
                             }
                         }
                     }

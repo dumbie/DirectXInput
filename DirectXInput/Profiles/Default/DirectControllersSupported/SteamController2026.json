@@ -6,7 +6,8 @@
   "HasUnsignedTrigger": true,
   "HasSeparateBattery": true,
   "OffsetWired": 2,
-  "OffsetWireless": 2,
+  "OffsetWifi": 2,
+  "OffsetBluetooth": 2,
   "OffsetHeader": {
     "DPadLeft": 1,
     "ThumbLeftX": 9,

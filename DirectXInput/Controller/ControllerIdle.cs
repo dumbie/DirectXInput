@@ -3,6 +3,7 @@ using static ArnoldVinkCode.AVActions;
 using static ArnoldVinkCode.AVInputOutputClass;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
+using static LibraryShared.Enums;
 
 namespace DirectXInput
 {
@@ -28,14 +29,14 @@ namespace DirectXInput
             {
                 if (Controller.Connected() && Controller.ControllerDataInput != null && Controller.TicksActiveLast != 0)
                 {
-                    if (Controller.Details.Wireless)
+                    if (Controller.Details.ConnectionType == ConnectionType.Bluetooth || Controller.Details.ConnectionType == ConnectionType.Wifi)
                     {
                         long lastMs = GetSystemTicksMs() - Controller.TicksActiveLast;
                         int targetTimeMs = vSettings.Load("ControllerIdleDisconnectMin", typeof(int)) * 60000;
                         //Debug.WriteLine("Controller " + Controller.NumberId + " idle check: " + lastMs + "/" + targetTimeMs + "ms.");
                         if (targetTimeMs > 0 && lastMs > targetTimeMs)
                         {
-                            await StopController(Controller, "idle", "Disconnected idle controller " + Controller.NumberDisplay());
+                            await ControllerStopClose(Controller, "idle", "Disconnected idle controller " + Controller.NumberDisplay());
                             return true;
                         }
                     }

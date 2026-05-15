@@ -3,7 +3,7 @@
   "ProductIDs": [ "0x02e0-debug" ],
   "VendorID": "0x045e",
   "HasInputOnDemand": true,
-  "OffsetWireless": 1,
+  "OffsetBluetooth": 1,
   "OffsetHeader": {
     "DPadLeft": 12,
     "ThumbLeftX": 1,

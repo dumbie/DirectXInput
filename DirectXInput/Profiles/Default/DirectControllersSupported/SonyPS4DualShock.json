@@ -3,8 +3,8 @@
   "ProductIDs": [ "0x05c4", "0x09cc", "0x0ba0" ],
   "VendorID": "0x054c",
   "OffsetWired": 1,
-  "OffsetWireless": 3,
-  "HasLedStatus": true,
+  "OffsetBluetooth": 3,
+  "HasLedBrightness": true,
   "OffsetHeader": {
     "DPadLeft": 4,
     "ThumbLeftX": 0,

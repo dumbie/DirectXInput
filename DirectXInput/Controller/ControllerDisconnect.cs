@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using static LibraryShared.Classes;
+using static LibraryShared.Enums;
 
 namespace DirectXInput
 {
@@ -20,7 +21,7 @@ namespace DirectXInput
                     featureData[1] = ID_TURN_OFF_CONTROLLER;
                     controller.HidDevice.SetFeature(featureData);
                 }
-                else if (controller.Details.IsBluetooth)
+                else if (controller.Details.ConnectionType == ConnectionType.Bluetooth)
                 {
                     //Disconnect controller from bluetooth
                     controller.HidDevice.BluetoothDisconnect();

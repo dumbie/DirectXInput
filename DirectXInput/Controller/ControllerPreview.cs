@@ -70,7 +70,7 @@ namespace DirectXInput
                 AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     //Update name and type
-                    txt_ActiveControllerType.Text = Controller.Details.Wireless ? "Wireless" : "Wired";
+                    txt_ActiveControllerType.Text = Controller.Details.ConnectionTypeString();
                     txt_ActiveControllerName.Text = Controller.Details.DisplayName;
                     txt_ActiveControllerName.Foreground = new SolidColorBrush((Color)Controller.Color);
 

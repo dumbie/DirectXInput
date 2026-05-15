@@ -4,11 +4,11 @@
   "VendorID": "0x054c",
   "HasRumbleMode": true,
   "HasRumbleTrigger": true,
-  "HasLedStatus": true,
+  "HasLedBrightness": true,
   "HasLedPlayer": true,
   "HasLedMedia": true,
   "OffsetWired": 1,
-  "OffsetWireless": 2,
+  "OffsetBluetooth": 2,
   "OffsetHeader": {
     "DPadLeft": 7,
     "ThumbLeftX": 0,

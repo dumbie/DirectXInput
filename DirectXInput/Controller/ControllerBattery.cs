@@ -23,7 +23,7 @@ namespace DirectXInput
                     int batteryStatusOffset = (int)controller.SupportedCurrent.OffsetHeader.BatteryStatus;
                     byte batteryStatusReport = controller.ControllerDataInput[batteryStatusOffset]; //ucChargeState
 
-                    //Tritron EChargeState enums
+                    //Triton EChargeState enums
                     byte ChargeStateCharging = 2;
                     byte ChargeStateChargingDone = 4;
                     if (batteryStatusReport == ChargeStateCharging || batteryStatusReport == ChargeStateChargingDone)
@@ -83,16 +83,16 @@ namespace DirectXInput
                 }
 
                 //Check which controller is connected
-                if (!Controller.Details.Wireless)
+                if (Controller.Details.ConnectionType == ConnectionType.Wired)
                 {
                     Controller.BatteryCurrent.BatteryStatus = BatteryStatus.Charging;
                 }
                 else if (Controller.SupportedCurrent.CodeName == "SonyPS5DualSense")
                 {
                     //Bluetooth - SonyPS5DualSense
-                    int batteryLevelOffset = Controller.SupportedCurrent.OffsetWireless + (int)Controller.SupportedCurrent.OffsetHeader.BatteryLevel;
+                    int batteryLevelOffset = Controller.SupportedCurrent.OffsetBluetooth + (int)Controller.SupportedCurrent.OffsetHeader.BatteryLevel;
                     byte batteryLevelReport = Controller.ControllerDataInput[batteryLevelOffset];
-                    int batteryStatusOffset = Controller.SupportedCurrent.OffsetWireless + (int)Controller.SupportedCurrent.OffsetHeader.BatteryStatus;
+                    int batteryStatusOffset = Controller.SupportedCurrent.OffsetBluetooth + (int)Controller.SupportedCurrent.OffsetHeader.BatteryStatus;
                     byte batteryStatusReport = Controller.ControllerDataInput[batteryStatusOffset];
 
                     bool batteryCharging = batteryStatusReport != 0;
@@ -112,7 +112,7 @@ namespace DirectXInput
                 else if (Controller.SupportedCurrent.CodeName == "SonyPS4DualShock")
                 {
                     //Bluetooth - SonyPS4DualShock
-                    int batteryOffset = Controller.SupportedCurrent.OffsetWireless + (int)Controller.SupportedCurrent.OffsetHeader.BatteryLevel;
+                    int batteryOffset = Controller.SupportedCurrent.OffsetBluetooth + (int)Controller.SupportedCurrent.OffsetHeader.BatteryLevel;
                     byte batteryReport = Controller.ControllerDataInput[batteryOffset];
 
                     bool batteryCharging = TranslateByte_0x10(0, batteryReport) != 0;
@@ -132,7 +132,7 @@ namespace DirectXInput
                 else if (Controller.SupportedCurrent.CodeName == "NintendoSwitchPro")
                 {
                     //Bluetooth - NintendoSwitchPro
-                    int batteryOffset = Controller.SupportedCurrent.OffsetWireless + (int)Controller.SupportedCurrent.OffsetHeader.BatteryLevel;
+                    int batteryOffset = Controller.SupportedCurrent.OffsetBluetooth + (int)Controller.SupportedCurrent.OffsetHeader.BatteryLevel;
                     byte batteryReport = Controller.ControllerDataInput[batteryOffset];
 
                     bool batteryCharging = TranslateByte_0x10(0, batteryReport) != 0;
@@ -152,7 +152,7 @@ namespace DirectXInput
                 else if (Controller.SupportedCurrent.CodeName == "8BitDoPro2")
                 {
                     //Bluetooth - 8BitDoPro2
-                    int batteryOffset = Controller.SupportedCurrent.OffsetWireless + (int)Controller.SupportedCurrent.OffsetHeader.BatteryLevel;
+                    int batteryOffset = Controller.SupportedCurrent.OffsetBluetooth + (int)Controller.SupportedCurrent.OffsetHeader.BatteryLevel;
                     byte batteryReport = Controller.ControllerDataInput[batteryOffset];
 
                     Controller.BatteryCurrent.BatteryPercentage = batteryReport;

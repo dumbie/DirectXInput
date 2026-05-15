@@ -61,20 +61,26 @@ namespace DirectXInput
                         }
                         ControllerProfile controllerProfile = profileList.FirstOrDefault();
 
+                        //Get controller details
                         ControllerDetails controllerDetails = new ControllerDetails()
                         {
                             Type = ControllerType.WinUsbDevice,
                             Profile = controllerProfile,
                             DisplayName = EnumDevice.Description,
                             DevicePath = EnumDevice.DevicePath,
-                            DeviceInstanceId = EnumDevice.DeviceInstanceId,
-                            IsBluetooth = EnumDevice.IsBluetooth
+                            DeviceInstanceId = EnumDevice.DeviceInstanceId
                         };
+
+                        //Get controller connection type
+                        controllerDetails.ConnectionType = ControllerConnectionType(controllerDetails);
 
                         //Connect with the controller
                         await ControllerConnect(controllerDetails);
                     }
-                    catch { }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine("Failed adding new win controller: " + ex.Message);
+                    }
                 }
 
                 //Add Hid Usb Devices
@@ -133,20 +139,26 @@ namespace DirectXInput
                         }
                         ControllerProfile controllerProfile = profileList.FirstOrDefault();
 
+                        //Get controller details
                         ControllerDetails controllerDetails = new ControllerDetails()
                         {
                             Type = ControllerType.HidDevice,
                             Profile = controllerProfile,
                             DisplayName = ProductNameString,
                             DevicePath = foundHidDevice.DevicePath,
-                            DeviceInstanceId = foundHidDevice.DeviceInstanceId,
-                            IsBluetooth = EnumDevice.IsBluetooth
+                            DeviceInstanceId = foundHidDevice.DeviceInstanceId
                         };
+
+                        //Get controller connection type
+                        controllerDetails.ConnectionType = ControllerConnectionType(controllerDetails);
 
                         //Connect with the controller
                         await ControllerConnect(controllerDetails);
                     }
-                    catch { }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine("Failed adding new hid controller: " + ex.Message);
+                    }
                 }
             }
             catch (Exception ex)
