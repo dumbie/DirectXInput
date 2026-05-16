@@ -15,18 +15,12 @@ namespace LibraryUsb
         public HidDeviceAttributes Attributes;
         public HidDeviceCapabilities Capabilities;
 
-        public HidDevice(string devicePath, string deviceInstanceId, bool initialize, bool closeDevice)
+        public HidDevice(string devicePath, string deviceInstanceId, bool closeDevice)
         {
             try
             {
                 DevicePath = devicePath.ToLower();
                 DeviceInstanceId = deviceInstanceId.ToLower();
-
-                if (initialize)
-                {
-                    DisableDevice();
-                    EnableDevice();
-                }
 
                 if (OpenDevice())
                 {

@@ -13,7 +13,14 @@ namespace LibraryUsb
         {
             try
             {
-                Debug.WriteLine("Attempting to disconnect bluetooth device.");
+                //Check bluetooth device serial number
+                if (string.IsNullOrWhiteSpace(serialNumber))
+                {
+                    Debug.WriteLine("Empty bluetooth device serial number.");
+                    return false;
+                }
+
+                Debug.WriteLine("Attempting to disconnect bluetooth device: " + serialNumber);
 
                 //Get and parse the mac address
                 byte[] macAddressBytes = new byte[8];

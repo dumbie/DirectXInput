@@ -35,7 +35,7 @@ namespace DirectXInput
                 //Find and connect to hid controller
                 else
                 {
-                    controllerStatus.HidDevice = new HidDevice(controllerStatus.Details.DevicePath, controllerStatus.Details.DeviceInstanceId, true, false);
+                    controllerStatus.HidDevice = new HidDevice(controllerStatus.Details.DevicePath, controllerStatus.Details.DeviceInstanceId, false);
                     if (!controllerStatus.HidDevice.Connected)
                     {
                         Debug.WriteLine("Invalid hid open device: " + controllerStatus.Details.DisplayName);

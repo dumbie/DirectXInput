@@ -76,6 +76,11 @@ namespace DirectXInput
                     await vHidHideDevice.ListDeviceAdd(controllerStatus.Details.DeviceInstanceId);
                 }
 
+                //Disable and enable controller to make sure no other app is using it
+                controllerStatus.HidDevice.DisableDevice();
+                await Task.Delay(100);
+                controllerStatus.HidDevice.EnableDevice();
+
                 //Unplug and plugin virtual device
                 bool virtualUnplug = await vVirtualBusDevice.VirtualUnplug(controllerStatus.NumberVirtual());
                 bool virtualPlugin = await vVirtualBusDevice.VirtualPlugin(controllerStatus.NumberVirtual());

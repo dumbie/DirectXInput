@@ -79,7 +79,7 @@ namespace DirectXInput
                     }
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Debug.WriteLine("Failed to connect controller: " + ex.Message);
             }
@@ -88,7 +88,7 @@ namespace DirectXInput
         //Get controller connection type
         ConnectionType ControllerConnectionType(ControllerDetails controllerDetails)
         {
-            try 
+            try
             {
                 //Debug.WriteLine("Getting controller connection type for: " + controllerDetails.DisplayName + " / Vendor: " + controllerDetails.Profile.VendorID + " / Product: " + controllerDetails.Profile.ProductID);
 

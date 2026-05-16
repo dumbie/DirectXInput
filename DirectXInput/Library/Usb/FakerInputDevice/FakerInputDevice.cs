@@ -44,7 +44,7 @@ namespace LibraryUsb
                     try
                     {
                         //Read information from the device
-                        HidDevice foundHidDevice = new HidDevice(EnumDevice.DevicePath, EnumDevice.DeviceInstanceId, false, true);
+                        HidDevice foundHidDevice = new HidDevice(EnumDevice.DevicePath, EnumDevice.DeviceInstanceId, true);
 
                         //Check if device has attributes
                         if (foundHidDevice.Attributes == null) { continue; }
