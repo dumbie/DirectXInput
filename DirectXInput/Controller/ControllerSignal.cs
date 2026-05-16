@@ -75,6 +75,42 @@ namespace DirectXInput
                         //Update signal ticks
                         Controller.TicksSignalTwo = ticksSystem;
                     }
+
+                    //Steam Controller 2026 enable and disable gyroscope and accelerometer
+                    if (ticksSystem - Controller.TicksSignalThree > 500)
+                    {
+                        byte HEAD_FEATURE_REPORT = 0x01;
+                        byte ID_SET_SETTINGS_VALUES = 0x87;
+                        byte SETTING_IMU_MODE = 0x30;
+                        byte SETTING_GYRO_MODE_OFF = 0x00;
+                        byte SETTING_GYRO_MODE_SEND_RAW_ACCEL = 0x08;
+                        byte SETTING_GYRO_MODE_SEND_RAW_GYRO = 0x10;
+                        byte SETTING_GYRO_MODE_ON = (byte)(SETTING_GYRO_MODE_SEND_RAW_ACCEL | SETTING_GYRO_MODE_SEND_RAW_GYRO);
+                        bool controllerHandSensor = Controller.InputCurrent.HandSensorLeft || Controller.InputCurrent.HandSensorRight;
+
+                        byte[] outputReport = new byte[Controller.ControllerDataOutput.Length];
+                        outputReport[0] = HEAD_FEATURE_REPORT;
+                        outputReport[1] = ID_SET_SETTINGS_VALUES;
+                        outputReport[2] = 0x03;
+                        outputReport[3] = SETTING_IMU_MODE;
+                        if (controllerHandSensor)
+                        {
+                            outputReport[4] = SETTING_GYRO_MODE_ON;
+                            outputReport[5] = (byte)(SETTING_GYRO_MODE_ON >> 8);
+                        }
+                        else
+                        {
+                            outputReport[4] = SETTING_GYRO_MODE_OFF;
+                            outputReport[5] = (byte)(SETTING_GYRO_MODE_OFF >> 8);
+                        }
+
+                        //Send data to the controller
+                        bool bytesWritten = Controller.HidDevice.SetFeature(outputReport);
+                        //Debug.WriteLine((controllerHandSensor ? "Enabled" : "Disabled") + " gyroscope controller: " + Controller.SupportedCurrent.CodeName + " / " + bytesWritten);
+
+                        //Update signal ticks
+                        Controller.TicksSignalThree = ticksSystem;
+                    }
                 }
             }
             catch (Exception ex)

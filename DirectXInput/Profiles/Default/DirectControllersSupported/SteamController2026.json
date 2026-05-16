@@ -19,6 +19,7 @@
     "TriggerRight": 7,
     "TouchpadOne": 16,
     "TouchpadTwo": 22,
+    "HandSensor": 3,
     "Gyroscope": 38,
     "Accelerometer": 32,
     "BatteryLevel": 2,

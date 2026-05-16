@@ -38,6 +38,7 @@
                 public int? TriggerRight { get; set; }
                 public int? TouchpadOne { get; set; }
                 public int? TouchpadTwo { get; set; }
+                public int? HandSensor { get; set; }
                 public int? Gyroscope { get; set; }
                 public int? Accelerometer { get; set; }
                 public int? BatteryLevel { get; set; }

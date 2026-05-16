@@ -99,6 +99,9 @@ namespace DirectXInput
                 //Update Accelerometer
                 InputUpdateAccelerometer(controller);
 
+                //Update HandSensor
+                InputUpdateHandSensor(controller);
+
                 //Save controller button mapping
                 if (ControllerMappingSave(controller))
                 {

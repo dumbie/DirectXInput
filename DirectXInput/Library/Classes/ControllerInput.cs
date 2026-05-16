@@ -39,6 +39,10 @@ namespace LibraryShared
             public float AccelY = 0;
             public float AccelZ = 0;
 
+            //Raw HandSensor
+            public bool HandSensorLeft = false;
+            public bool HandSensorRight = false;
+
             //Raw Buttons
             public ControllerButtonDetails[] Buttons = Enumerable.Range(0, Enum.GetNames(typeof(ControllerButtons)).Length).Select(x => new ControllerButtonDetails()).ToArray();
         }
