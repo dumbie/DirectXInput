@@ -13,6 +13,7 @@ DirectXInput converts your connected game controller to a Xbox (XInput) controll
 - Control your system volume and media with your controller.
 - On screen keyboard and keypad for your controller.
 - Controller low battery notification and sound.
+- Forward gyro and touch input to DSU Cemuhook.
 - Sends controller input and status to CtrlUI.
 
 ## Supported Controllers 
@@ -21,12 +22,13 @@ DirectXInput converts your connected game controller to a Xbox (XInput) controll
 - Sony PlayStation 3 (Wired)
 - Sony PlayStation 4 DualShock
 - Sony PlayStation 5 DualSense
+- Steam Controller (2026)
 - Nintendo Switch Pro
 - 8BitDo Pro 2
 
 ## Unsupported Controllers
-- Microsoft Xbox controllers.
-- XInput controllers.
+- Microsoft Xbox controllers
+- XInput controllers
 
 ## Installation Instructions
 1) Extract the DirectXInput folder to any directory you want on your device.
@@ -34,24 +36,25 @@ DirectXInput converts your connected game controller to a Xbox (XInput) controll
 3) Run the Launcher executable and connect your game controller.
 
 ## Uninstallation Instructions
-1) Run the Driver Installer and click on "Uninstall drivers" and "Cleanup"
+1) Run the Driver Installer and click on "Uninstall drivers"
 2) Remove the extracted DirectXInput directory.
 
 ## Tips and tricks
 - Let DirectXInput automatically launch on Windows startup for easier alltime usage.
 - For more information and help open the "Help" window or tab in the application.
-
-## Known issues
-- Overlays may not always show up when you are in an exclusive fullscreen application.
+- Close DirectXInput when updating your controller firmware.
 
 ## Requirements
-- Microsoft .NET Core Runtime installed.
+- Microsoft .NET Desktop Runtime installed.
 - Microsoft Windows 11 64-bit or higher is required.
 - *¹ Requires ScreenCapy to be running.
 
 ## Special thanks
 - Benjamin Höglinger-Stelzer (Nefarius)
 - Travis Nickles (Ryochan7)
+
+## Known Issues
+You can find all known issues at https://issues.arnoldvink.com/?p=DirectXInput
 
 ## Support and bug reporting
 When you are walking into any problems or a bug you can go to my help page at https://help.arnoldvink.com so I can try to help you out and get everything working.
@@ -60,6 +63,9 @@ When you are walking into any problems or a bug you can go to my help page at ht
 If you appreciate my project and want to support me you can make a donation through https://donation.arnoldvink.com
 
 ## Changelog
+v2.6.0.0 (16-May-2026)
+- Added Steam Controller (2026) support.
+
 v2.2.0.0 (24-December-2024)
 - Added ScreenCapy support.
 
