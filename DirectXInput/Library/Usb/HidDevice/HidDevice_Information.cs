@@ -12,6 +12,26 @@ namespace LibraryUsb
 {
     public partial class HidDevice
     {
+        public byte[] GetFeature(ref byte[] featureBytes)
+        {
+            try
+            {
+                if (HidD_GetFeature(FileHandle.Get(), featureBytes, featureBytes.Length))
+                {
+                    return featureBytes;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Failed to get feature: " + ex.Message);
+                return null;
+            }
+        }
+
         public byte[] GetFeature(byte featureByte)
         {
             try
@@ -295,24 +315,6 @@ namespace LibraryUsb
                         return true;
                     }
                 }
-
-                ////Get serial number feature
-                //byte[] dataFeature = GetFeature(9); //SonyPS5DualSense
-                //if (dataFeature == null)
-                //{
-                //    dataFeature = GetFeature(18); //SonyPS4DualShock
-                //}
-                //if (dataFeature != null)
-                //{
-                //    string serialNumberFeature = dataFeature[6].ToString("X2") + dataFeature[5].ToString("X2") + dataFeature[4].ToString("X2") + dataFeature[3].ToString("X2") + dataFeature[2].ToString("X2") + dataFeature[1].ToString("X2");
-                //    if (!string.IsNullOrWhiteSpace(serialNumberFeature))
-                //    {
-                //        //Return result
-                //        Attributes.SerialNumber = serialNumberFeature.ToUpper();
-                //        //Debug.WriteLine("Got serial number feature: " + Attributes.SerialNumber);
-                //        return true;
-                //    }
-                //}
 
                 //Return result
                 Attributes.SerialNumber = string.Empty;

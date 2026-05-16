@@ -114,7 +114,7 @@ namespace DriverInstaller
                 //Close DirectXInput application
                 try
                 {
-                    AVProcess.Close_ProcessesByName("DirectXInput", true);
+                    AVProcess.Close_ProcessByName("DirectXInput", true);
                 }
                 catch { }
 
@@ -125,7 +125,7 @@ namespace DriverInstaller
                     {
                         try
                         {
-                            AVProcess.Close_ProcessesByName(closeTool.String1, true);
+                            AVProcess.Close_ProcessByName(closeTool.String1, true);
                         }
                         catch { }
                     }

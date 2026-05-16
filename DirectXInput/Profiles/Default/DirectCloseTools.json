@@ -3,6 +3,9 @@
     "String1": "Better DS3"
   },
   {
+    "String1": "DS3_Tool_Local"
+  },
+  {
     "String1": "ScpUser"
   },
   {
@@ -54,6 +57,12 @@
     "String1": "PSMoveServiceAdmin"
   },
   {
+    "String1": "MaxJoypadMonitor"
+  },
+  {
+    "String1": "MaxJoypadService"
+  },
+  {
     "String1": "mi-360"
   },
   {
@@ -90,6 +99,9 @@
     "String1": "XInputPlus"
   },
   {
+    "String1": "XInputPlusLoader"
+  },
+  {
     "String1": "ControllerCompanion"
   },
   {
@@ -111,6 +123,9 @@
     "String1": "8BitDo Ultimate Software"
   },
   {
+    "String1": "8BitDo Ultimate Software V2"
+  },
+  {
     "String1": "GamepadPhoenix"
   },
   {
@@ -120,6 +135,9 @@
     "String1": "SISR"
   },
   {
+    "String1": "GlosSITarget"
+  },
+  {
     "String1": "viiper"
   },
   {
@@ -127,5 +145,26 @@
   },
   {
     "String1": "WoJKeyboardAndMouseEmulator"
+  },
+  {
+    "String1": "DS4Mapper"
+  },
+  {
+    "String1": "DS4MapperTest"
+  },
+  {
+    "String1": "SteamlessController"
+  },
+  {
+    "String1": "SCXI"
+  },
+  {
+    "String1": "ControlShift"
+  },
+  {
+    "String1": "bridge-core"
+  },
+  {
+    "String1": "TurboXInput.App"
   }
 ]

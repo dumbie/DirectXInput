@@ -24,7 +24,7 @@ namespace DirectXInput
                 DsuMessageType messageType = (DsuMessageType)BitConverter.ToUInt32(incomingBytes, 16);
 
                 //Check gyro message type
-                if (messageType == DsuMessageType.DSUC_PadDataReq)
+                if (messageType == DsuMessageType.ControllerData)
                 {
                     //Get gyro controller id
                     byte controllerId = incomingBytes[21];
@@ -35,7 +35,7 @@ namespace DirectXInput
                     if (controllerId == 2) { vController2.GyroDsuClientEndPoint = endPoint; }
                     if (controllerId == 3) { vController3.GyroDsuClientEndPoint = endPoint; }
                 }
-                else if (messageType == DsuMessageType.DSUC_ListPorts)
+                else if (messageType == DsuMessageType.ControllerInfo)
                 {
                     //Send controller information to dsu client
                     await SendGyroInformation(endPoint, vController0);

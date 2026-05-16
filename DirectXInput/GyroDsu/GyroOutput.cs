@@ -38,7 +38,7 @@ namespace DirectXInput
                 sendBytes[7] = lengthBytes[1];
 
                 //Set message type
-                byte[] typeBytes = BitConverter.GetBytes((uint)DsuMessageType.DSUS_PortInfo);
+                byte[] typeBytes = BitConverter.GetBytes((uint)DsuMessageType.ControllerInfo);
                 sendBytes[16] = typeBytes[0];
                 sendBytes[17] = typeBytes[1];
                 sendBytes[18] = typeBytes[2];
@@ -104,7 +104,7 @@ namespace DirectXInput
                 sendBytes[7] = lengthBytes[1];
 
                 //Set message type
-                byte[] typeBytes = BitConverter.GetBytes((uint)DsuMessageType.DSUS_PadDataRsp);
+                byte[] typeBytes = BitConverter.GetBytes((uint)DsuMessageType.ControllerData);
                 sendBytes[16] = typeBytes[0];
                 sendBytes[17] = typeBytes[1];
                 sendBytes[18] = typeBytes[2];
@@ -184,7 +184,7 @@ namespace DirectXInput
                 sendBytes[7] = lengthBytes[1];
 
                 //Set message type
-                byte[] typeBytes = BitConverter.GetBytes((uint)DsuMessageType.DSUS_PadDataRsp);
+                byte[] typeBytes = BitConverter.GetBytes((uint)DsuMessageType.ControllerData);
                 sendBytes[16] = typeBytes[0];
                 sendBytes[17] = typeBytes[1];
                 sendBytes[18] = typeBytes[2];
@@ -326,21 +326,21 @@ namespace DirectXInput
                 sendBytes[54] = controller.InputCurrent.TriggerRight;
                 sendBytes[55] = controller.InputCurrent.TriggerLeft;
 
-                //Set touchpad 1
-                byte[] touch1XBytes = BitConverter.GetBytes(controller.InputCurrent.Touchpad1X);
-                byte[] touch1YBytes = BitConverter.GetBytes(controller.InputCurrent.Touchpad1Y);
-                sendBytes[56] = controller.InputCurrent.Touchpad1Active;
-                sendBytes[57] = controller.InputCurrent.Touchpad1Id;
+                //Set touchpad one
+                byte[] touch1XBytes = BitConverter.GetBytes(controller.InputCurrent.TouchpadOneX);
+                byte[] touch1YBytes = BitConverter.GetBytes(controller.InputCurrent.TouchpadOneY);
+                sendBytes[56] = controller.InputCurrent.TouchpadOneActive;
+                sendBytes[57] = controller.InputCurrent.TouchpadOneIdentifier;
                 sendBytes[58] = touch1XBytes[0];
                 sendBytes[59] = touch1XBytes[1];
                 sendBytes[60] = touch1YBytes[0];
                 sendBytes[61] = touch1YBytes[1];
 
-                //Set touchpad 2
-                byte[] touch2XBytes = BitConverter.GetBytes(controller.InputCurrent.Touchpad2X);
-                byte[] touch2YBytes = BitConverter.GetBytes(controller.InputCurrent.Touchpad2Y);
-                sendBytes[62] = controller.InputCurrent.Touchpad2Active;
-                sendBytes[63] = controller.InputCurrent.Touchpad2Id;
+                //Set touchpad two
+                byte[] touch2XBytes = BitConverter.GetBytes(controller.InputCurrent.TouchpadTwoX);
+                byte[] touch2YBytes = BitConverter.GetBytes(controller.InputCurrent.TouchpadTwoY);
+                sendBytes[62] = controller.InputCurrent.TouchpadTwoActive;
+                sendBytes[63] = controller.InputCurrent.TouchpadTwoIdentifier;
                 sendBytes[64] = touch2XBytes[0];
                 sendBytes[65] = touch2XBytes[1];
                 sendBytes[66] = touch2YBytes[0];

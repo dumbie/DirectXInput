@@ -16,7 +16,7 @@ namespace DriverInstaller
                 Debug.WriteLine("Welcome to application.");
 
                 //Setup application defaults
-                AVStartup.SetupDefaults(ProcessPriorityClasses.Normal, true);
+                AVStartup.SetupDefaults(ProcessPriorityClasses.Normal, true, false);
 
                 //Application update cleanup
                 await UpdateCleanup();

@@ -4,12 +4,11 @@
     {
         public enum DsuMessageType : uint
         {
-            DSUC_VersionReq = 0x100000,
-            DSUS_VersionRsp = 0x100000,
-            DSUC_ListPorts = 0x100001,
-            DSUS_PortInfo = 0x100001,
-            DSUC_PadDataReq = 0x100002,
-            DSUS_PadDataRsp = 0x100002
+            VersionInfo = 0x100000,
+            ControllerInfo = 0x100001,
+            ControllerData = 0x100002,
+            RumbleInfo = 0x110001,
+            RumbleData = 0x110002
         }
 
         public enum DsuState : byte
