@@ -5,6 +5,7 @@
   "HasRumbleMode": true,
   "HasRumbleTrigger": true,
   "HasLedBrightness": true,
+  "HasLedColor": true,
   "HasLedPlayer": true,
   "HasLedMedia": true,
   "OffsetWired": 1,

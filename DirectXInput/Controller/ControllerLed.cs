@@ -45,6 +45,7 @@ namespace DirectXInput
                 //Set controller led color
                 if (Controller.ColorLedBlink)
                 {
+                    Controller.ColorLedCurrentBrightness = 0;
                     Controller.ColorLedCurrentR = 0;
                     Controller.ColorLedCurrentG = 0;
                     Controller.ColorLedCurrentB = 0;
@@ -53,6 +54,7 @@ namespace DirectXInput
                 {
                     Color controllerColor = (Color)Controller.Color;
                     double controllerLedBrightness = Convert.ToDouble(Controller.Details.Profile.LedBrightness) / 100;
+                    Controller.ColorLedCurrentBrightness = Convert.ToByte(controllerLedBrightness * 255);
                     Controller.ColorLedCurrentR = Convert.ToByte(controllerColor.R * controllerLedBrightness);
                     Controller.ColorLedCurrentG = Convert.ToByte(controllerColor.G * controllerLedBrightness);
                     Controller.ColorLedCurrentB = Convert.ToByte(controllerColor.B * controllerLedBrightness);

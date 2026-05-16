@@ -37,14 +37,24 @@ namespace DirectXInput
                         stackpanel_TriggerRumbleSettings.Visibility = Visibility.Collapsed;
                     }
 
-                    //Check if controller supports led status
-                    if (Controller.SupportedCurrent.HasLedStatus)
+                    //Check if controller supports led brightness
+                    if (Controller.SupportedCurrent.HasLedBrightness)
                     {
-                        stackpanel_StatusLed.Visibility = Visibility.Visible;
+                        stackpanel_BrightnessLed.Visibility = Visibility.Visible;
                     }
                     else
                     {
-                        stackpanel_StatusLed.Visibility = Visibility.Collapsed;
+                        stackpanel_BrightnessLed.Visibility = Visibility.Collapsed;
+                    }
+
+                    //Check if controller supports led color
+                    if (Controller.SupportedCurrent.HasLedColor)
+                    {
+                        stackpanel_ColorLed.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        stackpanel_ColorLed.Visibility = Visibility.Collapsed;
                     }
 
                     //Check if controller supports led player

@@ -24,9 +24,11 @@ namespace LibraryShared
             //Color Status
             public Color? Color = null;
             public bool ColorLedBlink = false;
+            public byte ColorLedCurrentBrightness = 0;
             public byte ColorLedCurrentR = 0;
             public byte ColorLedCurrentG = 0;
             public byte ColorLedCurrentB = 0;
+            public byte ColorLedPreviousBrightness = 0;
             public byte ColorLedPreviousR = 0;
             public byte ColorLedPreviousG = 0;
             public byte ColorLedPreviousB = 0;
@@ -40,10 +42,17 @@ namespace LibraryShared
             public long TicksInputLast = 0;
             public long TicksInputPrev = 0;
             public long TicksActiveLast = 0;
-            public long TicksSignalLast = 0;
             public int TicksTimeoutTarget = 3000;
             public int ReadFailureCount = 0;
             public int ReadFailureCountTarget = 200;
+
+            //Signal Variables
+            public long TicksSignalOne = 0;
+            public long TicksSignalTwo = 0;
+            public long TicksSignalThree = 0;
+            public long TicksSignalFour = 0;
+            public long TicksSignalFive = 0;
+            public long TicksSignalSix = 0;
 
             //Controller Status
             public bool Disconnecting = false;
@@ -115,9 +124,11 @@ namespace LibraryShared
 
                     //Color Status
                     ColorLedBlink = false;
+                    ColorLedCurrentBrightness = 0;
                     ColorLedCurrentR = 0;
                     ColorLedCurrentG = 0;
                     ColorLedCurrentB = 0;
+                    ColorLedPreviousBrightness = 0;
                     ColorLedPreviousR = 0;
                     ColorLedPreviousG = 0;
                     ColorLedPreviousB = 0;
@@ -131,8 +142,15 @@ namespace LibraryShared
                     TicksInputPrev = 0;
                     TicksInputLast = 0;
                     TicksActiveLast = 0;
-                    TicksSignalLast = 0;
                     ReadFailureCount = 0;
+
+                    //Signal Variables
+                    TicksSignalOne = 0;
+                    TicksSignalTwo = 0;
+                    TicksSignalThree = 0;
+                    TicksSignalFour = 0;
+                    TicksSignalFive = 0;
+                    TicksSignalSix = 0;
 
                     //Controller Status
                     Disconnecting = false;

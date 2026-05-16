@@ -75,9 +75,6 @@ namespace DirectXInput
                 //Update read failure count
                 controller.ReadFailureCount = 0;
 
-                //Send signal to controller
-                ControllerSignal(controller);
-
                 //Update Identifiers
                 InputUpdateIdentifiers(controller);
 

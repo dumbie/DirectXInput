@@ -10,6 +10,7 @@ namespace DirectXInput
         public static AVTaskDetails vTask_ControllerDisconnect = new AVTaskDetails("vTask_ControllerDisconnect");
         public static AVTaskDetails vTask_ControllerLedColor = new AVTaskDetails("vTask_ControllerLedColor");
         public static AVTaskDetails vTask_ControllerBattery = new AVTaskDetails("vTask_ControllerBattery");
+        public static AVTaskDetails vTask_ControllerSignal = new AVTaskDetails("vTask_ControllerSignal");
         public static AVTaskDetails vTask_ControllerInformation = new AVTaskDetails("vTask_ControllerInformation");
 
         //Start all the background tasks
@@ -22,6 +23,7 @@ namespace DirectXInput
                 TaskStartLoop(vTaskLoop_ControllerDisconnect, vTask_ControllerDisconnect);
                 TaskStartLoop(vTaskLoop_ControllerLedColor, vTask_ControllerLedColor);
                 TaskStartLoop(vTaskLoop_ControllerBattery, vTask_ControllerBattery);
+                TaskStartLoop(vTaskLoop_ControllerSignal, vTask_ControllerSignal);
                 TaskStartLoop(vTaskLoop_ControllerInformation, vTask_ControllerInformation);
             }
             catch { }
@@ -37,6 +39,7 @@ namespace DirectXInput
                 await TaskStopLoop(vTask_ControllerDisconnect, 5000);
                 await TaskStopLoop(vTask_ControllerLedColor, 5000);
                 await TaskStopLoop(vTask_ControllerBattery, 5000);
+                await TaskStopLoop(vTask_ControllerSignal, 5000);
                 await TaskStopLoop(vTask_ControllerInformation, 5000);
             }
             catch { }

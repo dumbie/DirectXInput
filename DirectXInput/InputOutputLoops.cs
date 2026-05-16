@@ -40,15 +40,17 @@ namespace DirectXInput
                     try
                     {
                         //Check if output values have changed
+                        bool ledBrightnessChanged = controller.ColorLedCurrentBrightness == controller.ColorLedPreviousBrightness;
                         bool ledRChanged = controller.ColorLedCurrentR == controller.ColorLedPreviousR;
                         bool ledGChanged = controller.ColorLedCurrentG == controller.ColorLedPreviousG;
                         bool ledBChanged = controller.ColorLedCurrentB == controller.ColorLedPreviousB;
                         bool ledMuteChanged = vControllerMuteLedCurrent == vControllerMuteLedPrevious;
                         bool heavyRumbleChanged = controller.RumbleCurrentHeavy == controller.RumblePreviousHeavy;
                         bool lightRumbleChanged = controller.RumbleCurrentLight == controller.RumblePreviousLight;
-                        if ((ledRChanged && ledGChanged && ledBChanged && ledMuteChanged && heavyRumbleChanged && lightRumbleChanged) == false)
+                        if ((ledBrightnessChanged && ledRChanged && ledGChanged && ledBChanged && ledMuteChanged && heavyRumbleChanged && lightRumbleChanged) == false)
                         {
                             //Update the previous output values
+                            controller.ColorLedPreviousBrightness = controller.ColorLedCurrentBrightness;
                             controller.ColorLedPreviousR = controller.ColorLedCurrentR;
                             controller.ColorLedPreviousG = controller.ColorLedCurrentG;
                             controller.ColorLedPreviousB = controller.ColorLedCurrentB;

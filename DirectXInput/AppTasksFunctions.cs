@@ -10,7 +10,7 @@ namespace DirectXInput
         {
             try
             {
-                while (await TaskCheckLoop(vTask_UpdateWindowStatus, 500))
+                while (await TaskCheckLoop(vTask_UpdateWindowStatus, 1000))
                 {
                     UpdateWindowStatus();
                 }
@@ -74,6 +74,22 @@ namespace DirectXInput
 
                     //Check controller low battery level
                     CheckAllControllersLowBattery(false);
+                }
+            }
+            catch { }
+        }
+
+        async Task vTaskLoop_ControllerSignal()
+        {
+            try
+            {
+                while (await TaskCheckLoop(vTask_ControllerSignal, 1000))
+                {
+                    //Send signals to controller
+                    ControllerSignal(vController0);
+                    ControllerSignal(vController1);
+                    ControllerSignal(vController2);
+                    ControllerSignal(vController3);
                 }
             }
             catch { }

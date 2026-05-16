@@ -5,6 +5,7 @@
   "OffsetWired": 1,
   "OffsetBluetooth": 3,
   "HasLedBrightness": true,
+  "HasLedColor": true,
   "OffsetHeader": {
     "DPadLeft": 4,
     "ThumbLeftX": 0,
