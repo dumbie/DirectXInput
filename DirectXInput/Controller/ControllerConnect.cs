@@ -15,22 +15,23 @@ namespace DirectXInput
         {
             try
             {
-                //Check if the controller is already in use
-                bool ControllerInuse = false;
-                if (vController0.Connected() && vController0.Details.DevicePath == controllerDetails.DevicePath) { ControllerInuse = true; }
-                if (vController1.Connected() && vController1.Details.DevicePath == controllerDetails.DevicePath) { ControllerInuse = true; }
-                if (vController2.Connected() && vController2.Details.DevicePath == controllerDetails.DevicePath) { ControllerInuse = true; }
-                if (vController3.Connected() && vController3.Details.DevicePath == controllerDetails.DevicePath) { ControllerInuse = true; }
-                if (ControllerInuse) { return; }
+                //Check if controller is already in use
+                bool ControllerInUse = false;
+                if (vController0.Connected() && vController0.Details.DevicePath == controllerDetails.DevicePath) { ControllerInUse = true; }
+                if (vController1.Connected() && vController1.Details.DevicePath == controllerDetails.DevicePath) { ControllerInUse = true; }
+                if (vController2.Connected() && vController2.Details.DevicePath == controllerDetails.DevicePath) { ControllerInUse = true; }
+                if (vController3.Connected() && vController3.Details.DevicePath == controllerDetails.DevicePath) { ControllerInUse = true; }
+                if (ControllerInUse) { return; }
 
                 Debug.WriteLine("Found a connected " + controllerDetails.Type + " controller to use: " + controllerDetails.DisplayName);
 
-                //Connect the controller to available slot
+                //Connect controller to available slot
                 if (!vController0.Connected())
                 {
-                    bool controllerStarted = await ControllerStartOpen(vController0, controllerDetails);
-                    if (controllerStarted)
+                    ControllerStatus controllerStatusNew = await ControllerStartOpen(0, controllerDetails);
+                    if (controllerStatusNew != null)
                     {
+                        vController0 = controllerStatusNew;
                         AVDispatcherInvoke.DispatcherInvoke(delegate
                         {
                             image_Controller0.Source = vImagePreloadIconControllerAccent;
@@ -41,9 +42,10 @@ namespace DirectXInput
                 }
                 else if (!vController1.Connected())
                 {
-                    bool controllerStarted = await ControllerStartOpen(vController1, controllerDetails);
-                    if (controllerStarted)
+                    ControllerStatus controllerStatusNew = await ControllerStartOpen(1, controllerDetails);
+                    if (controllerStatusNew != null)
                     {
+                        vController1 = controllerStatusNew;
                         AVDispatcherInvoke.DispatcherInvoke(delegate
                         {
                             image_Controller1.Source = vImagePreloadIconControllerAccent;
@@ -54,9 +56,10 @@ namespace DirectXInput
                 }
                 else if (!vController2.Connected())
                 {
-                    bool controllerStarted = await ControllerStartOpen(vController2, controllerDetails);
-                    if (controllerStarted)
+                    ControllerStatus controllerStatusNew = await ControllerStartOpen(2, controllerDetails);
+                    if (controllerStatusNew != null)
                     {
+                        vController2 = controllerStatusNew;
                         AVDispatcherInvoke.DispatcherInvoke(delegate
                         {
                             image_Controller2.Source = vImagePreloadIconControllerAccent;
@@ -67,9 +70,10 @@ namespace DirectXInput
                 }
                 else if (!vController3.Connected())
                 {
-                    bool controllerStarted = await ControllerStartOpen(vController3, controllerDetails);
-                    if (controllerStarted)
+                    ControllerStatus controllerStatusNew = await ControllerStartOpen(3, controllerDetails);
+                    if (controllerStatusNew != null)
                     {
+                        vController3 = controllerStatusNew;
                         AVDispatcherInvoke.DispatcherInvoke(delegate
                         {
                             image_Controller3.Source = vImagePreloadIconControllerAccent;

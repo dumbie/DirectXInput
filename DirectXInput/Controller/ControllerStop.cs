@@ -47,7 +47,7 @@ namespace DirectXInput
                 {
                     notificationDetails.Text = "Disconnected " + disconnectInfo + " (" + controllerNumberDisplay + ")";
                 }
-                notificationDetails.Color = controller.Color;
+                notificationDetails.Color = ControllerLedColorGet(controller.NumberId);
                 vWindowOverlay.Notification_Show_Status(notificationDetails);
 
                 //Update user interface controller status
@@ -112,10 +112,10 @@ namespace DirectXInput
                 ControllerHandleClose(controller);
 
                 //Reset controller status to defaults
-                controller.ResetControllerStatus();
+                ControllerResetStatus(controller.NumberId);
 
                 //Check if any controller is connected
-                if (!vControllerAnyConnected())
+                if (!ControllerAnyConnected())
                 {
                     //Close open popups
                     if (vSettings.Load("KeyboardCloseNoController", typeof(bool)))
@@ -125,17 +125,18 @@ namespace DirectXInput
                     }
                 }
 
-                Debug.WriteLine("Successfully stopped DirectInput controller " + controller.NumberId);
+                //Return result
+                Debug.WriteLine("Successfully stopped DirectInput controller: " + controller.NumberId);
                 return true;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Failed stopping the controller DirectInput " + controller.NumberId + ": " + ex.Message);
+                Debug.WriteLine("Failed stopping DirectInput controller: " + controller.NumberId + ": " + ex.Message);
                 return false;
             }
         }
 
-        //Stop all the controllers
+        //Stop and close all controllers
         async Task StopAllControllers()
         {
             try
@@ -144,11 +145,11 @@ namespace DirectXInput
                 await ControllerStopClose(vController1, "all", "Disconnected all controllers.");
                 await ControllerStopClose(vController2, "all", "Disconnected all controllers.");
                 await ControllerStopClose(vController3, "all", "Disconnected all controllers.");
-                Debug.WriteLine("Stopped all the controllers DirectInput.");
+                Debug.WriteLine("Stopped all DirectInput controllers.");
             }
-            catch
+            catch (Exception ex)
             {
-                Debug.WriteLine("Failed stopping all controller DirectInput.");
+                Debug.WriteLine("Failed stopping all DirectInput controllers: " + ex.Message);
             }
         }
     }

@@ -34,22 +34,22 @@ namespace DirectXInput
                 string ControllerColor0 = vSettings.Load("ControllerColor0", typeof(string));
                 SolidColorBrush ControllerColor0Brush = new BrushConverter().ConvertFrom(ControllerColor0) as SolidColorBrush;
                 colorpicker_Controller0.Background = ControllerColor0Brush;
-                vController0.Color = ControllerColor0Brush.Color;
+                vControllerColor0 = ControllerColor0Brush.Color;
 
                 string ControllerColor1 = vSettings.Load("ControllerColor1", typeof(string));
                 SolidColorBrush ControllerColor1Brush = new BrushConverter().ConvertFrom(ControllerColor1) as SolidColorBrush;
                 colorpicker_Controller1.Background = ControllerColor1Brush;
-                vController1.Color = ControllerColor1Brush.Color;
+                vControllerColor1 = ControllerColor1Brush.Color;
 
                 string ControllerColor2 = vSettings.Load("ControllerColor2", typeof(string));
                 SolidColorBrush ControllerColor2Brush = new BrushConverter().ConvertFrom(ControllerColor2) as SolidColorBrush;
                 colorpicker_Controller2.Background = ControllerColor2Brush;
-                vController2.Color = ControllerColor2Brush.Color;
+                vControllerColor2 = ControllerColor2Brush.Color;
 
                 string ControllerColor3 = vSettings.Load("ControllerColor3", typeof(string));
                 SolidColorBrush ControllerColor3Brush = new BrushConverter().ConvertFrom(ControllerColor3) as SolidColorBrush;
                 colorpicker_Controller3.Background = ControllerColor3Brush;
-                vController3.Color = ControllerColor3Brush.Color;
+                vControllerColor3 = ControllerColor3Brush.Color;
 
                 //Load launch settings
                 cb_SettingsLaunchCtrlUI.IsChecked = vSettings.Load("LaunchCtrlUI", typeof(bool));

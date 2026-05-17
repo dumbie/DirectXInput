@@ -1,5 +1,4 @@
 ﻿using LibraryUsb;
-using System.Diagnostics;
 using System.Windows.Media;
 using static ArnoldVinkCode.ArnoldVinkSockets;
 using static ArnoldVinkCode.AVActions;
@@ -106,89 +105,6 @@ namespace LibraryShared
             public ControllerStatus(int numberId)
             {
                 NumberId = numberId;
-            }
-
-            //Reset controller status to defaults
-            public void ResetControllerStatus()
-            {
-                try
-                {
-                    Debug.WriteLine("Reset the controller status for controller: " + NumberId);
-
-                    //Controller Basics
-                    NumberOutput = -1;
-                    Activated = false;
-
-                    //Controller Details
-                    Details = null;
-
-                    //Color Status
-                    ColorLedBlink = false;
-                    ColorLedCurrentBrightness = 0;
-                    ColorLedCurrentR = 0;
-                    ColorLedCurrentG = 0;
-                    ColorLedCurrentB = 0;
-                    ColorLedPreviousBrightness = 0;
-                    ColorLedPreviousR = 0;
-                    ColorLedPreviousG = 0;
-                    ColorLedPreviousB = 0;
-
-                    //Battery Status
-                    BatteryCurrent = new ControllerBattery();
-                    BatteryPrevious = new ControllerBattery();
-
-                    //Timeout Variables
-                    TimeoutIgnore = false;
-                    TicksInputPrev = 0;
-                    TicksInputLast = 0;
-                    TicksActiveLast = 0;
-                    ReadFailureCount = 0;
-
-                    //Signal Variables
-                    TicksSignalOne = 0;
-                    TicksSignalTwo = 0;
-                    TicksSignalThree = 0;
-                    TicksSignalFour = 0;
-                    TicksSignalFive = 0;
-                    TicksSignalSix = 0;
-
-                    //Controller Status
-                    Disconnecting = false;
-
-                    //Controller Tasks
-                    InputControllerTask = new AVTaskDetails("InputControllerTask");
-                    OutputControllerTask = new AVTaskDetails("OutputControllerTask");
-                    OutputVirtualTask = new AVTaskDetails("OutputVirtualTask");
-                    OutputGyroscopeTask = new AVTaskDetails("OutputGyroscopeTask");
-
-                    //WinUsb Device Variables
-                    WinUsbDevice = null;
-
-                    //Hid Device Variables
-                    HidDevice = null;
-
-                    //Gyro Dsu Client Variables
-                    GyroDsuClientPacketNumber = 0;
-                    GyroDsuClientEndPoint = null;
-
-                    //Device In and Output
-                    ControllerDataRead = false;
-                    ControllerDataInput = null;
-                    ControllerDataOutput = null;
-                    VirtualDataInput = new byte[(int)VigemBusDevice.ByteArraySizes.Input];
-                    VirtualDataOutput = new byte[(int)VigemBusDevice.ByteArraySizes.Output];
-                    RumbleCurrentHeavy = 0;
-                    RumbleCurrentLight = 0;
-                    RumblePreviousHeavy = 0;
-                    RumblePreviousLight = 0;
-
-                    //Controller Input
-                    Delay_CtrlUIOutput = 0;
-                    Delay_ControllerShortcut = 0;
-                    InputCurrent = new ControllerInput();
-                    SupportedCurrent = new ControllerSupported();
-                }
-                catch { }
             }
         }
     }

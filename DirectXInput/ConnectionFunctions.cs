@@ -15,7 +15,7 @@ namespace DirectXInput
         {
             try
             {
-                ControllerStatus activeController = vActiveController();
+                ControllerStatus activeController = ControllerGetActive();
                 if (activeController != null)
                 {
                     await ControllerStopClose(activeController, "manually", string.Empty);
@@ -51,7 +51,7 @@ namespace DirectXInput
         {
             try
             {
-                ControllerStatus activeController = vActiveController();
+                ControllerStatus activeController = ControllerGetActive();
                 if (activeController != null)
                 {
                     List<string> messageAnswers = new List<string>();

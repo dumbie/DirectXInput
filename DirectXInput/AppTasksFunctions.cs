@@ -51,10 +51,10 @@ namespace DirectXInput
                 while (await TaskCheckLoop(vTask_ControllerLedColor, 1000))
                 {
                     //Controller update led color
-                    ControllerLedColor(vController0);
-                    ControllerLedColor(vController1);
-                    ControllerLedColor(vController2);
-                    ControllerLedColor(vController3);
+                    ControllerLedColorUpdate(vController0);
+                    ControllerLedColorUpdate(vController1);
+                    ControllerLedColorUpdate(vController2);
+                    ControllerLedColorUpdate(vController3);
                 }
             }
             catch { }

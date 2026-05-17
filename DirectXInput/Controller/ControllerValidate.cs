@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
+using static LibraryShared.Enums;
 
 namespace DirectXInput
 {
@@ -56,18 +58,20 @@ namespace DirectXInput
             bool validStatus = true;
             try
             {
-                if (controller.SupportedCurrent.CodeName == "SteamController2026")
+                if (controller.SupportedCurrent.CodeName == "SteamController2026" && controller.Details.ConnectionType == ConnectionType.Wifi)
                 {
-                    //Check if controller responds to features
-                    byte ID_GET_DEVICE_INFO = 0xA1;
-                    //byte ID_DONGLE_GET_CONNECTED_SLOTS = 0xC4;
-                    byte HEAD_FEATURE_REPORT = 0x01;
-                    byte[] featureData = new byte[controller.ControllerDataOutput.Length];
-                    featureData[0] = HEAD_FEATURE_REPORT;
-                    featureData[1] = ID_GET_DEVICE_INFO;
-                    validStatus = controller.HidDevice.SetFeature(featureData);
+                    //Note: It takes a few seconds after disconnecting for SetFeature to stop responding use GetFeature and validate data instead
 
-                    //Debug.WriteLine("Controller valid status: " + controller.Details.DevicePath + " / " + validStatus);
+                    //Check if controller returns feature data
+                    byte HEAD_FEATURE_REPORT = 0x01;
+                    byte ID_GET_DEVICE_INFO = 0xA1;
+                    byte[] sendData = new byte[controller.ControllerDataOutput.Length];
+                    sendData[0] = HEAD_FEATURE_REPORT;
+                    sendData[1] = ID_GET_DEVICE_INFO;
+                    byte[] dataFeature = controller.HidDevice.GetFeature(ref sendData);
+                    validStatus = dataFeature != null;
+
+                    //Debug.WriteLine("Controller valid status: " + validStatus + " / " + controller.Details.DevicePath);
                 }
             }
             catch { }

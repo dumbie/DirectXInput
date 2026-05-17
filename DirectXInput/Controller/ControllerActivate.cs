@@ -15,7 +15,7 @@ namespace DirectXInput
             try
             {
                 //Debug.WriteLine("There is currently no actived controller.");
-                ControllerStatus activeController = vActiveController();
+                ControllerStatus activeController = ControllerGetActive();
                 if (vController0.Connected() && activeController == null) { ControllerActivate(vController0); }
                 else if (vController1.Connected() && activeController == null) { ControllerActivate(vController1); }
                 else if (vController2.Connected() && activeController == null) { ControllerActivate(vController2); }
@@ -48,7 +48,7 @@ namespace DirectXInput
                 {
                     Debug.WriteLine("Activating controller: " + Controller.NumberId);
 
-                    ControllerStatus activeController = vActiveController();
+                    ControllerStatus activeController = ControllerGetActive();
                     if (activeController != null)
                     {
                         //Deactivate previous controller
@@ -59,7 +59,7 @@ namespace DirectXInput
                         NotificationDetails notificationDetails = new NotificationDetails();
                         notificationDetails.Icon = "Controller";
                         notificationDetails.Text = "Activated (" + controllerNumberDisplay + ")";
-                        notificationDetails.Color = Controller.Color;
+                        notificationDetails.Color = ControllerLedColorGet(Controller.NumberId);
                         vWindowOverlay.Notification_Show_Status(notificationDetails);
                     }
 

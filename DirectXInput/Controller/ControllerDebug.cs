@@ -93,7 +93,7 @@ namespace DirectXInput
         {
             try
             {
-                ControllerStatus activeController = vActiveController();
+                ControllerStatus activeController = ControllerGetActive();
                 if (activeController != null && activeController.ControllerDataInput != null)
                 {
                     Clipboard.SetText(GenerateControllerDebugString(true, (bool)cb_DebugShowHex.IsChecked));
@@ -121,7 +121,7 @@ namespace DirectXInput
         {
             try
             {
-                ControllerStatus activeController = vActiveController();
+                ControllerStatus activeController = ControllerGetActive();
                 if (activeController != null && activeController.ControllerDataInput != null && activeController.ControllerDataOutput != null)
                 {
                     //Controller input details

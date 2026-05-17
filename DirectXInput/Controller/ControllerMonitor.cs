@@ -13,7 +13,7 @@ namespace DirectXInput
             try
             {
                 //Check if a controller is disconnecting
-                if (vControllerAnyDisconnecting())
+                if (ControllerAnyDisconnecting())
                 {
                     Debug.WriteLine("A controller is disconnecting, delaying monitor.");
                     return;

@@ -14,12 +14,25 @@ namespace DirectXInput
     public partial class WindowMain
     {
         //Start and open desired controller
-        async Task<bool> ControllerStartOpen(ControllerStatus controllerStatus, ControllerDetails controllerDetails)
+        async Task<ControllerStatus> ControllerStartOpen(int controllerId, ControllerDetails controllerDetails)
         {
             try
             {
+                //Create new controller status
+                ControllerStatus controllerStatus = new ControllerStatus(controllerId);
+
                 //Set controller details
                 controllerStatus.Details = controllerDetails;
+
+                //Set controller supported profile
+                controllerStatus.SupportedCurrent = vDirectControllersSupported.FirstOrDefault(x => x.ProductIDs.Any(z => z.ToLower() == controllerStatus.Details.Profile.ProductID.ToLower() && x.VendorID.ToLower() == controllerStatus.Details.Profile.VendorID.ToLower()));
+                if (controllerStatus.SupportedCurrent == null)
+                {
+                    Debug.WriteLine("Controller is missing supported profile: " + controllerStatus.Details.DisplayName + " / " + controllerStatus.Details.Profile.VendorID + " / " + controllerStatus.Details.Profile.ProductID);
+
+                    //Return result
+                    return null;
+                }
 
                 //Open selected controller
                 if (!ControllerHandleOpen(controllerStatus))
@@ -29,27 +42,8 @@ namespace DirectXInput
                     //Close controller handle
                     ControllerHandleClose(controllerStatus);
 
-                    //Reset controller status to defaults
-                    controllerStatus.ResetControllerStatus();
-
                     //Return result
-                    return false;
-                }
-
-                //Set controller supported profile
-                controllerStatus.SupportedCurrent = vDirectControllersSupported.FirstOrDefault(x => x.ProductIDs.Any(z => z.ToLower() == controllerStatus.Details.Profile.ProductID.ToLower() && x.VendorID.ToLower() == controllerStatus.Details.Profile.VendorID.ToLower()));
-                if (controllerStatus.SupportedCurrent == null)
-                {
-                    Debug.WriteLine("Controller is missing supported profile: " + controllerStatus.Details.DisplayName + " / " + controllerStatus.Details.Profile.VendorID + " / " + controllerStatus.Details.Profile.ProductID);
-
-                    //Close controller handle
-                    ControllerHandleClose(controllerStatus);
-
-                    //Reset controller status to defaults
-                    controllerStatus.ResetControllerStatus();
-
-                    //Return result
-                    return false;
+                    return null;
                 }
 
                 //Validate controller by status
@@ -60,11 +54,8 @@ namespace DirectXInput
                     //Close controller handle
                     ControllerHandleClose(controllerStatus);
 
-                    //Reset controller status to defaults
-                    controllerStatus.ResetControllerStatus();
-
                     //Return result
-                    return false;
+                    return null;
                 }
 
                 //Check and set controller serial number
@@ -76,10 +67,9 @@ namespace DirectXInput
                     await vHidHideDevice.ListDeviceAdd(controllerStatus.Details.DeviceInstanceId);
                 }
 
-                //Disable and enable controller to make sure no other app is using it
-                controllerStatus.HidDevice.DisableDevice();
-                await Task.Delay(100);
-                controllerStatus.HidDevice.EnableDevice();
+                ////Disable and enable controller to make sure no other app is using it
+                //controllerStatus.HidDevice.DisableDevice();
+                //controllerStatus.HidDevice.EnableDevice();
 
                 //Unplug and plugin virtual device
                 bool virtualUnplug = await vVirtualBusDevice.VirtualUnplug(controllerStatus.NumberVirtual());
@@ -93,7 +83,7 @@ namespace DirectXInput
                 NotificationDetails notificationDetailsConnected = new NotificationDetails();
                 notificationDetailsConnected.Icon = "Controller";
                 notificationDetailsConnected.Text = "Connected (" + controllerNumberDisplay + ")";
-                notificationDetailsConnected.Color = controllerStatus.Color;
+                notificationDetailsConnected.Color = ControllerLedColorGet(controllerStatus.NumberId);
                 vWindowOverlay.Notification_Show_Status(notificationDetailsConnected);
                 AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
@@ -107,7 +97,7 @@ namespace DirectXInput
                 ControllerInitialize(controllerStatus);
 
                 //Controller update led color
-                ControllerLedColor(controllerStatus);
+                ControllerLedColorUpdate(controllerStatus);
 
                 //Update controller last input time
                 long ticksSystem = GetSystemTicksMs();
@@ -161,12 +151,13 @@ namespace DirectXInput
                 }
                 AVActions.TaskStartLoop(TaskActionOutputGyro, controllerStatus.OutputGyroscopeTask);
 
-                return true;
+                //Return result
+                return controllerStatus;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("Failed starting and opening controller: " + controllerDetails.DisplayName + " / " + ex.Message);
-                return false;
+                return null;
             }
         }
     }

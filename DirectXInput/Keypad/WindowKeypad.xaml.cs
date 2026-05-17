@@ -99,7 +99,7 @@ namespace DirectXInput.KeypadCode
             try
             {
                 //Check if controller is connected
-                if (!vControllerAnyConnected())
+                if (!ControllerAnyConnected())
                 {
                     NotificationDetails notificationDetails = new NotificationDetails();
                     notificationDetails.Icon = "Keypad";

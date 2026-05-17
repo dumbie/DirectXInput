@@ -18,7 +18,7 @@ namespace DirectXInput
                 //Update the interface when window is active
                 if (vAppActivated && !vAppMinimized)
                 {
-                    ControllerStatus activeController = vActiveController();
+                    ControllerStatus activeController = ControllerGetActive();
                     if (activeController != null && activeController.Connected())
                     {
                         //Update controller information
@@ -72,7 +72,7 @@ namespace DirectXInput
                     //Update name and type
                     txt_ActiveControllerType.Text = Controller.Details.ConnectionTypeString();
                     txt_ActiveControllerName.Text = Controller.Details.DisplayName;
-                    txt_ActiveControllerName.Foreground = new SolidColorBrush((Color)Controller.Color);
+                    txt_ActiveControllerName.Foreground = new SolidColorBrush(ControllerLedColorGet(Controller.NumberId));
 
                     //Update latency
                     long latencyMs = Controller.TicksInputLast - Controller.TicksInputPrev;

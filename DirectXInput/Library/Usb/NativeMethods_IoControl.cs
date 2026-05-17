@@ -21,6 +21,10 @@ namespace LibraryUsb
 
         public enum IoControlCodes : uint
         {
+            IOCTL_HID_READ_REPORT = 0xB000B,
+            IOCTL_HID_WRITE_REPORT = 0xB000F,
+            IOCTL_HID_SET_FEATURE = 0xB0191,
+            IOCTL_HID_GET_FEATURE = 0xB0192,
             IOCTL_STORAGE_EJECT_MEDIA = 0x2D4808,
             IOCTL_STORAGE_MEDIA_REMOVAL = 0x002D4804,
             IOCTL_BTH_DISCONNECT_DEVICE = 0x41000C,

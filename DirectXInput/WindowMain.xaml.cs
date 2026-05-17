@@ -73,7 +73,7 @@ namespace DirectXInput
         {
             try
             {
-                ControllerStatus activeController = vActiveController();
+                ControllerStatus activeController = ControllerGetActive();
                 if (activeController != null)
                 {
                     if (!vControllerRumbleTest)

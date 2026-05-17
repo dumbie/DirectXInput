@@ -9,8 +9,41 @@ namespace DirectXInput
 {
     public partial class WindowMain
     {
+        //Controller get led color
+        public static Color ControllerLedColorGet(int controllerId)
+        {
+            try
+            {
+                if (controllerId == 0)
+                {
+                    return vControllerColor0;
+                }
+                else if (controllerId == 1)
+                {
+                    return vControllerColor1;
+                }
+                else if (controllerId == 2)
+                {
+                    return vControllerColor2;
+                }
+                else if (controllerId == 3)
+                {
+                    return vControllerColor3;
+                }
+                else
+                {
+                    return Colors.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Failed to get controller led color: " + ex.Message);
+                return Colors.White;
+            }
+        }
+
         //Controller update led color
-        void ControllerLedColor(ControllerStatus Controller)
+        void ControllerLedColorUpdate(ControllerStatus Controller)
         {
             try
             {
@@ -52,7 +85,7 @@ namespace DirectXInput
                 }
                 else
                 {
-                    Color controllerColor = (Color)Controller.Color;
+                    Color controllerColor = ControllerLedColorGet(Controller.NumberId);
                     double controllerLedBrightness = Convert.ToDouble(Controller.Details.Profile.LedBrightness) / 100;
                     Controller.ColorLedCurrentBrightness = Convert.ToByte(controllerLedBrightness * 255);
                     Controller.ColorLedCurrentR = Convert.ToByte(controllerColor.R * controllerLedBrightness);

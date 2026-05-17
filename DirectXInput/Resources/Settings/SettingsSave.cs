@@ -93,14 +93,14 @@ namespace DirectXInput
                         SolidColorBrush newBrush = new SolidColorBrush((Color)newColor);
                         vSettings.Set("ControllerColor0", newBrush.ToString());
                         colorpicker_Controller0.Background = newBrush;
-                        vController0.Color = newBrush.Color;
-                        if (vController0 == vActiveController())
+                        vControllerColor0 = newBrush.Color;
+                        if (vController0 == ControllerGetActive())
                         {
                             txt_ActiveControllerName.Foreground = newBrush;
                         }
 
                         //Controller update led color
-                        ControllerLedColor(vController0);
+                        ControllerLedColorUpdate(vController0);
 
                         //Send controller colors to CtrlUI
                         await SendControllerStatusDetailsList(vArnoldVinkSockets.vSocketServerIp, 26759);
@@ -115,14 +115,14 @@ namespace DirectXInput
                         SolidColorBrush newBrush = new SolidColorBrush((Color)newColor);
                         vSettings.Set("ControllerColor1", newBrush.ToString());
                         colorpicker_Controller1.Background = newBrush;
-                        vController1.Color = newBrush.Color;
-                        if (vController1 == vActiveController())
+                        vControllerColor1 = newBrush.Color;
+                        if (vController1 == ControllerGetActive())
                         {
                             txt_ActiveControllerName.Foreground = newBrush;
                         }
 
                         //Controller update led color
-                        ControllerLedColor(vController1);
+                        ControllerLedColorUpdate(vController1);
 
                         //Send controller colors to CtrlUI
                         await SendControllerStatusDetailsList(vArnoldVinkSockets.vSocketServerIp, 26759);
@@ -137,14 +137,14 @@ namespace DirectXInput
                         SolidColorBrush newBrush = new SolidColorBrush((Color)newColor);
                         vSettings.Set("ControllerColor2", newBrush.ToString());
                         colorpicker_Controller2.Background = newBrush;
-                        vController2.Color = newBrush.Color;
-                        if (vController2 == vActiveController())
+                        vControllerColor2 = newBrush.Color;
+                        if (vController2 == ControllerGetActive())
                         {
                             txt_ActiveControllerName.Foreground = newBrush;
                         }
 
                         //Controller update led color
-                        ControllerLedColor(vController2);
+                        ControllerLedColorUpdate(vController2);
 
                         //Send controller colors to CtrlUI
                         await SendControllerStatusDetailsList(vArnoldVinkSockets.vSocketServerIp, 26759);
@@ -159,14 +159,14 @@ namespace DirectXInput
                         SolidColorBrush newBrush = new SolidColorBrush((Color)newColor);
                         vSettings.Set("ControllerColor3", newBrush.ToString());
                         colorpicker_Controller3.Background = newBrush;
-                        vController3.Color = newBrush.Color;
-                        if (vController3 == vActiveController())
+                        vControllerColor3 = newBrush.Color;
+                        if (vController3 == ControllerGetActive())
                         {
                             txt_ActiveControllerName.Foreground = newBrush;
                         }
 
                         //Controller update led color
-                        ControllerLedColor(vController3);
+                        ControllerLedColorUpdate(vController3);
 
                         //Send controller colors to CtrlUI
                         await SendControllerStatusDetailsList(vArnoldVinkSockets.vSocketServerIp, 26759);

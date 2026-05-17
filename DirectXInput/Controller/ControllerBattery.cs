@@ -209,7 +209,7 @@ namespace DirectXInput
                             NotificationDetails notificationDetails = new NotificationDetails();
                             notificationDetails.Icon = "Battery/BatteryVerDis20";
                             notificationDetails.Text = "Controller (" + controllerNumberDisplay + ") battery " + Controller.BatteryCurrent.BatteryPercentage + "%";
-                            notificationDetails.Color = Controller.Color;
+                            notificationDetails.Color = ControllerLedColorGet(Controller.NumberId);
                             vWindowOverlay.Notification_Show_Status(notificationDetails);
                         }
 

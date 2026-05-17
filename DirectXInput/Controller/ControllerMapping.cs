@@ -48,7 +48,7 @@ namespace DirectXInput
             try
             {
                 //Check if controller is connected
-                ControllerStatus activeController = vActiveController();
+                ControllerStatus activeController = ControllerGetActive();
                 if (activeController == null)
                 {
                     txt_ControllerMap_Status.Text = "Please connect a controller to unmap buttons.";
@@ -94,7 +94,7 @@ namespace DirectXInput
             try
             {
                 //Check if controller is connected
-                ControllerStatus activeController = vActiveController();
+                ControllerStatus activeController = ControllerGetActive();
                 if (activeController == null)
                 {
                     txt_ControllerMap_Status.Text = "Please connect a controller to default buttons.";
@@ -140,7 +140,7 @@ namespace DirectXInput
             try
             {
                 //Check if controller is connected
-                ControllerStatus activeController = vActiveController();
+                ControllerStatus activeController = ControllerGetActive();
                 if (activeController == null)
                 {
                     txt_ControllerMap_Status.Text = "Please connect a controller to map buttons.";

@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Media;
 using static ArnoldVinkStyles.AVImage;
 using static DirectXInput.AppVariables;
+using static DirectXInput.WindowMain;
 using static LibraryShared.Classes;
 using static LibraryShared.Enums;
 
@@ -56,7 +57,7 @@ namespace DirectXInput.KeyboardCode
             try
             {
                 //Debug.WriteLine("Updating active controller.");
-                ControllerStatus activeController = AppVariables.vActiveController();
+                ControllerStatus activeController = ControllerGetActive();
                 if (activeController == null)
                 {
                     AVDispatcherInvoke.DispatcherInvoke(delegate
@@ -69,7 +70,7 @@ namespace DirectXInput.KeyboardCode
                 AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
                     stackpanel_ControllerActive.Visibility = Visibility.Visible;
-                    border_ControllerActive.Background = new SolidColorBrush((Color)activeController.Color);
+                    border_ControllerActive.Background = new SolidColorBrush(ControllerLedColorGet(activeController.NumberId));
                 });
             }
             catch { }
@@ -81,7 +82,7 @@ namespace DirectXInput.KeyboardCode
             try
             {
                 //Debug.WriteLine("Updating battery level of controller.");
-                ControllerStatus activeController = AppVariables.vActiveController();
+                ControllerStatus activeController = ControllerGetActive();
                 if (activeController == null)
                 {
                     AVDispatcherInvoke.DispatcherInvoke(delegate
