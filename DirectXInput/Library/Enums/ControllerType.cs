@@ -15,5 +15,14 @@
             Input = 2,
             Status = 3
         }
+
+        public enum ControllerRumblePower : int
+        {
+            Minimum = 0,
+            Low = 1,
+            Medium = 2,
+            High = 3,
+            Maximum = 4
+        }
     }
 }

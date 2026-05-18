@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
@@ -60,12 +61,13 @@ namespace DirectXInput
             {
                 if (controller.SupportedCurrent.CodeName == "SteamController2026" && controller.Details.ConnectionType == ConnectionType.Wifi)
                 {
-                    //Note: It takes a few seconds after disconnecting for SetFeature to stop responding use GetFeature and validate data instead
+                    //Note: It takes a few seconds after disconnecting for SetFeature to stop responding use GetFeature and validate data instead.
+                    //Fix: if Steam had access to the controller first, GetFeature does not work until you reconnect the controller.
 
                     //Check if controller returns feature data
                     byte HEAD_FEATURE_REPORT = 0x01;
                     byte ID_GET_DEVICE_INFO = 0xA1;
-                    byte[] sendData = new byte[controller.ControllerDataOutput.Length];
+                    byte[] sendData = new byte[controller.HidDevice.Capabilities.FeatureReportByteLength];
                     sendData[0] = HEAD_FEATURE_REPORT;
                     sendData[1] = ID_GET_DEVICE_INFO;
                     byte[] dataFeature = controller.HidDevice.GetFeature(ref sendData);

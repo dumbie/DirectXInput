@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using static ArnoldVinkCode.AVInputOutputClass;
+using static LibraryShared.Enums;
 
 namespace LibraryShared
 {
@@ -642,15 +643,15 @@ namespace LibraryShared
                 }
             }
 
-            private int PrivControllerRumbleMode = 2;
-            public int ControllerRumbleMode
+            private ControllerRumblePower PrivControllerRumblePower = ControllerRumblePower.Medium;
+            public ControllerRumblePower ControllerRumblePower
             {
-                get { return this.PrivControllerRumbleMode; }
+                get { return this.PrivControllerRumblePower; }
                 set
                 {
-                    if (this.PrivControllerRumbleMode != value)
+                    if (this.PrivControllerRumblePower != value)
                     {
-                        this.PrivControllerRumbleMode = value;
+                        this.PrivControllerRumblePower = value;
                         NotifyPropertyChanged();
                     }
                 }

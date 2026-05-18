@@ -18,13 +18,13 @@ namespace DirectXInput
                     grid_Controller.IsEnabled = true;
 
                     //Check if controller supports rumble mode
-                    if (Controller.SupportedCurrent.HasRumbleMode)
+                    if (Controller.SupportedCurrent.HasRumblePower)
                     {
-                        stackpanel_ControllerRumbleMode.Visibility = Visibility.Visible;
+                        stackpanel_ControllerRumblePower.Visibility = Visibility.Visible;
                     }
                     else
                     {
-                        stackpanel_ControllerRumbleMode.Visibility = Visibility.Collapsed;
+                        stackpanel_ControllerRumblePower.Visibility = Visibility.Collapsed;
                     }
 
                     //Check if controller supports rumble trigger
@@ -108,16 +108,16 @@ namespace DirectXInput
                     slider_ControllerSensitivityThumbRight.Value = Controller.Details.Profile.SensitivityThumbRight;
 
                     cb_ControllerRumbleEnabled.IsChecked = Controller.Details.Profile.ControllerRumbleEnabled;
-                    combobox_ControllerRumbleMode.SelectedIndex = Controller.Details.Profile.ControllerRumbleMode;
+                    combobox_ControllerRumblePower.SelectedIndex = (int)Controller.Details.Profile.ControllerRumblePower;
                     if (Controller.Details.Profile.ControllerRumbleEnabled)
                     {
-                        combobox_ControllerRumbleMode.IsEnabled = true;
+                        combobox_ControllerRumblePower.IsEnabled = true;
                         slider_ControllerRumbleStrength.IsEnabled = true;
                         slider_ControllerRumbleLimit.IsEnabled = true;
                     }
                     else
                     {
-                        combobox_ControllerRumbleMode.IsEnabled = false;
+                        combobox_ControllerRumblePower.IsEnabled = false;
                         slider_ControllerRumbleStrength.IsEnabled = false;
                         slider_ControllerRumbleLimit.IsEnabled = false;
                     }

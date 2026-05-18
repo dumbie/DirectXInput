@@ -21,7 +21,7 @@ namespace DirectXInput
                 }
 
                 //Read the rumble strength
-                byte controllerRumbleMode = 0;
+                byte controllerRumblePower = 0;
                 byte controllerRumbleHeavy = Controller.RumbleCurrentHeavy;
                 byte controllerRumbleLight = Controller.RumbleCurrentLight;
 
@@ -56,24 +56,55 @@ namespace DirectXInput
                     controllerRumbleLight = Convert.ToByte(controllerRumbleLight * controllerRumbleStrength);
                     if (controllerRumbleLight > controllerRumbleLimit) { controllerRumbleLight = controllerRumbleLimit; }
 
-                    if (Controller.Details.Profile.ControllerRumbleMode == 1)
+                    if (Controller.SupportedCurrent.CodeName == "SonyPS5DualSense")
                     {
-                        controllerRumbleMode = 0x01; //90%
+                        if (Controller.Details.Profile.ControllerRumblePower == ControllerRumblePower.Maximum)
+                        {
+                            controllerRumblePower = 0x00; //100% (Default)
+                        }
+                        else if (Controller.Details.Profile.ControllerRumblePower == ControllerRumblePower.High)
+                        {
+                            controllerRumblePower = 0x01; //90%
+                        }
+                        else if (Controller.Details.Profile.ControllerRumblePower == ControllerRumblePower.Medium)
+                        {
+                            controllerRumblePower = 0x02; //80%
+                        }
+                        else if (Controller.Details.Profile.ControllerRumblePower == ControllerRumblePower.Low)
+                        {
+                            controllerRumblePower = 0x03; //70%
+                        }
+                        else if (Controller.Details.Profile.ControllerRumblePower == ControllerRumblePower.Minimum)
+                        {
+                            controllerRumblePower = 0x04; //60%
+                        }
                     }
-                    else if (Controller.Details.Profile.ControllerRumbleMode == 2)
+                    else if (Controller.SupportedCurrent.CodeName == "SteamController2026")
                     {
-                        controllerRumbleMode = 0x02; //80%
-                    }
-                    else if (Controller.Details.Profile.ControllerRumbleMode == 3)
-                    {
-                        controllerRumbleMode = 0x03; //70%
-                    }
-                    else if (Controller.Details.Profile.ControllerRumbleMode == 4)
-                    {
-                        controllerRumbleMode = 0x04; //60%
+                        //Note: Ranges from 0 to 150 but 15+ is already too much
+                        if (Controller.Details.Profile.ControllerRumblePower == ControllerRumblePower.Maximum)
+                        {
+                            controllerRumblePower = 0x0C;
+                        }
+                        else if (Controller.Details.Profile.ControllerRumblePower == ControllerRumblePower.High)
+                        {
+                            controllerRumblePower = 0x09;
+                        }
+                        else if (Controller.Details.Profile.ControllerRumblePower == ControllerRumblePower.Medium)
+                        {
+                            controllerRumblePower = 0x06;
+                        }
+                        else if (Controller.Details.Profile.ControllerRumblePower == ControllerRumblePower.Low)
+                        {
+                            controllerRumblePower = 0x03;
+                        }
+                        else if (Controller.Details.Profile.ControllerRumblePower == ControllerRumblePower.Minimum)
+                        {
+                            controllerRumblePower = 0x00; //Default (same as 0xFF Steam uses)
+                        }
                     }
 
-                    Debug.WriteLine("Controller rumble Light: " + controllerRumbleLight + " / Heavy: " + controllerRumbleHeavy + " / Limit: " + controllerRumbleLimit + " / Mode: " + controllerRumbleMode);
+                    Debug.WriteLine("Controller rumble Light: " + controllerRumbleLight + " / Heavy: " + controllerRumbleHeavy + " / Limit: " + controllerRumbleLimit + " / Mode: " + controllerRumblePower);
                 }
                 else
                 {
@@ -114,8 +145,8 @@ namespace DirectXInput
                     outputReport[5] = controllerRumbleLight;
                     outputReport[6] = controllerRumbleHeavy;
 
-                    //Controller rumble mode
-                    outputReport[39] = controllerRumbleMode;
+                    //Controller rumble power mode
+                    outputReport[39] = controllerRumblePower;
 
                     //Trigger rumble
                     if (triggerRumbleRight >= triggerRumbleMinimum)
@@ -185,8 +216,8 @@ namespace DirectXInput
                     outputReport[3] = controllerRumbleLight;
                     outputReport[4] = controllerRumbleHeavy;
 
-                    //Controller rumble mode
-                    outputReport[37] = controllerRumbleMode;
+                    //Controller rumble power mode
+                    outputReport[37] = controllerRumblePower;
 
                     //Trigger rumble
                     if (triggerRumbleRight >= triggerRumbleMinimum)
@@ -397,9 +428,11 @@ namespace DirectXInput
                     int rumbleLightEndian = (int)(controllerRumbleLight / 256F * 65535F);
                     byte rumbleLightLow = (byte)(rumbleLightEndian & 0xFF);
                     byte rumbleLightHigh = (byte)((rumbleLightEndian >> 8) & 0xFF);
+                    byte rumbleLightGain = (byte)((float)(controllerRumbleLight / 255F) * controllerRumblePower);
                     int rumbleHeavyEndian = (int)(controllerRumbleHeavy / 256F * 65535F);
                     byte rumbleHeavyLow = (byte)(rumbleHeavyEndian & 0xFF);
                     byte rumbleHeavyHigh = (byte)((rumbleHeavyEndian >> 8) & 0xFF);
+                    byte rumbleHeavyGain = (byte)((float)(controllerRumbleHeavy / 255F) * controllerRumblePower);
 
                     //Output Rumble - SteamController2026
                     byte ID_OUT_REPORT_HAPTIC_RUMBLE = 0x80;
@@ -410,10 +443,10 @@ namespace DirectXInput
                     outputReport[3] = 0x1F; //Intensity dB
                     outputReport[4] = rumbleHeavyLow; //Left Speed
                     outputReport[5] = rumbleHeavyHigh; //Left Speed
-                    outputReport[6] = 0xFF; //Left Gain
+                    outputReport[6] = rumbleHeavyGain; //Left Gain
                     outputReport[7] = rumbleLightLow; //Right Speed
                     outputReport[8] = rumbleLightHigh; //Right Speed
-                    outputReport[9] = 0xFF; //Right Gain
+                    outputReport[9] = rumbleLightGain; //Right Gain
 
                     //Output Pulse - SteamController2026
                     //byte ID_OUT_REPORT_HAPTIC_PULSE = 0x81;

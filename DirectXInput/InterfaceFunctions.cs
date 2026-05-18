@@ -12,6 +12,7 @@ using static ArnoldVinkCode.AVProcess;
 using static DirectXInput.AppVariables;
 using static DirectXInput.ProfileFunctions;
 using static LibraryShared.Classes;
+using static LibraryShared.Enums;
 
 namespace DirectXInput
 {
@@ -251,25 +252,25 @@ namespace DirectXInput
                         //Update settings interface
                         if (activeController.Details.Profile.ControllerRumbleEnabled)
                         {
-                            combobox_ControllerRumbleMode.IsEnabled = true;
+                            combobox_ControllerRumblePower.IsEnabled = true;
                             slider_ControllerRumbleStrength.IsEnabled = true;
                             slider_ControllerRumbleLimit.IsEnabled = true;
                         }
                         else
                         {
-                            combobox_ControllerRumbleMode.IsEnabled = false;
+                            combobox_ControllerRumblePower.IsEnabled = false;
                             slider_ControllerRumbleStrength.IsEnabled = false;
                             slider_ControllerRumbleLimit.IsEnabled = false;
                         }
                     }
                 };
 
-                combobox_ControllerRumbleMode.SelectionChanged += (sender, e) =>
+                combobox_ControllerRumblePower.SelectionChanged += (sender, e) =>
                 {
                     ControllerStatus activeController = ControllerGetActive();
                     if (activeController != null)
                     {
-                        activeController.Details.Profile.ControllerRumbleMode = combobox_ControllerRumbleMode.SelectedIndex;
+                        activeController.Details.Profile.ControllerRumblePower = (ControllerRumblePower)combobox_ControllerRumblePower.SelectedIndex;
 
                         //Save changes to Json file
                         JsonSaveObject(activeController.Details.Profile, GenerateJsonNameControllerProfile(activeController.Details.Profile));

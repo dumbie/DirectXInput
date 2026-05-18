@@ -2,6 +2,7 @@
   "CodeName": "SteamController2026",
   "ProductIDs": [ "0x1302", "0x1303", "0x1304" ],
   "VendorID": "0x28de",
+  "HasRumblePower": true,
   "HasLedBrightness": true,
   "HasUnsignedThumbstick": true,
   "HasUnsignedTrigger": true,
