@@ -1,0 +1,15 @@
+{
+  "id": "mouse-absolute",
+  "name": "Mouse Absolute",
+  "vendor": "DirectXInput",
+  "vid": "0xFFFF",
+  "pid": "0x0003",
+  "productString": "Mouse Absolute DirectXInput",
+  "manufacturerString": "DirectXInput",
+  "deviceDescription": "Mouse Absolute DirectXInput",
+  "type": "other",
+  "connection": "usb",
+  "descriptor": "05010902a1010901a100850405091901290515002501750195058102750395018103050109300931150026ff7f550f651175109502810209381581257f750895018106c0c0",
+  "inputReportSize": null,
+  "notes": ""
+}

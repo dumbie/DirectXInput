@@ -1,0 +1,15 @@
+{
+  "id": "keyboard-media",
+  "name": "Keyboard Media",
+  "vendor": "DirectXInput",
+  "vid": "0xFFFF",
+  "pid": "0x0002",
+  "productString": "Keyboard Media DirectXInput",
+  "manufacturerString": "DirectXInput",
+  "deviceDescription": "Keyboard Media DirectXInput",
+  "type": "other",
+  "connection": "usb",
+  "descriptor": "050c0901a101850209b509b609b709cd09e209ea09e909b80a94010a92010a21020a23020a24020a25020a83010a8a010a26020a27020a2a0209b309b415002501750195158102750395018103c0",
+  "inputReportSize": null,
+  "notes": ""
+}

@@ -1,0 +1,15 @@
+{
+  "id": "keyboard-normal",
+  "name": "Keyboard Normal",
+  "vendor": "DirectXInput",
+  "vid": "0xFFFF",
+  "pid": "0x0001",
+  "productString": "Keyboard Normal DirectXInput",
+  "manufacturerString": "DirectXInput",
+  "deviceDescription": "Keyboard Normal DirectXInput",
+  "type": "other",
+  "connection": "usb",
+  "descriptor": "05010906a1018501050719e029e715002501750195088102750895018103190029651565250075089506810005081901290515002501750195059102750395019103c0",
+  "inputReportSize": null,
+  "notes": ""
+}
