@@ -2,6 +2,7 @@
 using DirectXInput.KeyboardCode;
 using DirectXInput.KeypadCode;
 using DirectXInput.OverlayCode;
+using HIDMaestro;
 using LibraryUsb;
 using System;
 using System.Collections.Generic;
@@ -114,12 +115,14 @@ namespace DirectXInput
         public static string vKeypadPreviousProcessTitle = string.Empty;
         public static double vKeypadImageHeight = 240;
 
-        //Virtual Variables
-        public static FakerInputDevice vFakerInputDevice = null;
+        //Device Variables
+        public static HidHideDevice vHidHideDevice = null;
+        public static HidMaestroDllDevice vVirtualBusDevice = null;
+        public static HMController vHMMouseRelative = null;
+        public static HMController vHMKeyboardNormal = null;
+        public static HMController vHMKeyboardMedia = null;
 
         //Controller Variables
-        public static HidHideDevice vHidHideDevice = null;
-        public static VigemBusDevice vVirtualBusDevice = null;
         public static bool vControllerBusy = false;
         public static bool vControllerMuteLedCurrent = false;
         public static bool vControllerMuteLedPrevious = false;

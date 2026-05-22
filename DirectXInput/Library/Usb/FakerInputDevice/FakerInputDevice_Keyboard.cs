@@ -35,7 +35,7 @@ namespace LibraryUsb
                 FAKERINPUT_KEYBOARD_REPORT structInput = new FAKERINPUT_KEYBOARD_REPORT();
                 structInput.ReportID = (byte)FAKERINPUT_REPORT_ID.REPORTID_KEYBOARD;
                 structInput.ModifierCodes = (byte)keyboardAction.Modifiers;
-                structInput.KeyCodes = new byte[] { (byte)keyboardAction.Key0, (byte)keyboardAction.Key1, (byte)keyboardAction.Key2, (byte)keyboardAction.Key3, (byte)keyboardAction.Key4, (byte)keyboardAction.Key5, (byte)keyboardAction.Key6, (byte)keyboardAction.Key7 };
+                structInput.KeyCodes = new byte[] { (byte)keyboardAction.Key0, (byte)keyboardAction.Key1, (byte)keyboardAction.Key2, (byte)keyboardAction.Key3, (byte)keyboardAction.Key4, (byte)keyboardAction.Key5 };
                 byte[] inputArray = ConvertToByteArray(structInput);
 
                 return WriteBytesFile(MergeHeaderInputByteArray(CONTROL_REPORT_SIZE, headerArray, inputArray));

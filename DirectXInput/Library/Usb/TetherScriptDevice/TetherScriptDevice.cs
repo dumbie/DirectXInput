@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using static ArnoldVinkCode.AVDevices.Enumerate;
 using static ArnoldVinkCode.AVDevices.Interop;
 using static LibraryUsb.NativeMethods_File;
@@ -51,7 +52,7 @@ namespace LibraryUsb
                 IEnumerable<EnumerateInfo> SelectedHidDevice = EnumerateDevicesSetupApi(GuidClassHidDevice, true);
                 foreach (EnumerateInfo EnumDevice in SelectedHidDevice)
                 {
-                    if (EnumDevice.HardwareId.ToLower() == HardwareTarget)
+                    if (EnumDevice.HardwareIds.FirstOrDefault().ToLower() == HardwareTarget)
                     {
                         DevicePath = EnumDevice.DevicePath;
                         break;

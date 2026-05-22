@@ -1,8 +1,8 @@
-﻿using LibraryUsb;
+﻿using HIDMaestro;
+using LibraryUsb;
 using System.Windows.Media;
 using static ArnoldVinkCode.ArnoldVinkSockets;
 using static ArnoldVinkCode.AVActions;
-using static LibraryUsb.VigemBusDevice;
 
 namespace LibraryShared
 {
@@ -14,7 +14,6 @@ namespace LibraryShared
             public int NumberId = -1;
             public int NumberOutput = -1;
             public int NumberDisplay() { return NumberId + 1; }
-            public int NumberVirtual() { return NumberId + VirtualIdOffset; }
             public bool Activated = false;
 
             //Controller Details
@@ -71,7 +70,6 @@ namespace LibraryShared
             //Controller Tasks
             public AVTaskDetails InputControllerTask = new AVTaskDetails("InputControllerTask");
             public AVTaskDetails OutputControllerTask = new AVTaskDetails("OutputControllerTask");
-            public AVTaskDetails OutputVirtualTask = new AVTaskDetails("OutputVirtualTask");
             public AVTaskDetails OutputGyroscopeTask = new AVTaskDetails("OutputGyroscopeTask");
 
             //WinUsb Device Variables
@@ -79,6 +77,9 @@ namespace LibraryShared
 
             //Hid Device Variables
             public HidDevice HidDevice = null;
+
+            //Virtual Device Variables
+            public HMController VirtualDevice = null;
 
             //Gyro Dsu Client Variables
             public uint GyroDsuClientPacketNumber = 0;
@@ -88,8 +89,8 @@ namespace LibraryShared
             public bool ControllerDataRead = false;
             public byte[] ControllerDataInput = null;
             public byte[] ControllerDataOutput = null;
-            public byte[] VirtualDataInput = new byte[(int)VigemBusDevice.ByteArraySizes.Input];
-            public byte[] VirtualDataOutput = new byte[(int)VigemBusDevice.ByteArraySizes.Output];
+            public byte[] VirtualDataInput = null;
+            public byte[] VirtualDataOutput = null;
             public byte RumbleCurrentHeavy = 0;
             public byte RumbleCurrentLight = 0;
             public byte RumblePreviousHeavy = 0;

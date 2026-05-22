@@ -64,14 +64,6 @@ namespace DirectXInput
                     vHidHideDevice = null;
                 }
 
-                //Check if FakerInput is connected
-                if (vFakerInputDevice != null)
-                {
-                    //Close FakerInput device
-                    vFakerInputDevice.CloseDevice();
-                    vFakerInputDevice = null;
-                }
-
                 //Disable the socket server
                 if (vArnoldVinkSockets != null)
                 {

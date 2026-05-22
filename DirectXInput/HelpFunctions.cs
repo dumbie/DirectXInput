@@ -28,7 +28,7 @@ namespace DirectXInput
                 sp_Help.Children.Add(new TextBlock() { Text = "When the application is visible and activated the animations will causes the cpu to be used by a few percent, when the app is no longer activated it will drop down to almost no cpu usage.", Style = (Style)Application.Current.Resources["TextBlockGray"], TextWrapping = TextWrapping.Wrap });
 
                 sp_Help.Children.Add(new TextBlock() { Text = "\r\nSpecial thanks", Style = (Style)Application.Current.Resources["TextBlockBlack"] });
-                sp_Help.Children.Add(new TextBlock() { Text = "- Benjamin Höglinger-Stelzer (Nefarius)\r\n- Travis Nickles (Ryochan7)", Style = (Style)Application.Current.Resources["TextBlockGray"], TextWrapping = TextWrapping.Wrap });
+                sp_Help.Children.Add(new TextBlock() { Text = "- Benjamin Höglinger-Stelzer (Nefarius)\r\n- HIDMaestro (Hifihedgehog)", Style = (Style)Application.Current.Resources["TextBlockGray"], TextWrapping = TextWrapping.Wrap });
 
                 sp_Help.Children.Add(new TextBlock() { Text = "\r\nSupport and bug reporting", Style = (Style)Application.Current.Resources["TextBlockBlack"] });
                 sp_Help.Children.Add(new TextBlock() { Text = "When you are walking into any problems or bugs you can go to the support page here: https://support.arnoldvink.com so I can try to help you out and get everything working.", Style = (Style)Application.Current.Resources["TextBlockGray"], TextWrapping = TextWrapping.Wrap });

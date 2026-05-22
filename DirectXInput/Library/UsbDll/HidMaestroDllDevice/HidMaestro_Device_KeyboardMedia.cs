@@ -39,11 +39,11 @@ namespace LibraryUsb
             }
         }
 
-        public bool KeyboardMediaPressRelease(HMController hmController, KeysMediaHidOne keyboardActionOne, KeysMediaHidTwo keyboardActionTwo, KeysMediaHidThree keyboardActionThree)
+        public bool KeyboardMediaPressRelease(HMController hmController, KeysMediaHid mediaAction)
         {
             try
             {
-                KeyboardMediaSetInput(hmController, keyboardActionOne, keyboardActionTwo, keyboardActionThree);
+                KeyboardMediaSetInput(hmController, mediaAction);
                 AVHighResDelay.Delay(50);
                 KeyboardMediaResetInput(hmController);
                 return true;
@@ -55,15 +55,14 @@ namespace LibraryUsb
             }
         }
 
-        public bool KeyboardMediaSetInput(HMController hmController, KeysMediaHidOne keyboardActionOne, KeysMediaHidTwo keyboardActionTwo, KeysMediaHidThree keyboardActionThree)
+        public bool KeyboardMediaSetInput(HMController hmController, KeysMediaHid mediaAction)
         {
             try
             {
                 //Keyboard input report
                 byte[] inputReport = new byte[8];
-                inputReport[0] = (byte)keyboardActionOne;
-                inputReport[1] = (byte)keyboardActionTwo;
-                inputReport[2] = (byte)keyboardActionThree;
+                inputReport[0] = (byte)((ushort)mediaAction & 0xFF);
+                inputReport[1] = (byte)((ushort)mediaAction >> 8);
 
                 //Submit raw report
                 hmController.SubmitRawReport(inputReport);

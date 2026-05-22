@@ -16,13 +16,11 @@ namespace LibraryUsb
                 //Create HID Maestro context
                 hidMaestroContext = new HMContext();
 
-                //Install HID Maestro driver
-                hidMaestroContext.InstallDriver();
-
                 //Load device profiles
                 int loadedDefaultProfiles = hidMaestroContext.LoadDefaultProfiles();
                 int loadedCustomProfiles = hidMaestroContext.LoadProfilesFromDirectory("Profiles\\HidMaestro");
 
+                Connected = true;
                 Debug.WriteLine("HidMaestro device created: " + loadedDefaultProfiles + " / " + loadedCustomProfiles);
             }
             catch (Exception ex)
@@ -40,6 +38,7 @@ namespace LibraryUsb
                     hidMaestroContext.Dispose();
                 }
 
+                Connected = false;
                 Debug.WriteLine("Closed HidMaestro device.");
             }
             catch (Exception ex)

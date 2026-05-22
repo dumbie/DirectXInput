@@ -1,5 +1,4 @@
 ﻿using System;
-using static LibraryUsb.VigemBusDevice;
 
 namespace LibraryShared
 {
@@ -10,7 +9,6 @@ namespace LibraryShared
         {
             public int NumberId { get; set; } = -1;
             public int NumberDisplay() { return NumberId + 1; }
-            public int NumberVirtual() { return NumberId + VirtualIdOffset; }
             public bool Activated { get; set; } = false;
             public bool Connected { get; set; } = false;
             public string Color { get; set; } = "#000000";

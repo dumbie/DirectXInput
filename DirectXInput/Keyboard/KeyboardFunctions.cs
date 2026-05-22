@@ -65,7 +65,7 @@ namespace DirectXInput.KeyboardCode
                     {
                         KeysHidAction sendKey = (KeysHidAction)sendButton.Tag;
                         Debug.WriteLine("Sending Keyboard action: " + sendKey);
-                        SendKeyAction(sendKey);
+                        vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, sendKey);
                     }
                     else if (sendKeyType == typeof(KeysMediaHid))
                     {
@@ -85,28 +85,10 @@ namespace DirectXInput.KeyboardCode
                         }
                         else
                         {
-                            SendKeyMultimedia(sendKey);
+                            vVirtualBusDevice.KeyboardMediaPressRelease(vHMKeyboardMedia, sendKey);
                         }
                     }
                 }
-            }
-            catch { }
-        }
-
-        void SendKeyAction(KeysHidAction sendKey)
-        {
-            try
-            {
-                vFakerInputDevice.KeyboardPressRelease(sendKey);
-            }
-            catch { }
-        }
-
-        void SendKeyMultimedia(KeysMediaHid sendKey)
-        {
-            try
-            {
-                vFakerInputDevice.MultimediaPressRelease(sendKey);
             }
             catch { }
         }

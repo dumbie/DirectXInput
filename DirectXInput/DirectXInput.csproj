@@ -391,6 +391,18 @@
 		<Content Include="DirectXInput.exe.csettings">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Profiles\HidMaestro\keyboard-media.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Profiles\HidMaestro\keyboard-normal.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Profiles\HidMaestro\mouse-absolute.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Profiles\HidMaestro\mouse-relative.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Profiles\Default\DirectCloseTools.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
@@ -460,6 +472,9 @@
 		<Content Include="Profiles\User\DirectKeypadMapping\Default.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Resources\HIDMaestro.Core.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Settings\Launcher.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
@@ -479,6 +494,11 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\ArnoldVinkCode\Desktop\ArnoldVinkCode.csproj" />
 		<ProjectReference Include="..\..\ArnoldVinkStyles\WPF\ArnoldVinkStyles.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="HIDMaestro.Core">
+			<HintPath>Resources\HIDMaestro.Core.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
 		<Exec Command="if $(Configuration) == Release (&#xD;&#xA;$(SolutionDir)SignToolExe.exe)&#xD;&#xA;)" />

@@ -192,7 +192,7 @@ namespace DirectXInput
                                     Modifiers = KeysModifierHid.AltLeft,
                                     Key0 = KeysHid.Enter
                                 };
-                                vFakerInputDevice.KeyboardPressRelease(KeysHidAction);
+                                vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, KeysHidAction);
 
                                 ControllerUsed = true;
                                 ControllerDelay750 = true;
@@ -211,7 +211,7 @@ namespace DirectXInput
                                     Modifiers = KeysModifierHid.CtrlLeft | KeysModifierHid.AltLeft,
                                     Key0 = KeysHid.Delete
                                 };
-                                vFakerInputDevice.KeyboardPressRelease(KeysHidAction);
+                                vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, KeysHidAction);
 
                                 ControllerUsed = true;
                                 ControllerDelay750 = true;
@@ -231,14 +231,14 @@ namespace DirectXInput
                                     Modifiers = KeysModifierHid.AltLeft,
                                     Key0 = KeysHid.Tab
                                 };
-                                vFakerInputDevice.KeyboardPress(keyboardAltTab);
+                                vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAltTab);
 
                                 //Press and Hold Alt
                                 KeysHidAction keyboardAlt = new KeysHidAction()
                                 {
                                     Modifiers = KeysModifierHid.AltLeft,
                                 };
-                                vFakerInputDevice.KeyboardPress(keyboardAlt);
+                                vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAlt);
 
                                 vAltTabDownStatus = true;
                                 ControllerUsed = true;
@@ -251,7 +251,7 @@ namespace DirectXInput
                                 vWindowOverlay.Notification_Show_Status("AppMiniMaxi", "Releasing Alt+Tab");
 
                                 //Release all key presses
-                                vFakerInputDevice.KeyboardReset();
+                                vVirtualBusDevice.KeyboardNormalResetInput(vHMKeyboardNormal);
 
                                 vAltTabDownStatus = false;
                                 ControllerUsed = true;

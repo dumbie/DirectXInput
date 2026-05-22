@@ -68,22 +68,15 @@ namespace DirectXInput
                     return;
                 }
 
-                //Open the virtual bus driver
+                //Open virtual bus driver
                 if (!await OpenVirtualBusDriver())
                 {
                     await Message_InstallDrivers();
                     return;
                 }
 
-                //Open the hid hide device
+                //Open hid hide device
                 if (!OpenHidHideDevice())
-                {
-                    await Message_InstallDrivers();
-                    return;
-                }
-
-                //Open the FakerInput device
-                if (!OpenFakerInputDevice())
                 {
                     await Message_InstallDrivers();
                     return;

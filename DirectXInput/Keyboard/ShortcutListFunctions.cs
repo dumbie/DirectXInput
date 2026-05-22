@@ -156,7 +156,7 @@ namespace DirectXInput.KeyboardCode
                     }
                     else
                     {
-                        vFakerInputDevice.KeyboardPressRelease((KeysHidAction)selectedItem.Object1);
+                        vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, (KeysHidAction)selectedItem.Object1);
                     }
                 }
             }

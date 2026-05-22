@@ -36,7 +36,7 @@ namespace DirectXInput.KeyboardCode
         {
             try
             {
-                while (await TaskCheckLoop(vTask_UpdateMediaInformation, 500))
+                while (await TaskCheckLoop(vTask_UpdateMediaInformation, 1000))
                 {
                     UpdateCurrentVolumeInformation();
                     await UpdateCurrentMediaInformation();

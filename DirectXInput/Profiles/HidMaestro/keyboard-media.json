@@ -9,7 +9,7 @@
   "deviceDescription": "Keyboard Media DirectXInput",
   "type": "other",
   "connection": "usb",
-  "descriptor": "050c0901a101850209b509b609b709cd09e209ea09e909b80a94010a92010a21020a23020a24020a25020a83010a8a010a26020a27020a2a0209b309b415002501750195158102750395018103c0",
+  "descriptor": "050C0901A101150026FF0319002AFF03751095018100C0",
   "inputReportSize": null,
   "notes": ""
 }

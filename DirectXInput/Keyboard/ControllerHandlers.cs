@@ -115,7 +115,7 @@ namespace DirectXInput.KeyboardCode
                         ScrollVertical = scrollVerticalRight,
                         Button = buttonPressed
                     };
-                    vFakerInputDevice.MouseRelative(mouseAction);
+                    vVirtualBusDevice.MouseRelativeSetInput(vHMMouseRelative, mouseAction);
                 }
             }
             catch { }
@@ -142,7 +142,7 @@ namespace DirectXInput.KeyboardCode
                             {
                                 Key0 = KeysHid.ArrowLeft
                             };
-                            vFakerInputDevice.KeyboardPressRelease(keyboardAction);
+                            vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAction);
 
                             ControllerDelay125 = true;
                         }
@@ -188,7 +188,7 @@ namespace DirectXInput.KeyboardCode
                             {
                                 Key0 = KeysHid.ArrowRight
                             };
-                            vFakerInputDevice.KeyboardPressRelease(keyboardAction);
+                            vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAction);
 
                             ControllerDelay125 = true;
                         }
@@ -234,7 +234,7 @@ namespace DirectXInput.KeyboardCode
                             {
                                 Key0 = KeysHid.ArrowUp
                             };
-                            vFakerInputDevice.KeyboardPressRelease(keyboardAction);
+                            vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAction);
 
                             ControllerDelay125 = true;
                         }
@@ -280,7 +280,7 @@ namespace DirectXInput.KeyboardCode
                             {
                                 Key0 = KeysHid.ArrowDown
                             };
-                            vFakerInputDevice.KeyboardPressRelease(keyboardAction);
+                            vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAction);
 
                             ControllerDelay125 = true;
                         }
@@ -369,7 +369,7 @@ namespace DirectXInput.KeyboardCode
                             {
                                 Key0 = KeysHid.Enter
                             };
-                            vFakerInputDevice.KeyboardPressRelease(keyboardAction);
+                            vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAction);
                             ControllerDelay125 = true;
                         }
                     }
@@ -389,7 +389,7 @@ namespace DirectXInput.KeyboardCode
                             {
                                 Key0 = KeysHid.Space
                             };
-                            vFakerInputDevice.KeyboardPressRelease(keyboardAction);
+                            vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAction);
                             ControllerDelay125 = true;
                         }
                     }
@@ -409,7 +409,7 @@ namespace DirectXInput.KeyboardCode
                             {
                                 Key0 = KeysHid.Delete
                             };
-                            vFakerInputDevice.KeyboardPressRelease(keyboardAction);
+                            vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAction);
                             ControllerDelay125 = true;
                         }
                         else
@@ -418,7 +418,7 @@ namespace DirectXInput.KeyboardCode
                             {
                                 Key0 = KeysHid.BackSpace
                             };
-                            vFakerInputDevice.KeyboardPressRelease(keyboardAction);
+                            vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAction);
                             ControllerDelay125 = true;
                         }
                     }
@@ -439,7 +439,7 @@ namespace DirectXInput.KeyboardCode
                             {
                                 Key0 = KeysHid.ArrowLeft
                             };
-                            vFakerInputDevice.KeyboardPressRelease(keyboardAction);
+                            vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAction);
                             ControllerDelay125 = true;
                         }
                     }
@@ -459,7 +459,7 @@ namespace DirectXInput.KeyboardCode
                             {
                                 Key0 = KeysHid.ArrowRight
                             };
-                            vFakerInputDevice.KeyboardPressRelease(keyboardAction);
+                            vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAction);
                             ControllerDelay125 = true;
                         }
                     }
@@ -518,7 +518,7 @@ namespace DirectXInput.KeyboardCode
                                 Modifiers = KeysModifierHid.ShiftLeft,
                                 Key0 = KeysHid.Tab
                             };
-                            vFakerInputDevice.KeyboardPressRelease(keyboardAction);
+                            vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAction);
                             PlayInterfaceSound(vSettings, "Click", false, false);
                         }
                         else
@@ -527,7 +527,7 @@ namespace DirectXInput.KeyboardCode
                             {
                                 Key0 = KeysHid.Tab
                             };
-                            vFakerInputDevice.KeyboardPressRelease(keyboardAction);
+                            vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAction);
                             PlayInterfaceSound(vSettings, "Click", false, false);
                         }
 

@@ -20,7 +20,7 @@ namespace DirectXInput
                         {
                             Key0 = KeysHid.CapsLock
                         };
-                        vFakerInputDevice.KeyboardPressRelease(KeysHidAction);
+                        vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, KeysHidAction);
                     }
                 });
             }
@@ -40,7 +40,7 @@ namespace DirectXInput
                         {
                             Key0 = KeysHid.NumpadLock
                         };
-                        vFakerInputDevice.KeyboardPressRelease(KeysHidAction);
+                        vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, KeysHidAction);
                     }
                 });
             }

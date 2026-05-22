@@ -67,14 +67,16 @@ namespace DirectXInput
                     await vHidHideDevice.ListDeviceAdd(controllerStatus.Details.DeviceInstanceId);
                 }
 
-                ////Disable and enable controller to make sure no other app is using it
-                //controllerStatus.HidDevice.DisableDevice();
-                //controllerStatus.HidDevice.EnableDevice();
+                //Disable and enable controller to make sure no other app is using it
+                controllerStatus.HidDevice.DisableDevice();
+                controllerStatus.HidDevice.EnableDevice();
 
-                //Unplug and plugin virtual device
-                bool virtualUnplug = await vVirtualBusDevice.VirtualUnplug(controllerStatus.NumberVirtual());
-                bool virtualPlugin = await vVirtualBusDevice.VirtualPlugin(controllerStatus.NumberVirtual());
-                Debug.WriteLine("Virtual device plugin result: " + virtualUnplug + " / " + virtualPlugin);
+                //Plugin virtual device
+                controllerStatus.VirtualDevice = vVirtualBusDevice.Xbox360Create();
+                Debug.WriteLine("Virtual device plugin result: " + (controllerStatus.VirtualDevice == null));
+
+                //Virtual device output event
+                controllerStatus.VirtualDevice.OutputReceived += (hmController, hmOutput) => InputUpdateVirtualRumble(hmController, hmOutput, controllerStatus);
 
                 //Set controller interface information
                 string controllerNumberDisplay = controllerStatus.NumberDisplay().ToString();
@@ -128,17 +130,6 @@ namespace DirectXInput
                     catch { }
                 }
                 AVActions.TaskStartLoop(TaskActionOutputController, controllerStatus.OutputControllerTask);
-
-                //Start output virtual task loop
-                async Task TaskActionOutputVirtual()
-                {
-                    try
-                    {
-                        await LoopOutputVirtual(controllerStatus);
-                    }
-                    catch { }
-                }
-                AVActions.TaskStartLoop(TaskActionOutputVirtual, controllerStatus.OutputVirtualTask);
 
                 //Start output gyroscope task loop
                 async Task TaskActionOutputGyro()

@@ -94,9 +94,8 @@ namespace DirectXInput.KeyboardCode
                     vKeyboardKeypadLastActive = "Keyboard";
 
                     //Release keyboard and mouse
-                    vFakerInputDevice.KeyboardReset();
-                    vFakerInputDevice.MouseResetAbsolute();
-                    vFakerInputDevice.MouseResetRelative();
+                    vVirtualBusDevice.KeyboardNormalResetInput(vHMKeyboardNormal);
+                    vVirtualBusDevice.MouseRelativeResetInput(vHMMouseRelative);
 
                     //Delay CtrlUI output
                     vController0.Delay_CtrlUIOutput = GetSystemTicksMs() + vControllerDelayTicks250;

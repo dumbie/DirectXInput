@@ -65,7 +65,7 @@ namespace LibraryUsb
             }
         }
 
-        public bool MouseRelativeResetInput(HMController hmController, MouseHidAction mouseAction)
+        public bool MouseRelativeResetInput(HMController hmController)
         {
             try
             {

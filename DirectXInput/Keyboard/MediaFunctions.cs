@@ -27,7 +27,7 @@ namespace DirectXInput.KeyboardCode
             {
                 vWindowOverlay.Notification_Show_Status("MediaPlayPause", "Resuming or pausing media");
                 PlayInterfaceSound(vSettings, "Click", false, false);
-                vFakerInputDevice.MultimediaPressRelease(KeysMediaHid.PlayPause);
+                vVirtualBusDevice.KeyboardMediaPressRelease(vHMKeyboardMedia, KeysMediaHid.PlayPause);
             }
             catch { }
         }
@@ -39,7 +39,7 @@ namespace DirectXInput.KeyboardCode
             {
                 vWindowOverlay.Notification_Show_Status("MediaNext", "Going to next media item");
                 PlayInterfaceSound(vSettings, "Click", false, false);
-                vFakerInputDevice.MultimediaPressRelease(KeysMediaHid.Next);
+                vVirtualBusDevice.KeyboardMediaPressRelease(vHMKeyboardMedia, KeysMediaHid.NextTrack);
             }
             catch { }
         }
@@ -51,7 +51,7 @@ namespace DirectXInput.KeyboardCode
             {
                 vWindowOverlay.Notification_Show_Status("MediaPrevious", "Going to previous media item");
                 PlayInterfaceSound(vSettings, "Click", false, false);
-                vFakerInputDevice.MultimediaPressRelease(KeysMediaHid.Previous);
+                vVirtualBusDevice.KeyboardMediaPressRelease(vHMKeyboardMedia, KeysMediaHid.PreviousTrack);
             }
             catch { }
         }
@@ -68,7 +68,7 @@ namespace DirectXInput.KeyboardCode
                     Modifiers = KeysModifierHid.AltLeft,
                     Key0 = KeysHid.Enter
                 };
-                vFakerInputDevice.KeyboardPressRelease(keyboardAction);
+                vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAction);
             }
             catch { }
         }
@@ -166,6 +166,10 @@ namespace DirectXInput.KeyboardCode
         //Update currently playing media information
         async Task UpdateCurrentMediaInformation()
         {
+            GlobalSystemMediaTransportControlsSession smtcSession = null;
+            GlobalSystemMediaTransportControlsSessionTimelineProperties mediaTimeline = null;
+            GlobalSystemMediaTransportControlsSessionMediaProperties mediaProperties = null;
+            GlobalSystemMediaTransportControlsSessionPlaybackInfo mediaPlayInfo = null;
             try
             {
                 //Check the current keyboard mode
@@ -176,7 +180,6 @@ namespace DirectXInput.KeyboardCode
                 }
 
                 //Get active media player session
-                GlobalSystemMediaTransportControlsSession smtcSession = null;
                 try
                 {
                     smtcSession = vSmtcSessionManager.GetCurrentSession();
@@ -194,9 +197,9 @@ namespace DirectXInput.KeyboardCode
                     return;
                 }
 
-                GlobalSystemMediaTransportControlsSessionTimelineProperties mediaTimeline = smtcSession.GetTimelineProperties();
-                GlobalSystemMediaTransportControlsSessionMediaProperties mediaProperties = await smtcSession.TryGetMediaPropertiesAsync();
-                GlobalSystemMediaTransportControlsSessionPlaybackInfo mediaPlayInfo = smtcSession.GetPlaybackInfo();
+                mediaTimeline = smtcSession.GetTimelineProperties();
+                mediaProperties = await smtcSession.TryGetMediaPropertiesAsync();
+                mediaPlayInfo = smtcSession.GetPlaybackInfo();
                 //Debug.WriteLine("Media: " + mediaProperties.Title + "/" + mediaProperties.Artist + "/" + mediaProperties.AlbumTitle + "/" + mediaProperties.Subtitle + "/" + mediaProperties.PlaybackType + "/" + mediaProperties.TrackNumber + "/" + mediaProperties.AlbumTrackCount);
                 //Debug.WriteLine("Time: " + mediaTimeline.Position + "/" + mediaTimeline.StartTime + "/" + mediaTimeline.EndTime);
                 //Debug.WriteLine("Play: " + mediaPlayInfo.PlaybackStatus + "/" + mediaPlayInfo.PlaybackType);
@@ -316,6 +319,15 @@ namespace DirectXInput.KeyboardCode
             {
                 //Debug.WriteLine("Failed updating playing media.");
                 HideMediaInformation();
+            }
+            finally
+            {
+                //Manually trigger garbage collection
+                smtcSession = null;
+                mediaTimeline = null;
+                mediaProperties = null;
+                mediaPlayInfo = null;
+                GC.Collect();
             }
         }
 

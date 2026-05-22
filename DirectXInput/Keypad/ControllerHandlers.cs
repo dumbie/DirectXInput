@@ -204,7 +204,7 @@ namespace DirectXInput.KeypadCode
 
                     //Send key presses to keyboard
                     keyboardAction.Modifiers = pressedModifiers;
-                    vFakerInputDevice.KeyboardPress(keyboardAction);
+                    vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAction);
 
                     //Delay input to prevent repeat
                     vControllerDelay_KeypadKeyboard = GetSystemTicksMs() + vControllerDelayTicks10;
@@ -245,14 +245,6 @@ namespace DirectXInput.KeypadCode
                 else if (keyboardAction.Key5 == KeysHid.None)
                 {
                     keyboardAction.Key5 = pressedKey;
-                }
-                else if (keyboardAction.Key6 == KeysHid.None)
-                {
-                    keyboardAction.Key6 = pressedKey;
-                }
-                else if (keyboardAction.Key7 == KeysHid.None)
-                {
-                    keyboardAction.Key7 = pressedKey;
                 }
             }
             catch { }

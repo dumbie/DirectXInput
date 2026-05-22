@@ -95,14 +95,12 @@ namespace DirectXInput
                 //Stop controller loop tasks
                 await TaskStopLoop(controller.InputControllerTask, 1000);
                 await TaskStopLoop(controller.OutputControllerTask, 1000);
-                await TaskStopLoop(controller.OutputVirtualTask, 1000);
                 await TaskStopLoop(controller.OutputGyroscopeTask, 1000);
 
                 //Disconnect controller virtual
-                if (vVirtualBusDevice != null)
+                if (vVirtualBusDevice != null && controller.VirtualDevice != null)
                 {
-                    //Disconnect virtual controller
-                    await vVirtualBusDevice.VirtualUnplug(controller.NumberVirtual());
+                    controller.VirtualDevice.Dispose();
                 }
 
                 //Disconnect controller wireless

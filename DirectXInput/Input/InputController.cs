@@ -128,20 +128,17 @@ namespace DirectXInput
 
                 if (blockOutput)
                 {
-                    //Update and prepare empty input data
-                    PrepareVirtualInputDataEmpty(controller);
+                    //Send empty input to virtual device
+                    vVirtualBusDevice.Xbox360ResetInput(controller.VirtualDevice);
                 }
                 else
                 {
                     //Check and overwrite controller button presses
                     CheckControllerButtonOverwrite(controller);
 
-                    //Update and prepare virtual input data
-                    PrepareVirtualInputDataCurrent(controller);
+                    //Send current input to virtual device
+                    vVirtualBusDevice.Xbox360SetInput(controller.VirtualDevice, controller);
                 }
-
-                //Send input to virtual device
-                vVirtualBusDevice.VirtualInput(ref controller);
             }
             catch
             {
