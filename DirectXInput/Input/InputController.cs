@@ -116,7 +116,7 @@ namespace DirectXInput
                 bool blockOutput = await CheckControllerBlockInteraction(controller);
 
                 //Update controller input time
-                long ticksSystem = GetSystemTicksMs();
+                long ticksSystem = GetSystemTicksMilli();
                 controller.TicksInputPrev = controller.TicksInputLast;
                 controller.TicksInputLast = ticksSystem;
 
@@ -129,7 +129,7 @@ namespace DirectXInput
                 if (blockOutput)
                 {
                     //Send empty input to virtual device
-                    vVirtualBusDevice.Xbox360ResetInput(controller.VirtualDevice);
+                    vVirtualBusDevice.GamepadXboxResetInput(controller.VirtualDevice);
                 }
                 else
                 {
@@ -137,7 +137,7 @@ namespace DirectXInput
                     CheckControllerButtonOverwrite(controller);
 
                     //Send current input to virtual device
-                    vVirtualBusDevice.Xbox360SetInput(controller.VirtualDevice, controller);
+                    vVirtualBusDevice.GamepadXboxSetInput(controller.VirtualDevice, controller);
                 }
             }
             catch

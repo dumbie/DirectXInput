@@ -14,7 +14,7 @@ namespace DirectXInput.KeypadCode
         {
             try
             {
-                if (GetSystemTicksMs() >= vControllerDelay_KeypadPreview)
+                if (GetSystemTicksMilli() >= vControllerDelay_KeypadPreview)
                 {
                     AVDispatcherInvoke.DispatcherInvoke(delegate
                     {
@@ -61,7 +61,7 @@ namespace DirectXInput.KeypadCode
                         catch { }
                     });
 
-                    vControllerDelay_KeypadPreview = GetSystemTicksMs() + vControllerDelayTicks125;
+                    vControllerDelay_KeypadPreview = GetSystemTicksMilli() + vControllerDelayTicks125;
                 }
             }
             catch { }

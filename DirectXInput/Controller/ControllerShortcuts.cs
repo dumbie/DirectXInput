@@ -83,7 +83,7 @@ namespace DirectXInput
             bool ControllerDelay750 = false;
             try
             {
-                if (GetSystemTicksMs() >= controller.Delay_ControllerShortcut)
+                if (GetSystemTicksMilli() >= controller.Delay_ControllerShortcut)
                 {
                     //Activate controller
                     if (controller.InputCurrent.Buttons[(byte)ControllerButtons.Guide].PressedShort)
@@ -303,15 +303,15 @@ namespace DirectXInput
             {
                 if (ControllerDelay125)
                 {
-                    controller.Delay_ControllerShortcut = GetSystemTicksMs() + vControllerDelayTicks125;
+                    controller.Delay_ControllerShortcut = GetSystemTicksMilli() + vControllerDelayTicks125;
                 }
                 else if (ControllerDelay250)
                 {
-                    controller.Delay_ControllerShortcut = GetSystemTicksMs() + vControllerDelayTicks250;
+                    controller.Delay_ControllerShortcut = GetSystemTicksMilli() + vControllerDelayTicks250;
                 }
                 else if (ControllerDelay750)
                 {
-                    controller.Delay_ControllerShortcut = GetSystemTicksMs() + vControllerDelayTicks750;
+                    controller.Delay_ControllerShortcut = GetSystemTicksMilli() + vControllerDelayTicks750;
                 }
             }
             return ControllerUsed;

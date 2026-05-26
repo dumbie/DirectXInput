@@ -38,7 +38,7 @@ namespace LibraryUsb
             try
             {
                 //Find the device path
-                IEnumerable<EnumerateInfo> SelectedHidDevice = EnumerateDevicesSetupApi(GuidClassHidDevice, true);
+                IEnumerable<EnumerateInfo> SelectedHidDevice = EnumerateDevicesSetupApi(GuidClassHidDevice, true, true);
                 foreach (EnumerateInfo EnumDevice in SelectedHidDevice)
                 {
                     try

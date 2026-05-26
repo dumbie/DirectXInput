@@ -316,16 +316,30 @@ namespace DirectXInput
                         //Update settings interface
                         if (activeController.Details.Profile.TriggerRumbleEnabled)
                         {
+                            cb_TriggerRumbleGenerate.IsEnabled = true;
                             slider_TriggerRumbleStrengthLeft.IsEnabled = true;
                             slider_TriggerRumbleStrengthRight.IsEnabled = true;
                             slider_TriggerRumbleLimit.IsEnabled = true;
                         }
                         else
                         {
+                            cb_TriggerRumbleGenerate.IsEnabled = false;
                             slider_TriggerRumbleStrengthLeft.IsEnabled = false;
                             slider_TriggerRumbleStrengthRight.IsEnabled = false;
                             slider_TriggerRumbleLimit.IsEnabled = false;
                         }
+                    }
+                };
+
+                cb_TriggerRumbleGenerate.Click += (sender, e) =>
+                {
+                    ControllerStatus activeController = ControllerGetActive();
+                    if (activeController != null)
+                    {
+                        activeController.Details.Profile.TriggerRumbleGenerate = cb_TriggerRumbleGenerate.IsChecked.Value;
+
+                        //Save changes to Json file
+                        JsonSaveObject(activeController.Details.Profile, GenerateJsonNameControllerProfile(activeController.Details.Profile));
                     }
                 };
 

@@ -72,7 +72,7 @@ namespace DirectXInput
                 controllerStatus.HidDevice.EnableDevice();
 
                 //Plugin virtual device
-                controllerStatus.VirtualDevice = vVirtualBusDevice.Xbox360Create();
+                controllerStatus.VirtualDevice = vVirtualBusDevice.GamepadXboxCreate();
                 Debug.WriteLine("Virtual device plugin result: " + (controllerStatus.VirtualDevice == null));
 
                 //Virtual device output event
@@ -102,7 +102,7 @@ namespace DirectXInput
                 ControllerLedColorUpdate(controllerStatus);
 
                 //Update controller last input time
-                long ticksSystem = GetSystemTicksMs();
+                long ticksSystem = GetSystemTicksMilli();
                 controllerStatus.TicksInputPrev = ticksSystem;
                 controllerStatus.TicksInputLast = ticksSystem;
 

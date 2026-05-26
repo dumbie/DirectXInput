@@ -23,7 +23,7 @@ namespace DirectXInput
                 if (Controller.SupportedCurrent.CodeName == "SteamController2026")
                 {
                     //Get current system ticks in milliseconds
-                    long ticksSystem = GetSystemTicksMs();
+                    long ticksSystem = GetSystemTicksMilli();
 
                     //Steam Controller 2026 disable Lizard (Mouse + Keyboard) mode
                     //Note: Lizard mode automatically renables every 10 seconds so loop is needed to keep it disabled

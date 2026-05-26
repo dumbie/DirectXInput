@@ -17,7 +17,7 @@ namespace DirectXInput
         {
             try
             {
-                if (GetSystemTicksMs() >= controller.Delay_CtrlUIOutput)
+                if (GetSystemTicksMilli() >= controller.Delay_CtrlUIOutput)
                 {
                     //Check if socket server is running
                     if (vArnoldVinkSockets == null)
@@ -38,7 +38,7 @@ namespace DirectXInput
                     await vArnoldVinkSockets.UdpClientSendBytesServer(ipEndPoint, SerializedData, vArnoldVinkSockets.vSocketTimeout);
 
                     //Update delay time
-                    controller.Delay_CtrlUIOutput = GetSystemTicksMs() + vControllerDelayTicks10;
+                    controller.Delay_CtrlUIOutput = GetSystemTicksMilli() + vControllerDelayTicks10;
                 }
             }
             catch { }

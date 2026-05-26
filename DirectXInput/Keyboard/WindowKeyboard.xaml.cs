@@ -98,10 +98,10 @@ namespace DirectXInput.KeyboardCode
                     vVirtualBusDevice.MouseRelativeResetInput(vHMMouseRelative);
 
                     //Delay CtrlUI output
-                    vController0.Delay_CtrlUIOutput = GetSystemTicksMs() + vControllerDelayTicks250;
-                    vController1.Delay_CtrlUIOutput = GetSystemTicksMs() + vControllerDelayTicks250;
-                    vController2.Delay_CtrlUIOutput = GetSystemTicksMs() + vControllerDelayTicks250;
-                    vController3.Delay_CtrlUIOutput = GetSystemTicksMs() + vControllerDelayTicks250;
+                    vController0.Delay_CtrlUIOutput = GetSystemTicksMilli() + vControllerDelayTicks250;
+                    vController1.Delay_CtrlUIOutput = GetSystemTicksMilli() + vControllerDelayTicks250;
+                    vController2.Delay_CtrlUIOutput = GetSystemTicksMilli() + vControllerDelayTicks250;
+                    vController3.Delay_CtrlUIOutput = GetSystemTicksMilli() + vControllerDelayTicks250;
                 }
             }
             catch { }
@@ -116,7 +116,7 @@ namespace DirectXInput.KeyboardCode
                 await vWindowKeypad.Hide();
 
                 //Delay keyboard input
-                vControllerDelay_Keyboard = GetSystemTicksMs() + vControllerDelayTicks250;
+                vControllerDelay_Keyboard = GetSystemTicksMilli() + vControllerDelayTicks250;
 
                 //Play window open sound
                 PlayInterfaceSound(vSettings, "PopupOpen", false, false);

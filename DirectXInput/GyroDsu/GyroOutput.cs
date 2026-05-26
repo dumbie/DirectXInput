@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using static ArnoldVinkCode.ArnoldVinkSockets;
+using static ArnoldVinkCode.AVActions;
 using static ArnoldVinkCode.AVInputOutputClass;
 using static DirectXInput.AppVariables;
 using static LibraryShared.Classes;
@@ -347,7 +348,7 @@ namespace DirectXInput
                 sendBytes[67] = touch2YBytes[1];
 
                 //Set timestamp
-                byte[] timeStampBytes = BitConverter.GetBytes(Stopwatch.GetTimestamp() / 10);
+                byte[] timeStampBytes = BitConverter.GetBytes(GetSystemTicksMicro() / 10);
                 sendBytes[68] = timeStampBytes[0];
                 sendBytes[69] = timeStampBytes[1];
                 sendBytes[70] = timeStampBytes[2];

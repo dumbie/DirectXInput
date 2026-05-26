@@ -21,7 +21,7 @@
 		<RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-		<Optimize>True</Optimize>
+		<Optimize>False</Optimize>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
 		<Optimize>True</Optimize>
@@ -401,6 +401,12 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Profiles\HidMaestro\mouse-relative.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Profiles\HidMaestro\microsoft-xbox-360.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Profiles\HidMaestro\microsoft-xbox-one-1537.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Profiles\Default\DirectCloseTools.json">

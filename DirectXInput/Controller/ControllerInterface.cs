@@ -131,16 +131,20 @@ namespace DirectXInput
                     cb_TriggerRumbleEnabled.IsChecked = Controller.Details.Profile.TriggerRumbleEnabled;
                     if (Controller.Details.Profile.TriggerRumbleEnabled)
                     {
+                        cb_TriggerRumbleGenerate.IsEnabled = true;
                         slider_TriggerRumbleStrengthLeft.IsEnabled = true;
                         slider_TriggerRumbleStrengthRight.IsEnabled = true;
                         slider_TriggerRumbleLimit.IsEnabled = true;
                     }
                     else
                     {
+                        cb_TriggerRumbleGenerate.IsEnabled = false;
                         slider_TriggerRumbleStrengthLeft.IsEnabled = false;
                         slider_TriggerRumbleStrengthRight.IsEnabled = false;
                         slider_TriggerRumbleLimit.IsEnabled = false;
                     }
+
+                    cb_TriggerRumbleGenerate.IsChecked = Controller.Details.Profile.TriggerRumbleGenerate;
 
                     textblock_TriggerRumbleLimit.Text = textblock_TriggerRumbleLimit.Tag.ToString() + Convert.ToInt32(Controller.Details.Profile.TriggerRumbleLimit) + "%";
                     slider_TriggerRumbleLimit.Value = Controller.Details.Profile.TriggerRumbleLimit;

@@ -8,15 +8,17 @@ namespace LibraryUsb
 {
     public partial class HidMaestroDllDevice
     {
-        public HMController Xbox360Create()
+        public HMController GamepadXboxCreate()
         {
             try
             {
                 //Get device profile
-                HMProfile hmProfile = hidMaestroContext.GetProfile("xbox-360-wired");
+                //Note: Newer Xbox controllers might not be supported by older games like BF4
+                //HMProfile hmProfile = hidMaestroContext.GetProfile("microsoft-xbox-360");
+                HMProfile hmProfile = hidMaestroContext.GetProfile("microsoft-xbox-one-1537");
                 if (hmProfile == null)
                 {
-                    Debug.WriteLine("Xbox 360 device profile not found.");
+                    Debug.WriteLine("Xbox gamepad device profile not found.");
                     return null;
                 }
 
@@ -24,28 +26,22 @@ namespace LibraryUsb
                 HMController hmController = hidMaestroContext.CreateController(hmProfile);
                 if (hmController == null)
                 {
-                    Debug.WriteLine("Failed to create Xbox 360 device.");
+                    Debug.WriteLine("Failed to create Xbox gamepad device.");
                     return null;
                 }
 
-                //Set output received event
-                hmController.OutputReceived += (controller, packet) =>
-                {
-                    Debug.WriteLine($"[output] ctrl1 source={packet.Source} " + $"reportId=0x{packet.ReportId:X2} len={packet.Data.Length}");
-                };
-
                 //Return result
-                Debug.WriteLine("Created Xbox 360 device");
+                Debug.WriteLine("Created Xbox gamepad device");
                 return hmController;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Failed to create Xbox 360 device: " + ex.Message);
+                Debug.WriteLine("Failed to create Xbox gamepad device: " + ex.Message);
                 return null;
             }
         }
 
-        public bool Xbox360SetInput(HMController hmController, ControllerStatus controller)
+        public bool GamepadXboxSetInput(HMController hmController, ControllerStatus controller)
         {
             try
             {
@@ -102,12 +98,12 @@ namespace LibraryUsb
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Failed to set Xbox 360 input: " + ex.Message);
+                Debug.WriteLine("Failed to set Xbox gamepad input: " + ex.Message);
                 return false;
             }
         }
 
-        public bool Xbox360ResetInput(HMController hmController)
+        public bool GamepadXboxResetInput(HMController hmController)
         {
             try
             {
@@ -122,7 +118,7 @@ namespace LibraryUsb
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Failed to reset Xbox 360 input: " + ex.Message);
+                Debug.WriteLine("Failed to reset Xbox gamepad input: " + ex.Message);
                 return false;
             }
         }

@@ -49,7 +49,7 @@ namespace DirectXInput
             {
                 AVDispatcherInvoke.DispatcherInvoke(delegate
                 {
-                    if (Controller.RumbleCurrentHeavy > 0 || Controller.RumbleCurrentLight > 0)
+                    if (Controller.RumbleCurrentControllerHeavy > 0 || Controller.RumbleCurrentControllerLight > 0 || Controller.RumbleCurrentTriggerLeft > 0 || Controller.RumbleCurrentTriggerRight > 0)
                     {
                         img_ControllerPreview_Rumble.Visibility = Visibility.Visible;
                     }

@@ -26,7 +26,7 @@ namespace LibraryUsb
         {
             try
             {
-                EnumerateInfo enumerateInfo = EnumerateDevicesSetupApi(deviceGuid, true).FirstOrDefault();
+                EnumerateInfo enumerateInfo = EnumerateDevicesSetupApi(deviceGuid, true, true).FirstOrDefault();
                 if (enumerateInfo != null)
                 {
                     DevicePath = enumerateInfo.DevicePath.ToLower();

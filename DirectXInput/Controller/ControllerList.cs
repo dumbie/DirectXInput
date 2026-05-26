@@ -25,7 +25,7 @@ namespace DirectXInput
             try
             {
                 //Add Win Usb Devices
-                IEnumerable<EnumerateInfo> SelectedWinDevice = EnumerateDevicesSetupApi(GuidClassScpDS3Driver, true);
+                IEnumerable<EnumerateInfo> SelectedWinDevice = EnumerateDevicesSetupApi(GuidClassScpDS3Driver, true, true);
                 foreach (EnumerateInfo EnumDevice in SelectedWinDevice)
                 {
                     try
@@ -84,7 +84,7 @@ namespace DirectXInput
                 }
 
                 //Add Hid Usb Devices
-                IEnumerable<EnumerateInfo> SelectedHidDevice = EnumerateDevicesSetupApi(GuidClassHidDevice, true);
+                IEnumerable<EnumerateInfo> SelectedHidDevice = EnumerateDevicesSetupApi(GuidClassHidDevice, true, true);
                 foreach (EnumerateInfo EnumDevice in SelectedHidDevice)
                 {
                     try

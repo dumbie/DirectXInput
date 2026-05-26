@@ -169,5 +169,17 @@
   },
   {
     "String1": "RacingDSX"
+  },
+  {
+    "String1": "DSAdvance"
+  },
+  {
+    "String1": "PCXSense"
+  },
+  {
+    "String1": "SteamControllerBridge"
+  },
+  {
+    "String1": "Steam Controller Remapper"
   }
 ]

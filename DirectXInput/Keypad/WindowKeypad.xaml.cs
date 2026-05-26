@@ -83,10 +83,10 @@ namespace DirectXInput.KeypadCode
                     vVirtualBusDevice.MouseRelativeResetInput(vHMMouseRelative);
 
                     //Delay CtrlUI output
-                    vController0.Delay_CtrlUIOutput = GetSystemTicksMs() + vControllerDelayTicks250;
-                    vController1.Delay_CtrlUIOutput = GetSystemTicksMs() + vControllerDelayTicks250;
-                    vController2.Delay_CtrlUIOutput = GetSystemTicksMs() + vControllerDelayTicks250;
-                    vController3.Delay_CtrlUIOutput = GetSystemTicksMs() + vControllerDelayTicks250;
+                    vController0.Delay_CtrlUIOutput = GetSystemTicksMilli() + vControllerDelayTicks250;
+                    vController1.Delay_CtrlUIOutput = GetSystemTicksMilli() + vControllerDelayTicks250;
+                    vController2.Delay_CtrlUIOutput = GetSystemTicksMilli() + vControllerDelayTicks250;
+                    vController3.Delay_CtrlUIOutput = GetSystemTicksMilli() + vControllerDelayTicks250;
                 }
             }
             catch { }

@@ -23,7 +23,7 @@ namespace LibraryShared
                         if (PressTimeStart == 0)
                         {
                             PressTimeEnd = 0;
-                            PressTimeStart = GetSystemTicksMs();
+                            PressTimeStart = GetSystemTicksMilli();
                             PressTimeDone = false;
                         }
                     }
@@ -43,7 +43,7 @@ namespace LibraryShared
                 {
                     if (PressTimeStart > 0)
                     {
-                        return GetSystemTicksMs() - PressTimeStart;
+                        return GetSystemTicksMilli() - PressTimeStart;
                     }
                     else
                     {
@@ -58,7 +58,7 @@ namespace LibraryShared
                 {
                     if (PressTimeEnd > 0)
                     {
-                        return GetSystemTicksMs() - PressTimeEnd;
+                        return GetSystemTicksMilli() - PressTimeEnd;
                     }
                     else
                     {

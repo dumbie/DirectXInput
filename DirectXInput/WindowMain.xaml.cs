@@ -86,8 +86,10 @@ namespace DirectXInput
                         {
                             for (int i = 0; i < 10; i++)
                             {
-                                activeController.RumbleCurrentHeavy = 0;
-                                activeController.RumbleCurrentLight = (byte)(255 - i);
+                                activeController.RumbleCurrentTriggerLeft = (byte)(255 - i);
+                                activeController.RumbleCurrentTriggerRight = 0;
+                                activeController.RumbleCurrentControllerHeavy = 0;
+                                activeController.RumbleCurrentControllerLight = (byte)(255 - i);
                                 await Task.Delay(100);
                             }
                         }
@@ -95,8 +97,10 @@ namespace DirectXInput
                         {
                             for (int i = 0; i < 10; i++)
                             {
-                                activeController.RumbleCurrentHeavy = (byte)(255 - i);
-                                activeController.RumbleCurrentLight = 0;
+                                activeController.RumbleCurrentTriggerLeft = 0;
+                                activeController.RumbleCurrentTriggerRight = (byte)(255 - i);
+                                activeController.RumbleCurrentControllerHeavy = (byte)(255 - i);
+                                activeController.RumbleCurrentControllerLight = 0;
                                 await Task.Delay(100);
                             }
                         }
@@ -105,8 +109,10 @@ namespace DirectXInput
                         await Task.Delay(500);
 
                         //Disable rumble
-                        activeController.RumbleCurrentHeavy = 0;
-                        activeController.RumbleCurrentLight = 0;
+                        activeController.RumbleCurrentTriggerLeft = 0;
+                        activeController.RumbleCurrentTriggerRight = 0;
+                        activeController.RumbleCurrentControllerHeavy = 0;
+                        activeController.RumbleCurrentControllerLight = 0;
 
                         vControllerRumbleTest = false;
                     }

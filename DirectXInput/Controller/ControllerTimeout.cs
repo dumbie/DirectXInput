@@ -40,7 +40,7 @@ namespace DirectXInput
                     }
                     else
                     {
-                        long lastMs = GetSystemTicksMs() - Controller.TicksInputLast;
+                        long lastMs = GetSystemTicksMilli() - Controller.TicksInputLast;
                         if (lastMs > Controller.TicksTimeoutTarget)
                         {
                             Debug.WriteLine("Controller " + Controller.NumberId + " has timed out: " + lastMs + "/" + Controller.TicksTimeoutTarget + "ms.");

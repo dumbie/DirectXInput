@@ -91,10 +91,20 @@ namespace LibraryShared
             public byte[] ControllerDataOutput = null;
             public byte[] VirtualDataInput = null;
             public byte[] VirtualDataOutput = null;
-            public byte RumbleCurrentHeavy = 0;
-            public byte RumbleCurrentLight = 0;
-            public byte RumblePreviousHeavy = 0;
-            public byte RumblePreviousLight = 0;
+
+            //Controller Rumble
+            public byte RumbleCurrentControllerHeavy = 0;
+            public byte RumbleCurrentControllerLight = 0;
+            public byte RumblePreviousControllerHeavy = 0;
+            public byte RumblePreviousControllerLight = 0;
+
+            //Trigger Rumble
+            public long RumbleTicksTriggerLeft = 0;
+            public long RumbleTicksTriggerRight = 0;
+            public byte RumbleCurrentTriggerLeft = 0;
+            public byte RumbleCurrentTriggerRight = 0;
+            public byte RumblePreviousTriggerLeft = 0;
+            public byte RumblePreviousTriggerRight = 0;
 
             //Controller Input
             public long Delay_CtrlUIOutput = 0;

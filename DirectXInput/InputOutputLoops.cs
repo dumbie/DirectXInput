@@ -45,9 +45,11 @@ namespace DirectXInput
                         bool ledGChanged = controller.ColorLedCurrentG == controller.ColorLedPreviousG;
                         bool ledBChanged = controller.ColorLedCurrentB == controller.ColorLedPreviousB;
                         bool ledMuteChanged = vControllerMuteLedCurrent == vControllerMuteLedPrevious;
-                        bool heavyRumbleChanged = controller.RumbleCurrentHeavy == controller.RumblePreviousHeavy;
-                        bool lightRumbleChanged = controller.RumbleCurrentLight == controller.RumblePreviousLight;
-                        if ((ledBrightnessChanged && ledRChanged && ledGChanged && ledBChanged && ledMuteChanged && heavyRumbleChanged && lightRumbleChanged) == false)
+                        bool heavyRumbleChanged = controller.RumbleCurrentControllerHeavy == controller.RumblePreviousControllerHeavy;
+                        bool lightRumbleChanged = controller.RumbleCurrentControllerLight == controller.RumblePreviousControllerLight;
+                        bool triggerLeftRumbleChanged = controller.RumbleCurrentTriggerLeft == controller.RumblePreviousTriggerLeft;
+                        bool triggerRightRumbleChanged = controller.RumbleCurrentTriggerRight == controller.RumblePreviousTriggerRight;
+                        if ((ledBrightnessChanged && ledRChanged && ledGChanged && ledBChanged && ledMuteChanged && heavyRumbleChanged && lightRumbleChanged && triggerLeftRumbleChanged && triggerRightRumbleChanged) == false)
                         {
                             //Update the previous output values
                             controller.ColorLedPreviousBrightness = controller.ColorLedCurrentBrightness;
@@ -55,8 +57,10 @@ namespace DirectXInput
                             controller.ColorLedPreviousG = controller.ColorLedCurrentG;
                             controller.ColorLedPreviousB = controller.ColorLedCurrentB;
                             vControllerMuteLedPrevious = vControllerMuteLedCurrent;
-                            controller.RumblePreviousHeavy = controller.RumbleCurrentHeavy;
-                            controller.RumblePreviousLight = controller.RumbleCurrentLight;
+                            controller.RumblePreviousControllerHeavy = controller.RumbleCurrentControllerHeavy;
+                            controller.RumblePreviousControllerLight = controller.RumbleCurrentControllerLight;
+                            controller.RumblePreviousTriggerLeft = controller.RumbleCurrentTriggerLeft;
+                            controller.RumblePreviousTriggerRight = controller.RumbleCurrentTriggerRight;
 
                             //Send received output to controller
                             ControllerOutputSend(controller);

@@ -49,7 +49,7 @@ namespace LibraryUsb
                 }
 
                 //Find the virtual device path
-                IEnumerable<EnumerateInfo> SelectedHidDevice = EnumerateDevicesSetupApi(GuidClassHidDevice, true);
+                IEnumerable<EnumerateInfo> SelectedHidDevice = EnumerateDevicesSetupApi(GuidClassHidDevice, true, true);
                 foreach (EnumerateInfo EnumDevice in SelectedHidDevice)
                 {
                     if (EnumDevice.HardwareIds.FirstOrDefault().ToLower() == HardwareTarget)

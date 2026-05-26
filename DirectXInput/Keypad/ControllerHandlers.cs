@@ -16,7 +16,7 @@ namespace DirectXInput.KeypadCode
             try
             {
                 //Check if mouse movement is enabled
-                if (vKeypadMappingProfile.KeypadMouseMoveEnabled && GetSystemTicksMs() >= vControllerDelay_KeypadMouse)
+                if (vKeypadMappingProfile.KeypadMouseMoveEnabled && GetSystemTicksMilli() >= vControllerDelay_KeypadMouse)
                 {
                     //Get the mouse move amount
                     GetMouseMovementAmountFromThumbGame(vKeypadMappingProfile.KeypadMouseMoveSensitivity, controllerInput.ThumbRightX, controllerInput.ThumbRightY, true, out int moveHorizontalRight, out int moveVerticalRight);
@@ -25,7 +25,7 @@ namespace DirectXInput.KeypadCode
                     MouseMoveCursor(moveHorizontalRight, moveVerticalRight);
 
                     //Delay input to prevent repeat
-                    vControllerDelay_KeypadMouse = GetSystemTicksMs() + vControllerDelayTicks10;
+                    vControllerDelay_KeypadMouse = GetSystemTicksMilli() + vControllerDelayTicks10;
                 }
             }
             catch { }
@@ -36,7 +36,7 @@ namespace DirectXInput.KeypadCode
         {
             try
             {
-                if (GetSystemTicksMs() >= vControllerDelay_KeypadKeyboard)
+                if (GetSystemTicksMilli() >= vControllerDelay_KeypadKeyboard)
                 {
                     KeysHidAction keyboardAction = new KeysHidAction();
                     KeysModifierHid pressedModifiers = KeysModifierHid.None;
@@ -207,7 +207,7 @@ namespace DirectXInput.KeypadCode
                     vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAction);
 
                     //Delay input to prevent repeat
-                    vControllerDelay_KeypadKeyboard = GetSystemTicksMs() + vControllerDelayTicks10;
+                    vControllerDelay_KeypadKeyboard = GetSystemTicksMilli() + vControllerDelayTicks10;
                 }
             }
             catch { }

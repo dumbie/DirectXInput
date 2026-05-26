@@ -13,15 +13,17 @@ namespace LibraryUsb
         {
             try
             {
-                //Create HID Maestro context
+                //Create HIDMaestro context
                 hidMaestroContext = new HMContext();
 
+                //Install drivers, certificate and remove ghost devices
+                hidMaestroContext.InstallDriver();
+
                 //Load device profiles
-                int loadedDefaultProfiles = hidMaestroContext.LoadDefaultProfiles();
                 int loadedCustomProfiles = hidMaestroContext.LoadProfilesFromDirectory("Profiles\\HidMaestro");
 
                 Connected = true;
-                Debug.WriteLine("HidMaestro device created: " + loadedDefaultProfiles + " / " + loadedCustomProfiles);
+                Debug.WriteLine("HidMaestro device created: " + loadedCustomProfiles);
             }
             catch (Exception ex)
             {

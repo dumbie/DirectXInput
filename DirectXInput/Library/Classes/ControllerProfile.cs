@@ -586,7 +586,21 @@ namespace LibraryShared
                 }
             }
 
-            private int PrivTriggerRumbleLimit = 40;
+            private bool PrivTriggerRumbleGenerate = false;
+            public bool TriggerRumbleGenerate
+            {
+                get { return this.PrivTriggerRumbleGenerate; }
+                set
+                {
+                    if (this.PrivTriggerRumbleGenerate != value)
+                    {
+                        this.PrivTriggerRumbleGenerate = value;
+                        NotifyPropertyChanged();
+                    }
+                }
+            }
+
+            private int PrivTriggerRumbleLimit = 80;
             public int TriggerRumbleLimit
             {
                 get { return this.PrivTriggerRumbleLimit; }

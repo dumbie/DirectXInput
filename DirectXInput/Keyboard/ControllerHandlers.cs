@@ -30,7 +30,7 @@ namespace DirectXInput.KeyboardCode
                 int moveVerticalRight = 0;
                 int moveHorizontalLeft = 0;
                 int moveHorizontalRight = 0;
-                if (GetSystemTicksMs() >= vControllerDelay_MouseMove)
+                if (GetSystemTicksMilli() >= vControllerDelay_MouseMove)
                 {
                     //Set default mouse delay
                     moveMouseDelay = vControllerDelayTicks10;
@@ -52,13 +52,13 @@ namespace DirectXInput.KeyboardCode
                     }
 
                     //Delay input to prevent repeat
-                    vControllerDelay_MouseMove = GetSystemTicksMs() + moveMouseDelay;
+                    vControllerDelay_MouseMove = GetSystemTicksMilli() + moveMouseDelay;
                 }
 
                 //Set mouse button
                 long buttonMouseDelay = 0;
                 MouseHidButtons buttonPressed = MouseHidButtons.None;
-                if (GetSystemTicksMs() >= vControllerDelay_MouseButton)
+                if (GetSystemTicksMilli() >= vControllerDelay_MouseButton)
                 {
                     //Set default mouse delay
                     buttonMouseDelay = vControllerDelayTicks10;
@@ -79,14 +79,14 @@ namespace DirectXInput.KeyboardCode
                     }
 
                     //Delay input to prevent repeat
-                    vControllerDelay_MouseButton = GetSystemTicksMs() + buttonMouseDelay;
+                    vControllerDelay_MouseButton = GetSystemTicksMilli() + buttonMouseDelay;
                 }
 
                 //Set mouse scroll
                 long scrollMouseDelay = 0;
                 int scrollVerticalRight = 0;
                 int scrollHorizontalRight = 0;
-                if (GetSystemTicksMs() >= vControllerDelay_MouseScroll)
+                if (GetSystemTicksMilli() >= vControllerDelay_MouseScroll)
                 {
                     //Check keyboard mode
                     if (vKeyboardCurrentMode == KeyboardMode.Keyboard)
@@ -100,7 +100,7 @@ namespace DirectXInput.KeyboardCode
                         }
 
                         //Delay input to prevent repeat
-                        vControllerDelay_MouseScroll = GetSystemTicksMs() + scrollMouseDelay;
+                        vControllerDelay_MouseScroll = GetSystemTicksMilli() + scrollMouseDelay;
                     }
                 }
 
@@ -130,7 +130,7 @@ namespace DirectXInput.KeyboardCode
             bool ControllerDelay500 = false;
             try
             {
-                if (GetSystemTicksMs() >= vControllerDelay_Keyboard)
+                if (GetSystemTicksMilli() >= vControllerDelay_Keyboard)
                 {
                     //Send internal arrow left key
                     if (ControllerInput.Buttons[(byte)ControllerButtons.DPadLeft].PressedRaw)
@@ -576,19 +576,19 @@ namespace DirectXInput.KeyboardCode
                     //Delay input to prevent repeat
                     if (ControllerDelay30)
                     {
-                        vControllerDelay_Keyboard = GetSystemTicksMs() + vControllerDelayTicks30;
+                        vControllerDelay_Keyboard = GetSystemTicksMilli() + vControllerDelayTicks30;
                     }
                     else if (ControllerDelay125)
                     {
-                        vControllerDelay_Keyboard = GetSystemTicksMs() + vControllerDelayTicks125;
+                        vControllerDelay_Keyboard = GetSystemTicksMilli() + vControllerDelayTicks125;
                     }
                     else if (ControllerDelay250)
                     {
-                        vControllerDelay_Keyboard = GetSystemTicksMs() + vControllerDelayTicks250;
+                        vControllerDelay_Keyboard = GetSystemTicksMilli() + vControllerDelayTicks250;
                     }
                     else if (ControllerDelay500)
                     {
-                        vControllerDelay_Keyboard = GetSystemTicksMs() + vControllerDelayTicks500;
+                        vControllerDelay_Keyboard = GetSystemTicksMilli() + vControllerDelayTicks500;
                     }
                 }
             }
