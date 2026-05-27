@@ -110,6 +110,9 @@ namespace LibraryUsb
                 //Create device state
                 HMGamepadState hmDeviceState = new HMGamepadState();
 
+                //Set device axes
+                hmDeviceState.Axes = HMGamepadStateHelpers.StandardAxes(hmController.Profile, 0.5F, 0.5F, 0.5F, 0.5F, 0, 0);
+
                 //Set device state
                 hmController.SubmitState(hmDeviceState);
 
