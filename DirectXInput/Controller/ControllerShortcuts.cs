@@ -231,14 +231,17 @@ namespace DirectXInput
                                     Modifiers = KeysModifierHid.AltLeft,
                                     Key0 = KeysHid.Tab
                                 };
-                                vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAltTab);
+                                vVirtualBusDevice.KeyboardNormalSetInput(vHMKeyboardNormal, keyboardAltTab);
+
+                                //Delay tab key release
+                                AVHighResDelay.Delay(50);
 
                                 //Press and Hold Alt
                                 KeysHidAction keyboardAlt = new KeysHidAction()
                                 {
                                     Modifiers = KeysModifierHid.AltLeft,
                                 };
-                                vVirtualBusDevice.KeyboardNormalPressRelease(vHMKeyboardNormal, keyboardAlt);
+                                vVirtualBusDevice.KeyboardNormalSetInput(vHMKeyboardNormal, keyboardAlt);
 
                                 vAltTabDownStatus = true;
                                 ControllerUsed = true;
