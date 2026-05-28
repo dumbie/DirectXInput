@@ -130,7 +130,7 @@ namespace DirectXInput
         {
             try
             {
-                vHidHideDevice = new HidHideDevice();
+                vHidHideDevice = new HidHideDllDevice();
                 if (vHidHideDevice.Connected)
                 {
                     Debug.WriteLine("HidHide device is installed.");

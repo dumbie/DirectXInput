@@ -47,6 +47,13 @@ namespace DirectXInput
                     vWindowMain.Show();
                 }
 
+                //Open virtual bus driver
+                if (!await OpenVirtualBusDriver())
+                {
+                    await Message_InstallDrivers();
+                    return;
+                }
+
                 //Check if drivers are installed
                 if (!CheckInstalledDrivers())
                 {
@@ -68,19 +75,22 @@ namespace DirectXInput
                     return;
                 }
 
-                //Open virtual bus driver
-                if (!await OpenVirtualBusDriver())
-                {
-                    await Message_InstallDrivers();
-                    return;
-                }
-
                 //Open hid hide device
                 if (!OpenHidHideDevice())
                 {
                     await Message_InstallDrivers();
                     return;
                 }
+
+                //Reset HidHide to defaults
+                vHidHideDevice.Control.ClearBlockedInstancesList();
+                vHidHideDevice.Control.ClearApplicationsList();
+
+                //Enable HidHide device
+                vHidHideDevice.Control.IsActive = true;
+
+                //Allow DirectXInput in HidHide
+                vHidHideDevice.Control.AddApplicationPath(AVFunctions.ApplicationPathExecutable());
 
                 //Check settings if CtrlUI launches on start
                 if (vSettings.Load("LaunchCtrlUI", typeof(bool)))
@@ -117,16 +127,6 @@ namespace DirectXInput
 
                 //Bind all the lists to ListBox
                 ListBoxBindLists();
-
-                //Reset HidHide to defaults
-                vHidHideDevice.ListDeviceReset();
-                vHidHideDevice.ListApplicationReset();
-
-                //Allow DirectXInput in HidHide
-                vHidHideDevice.ListApplicationAdd(AVFunctions.ApplicationPathExecutable());
-
-                //Enable HidHide device
-                vHidHideDevice.DeviceHideToggle(true);
 
                 //Start the background tasks
                 TasksBackgroundStart();

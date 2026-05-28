@@ -116,7 +116,7 @@ namespace DirectXInput
         public static double vKeypadImageHeight = 240;
 
         //Device Variables
-        public static HidHideDevice vHidHideDevice = null;
+        public static HidHideDllDevice vHidHideDevice = null;
         public static HidMaestroDllDevice vVirtualBusDevice = null;
         public static HMController vHMMouseRelative = null;
         public static HMController vHMKeyboardNormal = null;

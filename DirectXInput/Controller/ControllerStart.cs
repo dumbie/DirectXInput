@@ -61,10 +61,11 @@ namespace DirectXInput
                 //Check and set controller serial number
                 ControllerReadSerialNumber(controllerStatus);
 
-                //Allow controller in HidHide
+                //Allow controller in HidHide and wait for hide
                 if (controllerStatus.Details.Type == ControllerType.HidDevice)
                 {
-                    await vHidHideDevice.ListDeviceAdd(controllerStatus.Details.DeviceInstanceId);
+                    vHidHideDevice.Control.AddBlockedInstanceId(controllerStatus.Details.DeviceInstanceId);
+                    await Task.Delay(500);
                 }
 
                 //Disable and enable controller to make sure no other app is using it

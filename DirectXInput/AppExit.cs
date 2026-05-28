@@ -53,11 +53,11 @@ namespace DirectXInput
                 if (vHidHideDevice != null)
                 {
                     //Reset HidHide to defaults
-                    vHidHideDevice.ListDeviceReset();
-                    vHidHideDevice.ListApplicationReset();
+                    vHidHideDevice.Control.ClearBlockedInstancesList();
+                    vHidHideDevice.Control.ClearApplicationsList();
 
                     //Disable HidHide device
-                    vHidHideDevice.DeviceHideToggle(false);
+                    vHidHideDevice.Control.IsActive = false;
 
                     //Close HidHide device
                     vHidHideDevice.CloseDevice();
