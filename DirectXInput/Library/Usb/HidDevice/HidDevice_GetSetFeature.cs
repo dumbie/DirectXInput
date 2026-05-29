@@ -4,14 +4,13 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using static ArnoldVinkCode.AVInteropDll;
-using static LibraryUsb.NativeMethods_File;
 using static LibraryUsb.NativeMethods_IoControl;
 
 namespace LibraryUsb
 {
     public partial class HidDevice
     {
-        public byte[] ReadBytesFile(int inputBufferLength, uint timeOutMs)
+        public byte[] GetFeature(byte[] inputFeatureBytes, uint timeOutMs)
         {
             try
             {
@@ -25,9 +24,8 @@ namespace LibraryUsb
                 NativeOverlapped nativeOverlapped = new NativeOverlapped();
                 nativeOverlapped.EventHandle = createEvent.Get();
 
-                //Read bytes
-                byte[] inputBuffer = new byte[inputBufferLength];
-                bool overlapResult = ReadFile(FileHandle.Get(), inputBuffer, inputBuffer.Length, out int bytesReturned, ref nativeOverlapped);
+                //Send device control code
+                bool overlapResult = DeviceIoControl(FileHandle.Get(), (uint)IoControlCodes.IOCTL_HID_GET_FEATURE, null, 0, inputFeatureBytes, inputFeatureBytes.Length, out int bytesReturned, ref nativeOverlapped);
 
                 //Check overlap result
                 if (!overlapResult)
@@ -39,28 +37,28 @@ namespace LibraryUsb
                         {
                             if (GetOverlappedResult(FileHandle.Get(), ref nativeOverlapped, out int bytesTransferred, false))
                             {
-                                return inputBuffer;
+                                return inputFeatureBytes;
                             }
                         }
                     }
                 }
                 else
                 {
-                    return inputBuffer;
+                    return inputFeatureBytes;
                 }
 
                 //Return result
-                //Debug.WriteLine("Failed to read file bytes: " + overlapResult + " / " + bytesReturned);
+                //Debug.WriteLine("Failed to get feature: " + overlapResult + " / " + bytesReturned);
                 return null;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Failed to read file bytes: " + ex.Message);
+                Debug.WriteLine("Failed to get feature: " + ex.Message);
                 return null;
             }
         }
 
-        public bool WriteBytesFile(byte[] outputBuffer, uint timeOutMs)
+        public bool SetFeature(byte[] featureByte, uint timeOutMs)
         {
             try
             {
@@ -74,8 +72,8 @@ namespace LibraryUsb
                 NativeOverlapped nativeOverlapped = new NativeOverlapped();
                 nativeOverlapped.EventHandle = createEvent.Get();
 
-                //Write bytes
-                bool overlapResult = WriteFile(FileHandle.Get(), outputBuffer, outputBuffer.Length, out int bytesReturned, ref nativeOverlapped);
+                //Send device control code
+                bool overlapResult = DeviceIoControl(FileHandle.Get(), (uint)IoControlCodes.IOCTL_HID_SET_FEATURE, featureByte, featureByte.Length, null, 0, out int bytesReturned, ref nativeOverlapped);
 
                 //Check overlap result
                 if (!overlapResult)
@@ -98,12 +96,12 @@ namespace LibraryUsb
                 }
 
                 //Return result
-                //Debug.WriteLine("Failed to write file bytes: " + overlapResult + " / " + bytesReturned);
+                //Debug.WriteLine("Failed to set feature: " + overlapResult + " / " + bytesReturned);
                 return false;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Failed to write file bytes: " + ex.Message);
+                Debug.WriteLine("Failed to set feature: " + ex.Message);
                 return false;
             }
         }
