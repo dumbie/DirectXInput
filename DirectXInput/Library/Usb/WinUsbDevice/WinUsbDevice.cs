@@ -15,12 +15,12 @@ namespace LibraryUsb
         public bool Initialized;
         public string DevicePath;
         public string DeviceInstanceId;
-        public AVFin FileHandle;
+        private AVFin FileHandle;
         private AVFin WinUsbHandle;
-        public byte IntIn = 0xFF;
-        public byte IntOut = 0xFF;
-        public byte BulkIn = 0xFF;
-        public byte BulkOut = 0xFF;
+        public byte PipeIdInterruptIn = 0xFF;
+        public byte PipeIdInterruptOut = 0xFF;
+        public byte PipeIdBulkIn = 0xFF;
+        public byte PipeIdBulkOut = 0xFF;
 
         public WinUsbDevice(Guid deviceGuid, bool initialize, bool closeDevice)
         {
@@ -120,6 +120,7 @@ namespace LibraryUsb
             try
             {
                 //Try to initialize the device
+                WinUsbHandle = new AVFin(AVFinMethod.CloseHandle);
                 if (!WinUsb_Initialize(FileHandle.Get(), out WinUsbHandle.Get()))
                 {
                     Debug.WriteLine("Failed to initialize winusb device: " + DevicePath);
@@ -128,32 +129,32 @@ namespace LibraryUsb
                 }
 
                 WINUSB_PIPE_INFORMATION pipeInformation = new WINUSB_PIPE_INFORMATION();
-                USB_INTERFACE_DESCRIPTOR interfaceDescriptor = new USB_INTERFACE_DESCRIPTOR();
+                WINUSB_INTERFACE_DESCRIPTOR interfaceDescriptor = new WINUSB_INTERFACE_DESCRIPTOR();
 
                 if (WinUsb_QueryInterfaceSettings(WinUsbHandle.Get(), 0, ref interfaceDescriptor))
                 {
                     for (byte i = 0; i < interfaceDescriptor.bNumEndpoints; i++)
                     {
                         WinUsb_QueryPipe(WinUsbHandle.Get(), 0, i, ref pipeInformation);
-                        if (pipeInformation.PipeType == USBD_PIPE_TYPE.Bulk && UsbEndpointDirectionIn(pipeInformation.PipeId))
+                        if (pipeInformation.PipeType == WINUSB_PIPE_TYPE.Bulk && WinUsbEndpointDirectionIn(pipeInformation.PipeId))
                         {
-                            BulkIn = pipeInformation.PipeId;
-                            WinUsb_FlushPipe(WinUsbHandle.Get(), BulkIn);
+                            PipeIdBulkIn = pipeInformation.PipeId;
+                            WinUsb_FlushPipe(WinUsbHandle.Get(), PipeIdBulkIn);
                         }
-                        else if (pipeInformation.PipeType == USBD_PIPE_TYPE.Bulk && UsbEndpointDirectionOut(pipeInformation.PipeId))
+                        else if (pipeInformation.PipeType == WINUSB_PIPE_TYPE.Bulk && WinUsbEndpointDirectionOut(pipeInformation.PipeId))
                         {
-                            BulkOut = pipeInformation.PipeId;
-                            WinUsb_FlushPipe(WinUsbHandle.Get(), BulkOut);
+                            PipeIdBulkOut = pipeInformation.PipeId;
+                            WinUsb_FlushPipe(WinUsbHandle.Get(), PipeIdBulkOut);
                         }
-                        else if (pipeInformation.PipeType == USBD_PIPE_TYPE.Interrupt && UsbEndpointDirectionIn(pipeInformation.PipeId))
+                        else if (pipeInformation.PipeType == WINUSB_PIPE_TYPE.Interrupt && WinUsbEndpointDirectionIn(pipeInformation.PipeId))
                         {
-                            IntIn = pipeInformation.PipeId;
-                            WinUsb_FlushPipe(WinUsbHandle.Get(), IntIn);
+                            PipeIdInterruptIn = pipeInformation.PipeId;
+                            WinUsb_FlushPipe(WinUsbHandle.Get(), PipeIdInterruptIn);
                         }
-                        else if (pipeInformation.PipeType == USBD_PIPE_TYPE.Interrupt && UsbEndpointDirectionOut(pipeInformation.PipeId))
+                        else if (pipeInformation.PipeType == WINUSB_PIPE_TYPE.Interrupt && WinUsbEndpointDirectionOut(pipeInformation.PipeId))
                         {
-                            IntOut = pipeInformation.PipeId;
-                            WinUsb_FlushPipe(WinUsbHandle.Get(), IntOut);
+                            PipeIdInterruptOut = pipeInformation.PipeId;
+                            WinUsb_FlushPipe(WinUsbHandle.Get(), PipeIdInterruptOut);
                         }
                     }
                     //Debug.WriteLine("Initialized winusb device: " + DevicePath);
@@ -178,10 +179,10 @@ namespace LibraryUsb
             {
                 if (WinUsbHandle != null)
                 {
-                    WinUsb_AbortPipe(WinUsbHandle.Get(), IntIn);
-                    WinUsb_AbortPipe(WinUsbHandle.Get(), IntOut);
-                    WinUsb_AbortPipe(WinUsbHandle.Get(), BulkIn);
-                    WinUsb_AbortPipe(WinUsbHandle.Get(), BulkOut);
+                    WinUsb_AbortPipe(WinUsbHandle.Get(), PipeIdInterruptIn);
+                    WinUsb_AbortPipe(WinUsbHandle.Get(), PipeIdInterruptOut);
+                    WinUsb_AbortPipe(WinUsbHandle.Get(), PipeIdBulkIn);
+                    WinUsb_AbortPipe(WinUsbHandle.Get(), PipeIdBulkOut);
                     WinUsb_Free(WinUsbHandle.Get());
                     WinUsbHandle.Dispose();
                     WinUsbHandle = null;
