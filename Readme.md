@@ -51,7 +51,7 @@ DirectXInput converts your connected game controller to a Xbox (XInput) controll
 
 ## Special thanks
 - Benjamin Höglinger-Stelzer (Nefarius)
-- Travis Nickles (Ryochan7)
+- HIDMaestro (Hifihedgehog)
 
 ## Known Issues
 You can find all known issues at https://issues.arnoldvink.com/?p=DirectXInput
@@ -63,6 +63,10 @@ When you are walking into any problems or a bug you can go to my help page at ht
 If you appreciate my project and want to support me you can make a donation through https://donation.arnoldvink.com
 
 ## Changelog
+v2.8.0.0 (?-?-2026)
+- Improved trigger rumble by using Xbox Impulse Trigger information.
+- Virtual devices are now created using HIDMaestro.
+
 v2.6.0.0 (16-May-2026)
 - Added Steam Controller (2026) support.
 
