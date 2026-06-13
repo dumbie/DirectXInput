@@ -15,3 +15,6 @@ You cannot:
 - Make changes and modify the project to your personal liking.
 - Copy and paste the code to any other project without permission.
 - Upload the project binaries on the internet in any form.
+
+# Third party components
+Third party components used by this repository keep their own license rights.
